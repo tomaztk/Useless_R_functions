@@ -1,2 +1,2 @@
-# Useless_R_functions
-Useless R Functions. That's it
+# Useful - Useless R functions
+Useless R Functions. That's it :-)
