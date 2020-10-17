@@ -57,5 +57,5 @@ MixedCases <- function(stavek) {
   return(nov_stavek)
 }
 
-
+set.seed(12358)
 MixedCases("This is useless R Function that seems to exists.")
