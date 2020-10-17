@@ -13,14 +13,14 @@
 
 MixedCases <- function(stavek) {
   nov_stavek = ""
-  cifra = 0
+  cifra = 1
   crka = ""
   is.upper <- "[A-Z]"
   is.lower <- "[a-z]"
   
   
   for (crka in strsplit(stavek, "")[[1]]) {
-    if (nchar(nov_stavek)<2) {
+    if (nchar(nov_stavek)<=2) {
       random_stevilka = sample(0:1, 1, replace=TRUE)
       if (random_stevilka == 0) {
         nov_stavek = paste(nov_stavek,toupper(crka), sep = "")
@@ -52,7 +52,7 @@ MixedCases <- function(stavek) {
         }
       }
     }
-    #cifra = cifra + 1 
+    cifra = cifra + 1
   }
   return(nov_stavek)
 }
