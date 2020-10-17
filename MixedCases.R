@@ -25,13 +25,7 @@ MixedCases <- function(stavek) {
       transform <- toupper
     }
     else {
-      random_stevilka = sample(0:1, 1, replace=TRUE)
-      if (random_stevilka == 0) {
-        transform <- toupper
-      }
-      else {
-        transform <- tolower
-      }
+      transform <- sample(list(toupper, tolower), 1)[[1]]
     }
     chars[[i]] <- transform(chars[[i]])
   }
