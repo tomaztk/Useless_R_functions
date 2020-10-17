@@ -12,46 +12,42 @@
 
 
 MixedCases <- function(stavek) {
-  nov_stavek = ""
-  cifra = 1
-  crka = ""
   is.upper <- "[A-Z]"
   is.lower <- "[a-z]"
   
-  
-  for (crka in strsplit(stavek, "")[[1]]) {
-    if (nchar(nov_stavek)<=2) {
+  chars <- strsplit(stavek, "")[[1]]
+  for (i in seq_along(chars)) {
+    if (i<=2) {
       random_stevilka = sample(0:1, 1, replace=TRUE)
       if (random_stevilka == 0) {
-        nov_stavek = paste(nov_stavek,toupper(crka), sep = "")
+        chars[[i]] <- toupper(chars[[i]])
       }
       else {
-        nov_stavek = paste(nov_stavek,tolower(crka), sep = "")
+        chars[[i]] <- tolower(chars[[i]])
       }
     }
     else {
-      if (all(grepl(is.upper, strsplit(nov_stavek,"")[[1]][cifra-seq_len(2)])) | 
-            all(grepl(is.lower, strsplit(nov_stavek,"")[[1]][cifra-seq_len(2)]))) {
-        if ( grepl(is.upper, strsplit(nov_stavek,"")[[1]][cifra-1]) ) {
-          nov_stavek = paste(nov_stavek, tolower(crka), sep = "")
+      if (all(grepl(is.upper, chars[i-seq_len(2)])) | 
+            all(grepl(is.lower, chars[i-seq_len(2)]))) {
+        if ( grepl(is.upper, chars[i-1]) ) {
+          chars[[i]] <-  tolower(chars[[i]])
         }
         else {
-          nov_stavek = paste(nov_stavek, toupper(crka), sep = "")
+          chars[[i]] <- toupper(chars[[i]])
         }
       }
       else {
         random_stevilka = sample(0:1, 1, replace=TRUE)
         if (random_stevilka == 0) {
-          nov_stavek = paste(nov_stavek, toupper(crka), sep = "") 
+          chars[[i]] <- toupper(chars[[i]])
         }
         else { 
-          nov_stavek = paste(nov_stavek, tolower(crka), sep = "") 
+          chars[[i]] <- tolower(chars[[i]])
         }
       }
     }
-    cifra = cifra + 1
   }
-  return(nov_stavek)
+  return(paste(chars, collapse = ""))
 }
 
 set.seed(12358)
