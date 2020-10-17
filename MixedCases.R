@@ -27,14 +27,12 @@ MixedCases <- function(stavek) {
       }
     }
     else {
-      if (all(grepl(is.upper, chars[i-seq_len(2)])) | 
-            all(grepl(is.lower, chars[i-seq_len(2)]))) {
-        if ( grepl(is.upper, chars[i-1]) ) {
-          chars[[i]] <-  tolower(chars[[i]])
-        }
-        else {
-          chars[[i]] <- toupper(chars[[i]])
-        }
+      # if previous 2 characters have the same case, use the opposite 
+      if (all(grepl(is.upper, chars[i-seq_len(2)]))) {
+        chars[[i]] <- tolower(chars[[i]])
+      }
+      else if (all(grepl(is.lower, chars[i-seq_len(2)]))) {
+        chars[[i]] <- toupper(chars[[i]])
       }
       else {
         random_stevilka = sample(0:1, 1, replace=TRUE)
