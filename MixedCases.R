@@ -30,11 +30,8 @@ MixedCases <- function(stavek) {
       }
     }
     else {
-      if (grepl(is.upper, strsplit(nov_stavek,"")[[1]][cifra-2]) & 
-            grepl(is.upper, strsplit(nov_stavek,"")[[1]][cifra-1]) | 
-            
-            grepl(is.lower, strsplit(nov_stavek,"")[[1]][cifra-2]) & 
-            grepl(is.lower, strsplit(nov_stavek,"")[[1]][cifra-1])) {
+      if (all(grepl(is.upper, strsplit(nov_stavek,"")[[1]][cifra-seq_len(2)])) | 
+            all(grepl(is.lower, strsplit(nov_stavek,"")[[1]][cifra-seq_len(2)]))) {
         if ( grepl(is.upper, strsplit(nov_stavek,"")[[1]][cifra-1]) ) {
           nov_stavek = paste(nov_stavek, tolower(crka), sep = "")
         }
