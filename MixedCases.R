@@ -30,12 +30,12 @@ MixedCases <- function(stavek) {
       }
     }
     else {
-      if (grepl(pattern = is.upper, x=(strsplit(nov_stavek,"")[[1]][(cifra-2)])) & 
-            grepl(pattern = is.upper, x=(strsplit(nov_stavek,"")[[1]][(cifra-1)])) | 
+      if (grepl(is.upper, strsplit(nov_stavek,"")[[1]][cifra-2]) & 
+            grepl(is.upper, strsplit(nov_stavek,"")[[1]][cifra-1]) | 
             
-            grepl(pattern = is.lower, x=(strsplit(nov_stavek,"")[[1]][(cifra-2)])) & 
-            grepl(pattern = is.lower, x=(strsplit(nov_stavek,"")[[1]][(cifra-1)]))) {
-        if ( grepl(pattern = is.upper, x=(strsplit(nov_stavek,"")[[1]][(cifra-1)])) ) {
+            grepl(is.lower, strsplit(nov_stavek,"")[[1]][cifra-2]) & 
+            grepl(is.lower, strsplit(nov_stavek,"")[[1]][cifra-1])) {
+        if ( grepl(is.upper, strsplit(nov_stavek,"")[[1]][cifra-1]) ) {
           nov_stavek = paste(nov_stavek, tolower(crka), sep = "")
         }
         else {
