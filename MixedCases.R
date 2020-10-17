@@ -11,11 +11,11 @@
 
 
 
-MixedCases <- function(stavek) {
+MixedCases <- function(string) {
   is.upper <- "[A-Z]"
   is.lower <- "[a-z]"
   
-  chars <- strsplit(stavek, "")[[1]]
+  chars <- strsplit(string, "")[[1]]
   for (i in seq_along(chars)) {
     # if previous 2 characters have the same case, use the opposite 
     if (i > 2 && all(grepl(is.upper, chars[i-seq_len(2)]))) {
