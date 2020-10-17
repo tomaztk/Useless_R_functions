@@ -19,20 +19,21 @@ MixedCases <- function(stavek) {
   for (i in seq_along(chars)) {
     # if previous 2 characters have the same case, use the opposite 
     if (i > 2 && all(grepl(is.upper, chars[i-seq_len(2)]))) {
-      chars[[i]] <- tolower(chars[[i]])
+      transform <- tolower
     }
     else if (i > 2 && all(grepl(is.lower, chars[i-seq_len(2)]))) {
-      chars[[i]] <- toupper(chars[[i]])
+      transform <- toupper
     }
     else {
       random_stevilka = sample(0:1, 1, replace=TRUE)
       if (random_stevilka == 0) {
-        chars[[i]] <- toupper(chars[[i]])
+        transform <- toupper
       }
       else {
-        chars[[i]] <- tolower(chars[[i]])
+        transform <- tolower
       }
     }
+    chars[[i]] <- transform(chars[[i]])
   }
   return(paste(chars, collapse = ""))
 }
