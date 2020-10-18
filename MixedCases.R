@@ -11,52 +11,26 @@
 
 
 
-MixedCases <- function(stavek){
-nov_stavek = ""
-cifra = 0
-crka = ""
-is.upper <- "[A-Z]"
-is.lower <- "[a-z]"
-
-
-for (crka in strsplit(stavek, "")[[1]]){
-    if (nchar(nov_stavek)<2){
-      random_stevilka = sample(0:1, 1, replace=TRUE)
-      if (random_stevilka == 0){
-        nov_stavek = paste(nov_stavek,toupper(crka), sep = "")
-      }
-      else {
-        nov_stavek = paste(nov_stavek,tolower(crka), sep = "")
-      }
+MixedCases <- function(string) {
+  is.upper <- "[A-Z]"
+  is.lower <- "[a-z]"
+  
+  chars <- strsplit(string, "")[[1]]
+  for (i in seq_along(chars)) {
+    # if previous 2 characters have the same case, use the opposite 
+    if (i > 2 && all(grepl(is.upper, chars[i-seq_len(2)]))) {
+      transform <- tolower
     }
-   else{
-     if(( grepl(pattern = is.upper,  x=(strsplit(nov_stavek,"")[[1]][(cifra-2)])) &  
-         grepl(pattern = is.upper,  x=(strsplit(nov_stavek,"")[[1]][(cifra-1)])) |  
-         
-         grepl(pattern = is.lower,  x=(strsplit(nov_stavek,"")[[1]][(cifra-2)])) &  
-         grepl(pattern = is.lower,  x=(strsplit(nov_stavek,"")[[1]][(cifra-1)]))   ) == TRUE){
-          if (  grepl(pattern = is.upper,  x=(strsplit(nov_stavek,"")[[1]][(cifra-1)])) ) {
-              nov_stavek = paste(nov_stavek, tolower(crka), sep = "")
-          }
-          else {
-           nov_stavek = paste(nov_stavek, toupper(crka), sep = "")
-          
-            }
-     }
-    else  {
-          random_stevilka = sample(0:1, 1, replace=TRUE)
-         if (random_stevilka == 0){
-          nov_stavek = paste(nov_stavek, toupper(crka), sep = "") 
-          }
-        else { 
-          nov_stavek = paste(nov_stavek, tolower(crka), sep = "") 
-          }
-      }
-   }
-   #cifra = cifra + 1 
+    else if (i > 2 && all(grepl(is.lower, chars[i-seq_len(2)]))) {
+      transform <- toupper
+    }
+    else {
+      transform <- sample(list(toupper, tolower), 1)[[1]]
+    }
+    chars[[i]] <- transform(chars[[i]])
   }
-  return(nov_stavek)
+  return(paste(chars, collapse = ""))
 }
 
-
+set.seed(12358)
 MixedCases("This is useless R Function that seems to exists.")
