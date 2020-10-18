@@ -1,6 +1,8 @@
 # Useful - Useless R functions
 Useless R Functions. That's it :-)
 
+# List of useless functions
+1. Mixed Cases
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
