@@ -89,3 +89,19 @@ DataFrameMaker <- function(i, j) {
   m2 <- matrix(v2, ncol = j, byrow = TRUE)
   as.data.frame(m1 * m2)
 }
+
+
+#####################################
+#####
+##### Using Kronecker products on Arrays
+#####
+##### Contributed by Brad: https://tomaztsql.wordpress.com/2020/10/20/little-useless-useful-r-function-dataframe-maker/#comments
+#####
+####################################
+
+DataFrameMaker <- function(nrow, ncol) {
+  dd <- as.data.frame(kronecker(1:nrow,t(1:ncol)))
+  return(dd)
+}
+
+DataFrameMaker(3,4)
