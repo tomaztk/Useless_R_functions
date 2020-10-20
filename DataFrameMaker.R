@@ -4,7 +4,7 @@
 # Series:
 # Little Useless-useful R functions #2
 # Created: October 19, 2020
-# Author: Tomaû Kaötrun
+# Author: Toma≈æ Ka≈°trun
 # Blog: tomaztsql.wordpress.com
 # V.1.0
 
@@ -76,4 +76,16 @@ DataFrameMaker  <- function(col,row){
 dd <- DataFrameMaker(4,2)
 
 
+#####################################
+#####
+##### Making Use of vector datatypes
+#####
+####################################
 
+DataFrameMaker <- function(i, j) {
+  v1 <- rep(1:i, j)
+  v2 <- rep(1:j, i)
+  m1 <- matrix(v1, ncol = j, byrow = FALSE)
+  m2 <- matrix(v2, ncol = j, byrow = TRUE)
+  as.data.frame(m1 * m2)
+}
