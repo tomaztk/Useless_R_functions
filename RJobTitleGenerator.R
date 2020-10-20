@@ -11,6 +11,7 @@
 # Changelog: 
 ###########################################
 
+RJobTitle <- function(){
 
 ### Values
 Roles = c('Analyst','Project Manager','Expert','Manager','Programmer','Artist'
@@ -38,11 +39,12 @@ Fancystuff = c( 'Regional','Only the best','Insane','Qualitative','Virtuous','Se
 ,'First Class','Powerful','Data','Head of','Master of','Chief of','Officer','Lead','Special')
 
 
-### Ordering of subsets
-JobTitle <- paste(sample(Fancystuff,1, replace=TRUE),sample(RStuff,1, replace=TRUE),sample(Roles,1, replace=TRUE), sep= " ")
+### Ordering of subsets and generating R Job Title
+RTitle <- paste(sample(Fancystuff,1, replace=TRUE),sample(RStuff,1, replace=TRUE),sample(Roles,1, replace=TRUE), sep= " ")
 
-JobTitle
+return(RTitle)
 
-#similarity?
-#Fancystuff[floor(runif(Fancystuff, min=1, max=39))[1]]
-#sample(Fancystuff,1,replace=TRUE)
+}
+
+#Run the script
+RJobTitle()
