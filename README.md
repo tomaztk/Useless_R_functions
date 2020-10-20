@@ -4,6 +4,7 @@ Useless R Functions. That's it :-)
 # List of useless functions
 1. Mixed Cases
 2. DataFrame maker
+3. R Job Title generator
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
