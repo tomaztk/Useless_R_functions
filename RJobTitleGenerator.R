@@ -32,7 +32,7 @@ RJobTitle <- function(){
            ,'Data Manipulator','tEvangelist','Hero','Guru','partz professional','Composer','Reader','Outliner'
            ,'Proof-reader','zoo Assistant','data.frame Operator','Matrix Maker','dpylr lover'
            ,'Tester','Deep tester','Backward tester','Office hater','Hollister','Warrior','Junkie'
-           ,'Wizard','Leader','King','Github Approver','CARET Engineer','n1071e Architect','Rockstar','Ninja','R Coder'
+           ,'Wizard','Leader','King','Github Approver','CARET Engineer','e1071 Architect','Rockstar','Ninja','R Coder'
            ,'Python Hater','Ninja','Captain','Strategist','Consultant','Counsellor','Organizer'
            ,'Emacs Endorser','Dog','Library Installer','Cheever','RStudio specialist','R Fanboy','Functionist'
            ,'Researcher','Shadower','Variable lover','Knitter Helper','Debugger','Data Scientists'
