@@ -13,6 +13,7 @@
 ###########################################
 require(RColorBrewer)
 
+
 Psychedelics <- function(number_iterations)
 {
   for (i in 1:number_iterations){
@@ -22,12 +23,13 @@ Psychedelics <- function(number_iterations)
       r <- sqrt(outer(x^2, y^2, "+"))
       # print(r)
       image(z = exp(-r/8)*cos(r^4),  col = brewer.pal(12,"Set3"), xaxt='n', yaxt='n', ann=FALSE)
-  }
+      Sys.sleep(0.1)
+        }
 }
 
 
-## Run all together
+## Run all together - when running on Unix / Windows
 ## screen size can be altered
-  x11(width = 15,height = 10)
-  Psychedelics(105)
-  dev.off()
+  x11(width = 7,height = 7)
+  Psychedelics(25)
+  graphics.off()
