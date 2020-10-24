@@ -3,7 +3,7 @@
 # Useless (and Quarky) R Job Title Generator
 # Series:
 # Little Useless-useful R functions #3
-# Created: October 21, 2020
+# Created: October 24, 2020
 # Author: Tomaž Kaštrun
 # Blog: tomaztsql.wordpress.com
 # V.1.0
