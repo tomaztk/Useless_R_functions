@@ -5,6 +5,7 @@ Useless R Functions. That's it :-)
 1. Mixed Cases
 2. DataFrame maker
 3. R Job Title generator
+4. Psychedelic Square Root visual with x11()
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
