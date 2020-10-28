@@ -28,7 +28,16 @@ IsItFriday13 <- function(){
     }
   }  
 
-
 IsItFriday13()
 
+
+
+# non-deterministic
+IsItFullMoon <- function(){
+
+# when date (conert to 113) is 14 -> is getting full, else empty, based on Hijri (Kuwait) Calendar
+
+}  
+
+IsIfFullMoon()
 
