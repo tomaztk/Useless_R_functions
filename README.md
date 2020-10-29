@@ -1,11 +1,13 @@
 # Useful - Useless R functions
-Useless R Functions. That's it :-)
+Useless R Functions. That's it :-) And nothing more.
 
 # List of useless functions
 1. Mixed Cases
 2. DataFrame maker
 3. R Job Title generator
 4. Psychedelic Square Root visual with x11()
+5. Friday 13th obvious searcher
+6. Full moon finder
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
