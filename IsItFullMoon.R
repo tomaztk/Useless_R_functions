@@ -46,9 +46,9 @@ IsItFullMoon <- function(){
   dec <- semi%%1
   #dec*cycle
   if (dec*cycle>= 14.50 & dec*cycle <= 15.50){
-    print("Evo ti!")
+    print("Full Moon. Yay!")
   } else {
-    print("Še poèakaj")
+    print("You should wait. Go back to sleep")
   }
   
   
