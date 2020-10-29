@@ -30,27 +30,3 @@ IsItFriday13 <- function(){
 
 IsItFriday13()
 
-
-
-# non-deterministic
-IsItFullMoon <- function(){
-
-# when date (conert to 113) is 14 -> is getting full, else empty, based on Hijri (Kuwait) Calendar
-  
-  
-  // Use current UTC date and time for this demo
-  date_default_timezone_set('UTC');
-  $thedate = date('Y-m-d H:i:s');
-  $unixdate = strtotime($thedate);
-  
-  // The duration in days of a lunar cycle
-  $lunardays = 29.53058770576;
-  // Seconds in lunar cycle
-  $lunarsecs = $lunardays * (24 * 60 *60);
-  // Date time of first new moon in year 2000
-  $new2000 = strtotime("2000-01-06 18:14");   
-
-}  
-
-IsIfFullMoon()
-
