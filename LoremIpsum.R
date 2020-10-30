@@ -19,19 +19,26 @@ function_list <- function(){
   lw3 <- ls("package:base")
   lwA <- c(lw,lw3)
   lwA <- unique(lwA)
-  gsub("[[:punct:]]", " ", lwA)
+  lwA <- trimws(gsub("[[:punct:]]", " ", lwA))
+  #ltrim / rtrim
+
   return(lwA)
   }
 
-function_list()
+
+#function_list()
 
 
 RLoremIpsum <- function(text_length){
   
   lw <- function_list()
-  
+  a <- do.call(paste0, replicate(1, sample(lw, text_length, TRUE), FALSE))
+  a <- paste0(" ", a, sep = " ", collapse = "")
+  a <- gsub("^ *|(?<= ) | *$", "", a, perl = TRUE)
+  a <- substr(a, 1, text_length)
+  return(a)
 }
 
 
-
-
+# generated Lorem Ipsum with 1000 characters
+RLoremIpsum(1000)
