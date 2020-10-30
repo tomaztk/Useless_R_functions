@@ -9,6 +9,8 @@
 # V.1.0
 
 # Changelog: 
+# - improvements: count words for correct
+#                 length
 ###########################################
 
 
