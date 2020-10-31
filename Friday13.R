@@ -13,7 +13,6 @@
 ###########################################
 
 
-
 # non-deterministic
 IsItFriday13 <- function(){
   #da <- "2020-11-13"
@@ -22,9 +21,9 @@ IsItFriday13 <- function(){
   d <- as.POSIXlt(da)$mday 
   
   if (rn == 5 & d == 13){
-      print("true Fri-13")
+      print("It is a Friday the 13th!")
   } else {
-      print("naaah!")
+      print("Not a Friday 13th!")
     }
   }  
 
