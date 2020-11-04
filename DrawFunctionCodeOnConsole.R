@@ -64,12 +64,25 @@ draw_triang <- function(h, codetext){
   v = ceiling(r/a) + h 
   for (i in 1:v){
     presledek = i*2
-    cat( paste0(paste0(replicate(presledek/2, " "), collapse =""), substr(codetext,1,a-presledek), paste0(replicate(presledek/2, " "), collapse = ""), "\n"))   
+    cat( paste0(paste0(strrep(" ",presledek/2), collapse =""), substr(codetext,1,a-presledek), paste0(replicate(presledek/2, " "), collapse = ""), "\n"))   
   }
 }
 
 draw_triang(10, tkt)
 
+
+draw_tann <- function(s, codetext){
+  for (i in 1:s){
+    print(i)
+    ll <- nchar(codetext)
+    div <- floor(ll/s)
+    for (l in 1:div){
+      print(substring(codetext,i*l, i*div))
+    }
+  }
+}
+
+draw_tann(10, tkt)
 
 
 
