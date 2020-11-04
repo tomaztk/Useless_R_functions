@@ -61,6 +61,9 @@ draw_parallel(10,tkt)
 
 
 draw_triang <- function(v, codetext){
+  r <- nchar(codetext)
+  a = ceiling(sqrt(r*4/1.73))
+  v = ceiling(r/a) + h 
   
 }
 
