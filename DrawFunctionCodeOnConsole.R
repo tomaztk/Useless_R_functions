@@ -68,7 +68,6 @@ draw_triang <- function(h, codetext){
   }
 }
 
-
 draw_triang(10, tkt)
 
 
