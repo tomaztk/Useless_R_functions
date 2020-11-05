@@ -21,6 +21,11 @@ WackyPassword <- function(WP_length){
   return()
   }
   
+  if (WP_length > 30) {
+    print("Wooohooo Cowboy, slow down!")
+    return()
+  }
+  
   #charblock1 = c(176:178, 185: 188, 200:206)
   charblock1 <- c("\u2591","\u2592","\u2593")
   charblock2 = c(73,105,108,124,49,33)
@@ -50,6 +55,6 @@ WackyPassword <- function(WP_length){
 
 
 
-WackyPassword(26)
+WackyPassword(18)
 
 
