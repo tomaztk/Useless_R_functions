@@ -11,39 +11,42 @@
 # Changelog: 
 ###########################################
 
+Sys.setlocale("LC_CTYPE", "en_US.UTF-8")
 
-WackyPassword <- function(WP_length, WP_level=TRUE){
 
-  WP_length <- 20
-  charblock1 = c(176:178, 185: 188, 200:206)
+WackyPassword <- function(WP_length){
+  #charblock1 = c(176:178, 185: 188, 200:206)
+  charblock1 <- c("\u2591","\u2592","\u2593")
   charblock2 = c(73,105,108,124,49,33)
   numberblock3 <- sample(0:9, length(5),replace = TRUE)
   
-
-   if (WP_level==TRUE){
- 
-     
-     stopifnot(is.numeric(WP_length),  WP_length   > 0L,
-               is.character(charblock1), charblock1  > 0L, charblock1 <= WP_length,
-               is.numeric(charblock2), charblock2  > 0L, charblock2 <= WP_length,
-               is.numeric(numberblock3), numberblock3  > 0L, numberblock3 <= WP_length,
-               length(intersect(charblock1, charblock2, numberblock3)) == 0L)
+  pass = ""
+  Encoding(pass) <- "UTF-8"
+  
+      while (nchar(pass) <= WP_length) {
+        res2 <- sample(charblock2, 100,replace = TRUE)
+        res2 <- rawToChar(as.raw(res2))
+        Encoding(res2) <- "UTF-8"
+       # cat(res2)
+        pass <- paste0(pass,substr(res2,1,5),collapse="", sep= "")
         
-     wacky <- charblock1
-     pass[capitals] <- uc
-     pass[numbers]  <- num
-     
-     paste0(pass, collapse = "")
-     
-  }
-  if (WP_level==FALSE){
-    
-    rerw
-  }
-  
-  data.frame(coderange,as.raw(coderange),row.names=rawToChar(as.raw(coderange),multiple=TRUE))
-  
+        
+        res1 <- sample(charblock1, 100,replace = TRUE)
+        #res1 <- (rawToChar(as.raw(res1)))
+        #xx <- iconv(res1, "raw", "UTF-8")
+        #res1 <- (as.raw(res1))
+        #enc2utf8(res1)
+        Encoding(res1) <- "UTF-8"
+        res <- paste0(res1, sep = "", collapse = "")
+        # cat(res1)
+        pass <- paste0(pass,substr(res,1,5), sep="", collapse = "")
+          }     
+
+  cat(eval(pass))
 }
 
+
+
+WackyPassword(18)
 
 
