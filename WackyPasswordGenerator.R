@@ -34,5 +34,30 @@ WackyPassword <- function(WP_length, WP_level=TRUE){
 }
 
 
+gen_pass <- function(len=8,seeder=NULL){
+  set.seed(seeder) # to allow replicability of passw generation
+  # get all combinations of 4 nums summing to length len
+  all_combs <- expand.grid(1:(len-3),1:(len-3),1:(len-3),1:(len-3))
+  sum_combs <- all_combs[apply(all_combs, 1, function(x) sum(x)==len),]
+  # special character vector
+  punc <- unlist(strsplit("!#$%&’()*+,-./:;<=>?@[]^_`{|}~",""))
+  # list of all characters to sample from
+  chars <- list(punc,LETTERS,0:9,letters)
+  # retrieve the number of characters from each list element 
+  # specified in the sampled row of sum_combs
+  pass_chars_l<- mapply(sample, chars,
+                        sum_combs[sample(1:nrow(sum_combs),1),],
+                        replace = TRUE)
+  # unlist sets of password characters 
+  pass_chars <- unlist(pass_chars_l)
+  # jumble characters and combine into password 
+  passw <- str(sample(pass_chars),collapse = "")
+  return(passw)
+}
+
+
+gen_pass(8,29081978)
+
+
 
 
