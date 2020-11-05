@@ -8,7 +8,8 @@ Useless R Functions. That's it :-) And nothing more.
 4. Psychedelic Square Root visual with x11()
 5. Friday 13th obvious searcher
 6. Full moon finder
-7. Lorem Ipsum R text generator 
+7. Lorem Ipsum R text generator
+8. Wacky Password generator
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
