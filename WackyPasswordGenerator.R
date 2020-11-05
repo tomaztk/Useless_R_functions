@@ -15,6 +15,12 @@ Sys.setlocale("LC_CTYPE", "en_US.UTF-8")
 
 # Running on Linux/MacOS
 WackyPassword <- function(WP_length){
+  
+  if (WP_length < 9) {
+    print("Password must be longer then 8 characters")
+  return()
+  }
+  
   #charblock1 = c(176:178, 185: 188, 200:206)
   charblock1 <- c("\u2591","\u2592","\u2593")
   charblock2 = c(73,105,108,124,49,33)
@@ -44,6 +50,6 @@ WackyPassword <- function(WP_length){
 
 
 
-WackyPassword(18)
+WackyPassword(26)
 
 
