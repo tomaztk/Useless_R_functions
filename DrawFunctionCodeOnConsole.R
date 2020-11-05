@@ -2,7 +2,7 @@
 # 
 # Draw function on console plot with code
 # Series:
-# Little Useless-useful R functions #2
+# Little Useless-useful R functions #7
 # Created: November 1, 2020 - work in prog
 # Author: Tomaz Kastrun
 # Blog: tomaztsql.wordpress.com
