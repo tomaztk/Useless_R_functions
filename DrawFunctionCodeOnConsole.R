@@ -85,6 +85,21 @@ draw_tann <- function(s, codetext){
 draw_tann(10, tkt)
 
 
+draw_circle <- function(diameter = 1,rows = 5,codetext){
+  vectT <- seq(0,2*pi, length.out = 10)
+  r <- diameter/2
+  for (i in 1:rows){
+    x_pos <- ceiling(i[1] + r * cos(vectT))
+    print(x_pos)
+    }
+}
+
+
+draw_circle(2,6, tkt)
+
+
+
+
 
 draw_shape <- function(fun, size, codetext){
   
