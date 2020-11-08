@@ -71,6 +71,8 @@ draw_triang <- function(h, codetext){
 draw_triang(10, tkt)
 
 
+
+
 draw_tann <- function(s, codetext){
   for (i in 1:s){
     print(i)
@@ -85,17 +87,36 @@ draw_tann <- function(s, codetext){
 draw_tann(10, tkt)
 
 
-draw_circle <- function(diameter = 1,rows = 5,codetext){
+
+
+draw_circle <- function(
+                          diameter = 5,
+                          rows = 6,
+                          codetext=tkt){
   vectT <- seq(0,2*pi, length.out = 10)
   r <- diameter/2
+  nr <- nchar(codetext)
+  a = ceiling(sqrt(nr*4/1.73))
+  dfa <- data.frame(NULL)
   for (i in 1:rows){
     x_pos <- ceiling(i[1] + r * cos(vectT))
-    print(x_pos)
+    dfa <- rbind(dfa,as.data.frame((t(x_pos))))
+  }
+  odmik <- dfa[1,]
+  max_le <- max(dfa[,1])
+  for (i in 1:as.integer(length(odmik))){ 
+    if (i == 1){
+      print( paste0(paste0(replicate(as.integer(odmik[i])," "), collapse=""),substr(codetext,1, a),paste0(replicate(as.integer(odmik[i])," "), collapse="")))
+    } else {
+      print( paste0(paste0(replicate(as.integer(odmik[i])," "), collapse=""),substr(codetext,1+(a*i)-i, a+(a*i)-i),paste0(replicate(as.integer(odmik[i])," "), collapse="") ))
     }
+  }
 }
 
 
-draw_circle(2,6, tkt)
+
+draw_circle(9,6, tkt)
+
 
 
 
