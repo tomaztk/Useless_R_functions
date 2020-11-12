@@ -13,8 +13,11 @@
 ###########################################
 
 
+#################################### 
+##### Input bet as a function  #####
+####################################
 
-##### Input bet as a function
+
 play_RPS <- function(bet) {
   bets <- c("R","P", "S") 
   if(bet %in% bets){
@@ -37,6 +40,7 @@ play_RPS <- function(bet) {
 }
 
 
+# Run test
 play_RPS("R")
 
 
@@ -47,14 +51,13 @@ play_RPS("R")
 
 
 ### Navigating through x11 with play_RPS function
+## Concept/part of code of using x11() function by Darren Tsai (National Taipei University)
 click <- function(rock.paper.scissors=defaultRPS){
   
   while(length(place.na)==9){
     mouse.at <- locator(n = 1, type = "p") 
     x.at <- round(mouse.at$x)
     y.at <- round(mouse.at$y)
-    #print(x.at)
-    
     if(all(is.na(place.na))){
       defaultRPS <<- rock.paper.scissors()
     }else if(x.at > 3.5 | x.at < 0.5 | y.at > 3.5 | y.at < 0.5){
@@ -91,15 +94,12 @@ rock.paper.scissors <- function(){
 }
 
 
-
-
 #### Start with x11 
 start_game <- function(){
   x11()
   defaultRPS <<- rock.paper.scissors()
   click()
 }
-
 
 
 
