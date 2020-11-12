@@ -39,4 +39,74 @@ play_RPS <- function(bet) {
 
 play_RPS("R")
 
+
+
+##############################
+##### Using x11  ############
+##############################
+
+
+click <- function(rock.paper.scissors=ttt){
+
+  while(length(place.na)==3){
+    mouse.at <- locator(n = 1, type = "p") 
+    cat(mouse.at$x,"\t",  mouse.at$y, "\n")
+    x.at <- round(mouse.at$x)
+    y.at <- round(mouse.at$y)
+    #cat(x.at,"\t",  y.at, "\n")
+    if(all(is.na(place.na))){
+      ttt <<- rock.paper.scissors()
+    }else if(x.at > 3.5 | x.at < 0.5 | y.at > 3.5 | y.at < 0.5){
+      r <<- r + 1
+      title(sub=list("Click outside:Quit/inside:Restart", col="black", font=2, cex=2), line=2)
+      if(r==2){
+        dev.off()
+        break
+      }
+    }else{
+      if(r==1){
+        ttt <<- rock.paper.scissors()
+      }else{
+        #aim(x.at, y.at)
+        #place.na 1,2,3: if 1 = R, 2 = P, 3 = S
+        play_RPS("R")
+        
+      }
+    }
+  }
+}
+
+
+########################
+# RPS Function #
+########################
+
+rock.paper.scissors <- function(){
+  
+  place.na <<- matrix(1:3, 1, 3)
+  x <- seq(1:3)
+  y <- 1
+  image(x=x, y=y , z=outer(x,y), asp=c(1, 3), xaxt="n", yaxt="n", xlab="", ylab="", frame=F, col=c("lightgreen", "lightYellow", "orchid1"))
+  
+}
+
+
+start_game <- function(){
+  x11()
+  ttt <<- rock.paper.scissors()
+  click()
+}
+
+0.5, 2.34
+0.5, -0.34
+1.48  2.34
+1.49  -0.34
+
+start_game()
+
+
+dev.off()
+
+
+
  
