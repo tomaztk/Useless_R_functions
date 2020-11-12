@@ -121,8 +121,6 @@ draw_circle(9,6, tkt)
 
 
 
-
-
 draw_shape <- function(fun, size, codetext){
   
   fun <- c("cos", "sin", "x", "x2", "x3", "xn")
