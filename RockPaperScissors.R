@@ -49,7 +49,7 @@ play_RPS("R")
 
 
 ### Navigating through x11 with play_RPS function
-## Concept/part of code of using x11() function by Darren Tsai (National Taipei University)
+## Concept/part of code of using x11() function by Darren Tsai
 click <- function(rock.paper.scissors=defaultRPS){
   
   while(length(place.na)==9){
@@ -87,13 +87,13 @@ rock.paper.scissors <- function(){
   value <<- matrix(-3, 3, 3)
   k <<- 1 ; r <<- 0
   image(1:3, 1:3, matrix(1:9, 3, 3), asp=c(1, 1), xaxt="n", yaxt="n", xlab="", ylab="", frame=FALSE, col=c("lightgreen", "lightYellow", "orchid1","lightgreen", "lightYellow", "orchid1","lightgreen", "lightYellow", "orchid1"))
-  mtext(side=1, line=-10, at=1.0, adj=0, cex=0.7, 'Rock            Paper                  Scissors')
+  mtext(side=1, line=-10, at=1.0, adj=0, cex=0.7, 'Rock            Paper                  Scissors') #change
   }
 
 ### Start with x11 
 start_game <- function(){
   x11()
-  defaultRPS <<- rock.paper.scissors()
+  defaultRPS <<- rock.paper.scissors() 
   click()
 }
 
