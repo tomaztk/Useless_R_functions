@@ -46,6 +46,7 @@ play_RPS("R")
 ##############################
 
 
+### Navigating through x11 with play_RPS function
 click <- function(rock.paper.scissors=ttt){
 
   while(length(place.na)==3){
@@ -67,7 +68,6 @@ click <- function(rock.paper.scissors=ttt){
       if(r==1){
         ttt <<- rock.paper.scissors()
       }else{
-        #aim(x.at, y.at)
         #place.na 1,2,3: if 1 = R, 2 = P, 3 = S
         play_RPS("R")
         
@@ -77,13 +77,11 @@ click <- function(rock.paper.scissors=ttt){
 }
 
 
-########################
-# RPS Function #
-########################
-
+#### Board 
 rock.paper.scissors <- function(){
   
   place.na <<- matrix(1:3, 1, 3)
+  r <<- 0
   x <- seq(1:3)
   y <- 1
   image(x=x, y=y , z=outer(x,y), asp=c(1, 3), xaxt="n", yaxt="n", xlab="", ylab="", frame=F, col=c("lightgreen", "lightYellow", "orchid1"))
@@ -91,21 +89,18 @@ rock.paper.scissors <- function(){
 }
 
 
+#### Start with x11 
 start_game <- function(){
   x11()
   ttt <<- rock.paper.scissors()
   click()
 }
 
-0.5, 2.34
-0.5, -0.34
-1.48  2.34
-1.49  -0.34
+
+
 
 start_game()
-
-
-dev.off()
+#dev.off()
 
 
 
