@@ -24,11 +24,11 @@ play_RPS <- function(bet) {
   combo <- paste0(REngine,bet, collapse="")
   res <-solution_df[ which(solution_df$combo==combo),2]
   if (res=="10"){
-    print(paste0("You lost. Computer draw: ", REngine), collapse="")
+    res_print <<- print(paste0("You lost. Computer draw: ", REngine), collapse="")
   } else if(res=="00"){
-    print(paste0("It's a tie! Computer draw: ", REngine), collapse="")
+    res_print <<-print(paste0("It's a tie! Computer draw: ", REngine), collapse="")
     }else {
-    print(paste0("You win! Computer draw: ", REngine), collapse="")
+    res_print <<- print(paste0("You win! Computer draw: ", REngine), collapse="")
     }
    }
   else {
@@ -68,10 +68,13 @@ click <- function(rock.paper.scissors=defaultRPS){
       if(r==1){
         ttt <<- rock.paper.scissors()
       }else{
-        if(x.at==1){ play_RPS("R") }
-        if(x.at==2){ play_RPS("S") }
-        if(x.at==3){ play_RPS("P") }
-        
+        if(x.at==1){ res_print <<- play_RPS("R") 
+          title(sub=list(res_print, col="black", font=0.5, cex=2.5), line=2)}
+        if(x.at==2){ play_RPS("S") 
+          title(sub=list(res_print, col="black", font=0.5, cex=2.5), line=2)}
+        if(x.at==3){ play_RPS("P") 
+          title(sub=list(res_print, col="black", font=0.5, cex=2.5), line=2)}
+     
         
       }
     }
