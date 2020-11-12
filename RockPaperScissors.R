@@ -47,16 +47,16 @@ play_RPS("R")
 
 
 ### Navigating through x11 with play_RPS function
-click <- function(rock.paper.scissors=ttt){
-
-  while(length(place.na)==3){
+click <- function(rock.paper.scissors=defaultRPS){
+  
+  while(length(place.na)==9){
     mouse.at <- locator(n = 1, type = "p") 
-    cat(mouse.at$x,"\t",  mouse.at$y, "\n")
     x.at <- round(mouse.at$x)
     y.at <- round(mouse.at$y)
-    #cat(x.at,"\t",  y.at, "\n")
+    #print(x.at)
+    
     if(all(is.na(place.na))){
-      ttt <<- rock.paper.scissors()
+      defaultRPS <<- rock.paper.scissors()
     }else if(x.at > 3.5 | x.at < 0.5 | y.at > 3.5 | y.at < 0.5){
       r <<- r + 1
       title(sub=list("Click outside:Quit/inside:Restart", col="black", font=2, cex=2), line=2)
@@ -68,8 +68,10 @@ click <- function(rock.paper.scissors=ttt){
       if(r==1){
         ttt <<- rock.paper.scissors()
       }else{
-        #place.na 1,2,3: if 1 = R, 2 = P, 3 = S
-        play_RPS("R")
+        if(x.at==1){ play_RPS("R") }
+        if(x.at==2){ play_RPS("S") }
+        if(x.at==3){ play_RPS("P") }
+        
         
       }
     }
@@ -79,20 +81,19 @@ click <- function(rock.paper.scissors=ttt){
 
 #### Board 
 rock.paper.scissors <- function(){
-  
-  place.na <<- matrix(1:3, 1, 3)
-  r <<- 0
-  x <- seq(1:3)
-  y <- 1
-  image(x=x, y=y , z=outer(x,y), asp=c(1, 3), xaxt="n", yaxt="n", xlab="", ylab="", frame=F, col=c("lightgreen", "lightYellow", "orchid1"))
-  
+  place.na <<- matrix(1:9, 3, 3)
+  value <<- matrix(-3, 3, 3)
+  k <<- 1 ; r <<- 0
+  image(1:3, 1:3, matrix(1:9, 3, 3), asp=c(1, 1), xaxt="n", yaxt="n", xlab="", ylab="", frame=F, col=c("lightgreen", "lightYellow", "orchid1","lightgreen", "lightYellow", "orchid1","lightgreen", "lightYellow", "orchid1"))
 }
+
+
 
 
 #### Start with x11 
 start_game <- function(){
   x11()
-  ttt <<- rock.paper.scissors()
+  defaultRPS <<- rock.paper.scissors()
   click()
 }
 
