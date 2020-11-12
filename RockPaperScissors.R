@@ -9,9 +9,8 @@
 # V.1.0
 
 # Changelog: 
-#        - adding rocks
+#        - adding x11()
 ###########################################
-
 
 
 
@@ -24,18 +23,15 @@ play_RPS <- function(bet) {
   combo <- paste0(REngine,me, collapse="")
   res <-solution_df[ which(solution_df$combo==combo),2]
   if (res=="10"){
-    print("You lose")
-    print(paste0("Computer draw: ", REngine), collapse="")
+    print(paste0("You lost. Computer draw: ", REngine), collapse="")
   } else if(res=="00"){
-    print("It's a tie")
-    print(paste0("Computer draw: ", REngine), collapse="")
+    print(paste0("It's a tie! Computer draw: ", REngine), collapse="")
     }else {
-    print("You win!")
-    print(paste0("Computer draw: ", REngine), collapse="")
+    print(paste0("You win! Computer draw: ", REngine), collapse="")
     }
    }
   else {
-    print("Please input valid bet")
+    print("Please input valid bet!")
   }
 }
 
