@@ -39,10 +39,8 @@ play_RPS <- function(bet) {
   }
 }
 
-
 # Run test
 play_RPS("R")
-
 
 
 ##############################
@@ -77,8 +75,6 @@ click <- function(rock.paper.scissors=defaultRPS){
           title(sub=list(res_print, col="black", font=0.5, cex=2.5), line=2)}
         if(x.at==3){ play_RPS("P") 
           title(sub=list(res_print, col="black", font=0.5, cex=2.5), line=2)}
-     
-        
       }
     }
   }
@@ -90,22 +86,21 @@ rock.paper.scissors <- function(){
   place.na <<- matrix(1:9, 3, 3)
   value <<- matrix(-3, 3, 3)
   k <<- 1 ; r <<- 0
-  image(1:3, 1:3, matrix(1:9, 3, 3), asp=c(1, 1), xaxt="n", yaxt="n", xlab="", ylab="", frame=F, col=c("lightgreen", "lightYellow", "orchid1","lightgreen", "lightYellow", "orchid1","lightgreen", "lightYellow", "orchid1"))
-}
+  image(1:3, 1:3, matrix(1:9, 3, 3), asp=c(1, 1), xaxt="n", yaxt="n", xlab="", ylab="", frame=FALSE, col=c("lightgreen", "lightYellow", "orchid1","lightgreen", "lightYellow", "orchid1","lightgreen", "lightYellow", "orchid1"))
+  mtext(side=1, line=-10, at=1.0, adj=0, cex=0.7, 'Rock            Paper                  Scissors')
+  }
 
-
-#### Start with x11 
+### Start with x11 
 start_game <- function(){
   x11()
   defaultRPS <<- rock.paper.scissors()
   click()
 }
 
-
+########################
+#### Start the game ####
+########################
 
 start_game()
-#dev.off()
-
-
 
  
