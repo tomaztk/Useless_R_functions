@@ -16,11 +16,12 @@
 
 ##### Input bet as a function
 play_RPS <- function(bet) {
-   if(bet %in% c("R","P", "S")){
+  bets <- c("R","P", "S") 
+  if(bet %in% bets){
      
   solution_df <- data.frame(combo=c("RP", "PR", "PS", "SP", "RS", "SR", "PP", "RR", "SS"), win = c("01","10", "01","10", "10", "01", "00","00","00") )
   REngine <- sample(bets,1)  
-  combo <- paste0(REngine,me, collapse="")
+  combo <- paste0(REngine,bet, collapse="")
   res <-solution_df[ which(solution_df$combo==combo),2]
   if (res=="10"){
     print(paste0("You lost. Computer draw: ", REngine), collapse="")
