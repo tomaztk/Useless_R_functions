@@ -77,6 +77,8 @@ click <- function(rock.paper.scissors=defaultRPS){
         if(x.at==3){ play_RPS("P") 
           title(sub=list(res_print, col="black", font=0.4, cex=2.0), line=2)}
       }
+      Sys.sleep(1)
+      defaultRPS <<- rock.paper.scissors()
     }
   }
 }
