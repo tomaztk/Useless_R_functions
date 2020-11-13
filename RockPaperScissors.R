@@ -68,7 +68,7 @@ click <- function(rock.paper.scissors=defaultRPS){
       }
     }else{
       if(r==1){
-        ttt <<- rock.paper.scissors()
+        defaultRPS <<- rock.paper.scissors()
       }else{
         if(x.at==1){ res_print <<- play_RPS("R") 
           title(sub=list(res_print, col="black", font=0.5, cex=2.5), line=2)}
