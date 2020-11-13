@@ -21,23 +21,24 @@
 play_RPS <- function(bet) {
   bets <- c("R","P", "S") 
   if(bet %in% bets){
-     
-  solution_df <- data.frame(combo=c("RP", "PR", "PS", "SP", "RS", "SR", "PP", "RR", "SS"), win = c("01","10", "01","10", "10", "01", "00","00","00") )
-  REngine <- sample(bets,1)  
-  combo <- paste0(REngine,bet, collapse="")
-  res <-solution_df[ which(solution_df$combo==combo),2]
-  if (res=="10"){
-    res_print <<- print(paste0("You lost. Computer draw: ", REngine), collapse="")
-  } else if(res=="00"){
-    res_print <<-print(paste0("It's a tie! Computer draw: ", REngine), collapse="")
+    
+    solution_df <- data.frame(combo=c("RP", "PR", "PS", "SP", "RS", "SR", "PP", "RR", "SS"), win = c("01","10", "01","10", "10", "01", "00","00","00") )
+    REngine <- sample(bets,1)  
+    combo <- paste0(REngine,bet, collapse="")
+    res <-solution_df[ which(solution_df$combo==combo),2]
+    if (res=="10"){
+      res_print <<- print(paste0("You lost. Your bet: ",bet ,". Computer draw: ", REngine), collapse="")
+    } else if(res=="00"){
+      res_print <<-print(paste0("It's a tie! Your bet: ",bet ,". Computer draw: ", REngine), collapse="")
     }else {
-    res_print <<- print(paste0("You win! Computer draw: ", REngine), collapse="")
+      res_print <<- print(paste0("You win! Your bet: ",bet ,". Computer draw: ", REngine), collapse="")
     }
-   }
+  }
   else {
     print("Please input valid bet!")
   }
 }
+
 
 # Run test
 play_RPS("R")
