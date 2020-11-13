@@ -54,14 +54,14 @@ play_RPS("R")
 click <- function(rock.paper.scissors=defaultRPS){
   
   while(length(place.na)==9){
-    mouse.at <- locator(n = 1, type = "p") 
+    mouse.at <- locator(n = 1, type = "o") 
     x.at <- round(mouse.at$x)
     y.at <- round(mouse.at$y)
     if(all(is.na(place.na))){
       defaultRPS <<- rock.paper.scissors()
     }else if(x.at > 3.5 | x.at < 0.5 | y.at > 3.5 | y.at < 0.5){
       r <<- r + 1
-      title(sub=list("Click outside:Quit/inside:Restart", col="black", font=2, cex=2), line=2)
+      #title(sub=list("Click outside:Quit/inside:Restart", col="black", font=2, cex=2), line=2)
       if(r==2){
         dev.off()
         break
@@ -71,11 +71,11 @@ click <- function(rock.paper.scissors=defaultRPS){
         defaultRPS <<- rock.paper.scissors()
       }else{
         if(x.at==1){ res_print <<- play_RPS("R") 
-          title(sub=list(res_print, col="black", font=0.5, cex=2.5), line=2)}
+          title(sub=list(res_print, col="black", font=0.4, cex=2.0), line=2)}
         if(x.at==2){ play_RPS("S") 
-          title(sub=list(res_print, col="black", font=0.5, cex=2.5), line=2)}
+          title(sub=list(res_print, col="black", font=0.4, cex=2.0), line=2)}
         if(x.at==3){ play_RPS("P") 
-          title(sub=list(res_print, col="black", font=0.5, cex=2.5), line=2)}
+          title(sub=list(res_print, col="black", font=0.4, cex=2.0), line=2)}
       }
     }
   }
@@ -88,7 +88,8 @@ rock.paper.scissors <- function(){
   value <<- matrix(-3, 3, 3)
   k <<- 1 ; r <<- 0
   image(1:3, 1:3, matrix(1:9, 3, 3), asp=c(1, 1), xaxt="n", yaxt="n", xlab="", ylab="", frame=FALSE, col=c("lightgreen", "lightYellow", "orchid1","lightgreen", "lightYellow", "orchid1","lightgreen", "lightYellow", "orchid1"))
-  mtext(side=1, line=-10, at=1.0, adj=0, cex=0.7, 'Rock            Paper                  Scissors') #change
+  mtext(side=1, line=-10, at=1.0, adj=0, cex=0.9, 'Rock                  Scissors                          Paper') #change
+  title(sub=list("Click here twice to quit!", col="black", font=2, cex=2), line=4)
   }
 
 ### Start with x11 
