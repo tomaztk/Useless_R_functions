@@ -32,4 +32,5 @@ fx <- ls("package:ggplot2")
 # get content for each function per package
 w2 <- help("geom_label",package="ggplot2") 
 
+#ls commadnd
 ls(w2)
