@@ -11,6 +11,7 @@ Useless R Functions. That's it :-) And nothing more.
 7. Lorem Ipsum R text generator
 8. Wacky Password generator
 9. Play Rock-Paper-Scissors with your R Engine
+10. Duplicate and frequent functions used in many R packages
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
