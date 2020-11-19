@@ -16,10 +16,25 @@ mat_df <-data.frame(mat)
 
 
 library(ggplot2)
+library(reshape2)
 
 # Melt data
 
-ggplot(mat_df, 
-       aes(x = x.graf 
-           y = y.graf)) +
-geom_point()
+dff <- data.frame(x = NULL, y = NULL)
+for (i in 1:nrow(mat_df)) {
+  for (j in 1:ncol(mat_df)){
+    #print(mat_df[i,j])
+    if (mat_df[i,j] == 1){
+      # get position of row and column
+     # print(i)
+     # print(j)
+      d <- data.frame(x=i, y=j)
+      print(d)
+      dff <- rbind(dff, d)
+    }
+  }
+}
+
+
+
+ggplot(dff, aes(x = x, y = y)) + geom_point()
