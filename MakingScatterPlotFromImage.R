@@ -1,40 +1,62 @@
+##########################################
+# 
+# Making scatter plot from JPG
+# Series:
+# Little Useless-useful R functions #9
+# Created: November 19, 2020
+# Author: Tomaz Kastrun
+# Blog: tomaztsql.wordpress.com
+# V.1.0
+
+# Changelog: - 
+
+# Disclaimer - All functions from this series
+# are written for base package; this uses also
+# magick and ggplot2
+###########################################
+
+library(ggplot2)
 library(magick)
-im <- magick::image_read(system.file("img", "genilogo.jpg", package="jpeg"))
-im
 
 
+setwd("/Users/tomazkastrun/Documents/GitHub/Useless_R_functions/")
 
-im <- im %>% 
+
+img <- magick::image_read("image/amazonLogo.jpg")
+img <- img %>% 
   image_quantize(max=2, colorspace = 'gray', dither=TRUE) %>%
   image_scale(geometry = geometry_size_pixels(width=25, height=20, preserve_aspect=FALSE)) 
 
 
-# Manipulating the image data to to matrix and then threshold, invert + tranpose
-mat <- t(1L - 1L * (im[[1]][1,,] > 180))
-
+# Image manipulation
+mat <- t(1L - 1L * (img[[1]][1,,] > 180))
 mat_df <-data.frame(mat)
 
 
-library(ggplot2)
-library(reshape2)
 
 # Melt data
-
 dff <- data.frame(x = NULL, y = NULL)
 for (i in 1:nrow(mat_df)) {
   for (j in 1:ncol(mat_df)){
-    #print(mat_df[i,j])
     if (mat_df[i,j] == 1){
-      # get position of row and column
-     # print(i)
-     # print(j)
       d <- data.frame(x=i, y=j)
-      print(d)
-      dff <- rbind(dff, d)
+      dff <<- rbind(dff, d)
     }
   }
 }
 
+# draw scatter
+g <- ggplot(dff, aes(x = x, y = y)) + geom_point()  + scale_x_reverse() +  coord_flip()
+g + theme(panel.background = element_rect(fill = "white", colour = "grey")) 
+
+#draw scatter with jitter
+g <- ggplot(dff, aes(x = x, y = y)) + geom_point() + geom_jitter() + scale_x_reverse() +  coord_flip() 
+g + theme(panel.background = element_rect(fill = "white", colour = "grey"))
+
+# draw scatter with smooth and CI
+g <- ggplot(dff, aes(x = x, y = y)) + geom_point()  + scale_x_reverse() +  coord_flip() +  geom_smooth() 
+g + theme(panel.background = element_rect(fill = "white", colour = "grey")) 
 
 
-ggplot(dff, aes(x = x, y = y)) + geom_point()
+#Cleanup
+rm(d,dff,g,mat,mat_df,i,j,im)
