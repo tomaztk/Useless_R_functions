@@ -22,7 +22,7 @@ library(magick)
 setwd("/Users/tomazkastrun/Documents/GitHub/Useless_R_functions/")
 
 
-img <- magick::image_read("image/amazonLogo.jpg")
+img <- magick::image_read("image/nikeLogo.jpg")
 img <- img %>% 
   image_quantize(max=2, colorspace = 'gray', dither=TRUE) %>%
   image_scale(geometry = geometry_size_pixels(width=25, height=20, preserve_aspect=FALSE)) 
