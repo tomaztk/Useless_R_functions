@@ -12,6 +12,7 @@ Useless R Functions. That's it :-) And nothing more.
 8. Wacky Password generator
 9. Play Rock-Paper-Scissors with your R Engine
 10. Duplicate and frequent functions used in many R packages
+11. Making Scatter Plot from Image file
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
