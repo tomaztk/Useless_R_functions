@@ -105,7 +105,7 @@ draw_circle <- function(
   }
   odmik <- dfa[1,]
   max_le <- max(dfa[,1])
-  for (i in 1:as.integer(length(odmik))){ 
+  for (i in 1:max_le){ 
     if (i == 1){
       print( paste0(paste0(replicate(as.integer(odmik[i])," "), collapse=""),substr(codetext,1, a),paste0(replicate(as.integer(odmik[i])," "), collapse="")))
     } else {
