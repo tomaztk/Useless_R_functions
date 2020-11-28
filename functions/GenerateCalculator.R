@@ -26,3 +26,25 @@ calc(1,1,"-")
 calc(1,1,"+")
 calc(1,1,"*")
 calc(1,1,"/")
+
+##################
+
+# set all combinations
+df <- data.frame(merge(merge(c(1:10), c(1:10), by=NULL), c("+","-","/","*"), by=NULL))
+colnames(df) <- c("numberA", "numberB", "oper")
+f <- "calc <- function(a,b,oper){"
+for (i in 1:nrow(df)){
+  res <- paste0(as.character(df$numberA[i]) , df$oper[i], as.character(df$numberB[i]))
+  rr <- eval(parse(text=res))
+  f1 <- paste0(' if(a==',as.character(df$numberA[i]), ' & b==', as.character(df$numberB[i]), ' & oper==', '"',as.character(df$oper[i]),'"' ,
+               '){print("Result is ', as.character(rr),'")}', '\n\r' , collapse=NULL)
+  f <<- paste0(f, f1, collapse = NULL)
+  if(i==nrow(df)){
+    f <<- paste0(f, "}", collapse = NULL)    
+    eval(parse(text=f))
+    }
+}
+
+calc(4,5,"/")
+
+
