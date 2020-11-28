@@ -27,7 +27,12 @@ calc(1,1,"+")
 calc(1,1,"*")
 calc(1,1,"/")
 
-##################
+######################
+##
+## creating function
+## to generate script
+##
+######################
 
 # set all combinations
 df <- data.frame(merge(merge(c(1:10), c(1:10), by=NULL), c("+","-","/","*"), by=NULL))
