@@ -42,7 +42,7 @@ for (i in 1:nrow(df)){
   res <- paste0(as.character(df$numberA[i]) , df$oper[i], as.character(df$numberB[i]))
   rr <- eval(parse(text=res))
   f1 <- paste0(' if(a==',as.character(df$numberA[i]), ' & b==', as.character(df$numberB[i]), ' & oper==', '"',as.character(df$oper[i]),'"' ,
-               '){print("Result is ', as.character(rr),'")}', '\n\r' , collapse=NULL)
+               '){print("Result is ', as.character(rr),'")}', '\n' , collapse=NULL)
   f <<- paste0(f, f1, collapse = NULL)
   if(i==nrow(df)){
     f <<- paste0(f, "}", collapse = NULL)    
