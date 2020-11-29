@@ -29,6 +29,7 @@ your everyday R use. That's it :-) And nothing more.</span>
   - Play Rock-Paper-Scissors with your R Engine ([blog post](https://tomaztsql.wordpress.com/2020/11/13/little-useless-useful-r-functions-play-rock-paper-scissors-with-your-r-engine/))
   - Duplicate and frequent functions used in many R packages ([blog post](https://tomaztsql.wordpress.com/2020/11/18/little-useless-useful-r-functions-same-function-names-from-different-packages-or-namespaces/))
   - Making Scatter Plot from Image file ([blog post](https://tomaztsql.wordpress.com/2020/11/21/little-useless-useful-r-functions-making-scatter-plot-from-an-image/))
+  - Function that generates calculator script ([blog post](https://tomaztsql.wordpress.com/2020/11/30/little-useless-useful-r-functions-script-that-generates-calculator-script/))
 
 
 ## Cloning the repository
