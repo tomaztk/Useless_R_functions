@@ -53,3 +53,22 @@ for (i in 1:nrow(df)){
 calc(4,5,"/")
 
 
+
+######################
+##
+## Alternative solution 
+## (by mrdwab https://github.com/mrdwab)
+## using expand.grid
+## sprintf
+## sapply
+##
+######################
+
+df <- expand.grid(numA = 1:10, oper = c("+", "-", "/", "*"), numB = 1:10, stringsAsFactors = FALSE)
+rr <- sapply(1:nrow(df), function(x) match.fun(df[x, "oper"])(df[x, "numA"], df[x, "numB"]))
+template <- ' if (a == %s & b == %s & oper == "%s") print("Result is %g")\n '
+f <- sprintf("calc <- function(a, b, oper) {\n%s\n}", 
+             paste0(with(df, sprintf(template, numA, numB, oper, rr)), collapse = ""))
+eval(parse(text = f))
+
+
