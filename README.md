@@ -105,7 +105,7 @@ Feel free to get in touch for new useful-useless functions.
 </a>
 <a href="https://tomaztsql.files.wordpress.com/2020/11/screenshot-2020-11-20-at-22.02.11.png"><img width="100%" src="https://tomaztsql.files.wordpress.com/2020/11/screenshot-2020-11-20-at-22.02.11.png"/>
 </a>
-<a href="https://tomaztsql.files.wordpress.com/2020/12/screenshot-2020-12-24-at-16.31.20.png"><img width="45%" src="hhttps://tomaztsql.files.wordpress.com/2020/12/screenshot-2020-12-24-at-16.31.20.png"/>
+<a href="https://tomaztsql.files.wordpress.com/2020/12/screenshot-2020-12-24-at-16.31.20.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2020/12/screenshot-2020-12-24-at-16.31.20.png"/>
 </a>
 <div>
 
