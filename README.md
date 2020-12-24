@@ -30,6 +30,7 @@ your everyday R use. That's it :-) And nothing more.</span>
   - Duplicate and frequent functions used in many R packages ([blog post](https://tomaztsql.wordpress.com/2020/11/18/little-useless-useful-r-functions-same-function-names-from-different-packages-or-namespaces/))
   - Making Scatter Plot from Image file ([blog post](https://tomaztsql.wordpress.com/2020/11/21/little-useless-useful-r-functions-making-scatter-plot-from-an-image/))
   - Function that generates calculator script ([blog post](https://tomaztsql.wordpress.com/2020/11/30/little-useless-useful-r-functions-script-that-generates-calculator-script/))
+  - Word scrambler ([blog post](https://tomaztsql.wordpress.com/2020/12/24/little-useless-useful-r-functions-word-scrambler/))
 
 
 ## Cloning the repository
@@ -103,6 +104,8 @@ Feel free to get in touch for new useful-useless functions.
 <a href="https://tomaztsql.files.wordpress.com/2020/10/2020-10-31-21_18_58-rstudio.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2020/10/2020-10-31-21_18_58-rstudio.png"/>
 </a>
 <a href="https://tomaztsql.files.wordpress.com/2020/11/screenshot-2020-11-20-at-22.02.11.png"><img width="100%" src="https://tomaztsql.files.wordpress.com/2020/11/screenshot-2020-11-20-at-22.02.11.png"/>
+</a>
+<a href="https://tomaztsql.files.wordpress.com/2020/12/screenshot-2020-12-24-at-16.31.20.png"><img width="45%" src="hhttps://tomaztsql.files.wordpress.com/2020/12/screenshot-2020-12-24-at-16.31.20.png"/>
 </a>
 <div>
 
