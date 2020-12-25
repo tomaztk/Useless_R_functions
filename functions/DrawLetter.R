@@ -11,6 +11,8 @@
 #AA          AA
 ##################################################
 
+library(dplyr)
+library(magick)
 
 # 7 - rows - fixed
 # 15 - columns - fixed
