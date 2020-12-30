@@ -31,6 +31,7 @@ your everyday R use. That's it :-) And nothing more.</span>
   - Making Scatter Plot from Image file ([blog post](https://tomaztsql.wordpress.com/2020/11/21/little-useless-useful-r-functions-making-scatter-plot-from-an-image/))
   - Function that generates calculator script ([blog post](https://tomaztsql.wordpress.com/2020/11/30/little-useless-useful-r-functions-script-that-generates-calculator-script/))
   - Word scrambler ([blog post](https://tomaztsql.wordpress.com/2020/12/24/little-useless-useful-r-functions-word-scrambler/))
+  - Folder TreeMap ([blog post]())
 
 
 ## Cloning the repository
