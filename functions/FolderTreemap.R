@@ -25,18 +25,14 @@ FolderTreemap <- function(directory){
     size_f <- sum(file.info(list.files(path=dirs[i], recursive = T, full.names = T))$size)
     df <- rbind(df, data.frame(size=size_f/(1024*1024), folder=name_f))
   }
-  totalSize <- as.integer(sum(df$size))
   p <- treemap(df,
                index=c("folder"),
                vSize="size",
                type="index",
                palette = "Set2",
                bg.labels=c("white"),
-               title = paste0("Total size of ",directory, " is: ", totalSize, " MiB.", collapse=NULL),
-               align.labels=list(
-                 c("center", "center"), 
-                 c("right", "bottom")
-               )  
+               title = paste0("Total size of folder: ",directory, " is: ", as.integer(sum(df$size)), " MiB.", collapse=NULL),
+               align.labels=list(c("center", "center"), c("right", "bottom"))  
   )            
 }
 
