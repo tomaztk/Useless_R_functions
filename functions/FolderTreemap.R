@@ -17,14 +17,13 @@ library(treemap)
 
 
 FolderTreemap <- function(directory){
-  df <- data.frame(size = as.integer(NULL), folder=NULL)
+  df <- NULL
   aa <- list.files(directory,full.names=TRUE)
   dirs <- aa[file.info(aa)$isdir]
   for (i in 1:length(dirs)){
     name_f <- basename(dirs[i])
     size_f <- sum(file.info(list.files(path=dirs[i], recursive = T, full.names = T))$size)
-    df_temp <- data.frame(size=size_f/(1024*1024), folder=name_f)
-    df <- rbind(df, df_temp)
+    df <- rbind(df, data.frame(size=size_f/(1024*1024), folder=name_f))
   }
   totalSize <- as.integer(sum(df$size))
   p <- treemap(df,
