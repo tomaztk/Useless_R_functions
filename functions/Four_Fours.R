@@ -4,7 +4,7 @@
 # 
 # Series:
 # Little Useless-useful R functions #16
-# Created: January  05, 2021
+# Created: January  07, 2021
 # Author: Tomaz Kastrun
 # Blog: tomaztsql.wordpress.com
 # V.1.0
@@ -52,6 +52,20 @@ four_fours <- function(maxnum) {
         for44 <- gsub("\\/)", "\\)/", for44)
         
         
+        ### Adding SQRT 
+        if (i >= 10){
+          lii <- lapply(strsplit(as.character(for44), ""), function(x) which(x == "4"))
+          start_pos <- sample(lii[[1]],1)
+          for44 <- paste0(substr(for44, 1, start_pos-1), "sqrt(", substr(for44, start_pos, start_pos), ")", substr(for44, start_pos+1, nchar(for44)),sep = "")
+        }
+        
+        ###  Adding Factorial
+        if (i >= 11){
+          li <- lapply(strsplit(as.character(for44), ""), function(x) which(x == "4"))
+          start_pos_2 <- sample(li[[1]],1)
+          for44 <- paste0(substr(for44, 1, start_pos_2-1), "factorial(", substr(for44, start_pos_2, start_pos_2), ")", substr(for44, start_pos_2+1, nchar(for44)),sep = "")
+        }
+        
         res <- eval(parse(text=for44))
         #print(paste0("vrednost: ",i,". formula: ", for44, ". rezultat: ",res ,collapse=NULL))
         step_counter <- step_counter + 1
@@ -66,4 +80,4 @@ four_fours <- function(maxnum) {
 }
 
 #Run function
-four_fours(6)
+four_fours(15)
