@@ -32,8 +32,9 @@ your everyday R use. That's it :-) And nothing more.</span>
   - Function that generates calculator script ([blog post](https://tomaztsql.wordpress.com/2020/11/30/little-useless-useful-r-functions-script-that-generates-calculator-script/))
   - Word scrambler ([blog post](https://tomaztsql.wordpress.com/2020/12/24/little-useless-useful-r-functions-word-scrambler/))
   - Folder TreeMap ([blog post](https://tomaztsql.wordpress.com/2021/01/01/little-useless-useful-r-functions-folder-treemap/))
-  - Playing stack of cards ([blog_post](https://tomaztsql.wordpress.com/2021/01/03/little-useless-useful-r-functions-playing-stack-of-cards/))
+  - Playing stack of cards ([blog post](https://tomaztsql.wordpress.com/2021/01/03/little-useless-useful-r-functions-playing-stack-of-cards/))
   - R to Python dataFrame ([blog post](https://tomaztsql.wordpress.com/2021/01/05/little-useless-useful-r-functions-create-pandas-dataframe-from-r-data-frame/))
+  - Four Fours ([blog post](https://tomaztsql.wordpress.com/2021/01/07/little-useless-useful-r-functions-mathematical-puzzle-of-four-fours/))
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
