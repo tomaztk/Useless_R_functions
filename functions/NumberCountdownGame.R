@@ -50,6 +50,8 @@ while (ran_3digit_num != res) {
   
 }
 
+verbose
+library(dplyr)
 
 solve_inner <- function(nums, value, expr = value, target, verbose = FALSE) {
   
