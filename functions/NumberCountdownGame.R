@@ -22,7 +22,7 @@ countDown_puzzle <- function(six, res_num) {
     oper <- c("+","-","/","*")
     res <- 0
     d2 <- permuteGeneral(six)
-    for (i in 1:ceiling(length(d2)/6)){
+    for (i in 1:nrow(d2)){
       for (o in 1:1000){
         
         r <- paste0(as.integer(d2[i,1]),' ',as.character(sample(oper,1)),' (',as.integer(d2[i,2]),' ',as.character(sample(oper,1)),' ((', 
@@ -39,9 +39,9 @@ countDown_puzzle <- function(six, res_num) {
 }
 
 
-#
-# run function
-#
+###################################################
+# run function with given six numbers and solution
+##################################################
 
 #countDown_puzzle(c(9,8,50,2,11,200), 352)
 #countDown_puzzle(c(11,50,75,8,3,25), 544)
@@ -49,10 +49,14 @@ countDown_puzzle <- function(six, res_num) {
 countDown_puzzle(c(100,9,10,4,1,8), 594)
 
 
+#############################################
 # or generate the numbers and random solution
+#############################################
 number_pool <- c(1:11, 25, 50, 75, 100, 200)
 six <- sample(number_pool, 6, replace=FALSE)
 res_num <- sample(100:999,1)
 
 countDown_puzzle(six, res_num)
   
+
+
