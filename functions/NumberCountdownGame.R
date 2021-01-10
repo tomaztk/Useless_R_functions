@@ -5,7 +5,7 @@
 #
 # Series:
 # Little Useless-useful R functions #16
-# Created: January 9, 2021
+# Created: January 10, 2021
 # Author: Tomaz Kastrun
 # Blog: tomaztsql.wordpress.com
 # V.1.0
