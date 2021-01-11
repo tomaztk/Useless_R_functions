@@ -48,3 +48,33 @@ for (i in 1:nrow(mat_df)) {
 
 ggplot2::ggplot(dff)
 
+
+#install.packages("imager")
+library(tidyverse)
+library(imager)
+library(cowplot) 
+#install.packages("Cairo")
+library(Cairo)
+
+im <- load.image("/users/tomazkastrun/desktop/Ljubljana_night.jpg")
+asc <- gtools::chr(c(38:64,91:126)) 
+
+g.chr <- function(chr) {
+  implot(imfill(100,100,val=1),text(20,20,chr,cex=5)) %>% 
+    grayscale %>% 
+    mean
+}
+g <- map_dbl(asc,g.chr)
+n <- length(g)
+
+char <- asc[order(g)]
+d <- grayscale(im) %>% imresize(.1)  %>% as.data.frame
+d <- mutate(d,qv=cut_number(value,n) %>% as.integer)
+d <- mutate(d,char=char[qv])
+ggplot(d,aes(x,y))+
+  geom_text(aes(label=char),size=2)+
+  scale_y_reverse() + 
+  theme_void()
+
+
+
