@@ -35,6 +35,7 @@ your everyday R use. That's it :-) And nothing more.</span>
   - Playing stack of cards ([blog post](https://tomaztsql.wordpress.com/2021/01/03/little-useless-useful-r-functions-playing-stack-of-cards/))
   - R to Python dataFrame ([blog post](https://tomaztsql.wordpress.com/2021/01/05/little-useless-useful-r-functions-create-pandas-dataframe-from-r-data-frame/))
   - Four Fours ([blog post](https://tomaztsql.wordpress.com/2021/01/07/little-useless-useful-r-functions-mathematical-puzzle-of-four-fours/))
+  - Countdown Number Puzzle([blog post](https://tomaztsql.wordpress.com/2021/01/11/little-useless-useful-r-functions-countdown-number-puzzle/))
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
@@ -111,6 +112,8 @@ Feel free to get in touch for new useful-useless functions.
 <a href="https://tomaztsql.files.wordpress.com/2020/12/screenshot-2020-12-24-at-16.31.20.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2020/12/screenshot-2020-12-24-at-16.31.20.png"/>
 </a>
 <a href="https://tomaztsql.files.wordpress.com/2020/12/screenshot-2020-12-30-at-22.50.49.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2020/12/screenshot-2020-12-30-at-22.50.49.png"/>
+</a>
+<a href="https://tomaztsql.files.wordpress.com/2021/01/screenshot-2021-01-05-at-06.37.35.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/01/screenshot-2021-01-05-at-06.37.35.png"/>
 </a>
 
 <div>
