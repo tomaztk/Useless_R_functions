@@ -7,3 +7,6 @@ How Can I Contribute?
   * Suggesting Enhancements
   * Your First Code Contribution
   * Pull Requests
+  * Suggest useless R functions
+  * Fork and enhance
+  * Test the code on different versions of R or OS
