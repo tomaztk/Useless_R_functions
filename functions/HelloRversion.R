@@ -30,10 +30,10 @@ HelloRversion <- function(text=TRUE){
     
   unserialized_vR <- text_R %>% 
       {substring(., seq(1, nchar(.), 2), seq(2, nchar(.), 2))} %>% 
-      paste0("0x", .) %>% 
-      as.integer %>% 
-      as.raw %>% 
-      unserialize()
+          paste0("0x", .) %>% 
+           as.integer %>% 
+            as.raw %>% 
+             unserialize()
   
   unserialized_vR <- paste0(unserialized_vR,vR,' |')
   
