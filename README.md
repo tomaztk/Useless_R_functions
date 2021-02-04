@@ -36,7 +36,7 @@ your everyday R use. That's it :-) And nothing more.</span>
   - R to Python dataFrame ([blog post](https://tomaztsql.wordpress.com/2021/01/05/little-useless-useful-r-functions-create-pandas-dataframe-from-r-data-frame/))
   - Four Fours ([blog post](https://tomaztsql.wordpress.com/2021/01/07/little-useless-useful-r-functions-mathematical-puzzle-of-four-fours/))
   - Countdown Number Puzzle ([blog post](https://tomaztsql.wordpress.com/2021/01/11/little-useless-useful-r-functions-countdown-number-puzzle/))
-  - R Version ([blog post]())
+  - R Version ([blog post](https://tomaztsql.wordpress.com/2021/02/03/little-useless-useful-r-functions-r-version/))
 
 
 ## Cloning the repository
