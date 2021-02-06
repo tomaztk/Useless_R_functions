@@ -5,7 +5,7 @@
 #
 # Series:
 # Little Useless-useful R functions #18
-# Created: February 02, 2021
+# Created: February 06, 2021
 # Author: Tomaz Kastrun
 # Blog: tomaztsql.wordpress.com
 # V.1.0
@@ -26,10 +26,10 @@ df<- data_frame(t = seq(-pi, 0, 0.001),
            ) %>%
 gather(heart, x,x1,x2)
 p <- ggplot(df, aes(x, y)) + geom_polygon(fill = "Red") + theme_void() +
-  geom_text(size=5,aes(x=0, y=0, label="Roses are red, \n
-      Violets are blues, \n
-      I am here to write \n
-      a useless heart function for you!"), col="black") +  theme(legend.position = "none")
+  geom_text(size=6,aes(x=0, y=0, label="Errors are red, \n
+      Reserved words are blue, \n
+      I am here to write a useless\n
+      heart function for you!"), col="black") +  theme(legend.position = "none")
 return(p)
 }
 
