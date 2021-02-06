@@ -1,9 +1,10 @@
 ##########################################
 # 
 # Valentine useless R function Poem
+# in a Heart
 #
 # Series:
-# Little Useless-useful R functions #17
+# Little Useless-useful R functions #18
 # Created: February 02, 2021
 # Author: Tomaz Kastrun
 # Blog: tomaztsql.wordpress.com
@@ -32,6 +33,7 @@ p <- ggplot(df, aes(x, y)) + geom_polygon(fill = "Red") + theme_void() +
 return(p)
 }
 
+# Run function
 ValentinePoem()
 
 
