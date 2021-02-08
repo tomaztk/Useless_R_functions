@@ -38,6 +38,47 @@ return(p)
 ValentinePoem()
 
 
+############################
+############################
+## Adding animate function
+## submitted as comment
+## to blog: https://tomaztsql.wordpress.com/2021/02/08/little-useless-useful-r-functions-useless-r-poem-for-valentine/
+## by Jeff Monroe: https://monroeanalytics.com/
+## on 08.FEB. 2021
+############################
+############################
+
+
+library(ggplot2)
+library(gganimate)
+library(gifski)
+library(data.table)
+
+gen_heart_y = function(x, a) {
+  (x^2)^(1 / 3) + 0.9 * (3.3 - x^2)^(1 / 2) * sin(a * pi * x)
+}
+
+heart_dt_list = lapply(seq(1, 25, by = 0.1), function(a) {
+  heart_dt = data.table(x = seq(-1.8, 1.8, length.out = 500), a = a)
+  heart_dt[, y := gen_heart_y(x, a)]
+  return(heart_dt)
+})
+
+full_heart_dt = rbindlist(heart_dt_list)
+
+animated_ip_heart = ggplot(full_heart_dt, aes(x, y)) +
+  geom_line(color='red') +
+  annotate('text', label = 'Errors are red', x = 0, y = 1, size = 8, colour = 'black') +
+  annotate('text', label = 'Reserved words are blue', x = 0, y = 0.8, size = 8, colour = 'black') +
+  annotate('text', label = 'Here is this useless', x = 0, y = 0.6, size = 8, colour = 'black') +
+  annotate('text', label = 'R function for you', x = 0, y = 0.4, size = 8, colour = 'black') +
+  theme_void() +
+  transition_manual(a)
+
+animation = animate(animated_ip_heart, width = 400, height = 400)
+
+
+animation
 
 
 
