@@ -20,8 +20,7 @@ library(rlang)
 
 #sample DataSet
 iris <- iris
-ggplot(iris, aes(Sepal.Length, Sepal.Width, colour = Species)) + 
-  geom_point()
+ggplot(iris, aes(Sepal.Length, Sepal.Width, colour = Species)) + geom_point()
 
 
 #more complex with function
@@ -41,17 +40,27 @@ plot_points3(iris, Species, Sepal.Length)
 ########################################
 
 
-pipe <- function(ee) {
-  if (!rlang::is_call(ee)) { 
+ToPipe <- function(ee) {
+  if (!is_call(ee)) { 
     return(ee) 
   }
-  this_fn <- rlang::call_name(ee)
-  print(this_fn)
-  updated_args <- rlang::call_args(ee) %>% map(pipe)
+  fn <- quote(ee)
+  updated_fn <- gsub("%>%", "+", quote(fn))
+
+  if (identical(fn, "+") || length(updated_args)==0) {
+    eval(parse(text = updated_fn))
+  } else {
+    arg1 <- updated_args[[1]]
+    #call2(as.name("+"), arg1, call2(this_fn, !!!other_args) )
+  }
 }
 
 
-pipe(ggplot())
-
 ### pipe version
-pipe(ggplot(iris, aes(Sepal.Length, Sepal.Width, colour = Species))) %>%  geom_point()
+### Check working
+ToPipe(ggplot(iris, aes(Sepal.Length, Sepal.Width, colour = Species)) %>% geom_point())
+
+
+
+
+
