@@ -44,21 +44,29 @@ ToPipe <- function(ee) {
   if (!is_call(ee)) { 
     return(ee) 
   }
-  fn <- quote(ee)
-  updated_fn <- gsub("%>%", "+", quote(fn))
+#  fn <- quote(ee)
+#  updated_fn <- gsub("%>%", "+", quote(fn))
 
-  if (identical(fn, "+") || length(updated_args)==0) {
-    eval(parse(text = updated_fn))
+  this_fn <- rlang::call_name(ee)
+  updated_args <- rlang::call_args(ee)
+  
+  if (identical(fn, "%>%") || length(updated_args)==0) {
+    fn_2 <- rlang::call2("+", !!!updated_args)
+    eval(parse(text = fn_2))
   } else {
-    arg1 <- updated_args[[1]]
+    #arg1 <- updated_args[[1]]
     #call2(as.name("+"), arg1, call2(this_fn, !!!other_args) )
+    print (" ")
   }
 }
 
 
 ### pipe version
 ### Check working
-ToPipe(ggplot(iris, aes(Sepal.Length, Sepal.Width, colour = Species)) %>% geom_point())
+fun <- as.quote(gplot(iris, aes(Sepal.Length, Sepal.Width, colour = Species)) %>% geom_point())
+ToPipe(fun)
+
+
 
 
 
