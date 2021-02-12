@@ -41,34 +41,21 @@ plot_points3(iris, Species, Sepal.Length)
 
 
 ToPipe <- function(ee) {
-  if (!is_call(ee)) { 
-    return(ee) 
-  }
-#  fn <- quote(ee)
-#  updated_fn <- gsub("%>%", "+", quote(fn))
-
   this_fn <- rlang::call_name(ee)
   updated_args <- rlang::call_args(ee)
   
-  if (identical(fn, "%>%") || length(updated_args)==0) {
+  if (identical(this_fn, "%>%") || length(updated_args)==0) {
     fn_2 <- rlang::call2("+", !!!updated_args)
-    eval(parse(text = fn_2))
+    eval(fn_2)
   } else {
-    #arg1 <- updated_args[[1]]
-    #call2(as.name("+"), arg1, call2(this_fn, !!!other_args) )
-    print (" ")
+   eval(ee)
   }
 }
 
 
 ### pipe version
 ### Check working
-fun <- as.quote(gplot(iris, aes(Sepal.Length, Sepal.Width, colour = Species)) %>% geom_point())
+fun <- quote(ggplot(iris, aes(Sepal.Length, Sepal.Width, colour = Species)) 
+              %>% geom_point())
 ToPipe(fun)
-
-
-
-
-
-
 
