@@ -5,7 +5,7 @@
 #
 # Series:
 # Little Useless-useful R functions #19
-# Created: February 10, 2021
+# Created: February 12, 2021
 # Author: Tomaz Kastrun
 # Blog: tomaztsql.wordpress.com
 # V.1.0
@@ -23,23 +23,7 @@ iris <- iris
 ggplot(iris, aes(Sepal.Length, Sepal.Width, colour = Species)) + geom_point()
 
 
-#more complex with function
-plot_points3 <- function(.data, x, y) {
-  x <- enquo(x)
-  y <- enquo(y)
-  averages <- .data %>%
-    group_by(!!x) %>% 
-    summarise(avg_y = mean(!!y, na.rm = TRUE))
-  
-  ggplot() +
-    geom_point(data = .data, aes(!!x, !!y)) +
-    geom_point(data = averages, aes(!!x, avg_y), color = "red")
-}
-
-plot_points3(iris, Species, Sepal.Length)
-########################################
-
-
+#Pipe function
 ToPipe <- function(ee) {
   this_fn <- rlang::call_name(ee)
   updated_args <- rlang::call_args(ee)
@@ -53,9 +37,8 @@ ToPipe <- function(ee) {
 }
 
 
+
 ### pipe version
-### Check working
 fun <- quote(ggplot(iris, aes(Sepal.Length, Sepal.Width, colour = Species)) 
               %>% geom_point())
 ToPipe(fun)
-
