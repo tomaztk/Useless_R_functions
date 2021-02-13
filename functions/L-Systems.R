@@ -14,7 +14,8 @@
 #
 ###########################################
 
-library(turtle)
+# install.packages("TurtleGraphics")
+library(TurtleGraphics)
 
 
 let x, y; // the current position of the turtle
