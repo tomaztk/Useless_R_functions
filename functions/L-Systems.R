@@ -1,11 +1,11 @@
 ##########################################
 # 
-# L-System drawing  for ggplot2 
+# L-System drawing for Turtle Graphics
 # Random walk
 #
 # Series:
-# Little Useless-useful R functions #17
-# Created: January , 2021
+# Little Useless-useful R functions #20
+# Created: February 14, 2021
 # Author: Tomaz Kastrun
 # Blog: tomaztsql.wordpress.com
 # V.1.0
@@ -14,41 +14,40 @@
 #
 ###########################################
 
-# install.packages("TurtleGraphics")
 library(TurtleGraphics)
 
 
-fractal_tree <- function(s=100, n=2) {
-  if (n <= 1) {
-    turtle_forward(s)
-    turtle_up()
-    turtle_backward(s)
-    turtle_down()
-  }
-  else {
-    turtle_forward(s)
-    a1 <- runif(1, 10, 60)
-    turtle_left(a1)
-    fractal_tree(s*runif(1, 0.25, 1), n-1)
-    turtle_right(a1)
-    a2 <- runif(1, 10, 60)
-    turtle_right(a2)
-    fractal_tree(s*runif(1, 0.25, 1), n-1)
-    turtle_left(a2)
-    turtle_up()
-    turtle_backward(s)
-    turtle_down()
-    print(turtle_getpos())
+turtlebump <- function(i, j) {
+  if (i==0) {
+    turtle_forward(10)
+  } else {
+    turtlebump(i-1, j)
+    turtle_left(60)
+    turtlebump(i-1, j)
+    turtle_right(60)
+    turtle_right(60)
+    turtlebump(i-1, j)
+    turtle_left(60)
   }
 }
 
-set.seed(123)
-turtle_init(500, 600, "clip")
+
+set.seed(2908)
+turtle_init(600, 500, "clip")
+turtle_hide()
+i <- 8
+j <- 500
 turtle_do({
-  turtle_up()
-  turtle_backward(250)
-  turtle_down()
-  turtle_col("blue")
-  fractal_tree(100, 12)
-})
+    turtle_up()
+    turtle_left(90)
+    turtle_forward(120)
+    turtle_forward(120)
+  
+    turtle_right(60)
+    turtle_right(60)
+    turtle_right(60)
+    turtle_down()
+    turtlebump(i,j)
+  })
+
 
