@@ -18,31 +18,37 @@
 library(TurtleGraphics)
 
 
-let x, y; // the current position of the turtle
-let currentangle = 0; // which way the turtle is pointing
-let step = 20; // how much the turtle moves with each 'F'
-let angle = 90; // how much the turtle turns with a '-' or '+'
-
-
-let thestring = 'A'; // "axiom" or start of the string
-let numloops = 5; // how many iterations to pre-compute
-let therules = []; // array for rules
-therules[0] = ['A', '-BF+AFA+FB-']; // first rule
-therules[1] = ['B', '+AF-BFB-FA+']; // second rule
-
-let whereinstring = 0; 
-  
-setup <- function() {
-  createCanvas(710, 400);
-  background(255);
-  stroke(0, 0, 0, 255);
-  
-  // start the x and y position at lower-left corner
-  x = 0;
-  y = height-1;
-  
-  // COMPUTE THE L-SYSTEM
-  for (let i = 0; i < numloops; i++) {
-    thestring = lindenmayer(thestring);
+fractal_tree <- function(s=100, n=2) {
+  if (n <= 1) {
+    turtle_forward(s)
+    turtle_up()
+    turtle_backward(s)
+    turtle_down()
+  }
+  else {
+    turtle_forward(s)
+    a1 <- runif(1, 10, 60)
+    turtle_left(a1)
+    fractal_tree(s*runif(1, 0.25, 1), n-1)
+    turtle_right(a1)
+    a2 <- runif(1, 10, 60)
+    turtle_right(a2)
+    fractal_tree(s*runif(1, 0.25, 1), n-1)
+    turtle_left(a2)
+    turtle_up()
+    turtle_backward(s)
+    turtle_down()
+    print(turtle_getpos())
   }
 }
+
+set.seed(123)
+turtle_init(500, 600, "clip")
+turtle_do({
+  turtle_up()
+  turtle_backward(250)
+  turtle_down()
+  turtle_col("blue")
+  fractal_tree(100, 12)
+})
+
