@@ -122,9 +122,7 @@ Feel free to get in touch for new useful-useless functions.
 </a>
 <a href="https://tomaztsql.files.wordpress.com/2021/01/screenshot-2021-01-10-at-07.29.03.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/01/screenshot-2021-01-10-at-07.29.03.png"/>
 </a>
-
 <div>
-
 
 
 # Vignettes
