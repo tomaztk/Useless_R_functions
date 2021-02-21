@@ -20,8 +20,8 @@ pd = 0.07
 K <- list(A, B, C, D)
 k <- list(a, b, c, d)
 
-N <- 10000
-s <- sample(1:4, N, prob = c(pa, pb, pc, pd), replace = TRUE)
+
+s <- sample(1:4, 1000, prob = c(pa, pb, pc, pd), replace = TRUE)
 
 
 # Allocate space for the iterated points
@@ -32,8 +32,9 @@ for (i in seq(N)) {
   M = K[[s[i]]]
   m = k[[s[i]]]
 
-    P[,i+1] = M %*% P[,i] + m
+    #P[,i+1] = M %*% P[,i] + m
+    P[,i+2] = M %*% P[,i+1] + m
 }
 
 # Plot Matrix
-plot(P[1,], P[2,],as=2,pch='*',an=FALSE,ax=FALSE)
+plot(P[1,], P[2,],as=2,pch='.',an=FALSE,ax=FALSE)
