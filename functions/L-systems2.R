@@ -1,6 +1,3 @@
-
-# 4 Transformations i.e. p(n+1) = A * p(n) + a
-
 A <-   matrix(c( 0   ,  0   ,  0   , 0.16), nrow=2); 
 a = c(0, 0.00); 
 pa = 0.01
@@ -22,19 +19,15 @@ k <- list(a, b, c, d)
 
 
 s <- sample(1:4, 1000, prob = c(pa, pb, pc, pd), replace = TRUE)
-
-
-# Allocate space for the iterated points
 P <- matrix(0, nrow=2, ncol=N+1)
 
 for (i in seq(N)) {
 
   M = K[[s[i]]]
   m = k[[s[i]]]
-
-    #P[,i+1] = M %*% P[,i] + m
     P[,i+2] = M %*% P[,i+1] + m
 }
+
 
 # Plot Matrix
 plot(P[1,], P[2,],as=2,pch='.',an=FALSE,ax=FALSE)
