@@ -30,4 +30,4 @@ for (i in seq(N)) {
 
 
 # Plot Matrix
-plot(P[1,], P[2,],as=2,pch='.',an=FALSE,ax=FALSE)
+plot(P[1,], P[2,],as=2,pch='.',an=F,ax=F)
