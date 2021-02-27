@@ -1,3 +1,7 @@
+##########################################
+#### L-System
+##########################################
+
 A <-   matrix(c( 0   ,  0   ,  0   , 0.20), nrow=2); 
 a = c(0, 0.00); 
 pa = 0.01
@@ -16,9 +20,9 @@ pd = 0.05
 
 K <- list(A, B, C, D)
 k <- list(a, b, c, d)
+N <- 5000
 
-
-s <- sample(1:4, 5000, prob = c(pa, pb, pc, pd), replace = TRUE)
+s <- sample(1:4, N, prob = c(pa, pb, pc, pd), replace = TRUE)
 P <- matrix(0, nrow=2, ncol=N+1)
 
 for (i in seq(N)) {
