@@ -34,6 +34,13 @@ sum(c(10,20,40,20))
 LETTERS
 letters
 
+#numbers
 
+numbers <- c(0,1,2,3,4,5,6,7,8,9)
+
+NUMBERS <- c("0","1","2","3","4","5","6","7","8","9")
+
+numbers
+NUMBERS
 
 
