@@ -44,3 +44,25 @@ numbers
 NUMBERS
 
 
+
+ca <- function(x, y, op) {
+  switch(op,
+         plus = x + y,
+         minus = x - y,
+         times = x * y,
+         divide = x / y,
+         stop("Unknown op!")
+  )
+}
+
+
+mean_ci <- function(x, conf = 0.95) {
+  se <- sd(x) / sqrt(length(x))
+  alpha <- 1 - conf
+  mean(x) + se * qnorm(c(alpha / 2, 1 - alpha / 2))
+}
+
+mean_ci(10:15)
+sd(c(10,22,23,45))
+
+
