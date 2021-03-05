@@ -16,9 +16,11 @@
 
 library(qrcode)
 
-
+#Saves to file
 png("code.png")
 qrcode_gen("https://tomaztsql.wordpress.com/")
 dev.off()
 
 
+#Plots in Studio
+qrcode_gen("https://tomaztsql.wordpress.com/")
