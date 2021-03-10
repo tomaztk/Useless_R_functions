@@ -20,11 +20,9 @@ identical(True, TRUE)
 
 
 # sum function
-
 sum <- function(x){
   mean(x)
 }
-
 sum(c(10,20,40,20))
 
 
