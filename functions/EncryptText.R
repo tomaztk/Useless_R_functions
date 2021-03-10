@@ -12,7 +12,6 @@
 # Changelog: 
 ###########################################
 
-
 #install.packages("sodium")
 
 library(sodium)
@@ -32,3 +31,5 @@ unpkk <- "136 242  93 138  72 225  66  50 253 250  82 192  58 189   8  47 118  5
 
 ciphertext <- data_encrypt(serialize(plaintext, NULL), key = unpkk)
 unserialize(data_decrypt(ciphertext, key = sha256(charToRaw("geslo123"))))
+
+s
