@@ -20,19 +20,22 @@ library(rlang)
 
 #sample DataSet
 iris <- iris
-ggplot(iris, aes(Sepal.Length, Sepal.Width, colour = Species)) + geom_point()
+ggplot(iris, aes(Sepal.Length, Sepal.Width, colour = Species)) + geom_point() + theme_bw()
 
 
 #Pipe function
 ToPipe <- function(ee) {
   this_fn <- rlang::call_name(ee)
-  updated_args <- rlang::call_args(ee)
+  updated_args <- rlang::call_args(ee) %>% map(ToPipe)
   
   if (identical(this_fn, "%>%") || length(updated_args)==0) {
     fn_2 <- rlang::call2("+", !!!updated_args)
     eval(fn_2)
   } else {
-   eval(ee)
+    arg1       <- updated_args[[1]]
+    other_args <- updated_args[-1] 
+    fn_3 <- rlang::call2(as.name("+"), arg1, rlang::call2(this_fn, !!!other_args)  )
+   eval(fn_3)
   }
 }
 
@@ -40,5 +43,20 @@ ToPipe <- function(ee) {
 
 ### pipe version
 fun <- quote(ggplot(iris, aes(Sepal.Length, Sepal.Width, colour = Species)) 
-              %>% geom_point())
+              %>% geom_point() 
+               %>% theme_bw())
 ToPipe(fun)
+
+
+this_fn <- rlang::call_name(fun)
+updated_args <- rlang::call_args(fun) 
+
+if (identical(this_fn, "%>%") || length(updated_args)==0) {
+  fn_2 <- rlang::call2("+", !!!updated_args)
+  eval(fn_2)
+} else {
+  arg1       <- updated_args[[1]]
+  other_args <- updated_args[-1] 
+  fn_3 <- rlang::call2(as.name("+"), arg1, rlang::call2(this_fn, !!!other_args)  )
+  eval(fn_3)
+}
