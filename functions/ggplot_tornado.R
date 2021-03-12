@@ -1,5 +1,6 @@
 ### kind of tornado
 library(ggplot2)
+library(gganimate)
 
 angle <- 2.0
 points <- 1000
@@ -30,22 +31,5 @@ p2 <- p2 +
         axis.text.y=element_blank(),legend.position="none")
 
 
-p
-p2
-p
-p2
-p
-p2
-p
-p2
-p
-p2
-p
-p2
-p
-p2
-p
-p2
-p
-p2
-
+animation = animate(c(p,p2), width = 400, height = 400)
+animation
