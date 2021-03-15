@@ -9,6 +9,8 @@
 # V.1.0
 #
 # Changelog: 
+ # words of numbers:
+ # https://www.woodwardenglish.com/lesson/numbers-1-100-in-english/
 ###########################################
 
 
