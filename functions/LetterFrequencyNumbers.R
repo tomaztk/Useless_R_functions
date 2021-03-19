@@ -14,36 +14,40 @@
 ###########################################
 
 
-basLet <- c('one','two','three','four','five','six','seven','eight','nine','ten'
-,'eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'
-,'twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety','one hundred')
+#function
+word_a_number <- function(numb){
 
-basNum <- c(1:20,30,40,50,60,70,80,90,100)
-
-df <- data.frame(num = basNum, let = as.character(basLet))
-
-
-numb <- 11
-
-if (numb <= 20) {
+  basLet <- c('one','two','three','four','five','six','seven','eight','nine','ten'
+              ,'eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'
+              ,'twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety','one hundred')
+  basNum <- c(1:20,30,40,50,60,70,80,90,100)
+  df <- data.frame(num = basNum, let = as.character(basLet))
   
-  im <- df[which(df$num == numb),]
-  print(im)
-} else {
-
-        if (numb %% 10 == 0){
-        
-          e <- df[which(df$num == numb),]
+          if (numb <= 20) {
+            im <- df[which(df$num == numb),]$let
+            print(paste(im, collapse = NULL))
+          } else {
           
-          print(e)
-          
-        } else {
-        
-          sec <- numb %% 10
-          fir <- as.integer(numb/10)*10
-          
-          print(fir)
-          print(sec)
-          
-        }
+                  if (numb %% 10 == 0){
+                  
+                    e <- df[which(df$num == numb),]$let
+                    
+                    print(paste0(e, collapse=NULL))
+                    
+                  } else {
+                  
+                    sec <- numb %% 10
+                    fir <- as.integer(numb/10)*10
+                   
+                    f_im <- df[which(df$num == fir),]$let
+                    #print(f_im)
+                    s_im <- df[which(df$num == sec),]$let
+                    #print(s_im)
+                    res <- paste0(f_im,"-",s_im, collapse = NULL)
+                    print(res)
+                  }
+          }
 }
+
+
+word_a_number(87)
