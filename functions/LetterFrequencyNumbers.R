@@ -27,27 +27,19 @@ word_a_number <- function(numb){
             im <- df[which(df$num == numb),]$let
             print(paste(im, collapse = NULL))
           } else {
-          
                   if (numb %% 10 == 0){
-                  
                     e <- df[which(df$num == numb),]$let
-                    
                     print(paste0(e, collapse=NULL))
-                    
                   } else {
-                  
                     sec <- numb %% 10
                     fir <- as.integer(numb/10)*10
-                   
                     f_im <- df[which(df$num == fir),]$let
-                    #print(f_im)
                     s_im <- df[which(df$num == sec),]$let
-                    #print(s_im)
                     res <- paste0(f_im,"-",s_im, collapse = NULL)
                     print(res)
                   }
           }
 }
 
-
+# run function
 word_a_number(87)
