@@ -23,15 +23,27 @@ basNum <- c(1:20,30,40,50,60,70,80,90,100)
 df <- data.frame(num = basNum, let = as.character(basLet))
 
 
-numb <- 51
+numb <- 11
 
-if (numb %% 10 == 0){
-
-  e <- df[which(df$num == numb),]
+if (numb <= 20) {
   
-  print(e)
-  
+  im <- df[which(df$num == numb),]
+  print(im)
 } else {
- print("meh")
-}
 
+        if (numb %% 10 == 0){
+        
+          e <- df[which(df$num == numb),]
+          
+          print(e)
+          
+        } else {
+        
+          sec <- numb %% 10
+          fir <- as.integer(numb/10)*10
+          
+          print(fir)
+          print(sec)
+          
+        }
+}
