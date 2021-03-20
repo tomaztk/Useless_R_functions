@@ -43,3 +43,11 @@ word_a_number <- function(numb){
 
 # run function
 word_a_number(87)
+
+# Automate the function
+vect <- c(1:100)
+
+for (i in 1:length(vect)) {
+  #print(i)
+  word_a_number(i)
+}
