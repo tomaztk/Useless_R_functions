@@ -3,7 +3,7 @@
 # Letter frequency for numbers in a dataset
 # Series:
 # Little Useless-useful R functions #22
-# Created: MARCH 14, 2021
+# Created: March 21, 2021
 # Author: Tomaž Kaštrun
 # Blog: tomaztsql.wordpress.com
 # V.1.0
@@ -61,7 +61,10 @@ getFreq <- function(vect) {
   return(a)
 }
 
-######### Let's check the complete set of numbers
+################################
+#### Let's check the 
+#### complete set of numbers
+################################
 
 # Automate the function, get a vector of first 100 numbers
 vect <- c(1:100)
