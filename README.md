@@ -40,6 +40,7 @@ your everyday R use. That's it :-) And nothing more.</span>
   - R Poem for Valentine ([blog post](https://tomaztsql.wordpress.com/2021/02/08/little-useless-useful-r-functions-useless-r-poem-for-valentine/))
   - Pipe (%>%) for ggplot2 ([blog post](https://tomaztsql.wordpress.com/2021/02/12/little-useless-useful-r-functions-use-pipe-in-ggplot2/))
   - L-Systems ([blog post]())
+  - Letter frequency in numbers ([blog post](https://tomaztsql.wordpress.com/2021/03/22/little-useless-useful-r-functions-letter-frequency-in-a-vector-of-numbers/))
 
 
 ## Cloning the repository
