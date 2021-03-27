@@ -16,3 +16,5 @@ library(sqldf)
 # use SQL syntax to get the results from data.frame
 sqldf("select * from cdf")
 sqldf("select avg(val) AS avg_age from cdf") 
+
+
