@@ -26,3 +26,6 @@ cdf <- sqldf(c("insert into cdf select * From new", "select * From cdf"))
 cdf
 
 
+#clean
+rm(new,lett,name,val)
+
