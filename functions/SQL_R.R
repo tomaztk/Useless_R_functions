@@ -17,4 +17,12 @@ library(sqldf)
 sqldf("select * from cdf")
 sqldf("select avg(val) AS avg_age from cdf") 
 
+# merge innto single data.frame
+new <- sqldf("select 10 as val,'Tom' as name,'Q' as lett") 
+
+#sqldf("insert into cdf(val,name, lett)  values ('Tom',10,'Q')")
+cdf <- sqldf(c("insert into cdf select * From new", "select * From cdf"))
+
+cdf
+
 
