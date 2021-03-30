@@ -108,3 +108,15 @@ sqldf("select * from cdf2
       WHERE
         val2 not in (SELECT val FROM cdf)")
 
+
+
+# union / union all
+sqldf("select val from cdf
+      union 
+      select val2 from cdf2")
+
+# limit, order
+sqldf("select val from cdf order by val DESC limit 1")
+
+
+
