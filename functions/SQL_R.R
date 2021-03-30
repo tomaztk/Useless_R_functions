@@ -88,7 +88,7 @@ sqldf("select count(*) as nof_rows
 
 
 
-#multiple joins
+#inner,outer joins
 
 sqldf("select * from cdf
       join cdf2 
@@ -97,7 +97,7 @@ sqldf("select * from cdf
 
 sqldf("select * from cdf
       WHERE
-        val  in (SELECT val2 FROM cdf2)")
+        val IN  (SELECT val2 FROM cdf2)")
 
 
 sqldf("select * from cdf
