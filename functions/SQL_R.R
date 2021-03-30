@@ -1,3 +1,9 @@
+#
+#
+# Using SQL commands with R data-frame
+#
+#
+
 val <- c(22,42,36,80,54)
 name <- c("amber","ben","charles","daniel","eva")
 lett <- LETTERS[21:25]
