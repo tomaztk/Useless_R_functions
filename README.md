@@ -89,7 +89,6 @@ Thanks to these wonderful community people making and helping this useless R fun
 </table>
 
 
-
 ## Contact
 Feel free to get in touch for new useful-useless functions.
 
