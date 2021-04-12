@@ -27,6 +27,7 @@ snow <- ggplot(aa, aes(x, y, size = size)) +
   theme(panel.background = element_rect("black"))
 
 
+# Running animation
 library(gganimate)
 snow +
   transition_time(run)
