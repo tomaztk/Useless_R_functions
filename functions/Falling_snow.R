@@ -21,14 +21,13 @@ ggplot(aa, aes(x, y, size = size)) +
 library(gganimate)
 
 snow <- ggplot(aa, aes(x, y, size = size)) +
-  geom_point(color = "white", pch = 8, alpha=3/5) + # pch = 8
+  geom_point(color = "white", pch = 58, alpha=3/5) + # pch = 8
   scale_size_identity() +
   theme_void() +
   theme(panel.background = element_rect("black"))
 
 
 # Running animation
-library(gganimate)
 snow +
   transition_time(run)
 
