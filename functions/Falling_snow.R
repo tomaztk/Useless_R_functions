@@ -8,10 +8,10 @@ n <- 1000
 aa <- data.frame(x = runif(n),  
        y = runif(n),  
        size = runif(n, min = 4, max = 20),
-       run = sample.int(10, 10)) 
+       run = sample.int(100, 20)) 
 
 #order aa
-aa <- aa[order(aa$run),]
+aa <- aa[order(aa$x, aa$y),]
 
 
 ggplot(aa, aes(x, y, size = size)) +
@@ -19,6 +19,7 @@ ggplot(aa, aes(x, y, size = size)) +
       scale_size_identity() +
       theme_void() +
       theme(panel.background = element_rect("black"))
+
 
 #animate -> lame :S
 library(gganimate)
