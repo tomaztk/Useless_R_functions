@@ -10,6 +10,9 @@ aa <- data.frame(x = runif(n),
        size = runif(n, min = 4, max = 20),
        run = sample.int(10, 10)) 
 
+#order aa
+aa <- aa[order(aa$run),]
+
 
 ggplot(aa, aes(x, y, size = size)) +
       geom_point(color = "white", pch = 58, alpha=3/5) + # pch = 8 
