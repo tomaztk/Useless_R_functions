@@ -11,8 +11,7 @@ fun1 <- function(x, num){
 
 fun2 <- function(num){
   
-  return(sqrt(num))
-  
+  return(num*num)
 }
 
 fun2(4)
@@ -20,3 +19,19 @@ fun1(fun2, 4)
 fun1(fun2,list(4))
 
 
+
+
+fn1 <- function(n){
+  return(n*n)
+  
+}
+
+
+fn2 <- function(m){
+  return(fn1(m)*fn1(m))
+}
+
+
+fn1(4)
+
+fn2(4)
