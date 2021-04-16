@@ -19,7 +19,7 @@ fun1(fun2, 4)
 fun1(fun2,list(4))
 
 
-######## circle functions
+######## circle functions without exit
 
 fn1 <- function(n){
   return(n*n*fn2(n))
@@ -27,13 +27,12 @@ fn1 <- function(n){
 
 
 fn2 <- function(m){
-  #return(fn1(m)*fn1(m)) ## We need to give it a limit
-  return(fn1(m)+fn1(m-1)) ## We need to give it a limit
+  return((m+m))  #+fn2(m-1)) ## We need to give it a limit; without refencing self or reducing steps m-1
   
 }
 
-fn1(1)
-fn2(1)
+fn1(3)
+fn2(3)
 
 
 #### with recursion
