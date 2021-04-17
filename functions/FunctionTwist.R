@@ -24,6 +24,7 @@ fun1(fun2, 4)
 fun1(fun2,list(4))
 
 
+
 ######## circle functions without exit
 
 fn1 <- function(n){
@@ -40,7 +41,7 @@ fn1(3)
 fn2(3)
 
 
-#### with recursion
+#### example with recursion
 
 sum_ser <- function(n)
 {
@@ -52,7 +53,7 @@ sum_ser <- function(n)
   }
 }
 
-sum_ser(0)
+sum_ser(4)
 
 
 
@@ -61,6 +62,7 @@ Cstack_info()
 
 
 ##### similar circular function
+### Changing formats and hitting stack limit
 
 change_to_factor <- function(x){
   x <- change_to_character(x)
@@ -75,7 +77,7 @@ change_to_character <- function(x){
 change_to_character("1")
 
 
-### Another recursive
+### Another function; calling itself 
 
 rn <- function(a=2){
   res <- sample(a)
