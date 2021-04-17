@@ -84,5 +84,5 @@ rn <- function(a=2){
   rn(res)
 }
 
-rn()
+rn(10)
 
