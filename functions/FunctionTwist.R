@@ -62,19 +62,20 @@ Cstack_info()
 
 
 ##### similar circular function
-### Changing formats and hitting stack limit
+## Changing from list to vector hitting stack limit (classical case)
 
-change_to_factor <- function(x){
-  x <- change_to_character(x)
-  as.factor(x)
+to_vector <- function(x){
+  x <- to_list(x)
+  as.list(x)
 } 
 
-change_to_character <- function(x){
-  x <- change_to_factor(x)
-  as.character(x)
+to_list <- function(x){
+  x <- to_vector(x)
+  as.vector(x)
 }
 
-change_to_character("1")
+to_vector(2908)
+
 
 
 ### Another function; calling itself 
