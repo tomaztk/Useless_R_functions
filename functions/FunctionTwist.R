@@ -106,6 +106,39 @@ fact(4)
 
 fact(-4)
 
+## Fibonacci sequence
+recurse_fibonacci_sum <- function(n) {
+  if(n <= 1) {
+    return(n)
+  } else {
+    return(recurse_fibonacci_sum(n-1) + recurse_fibonacci_sum(n-2))
+  }
+}  
+
+# print fib
+n <- 10
+for(i in 0:(n-1)) {
+  print((recurse_fibonacci_sum(i)))
+}
 
 
 
+#################################
+### Simple sorting with recursion
+#################################
+
+quicksort <- function(vec){
+  if(length(vec)<=1){
+    return(vec)
+  } else {
+    subject <- vec[1]
+    predicate <- vec[-1]
+    large <- predicate[predicate>subject]
+    small <- predicate[predicate<=subject]
+    large <- quicksort(large)
+    small <- quicksort(small)
+    return(c(small,subject,large))
+  }
+}
+
+quicksort(c(4,82,23,0,-15,16,31,-29))
