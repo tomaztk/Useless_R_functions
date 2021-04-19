@@ -131,18 +131,25 @@ print_fibonacci(15)
 ### Simple sorting with recursion
 #################################
 
-quicksort <- function(vec){
-  if(length(vec)<=1){
-    return(vec)
+quacksort <- function(setN){
+  if(length(setN)<=1 | length(setN)==0) {
+    return(setN)
   } else {
-    subject <- vec[1]
-    predicate <- vec[-1]
-    large <- predicate[predicate>subject]
-    small <- predicate[predicate<=subject]
-    large <- quicksort(large)
-    small <- quicksort(small)
-    return(c(small,subject,large))
+    home <- setN[1]
+    rest <- setN[-1]
+    rest_set <- rest[rest > home]
+    home_set <- rest[rest <= home]
+    rest_set <- quacksort(rest_set)
+    home_set <- quacksort(home_set)
+    return((c(home_set,home,rest_set)))
   }
 }
 
-quicksort(c(4,82,23,0,-15,16,31,-29))
+series <- c(65,963,12,-256,529,57,12,778, 0, 54,333,-12345,12, 1)
+
+#series
+quacksort(series)
+
+#single number
+quacksort(4)
+
