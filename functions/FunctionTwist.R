@@ -115,13 +115,17 @@ recurse_fibonacci_sum <- function(n) {
   }
 }  
 
-# print fib
-n <- 10
-for(i in 0:(n-1)) {
-  print((recurse_fibonacci_sum(i)))
+print_fibonacci <- function(x){
+  vc <- c()
+  for(i in 0:(x-1)) {
+    vc <- c(vc, recurse_fibonacci_sum(i))
+    }
+    cat(vc)
 }
 
 
+
+print_fibonacci(15)
 
 #################################
 ### Simple sorting with recursion
