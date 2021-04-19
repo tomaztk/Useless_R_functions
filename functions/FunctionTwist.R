@@ -87,3 +87,25 @@ rn <- function(a=2){
 
 rn(10)
 
+
+
+### Recursions in Mathematics (Factorial / Fibonnaci )
+
+fact <- function(x){
+  if(x == 0){
+    return(0)
+  } 
+  if(x==1){
+    return(1)
+  } else {
+    return(x*fact(x-1))
+  }
+}
+
+fact(4)
+
+fact(-4)
+
+
+
+
