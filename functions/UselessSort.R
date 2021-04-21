@@ -13,7 +13,6 @@ series <- c(65,963,12,-256,529,57,12,778, 0, 54,333,-12345,12, 1,43423,5,7786,43
 sort(series, decreasing = FALSE)
 
 
-
 ### Simple sorting with recursion
 ## Quick sort moves sorted data to left, right
 
@@ -51,4 +50,30 @@ Intosort <- function(A){
 Intosort(series)
 
 
+
+# social distancing sort :-)
+# Like bubble but with distance
+
+SocialDistancing_sort = function(ser) {
+  stevec <- 0
+  
+  while(TRUE) {
+    stev_menjava <- 0
+    for (j in 1 : (NROW(ser) - stevec - 1)) {
+      if (ser[j] > ser[j + 1]) {
+        s <- ser[j]
+        ser[j] <- ser[j+1]
+        ser[j+1] <- s
+        stev_menjava =+  1
+      }
+
+    }
+    stevec =+ 1
+
+        if(stev_menjava == 0) break
+        }
+  cat(ser)
+}
+
+SocialDistancing_sort(series)
 
