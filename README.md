@@ -41,7 +41,7 @@ your everyday R use. That's it :-) And nothing more.</span>
   - Pipe (%>%) for ggplot2 ([blog post](https://tomaztsql.wordpress.com/2021/02/12/little-useless-useful-r-functions-use-pipe-in-ggplot2/))
   - L-Systems ([blog post](https://tomaztsql.wordpress.com/2021/02/17/little-useless-useful-r-functions-using-l-systems-for-useless-writing/))
   - Letter frequency in numbers ([blog post](https://tomaztsql.wordpress.com/2021/03/22/little-useless-useful-r-functions-letter-frequency-in-a-vector-of-numbers/))
-
+  - Using SQL Syntax for wrangling data frames ([blog post](https://tomaztsql.wordpress.com/2021/04/27/using-sql-for-r-data-frames-with-sqldf/))
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
