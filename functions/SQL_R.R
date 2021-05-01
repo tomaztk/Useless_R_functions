@@ -48,6 +48,8 @@ rm(new,lett,name,val)
 
 cdf[6,]
 
+iris <- iris
+
 # using functions
 
 sqldf("select [Sepal.Width] from iris
