@@ -13,8 +13,8 @@
 # Changelog: 
 ###########################################
 
-
 library(ggplot2)
+
 
 #get column names from sample dataset Iris
 variableR <- names(iris)[1:4]
@@ -35,6 +35,3 @@ for(varR in variableR){
   print(Iris_plot(df=iris, y=varR))
   dev.off()
 }
-
-
-
