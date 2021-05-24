@@ -24,6 +24,7 @@ x <- names(iris)[5]
 Iris_plot <- function(df=iris, x, y) {
   ggplot(df, aes(x = !! sym(x), y = !! sym(y) )) + 
     geom_boxplot(notch = TRUE) +
+    ggtitle(paste0("Plot of ", y, " with ", x )) +
     theme_classic(base_size = 10)
 }
 
