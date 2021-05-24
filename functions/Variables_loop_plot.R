@@ -18,11 +18,11 @@ library(ggplot2)
 
 #get column names from sample dataset Iris
 variableR <- names(iris)[1:4]
-
+x <- names(iris)[5]
 
 # Helper function
-Iris_plot <- function(df=iris, y) {
-  ggplot(df, aes(x = Species, y = !! sym(y) )) + 
+Iris_plot <- function(df=iris, x, y) {
+  ggplot(df, aes(x = !! sym(x), y = !! sym(y) )) + 
     geom_boxplot(notch = TRUE) +
     theme_classic(base_size = 10)
 }
@@ -30,8 +30,8 @@ Iris_plot <- function(df=iris, y) {
 
 # Main loop through the columns and dataset
 for(varR in variableR){
-  name <- paste0(varR, "_x_Species")
+  name <- paste0(varR, "_x_", x)
   png(paste0(name, ".png"))
-  print(Iris_plot(df=iris, y=varR))
+  print(Iris_plot(df=iris, x=x, y=varR))
   dev.off()
 }
