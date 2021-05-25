@@ -36,3 +36,13 @@ for(varR in variableR){
   print(Iris_plot(df=iris, x=x, y=varR))
   dev.off()
 }
+
+
+# Comparison with facets
+ggplot(iris, aes(Sepal.Length, fill = Species)) +
+ geom_boxplot() +
+    facet_wrap( ~ Species)
+
+ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + 
+  geom_point() + 
+  facet_grid(. ~ Species)
