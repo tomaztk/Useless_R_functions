@@ -39,10 +39,12 @@ for(varR in variableR){
 
 
 # Comparison with facets
+#wrap
 ggplot(iris, aes(Sepal.Length, fill = Species)) +
  geom_boxplot() +
     facet_wrap( ~ Species)
 
+#grid
 ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + 
   geom_point() + 
   facet_grid(. ~ Species)
