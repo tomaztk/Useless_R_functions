@@ -34,7 +34,7 @@ sim <- function(nr,nc) {
   system.time ( mutoutser ( lnk ) )
 }
 
-sim(1000,1000)
+sim(500,500)
 
 
 ########
@@ -59,4 +59,4 @@ sim1 <- function(nr,nc) {
   print (system.time(mutoutser1(lnk)))
 }
 
-sim(1000,1000)
+sim1(500,500)
