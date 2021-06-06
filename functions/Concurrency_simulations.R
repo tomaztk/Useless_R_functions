@@ -1,3 +1,19 @@
+
+##########################################
+# 
+# Running concurrent simulations
+#
+# Series:
+# Little Useless-useful R functions #24
+# Created: June 4, 2021
+# Author: Tomaž Kaštrun
+# Blog: tomaztsql.wordpress.com
+# V.1.0
+
+# Changelog: 
+###########################################
+
+
 mutoutser <- function(links){
   nr <- nrow(links)
   nc <- ncol(links)
