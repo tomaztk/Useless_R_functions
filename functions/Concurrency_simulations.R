@@ -24,22 +24,20 @@ mutoutser <- function(links){
         tot <- tot + links[i,k] * links[j,k]
     }
   }
-  tot / (nr * (nr - 1) / 2 )
+  r <- tot / (nr * (nr - 1) / 2 )
+ print(r)
 }
 
 
 sim <- function(nr,nc) {
-  lnk <-  matrix( sample ( 0 : 1 , ( nr*nc ) , replace=TRUE) ,
-                  nrow=nr )
-  system.time ( mutoutser ( lnk ) )
+  lnk <-  matrix(sample(0:1 , (nr*nc) , replace=TRUE) , nrow=nr)
+  system.time(mutoutser(lnk))
 }
 
 sim(500,500)
 
 
-########
-
-
+## Optimised version
 
 mutoutser1 <- function (links) {
   nr <- nrow(links)
@@ -49,14 +47,23 @@ mutoutser1 <- function (links) {
     tmp <- links[ ( i + 1): nr,] %*% links[i,]
     tot <- tot + sum(tmp)
   }
-  tot / nr
+  
+  r <- tot / (nr * (nr - 1) / 2 )
+  print(r)
 }
 
 
 sim1 <- function(nr,nc) {
-  lnk <- matrix(sample (0:1 ,(nr*nc), replace=TRUE) ,
-                  nrow=nr)
+  lnk <- matrix(sample (0:1 ,(nr*nc), replace=TRUE) ,nrow=nr)
   print (system.time(mutoutser1(lnk)))
 }
 
 sim1(500,500)
+
+
+# comparison
+ sim(1000,1000)
+sim1(1000,1000)
+
+
+
