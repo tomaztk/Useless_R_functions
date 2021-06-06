@@ -1,4 +1,3 @@
-
 ##########################################
 # 
 # Running concurrent simulations
@@ -14,56 +13,52 @@
 ###########################################
 
 
-mutoutser <- function(links){
+computelinks <- function(links){
   nr <- nrow(links)
   nc <- ncol(links)
   tot = 0
-  for (i in 1 : ( nr - 1)) {
-    for (j in ( i + 1): nr) {
-      for (k in 1 : nc)
+  for (i in 1:(nr-1)) {
+    for (j in (i+1):nr) {
+      for (k in 1:nc)
         tot <- tot + links[i,k] * links[j,k]
     }
   }
-  r <- tot / (nr * (nr - 1) / 2 )
+  r <- tot/(nr*(nr-1)/2)
  print(r)
 }
 
 
-sim <- function(nr,nc) {
-  lnk <-  matrix(sample(0:1 , (nr*nc) , replace=TRUE) , nrow=nr)
-  system.time(mutoutser(lnk))
+sim_Slow <- function(nr,nc){
+  cal <-  matrix(sample(0:1, (nr*nc), replace=TRUE), nrow=nr)
+  system.time(computelinks(cal))
 }
-
-sim(500,500)
 
 
 ## Optimised version
-
-mutoutser1 <- function (links) {
+computelinks_fast <- function(links){
   nr <- nrow(links)
   nc <- ncol(links)
   tot <- 0
-  for ( i in 1 : ( nr - 1)) {
-    tmp <- links[ ( i + 1): nr,] %*% links[i,]
+  for (i in 1:(nr-1)) {
+    tmp <- links[(i+1):nr,] %*% links[i,]
     tot <- tot + sum(tmp)
   }
   
-  r <- tot / (nr * (nr - 1) / 2 )
+  r <- tot/(nr *(nr-1)/2)
   print(r)
 }
 
 
-sim1 <- function(nr,nc) {
-  lnk <- matrix(sample (0:1 ,(nr*nc), replace=TRUE) ,nrow=nr)
-  print (system.time(mutoutser1(lnk)))
+sim_Fast <- function(nr,nc){
+  cal <- matrix(sample (0:1, (nr*nc), replace=TRUE), nrow=nr)
+  print(system.time(computelinks_fast(cal)))
 }
 
-sim1(500,500)
+###################################
+### Comparison of both calculations
+###################################
 
-
-# comparison
- sim(1000,1000)
-sim1(1000,1000)
-
+sim_Slow(1000,1000)
+sim_Fast(1000,1000)
 
 
