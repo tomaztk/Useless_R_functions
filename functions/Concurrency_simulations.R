@@ -62,3 +62,21 @@ sim_Slow(1000,1000)
 sim_Fast(1000,1000)
 
 
+
+###################################
+### Library parallel
+###################################
+
+
+library(parallel)
+
+doichunk <- function (ichunk) {
+  tot <- 0
+  nr <- nrow(lnks) 
+  for (i in ichunk) {
+    tmp <- lnks[(i+1):nr,] %∗% lnks[i,]
+    tot <- tot + sum(tmp)
+  }
+  tot
+}
+
