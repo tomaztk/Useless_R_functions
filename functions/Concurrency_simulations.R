@@ -80,3 +80,14 @@ doichunk <- function (ichunk) {
   tot
 }
 
+
+mutoutpar <- function(cls,lnks) {
+  nr <- nrow(lnks)
+  clusterExport(cls, "lnks")
+  ichunks <- 1:(nr-1)
+  tots <- clusterApply(cls, ichunks, doichunk)
+  Reduce(sum,tots)/nr
+}
+
+makeCluster(nworkers)
+cls <- initmc(4)
