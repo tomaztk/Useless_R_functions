@@ -91,3 +91,13 @@ mutoutpar <- function(cls,lnks) {
 
 makeCluster(nworkers)
 cls <- initmc(4)
+length(cls)
+cl2 <- initcls(c("pc28" ,"pc29"))
+clusterExport(cls,"lnks")
+
+lnks <<- matrix(sample(0:1,(nr*nc),replace=TRUE),nrow=nr)
+clusterExport(cls, "lnks" , envir=environment())
+
+ichunks <- 1:(nr-1)
+tots <- clusterApply(cls, ichunks, doichunk)
+sum(tots)
