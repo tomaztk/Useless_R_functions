@@ -12,9 +12,11 @@
 # Changelog: 
 ###########################################
 
-ingredients <- c()
-quantites <- c()
-actions <- c()
+ingredients <- c("Pasta","Rice","All-purpose flour","sugar","Baking powder","Butter","Eggs","Lemons", "Salt")
+quantites <- c("Piece(s)", "Gram(s)", "Liter(s)", "Bowl")
+actions <- c("Slice","Bake","Refrigerate","Cook","Steam","Dip","Leave to Rest", "grill")
+Kitchen_supply <- c("spatula", "oven", "refrigerator", "pan", "sauce-pan", "whisk")
+steps <- c("1-1", "1-2-1", "1-2-2", "2", "1")
 
 
 
