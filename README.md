@@ -44,12 +44,12 @@ your everyday R use. That's it :-) And nothing more.</span>
   - Using SQL Syntax for wrangling data frames ([blog post](https://tomaztsql.wordpress.com/2021/04/27/using-sql-for-r-data-frames-with-sqldf/))
   - Looping through variable names and generating plots ([blog post](https://tomaztsql.wordpress.com/2021/05/24/little-useless-useful-r-functions-looping-through-variable-names-and-generating-plots/))
 
+
 ## Cloning the repository
 You can follow the steps below to clone the repository.
 ```
 git clone -n https://github.com/tomaztk/Useless_R_functions.git
 ```
-
 
 ## Quickstart
 
@@ -103,15 +103,18 @@ Feel free to get in touch for new useful-useless functions.
 </a>
 <a href="https://tomaztsql.files.wordpress.com/2020/11/screenshot-2020-11-18-at-00.08.11.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2020/11/screenshot-2020-11-18-at-00.08.11.png"/>
 </a>
-<a href="https://tomaztsql.files.wordpress.com/2020/11/460px-rock-paper-scissors.svg_.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2020/11/460px-rock-paper-scissors.svg_.png"/>
+<a href="https://tomaztsql.files.wordpress.com/2020/11/460px-rock-paper-scissors.svg_.png">
+  <img width="45%" src="https://tomaztsql.files.wordpress.com/2020/11/460px-rock-paper-scissors.svg_.png"/>
 </a>
-<a href="https://tomaztsql.files.wordpress.com/2020/11/2020-11-13-00_36_21-window.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2020/11/2020-11-13-00_36_21-window.png"/>
+<a href="https://tomaztsql.files.wordpress.com/2020/11/2020-11-13-00_36_21-window.png">
+  <img width="45%" src="https://tomaztsql.files.wordpress.com/2020/11/2020-11-13-00_36_21-window.png"/>
 </a>
 <a href="https://tomaztsql.files.wordpress.com/2020/10/screenshot-2020-10-24-at-12.07.30.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2020/10/screenshot-2020-10-24-at-12.07.30.png"/>
 </a>
 <a href="https://tomaztsql.files.wordpress.com/2020/11/screenshot-2020-11-05-at-21.56.59.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2020/11/screenshot-2020-11-05-at-21.56.59.png"/>
 </a>
-<a href="https://tomaztsql.files.wordpress.com/2020/10/2020-10-31-21_18_58-rstudio.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2020/10/2020-10-31-21_18_58-rstudio.png"/>
+<a href="https://tomaztsql.files.wordpress.com/2020/10/2020-10-31-21_18_58-rstudio.png">
+  <img width="45%" src="https://tomaztsql.files.wordpress.com/2020/10/2020-10-31-21_18_58-rstudio.png"/>
 </a>
 <a href="https://tomaztsql.files.wordpress.com/2020/11/screenshot-2020-11-20-at-22.02.11.png"><img width="100%" src="https://tomaztsql.files.wordpress.com/2020/11/screenshot-2020-11-20-at-22.02.11.png"/>
 </a>
@@ -119,6 +122,7 @@ Feel free to get in touch for new useful-useless functions.
 </a>
 <a href="https://tomaztsql.files.wordpress.com/2020/12/screenshot-2020-12-30-at-22.50.49.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2020/12/screenshot-2020-12-30-at-22.50.49.png"/>
 </a>
+   
 <a href="https://tomaztsql.files.wordpress.com/2021/01/screenshot-2021-01-05-at-06.37.35.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/01/screenshot-2021-01-05-at-06.37.35.png"/>
 </a>
 <a href="https://tomaztsql.files.wordpress.com/2021/01/screenshot-2021-01-10-at-07.29.03.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/01/screenshot-2021-01-10-at-07.29.03.png"/>
