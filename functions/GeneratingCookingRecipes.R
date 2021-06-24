@@ -19,5 +19,5 @@ Kitchen_supply <- c("spatula", "oven", "refrigerator", "pan", "sauce-pan", "whis
 steps <- c("1-1", "1-2-1", "1-2-2", "2", "1")
 steps_des <- c("Take ", "and")
 
-sample(ingredients, 1, replace = F)
+s1 <- sample(ingredients, 1, replace = F)
 
