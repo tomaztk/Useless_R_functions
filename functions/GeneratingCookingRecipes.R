@@ -20,4 +20,6 @@ steps <- c("1-1", "1-2-1", "1-2-2", "2", "1")
 steps_des <- c("Take ", "and")
 
 s1 <- sample(ingredients, 1, replace = F)
+a1 <- sample(actions, 1, replace = F)
+
 
