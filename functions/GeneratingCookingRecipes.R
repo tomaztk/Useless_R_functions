@@ -19,7 +19,9 @@ Kitchen_supply <- c("spatula", "oven", "refrigerator", "pan", "sauce-pan", "whis
 steps <- c("1-1", "1-2-1", "1-2-2", "2", "1")
 steps_des <- c("Take ", "and")
 
-s1 <- sample(ingredients, 1, replace = F)
-a1 <- sample(actions, 1, replace = F)
 
+string_1 <- as.vector(sample(ingredients,1,replace=F))
+string_2 <- as.vector(sample(actions,1,replace=F))
+
+recipe <- paste(string_1,string_2,sep = " ")
 
