@@ -146,10 +146,11 @@ Feel free to get in touch for new useful-useless functions.
 
 #### General examples
 
-
 # ToDo
 
   - Possibly change some functionalities to work properly on UNIX / WIN machines
     - `x11()` and `CLI export`
   - A vignette finished; write proper feature details!
   - R package!
+
+ # Next Steps
