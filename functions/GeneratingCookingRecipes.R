@@ -30,11 +30,11 @@ recipe <- paste(string_1,string_2,sep = " ")
 RandomRecipe <- function(s=0, numbers=0, symbols=0, lowerCase=0, upperCase=0) {
   ASCII <- NULL
   symbols <- 0
-  if(symbols>0)    ASCII <- c(ASCII, sample(c(33:47, 58:34, 91:96, 123:126), symbols))
-  if(numbers>0)    ASCII <- c(ASCII, sample(48:57, numbers))
-  if(upperCase>0)  ASCII <- c(ASCII, sample(65:90, upperCase))
-  if(lowerCase>0)  ASCII <- c(ASCII, sample(97:122, lowerCase))
-  if(characters>0) ASCII <- c(ASCII, sample(c(65:90, 97:122), characters))
+  if(symbols>0)    ASCII <- c(ASCII, sample(c(quantites)))
+  if(numbers>0)    ASCII <- c(ASCII, sample(ingredients))
+  if(upperCase>0)  ASCII <- c(ASCII, sample(actions))
+  if(lowerCase>0)  ASCII <- c(ASCII, sample(actions))
+  if(steps_des>0) ASCII <- c(ASCII, sample(steps_des))
   
   cat(rawToChar(as.raw(sample(ASCII, length(ASCII)))) )
 }
