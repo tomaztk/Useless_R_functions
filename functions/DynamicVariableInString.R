@@ -13,18 +13,24 @@
 ###########################################
 
 var <- "car"
-a <- "This is a {var}"
-# Run cat_v(a) or cat_v("This is a {var}")
-# Result: "This is a car"
+a <- "This is text with  value: [var]"
+# Run cat_v(a) or cat_v("This is text with variable value: {var}")
+# Result: "This is text with variable value: car"
 
 
 #cat with variables
-cat_v(a)
+#cat_v(a)
+cat_v("This is text with  value: [var]")
 
-cat_a <- function(tex){
-  subs <- tex # inbetween { }
-  t <- get(eval("var"))
-  t
+cat_v <- function(tex){
+    pos_1 <- which(strsplit(a, "")[[1]]=="[")
+    pos_2 <- which(strsplit(a, "")[[1]]=="]")
+    varname <- substr(a, pos_1, pos_2)
+    t <- get(eval("var"))
+    rr <- sub(varname, t, a)
+    cat(rr)
 }
+
+
 
 
