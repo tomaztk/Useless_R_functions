@@ -26,6 +26,13 @@ string_2 <- as.vector(sample(actions,1,replace=F))
 recipe <- paste(string_1,string_2,sep = " ")
 
 
+
+#combn(ingredients,2)
+
+Rec_Ing <- c(Rec_Ing, sample(c(quantites)))
+
+
+
 RandomRecipe <- function(actions=0, ingredients=0, quantites=0, Steps=0, Kitchen_supply=0) {
   Rec_Ing <- " "
   if(quantites>0)    Rec_Ing <- c(Rec_Ing, sample(c(quantites)))
