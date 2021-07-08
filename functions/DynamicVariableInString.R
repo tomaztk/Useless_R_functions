@@ -12,27 +12,28 @@
 # Changelog: 
 ###########################################
 
-name_v <- "tomaz"
-a <- "This is text with: [vv]"
-tex <- "This is text with: [vv]"
-
+vv <- "tomaz"
+tex <- "This is text with: {vv}"
 # Run cat_v(a) or cat_v("This is text with variable value: {var}")
 # Result: "This is text with variable value: car"
 
-
-
 cat_v <- function(tex){
-    pos_1 <- which(strsplit(tex, "")[[1]]=="[")
-    pos_2 <- which(strsplit(tex, "")[[1]]=="]")
+    rr <- " "
+    pos_1 <- which(strsplit(tex, "")[[1]]=="{")
+    pos_2 <- which(strsplit(tex, "")[[1]]=="}")
+    end_pos <- nchar(tex)
     varname <- substr(tex, pos_1+1, pos_2-1)
     t <- get(eval(varname))
-    rr <- sub(varname, t, tex)
-    cat(rr)
+    t1 <- substr(tex, 1, pos_1-1)
+    t2 <- substr(tex, pos_2+1, end_pos)
+    t1 <- paste0(t1, t, t2)
+    cat(t1)
 }
+
 
 
 #cat with variables
 #cat_v(a)
-cat_v("This is text with: [name_v]")
+cat_v("This is text with: {vv}")
 
 
