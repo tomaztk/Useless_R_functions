@@ -13,7 +13,7 @@
 ###########################################
 
 vv <- "tomaz"
-tex <- "This is text with: {vv}"
+#tex <- "This is text with: {vv}"
 # Run cat_v(a) or cat_v("This is text with variable value: {var}")
 # Result: "This is text with variable value: car"
 
@@ -34,6 +34,7 @@ cat_v <- function(tex){
 
 #cat with variables
 #cat_v(a)
+cat_v("This is text with: {vv} and all good")
 cat_v("This is text with: {vv}")
 
 
