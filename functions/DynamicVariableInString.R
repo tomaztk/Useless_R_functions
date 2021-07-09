@@ -1,6 +1,6 @@
 ##########################################
 # 
-# Variables in strings
+# Inserting variable values into strings
 #
 # Series:
 # Little Useless-useful R functions #25
@@ -13,10 +13,8 @@
 ###########################################
 
 vv <- "tomaz"
-#tex <- "This is text with: {vv}"
-# Run cat_v(a) or cat_v("This is text with variable value: {var}")
-# Result: "This is text with variable value: car"
 
+#function
 cat_v <- function(tex){
     rr <- " "
     pos_1 <- which(strsplit(tex, "")[[1]]=="{")
@@ -34,7 +32,7 @@ cat_v <- function(tex){
 
 #cat with variables
 #cat_v(a)
-cat_v("This is text with: {vv} and all good")
-cat_v("This is text with: {vv}")
+cat_v("This is text by: {vv} and today is a great day!")
+cat_v("This is text by: {vv}")
 
 
