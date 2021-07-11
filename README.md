@@ -43,6 +43,7 @@ your everyday R use. That's it :-) And nothing more.</span>
   - Letter frequency in numbers ([blog post](https://tomaztsql.wordpress.com/2021/03/22/little-useless-useful-r-functions-letter-frequency-in-a-vector-of-numbers/))
   - Using SQL Syntax for wrangling data frames ([blog post](https://tomaztsql.wordpress.com/2021/04/27/using-sql-for-r-data-frames-with-sqldf/))
   - Looping through variable names and generating plots ([blog post](https://tomaztsql.wordpress.com/2021/05/24/little-useless-useful-r-functions-looping-through-variable-names-and-generating-plots/))
+  - Inserting variable values into strings ([blog post](https://tomaztsql.wordpress.com/2021/07/09/little-useless-useful-r-functions-inserting-variable-values-into-strings/))
 
 
 ## Cloning the repository
