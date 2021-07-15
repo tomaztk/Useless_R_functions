@@ -19,7 +19,7 @@ library(ggplot2)
 set.seed(208)
 
 
-fake_data <- function(n, x, y){
+Colourful_graph <- function(n, x, y){
   df <- data.frame(x=x, y=y)
   for (i in 1:n){
     #get last x,y
@@ -46,8 +46,8 @@ fake_data <- function(n, x, y){
 
 
 
-#create faked graph
-fake_data(500,0.4,0.3)
+#create colourful graph
+Colourful_graph(500,0.4,0.3)
 
 
 
