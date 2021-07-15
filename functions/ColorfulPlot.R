@@ -1,6 +1,6 @@
 ##########################################
 # 
-# Colorful graphs with ggplot
+# Colorful line graph with ggplot
 #
 # Series:
 # Little Useless-useful R functions #27
