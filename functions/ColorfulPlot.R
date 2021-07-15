@@ -35,17 +35,20 @@ fake_data <- function(n, x, y){
     df <- rbind(df, c(x=xx, y=yy))
     
   }
-  fake <<- df
+  fake <- df
+  # show faked graph
+  ggplot(fake, aes(x, y, color = factor(x*y))) +
+    geom_path(aes(group=1)) +
+    theme(legend.position = "none") +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+          panel.background = element_blank(), axis.line = element_blank(), text=element_blank(), line = element_blank())  
 }
 
-#create get faked
+
+
+#create faked graph
 fake_data(500,0.4,0.3)
 
 
-# show faked graph
-ggplot(fake, aes(x, y, color = factor(x*y))) +
-  geom_path(aes(group=1)) +
-  theme(legend.position = "none") +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
-      panel.background = element_blank(), axis.line = element_blank(), text=element_blank(), line = element_blank())  
+
 
