@@ -13,12 +13,13 @@
 ###########################################
 
 library(ggplot2)
+library(RColorBrewer)
 
 
 ## generating fake dataset (x,y) points for a single line
-set.seed(208)
+set.seed(29038)
 
-
+#The function
 Colourful_graph <- function(n, x, y){
   df <- data.frame(x=x, y=y, col=n)
   for (i in 1:n){
@@ -37,20 +38,24 @@ Colourful_graph <- function(n, x, y){
     df <- rbind(df, c(x=xx, y=yy, col=col)) 
     
   }
-  fake <<- df
+  fake <- df
+  
+  brewColours <- as.integer(length(fake$col))
+  ColourfulColours <- colorRampPalette(brewer.pal(8, "Paired"))(brewColours)
+  
   # show faked graph
   ggplot(fake, aes(x, y, color = factor(col))) +
-    geom_path(aes(group=1)) +
+    geom_line(color= ColourfulColours) +
     theme(legend.position = "none") +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
           panel.background = element_blank(), axis.line = element_blank(), text=element_blank(), line = element_blank())  
+  
 }
 
 
 
 #create colourful graph
 Colourful_graph(500,0.4,0.3)
-
 
 
 
