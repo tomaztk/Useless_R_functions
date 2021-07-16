@@ -40,8 +40,15 @@ Colourful_graph <- function(n, x, y){
   }
   fake <- df
   
+  #brewer sample 8 color palette
+  nn <- as.data.frame(brewer.pal.info)
+  nn$names <- row.names.data.frame(nn)
+  nn8 <- subset(nn, maxcolors==8, select=c(names))
+  
+  
   brewColours <- as.integer(length(fake$col))
-  ColourfulColours <- colorRampPalette(brewer.pal(8, "Paired"))(brewColours)
+  #ColourfulColours <- colorRampPalette(brewer.pal(8, "Paired"))(brewColours)
+  ColourfulColours <- colorRampPalette(brewer.pal(8, sample(nn8$names,1,T)))(brewColours)
   
   # show faked graph
   ggplot(fake, aes(x, y, color = factor(col))) +
