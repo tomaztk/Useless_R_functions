@@ -153,5 +153,3 @@ Feel free to get in touch for new useful-useless functions.
     - `x11()` and `CLI export`
   - A vignette finished; write proper feature details!
   - R package!
-
- # Next Steps
