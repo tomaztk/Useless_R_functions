@@ -20,24 +20,26 @@ set.seed(208)
 
 
 Colourful_graph <- function(n, x, y){
-  df <- data.frame(x=x, y=y)
+  df <- data.frame(x=x, y=y, col=n)
   for (i in 1:n){
     #get last x,y
     lastx <- tail(df$x, 1)
     lasty <- tail(df$y, 1)
+    col <- sample(1:i, 1, replace = T)
     if (i %% 10 == 0) {
       xx <- runif(1, 0.0, 1.0) + lastx
       yy <- runif(1, 0.0, 1.0) - lasty
     } else  {
     xx <- runif(1, 0.0, 1.0) + lastx
     yy <- runif(1, 0.0, 1.0) - lasty
-      }
-    df <- rbind(df, c(x=xx, y=yy))
+    }
+    # change: col=i for rainbow colours
+    df <- rbind(df, c(x=xx, y=yy, col=col)) 
     
   }
-  fake <- df
+  fake <<- df
   # show faked graph
-  ggplot(fake, aes(x, y, color = factor(x*y))) +
+  ggplot(fake, aes(x, y, color = factor(col))) +
     geom_path(aes(group=1)) +
     theme(legend.position = "none") +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
