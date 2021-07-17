@@ -44,6 +44,7 @@ your everyday R use. That's it :-) And nothing more.</span>
   - Using SQL Syntax for wrangling data frames ([blog post](https://tomaztsql.wordpress.com/2021/04/27/using-sql-for-r-data-frames-with-sqldf/))
   - Looping through variable names and generating plots ([blog post](https://tomaztsql.wordpress.com/2021/05/24/little-useless-useful-r-functions-looping-through-variable-names-and-generating-plots/))
   - Inserting variable values into strings ([blog post](https://tomaztsql.wordpress.com/2021/07/09/little-useless-useful-r-functions-inserting-variable-values-into-strings/))
+  - Colourful ggplot line graphs ([blog post](https://tomaztsql.wordpress.com/2021/07/16/little-useless-useful-r-functions-colourful-ggplot-line-graphs/))
 
 
 ## Cloning the repository
@@ -138,6 +139,9 @@ Feel free to get in touch for new useful-useless functions.
 <a href="https://tomaztsql.files.wordpress.com/2021/03/screenshot-2021-03-20-at-07.53.59.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/03/screenshot-2021-03-20-at-07.53.59.png"/>
 </a>
 <a href="https://tomaztsql.files.wordpress.com/2021/05/screenshot-2021-05-23-at-06.14.57.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/05/screenshot-2021-05-23-at-06.14.57.png"/>
+</a>
+  
+<a href="https://tomaztsql.files.wordpress.com/2021/07/screenshot-2021-07-15-at-18.47.50.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/07/screenshot-2021-07-15-at-18.47.50.png"/>
 </a>
   
 <div>
