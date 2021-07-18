@@ -91,6 +91,7 @@ DrawCalendarMonth <- function(InDate=NULL) {
 
 ### Testing the calendar
 DrawCalendarMonth() # OK
+DrawCalendarMonth("2021-07-18") # OK
 DrawCalendarMonth("2021-01-21") # OK
 DrawCalendarMonth("2021-05-21") # OK 
 DrawCalendarMonth("2021-02-21") # OK
@@ -119,3 +120,8 @@ DrawYear <- function(Year=NULL){
 DrawYear(2020)
 DrawYear()
 
+
+
+# Adding Weeks
+strftime("2021-07-18", format = "%V")   
+strftime("2021-01-01", format = "%V")   
