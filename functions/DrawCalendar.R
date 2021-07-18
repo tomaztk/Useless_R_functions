@@ -72,7 +72,7 @@ DrawCalendarMonth <- function(InDate=NULL) {
     for(column in 1:n.col){
       if(row >= 1 & column >= num1D | row > 1) {
         if(i > nofDays){
-        i <- 0
+          mat[row,column] <- 0
           } else {
         mat[row,column] <- i
         i= i + 1
