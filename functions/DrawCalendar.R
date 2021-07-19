@@ -122,6 +122,31 @@ DrawYear()
 
 
 
+#################
 # Adding Weeks
-strftime("2021-07-18", format = "%V")   
-strftime("2021-01-01", format = "%V")   
+################
+# for a given date, get all weeks in the month
+DrawWeeksMonth <- function(myDate){
+  if(is.null(myDate)){
+    date <- Sys.Date()
+  } else {
+    date <- as.Date(myDate)
+  }
+  
+  firstDay <- as.Date(paste0(format(date, "%Y-%m"), "-01"))
+  endDay <- seq(as.Date(firstDay), length=2, by="months")-1
+  endDay<- endDay[2]
+  
+  
+  x <- seq(as.Date(firstDay), as.Date(endDay), by = "day")
+  #w <- x[weekdays(x) == "Monday" & as.numeric(format(x, "%d"))]
+  
+  w<-unique(strftime(seq(as.Date(firstDay), as.Date(endDay), by = "day"), format = "%V"))
+  print(w)
+}
+
+#test
+DrawWeeksMonth("2021-07-19")
+DrawWeeksMonth("2020-08-19")
+DrawWeeksMonth("1992-01-19")
+
