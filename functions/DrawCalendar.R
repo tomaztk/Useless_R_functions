@@ -122,9 +122,13 @@ DrawYear()
 
 
 
-#################
-# Adding Weeks
-################
+
+
+
+##########################
+# Adding Weeks / Testing #
+##########################
+
 # for a given date, get all weeks in the month
 DrawWeeksMonth <- function(myDate){
   if(is.null(myDate)){
