@@ -121,12 +121,16 @@ DrawYear(2020)
 DrawYear()
 
 
+# With System function
+# in comment section: https://tomaztsql.wordpress.com/2021/07/19/little-useless-useful-r-functions-drawing-calendar/
+# by HP: https://www.paessens.tel/
+system("cal")
 
 
 
 
 ##########################
-# Adding Weeks / Testing #
+# Adding Weeks / Testing #ˆ
 ##########################
 
 # for a given date, get all weeks in the month
