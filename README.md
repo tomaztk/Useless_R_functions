@@ -45,7 +45,7 @@ your everyday R use. That's it :-) And nothing more.</span>
   - Looping through variable names and generating plots ([blog post](https://tomaztsql.wordpress.com/2021/05/24/little-useless-useful-r-functions-looping-through-variable-names-and-generating-plots/))
   - Inserting variable values into strings ([blog post](https://tomaztsql.wordpress.com/2021/07/09/little-useless-useful-r-functions-inserting-variable-values-into-strings/))
   - Colourful ggplot line graphs ([blog post](https://tomaztsql.wordpress.com/2021/07/16/little-useless-useful-r-functions-colourful-ggplot-line-graphs/))
-
+  - Drawing calendar([blog post](https://tomaztsql.wordpress.com/2021/07/19/little-useless-useful-r-functions-drawing-calendar/))
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
@@ -142,6 +142,8 @@ Feel free to get in touch for new useful-useless functions.
 </a>
   
 <a href="https://tomaztsql.files.wordpress.com/2021/07/screenshot-2021-07-15-at-18.47.50.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/07/screenshot-2021-07-15-at-18.47.50.png"/>
+</a>
+<a href="https://tomaztsql.files.wordpress.com/2021/07/screenshot-2021-07-18-at-07.00.51.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/07/screenshot-2021-07-18-at-07.00.51.png"/>
 </a>
   
 <div>
