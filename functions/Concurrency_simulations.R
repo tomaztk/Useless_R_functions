@@ -28,12 +28,6 @@ computelinks <- function(links){
 }
 
 
-sim_Slow <- function(nr,nc){
-  cal <-  matrix(sample(0:1, (nr*nc), replace=TRUE), nrow=nr)
-  system.time(computelinks(cal))
-}
-
-
 ## Optimised version
 computelinks_fast <- function(links){
   nr <- nrow(links)
@@ -49,17 +43,26 @@ computelinks_fast <- function(links){
 }
 
 
-sim_Fast <- function(nr,nc){
-  cal <- matrix(sample (0:1, (nr*nc), replace=TRUE), nrow=nr)
-  print(system.time(computelinks_fast(cal)))
+sim_Fast <- function(mat){
+  print(system.time(computelinks_fast(mat)))
+}
+
+sim_Slow <- function(mat){
+  system.time(computelinks(mat))
 }
 
 ###################################
 ### Comparison of both calculations
 ###################################
 
-sim_Slow(1000,1000)
-sim_Fast(1000,1000)
+# will produce same end results; different timings
+nr <- 500
+nc <- 500
+cal <-  matrix(sample(0:1, (nr*nc), replace=TRUE), nrow=nr)
+
+
+sim_Slow(cal)
+sim_Fast(cal)
 
 
 
