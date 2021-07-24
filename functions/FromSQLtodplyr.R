@@ -22,6 +22,7 @@ con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
 flights <- copy_to(con, nycflights13::flights)
 airports <- copy_to(con, nycflights13::airports)
 
+
 flights %>%
   select(contains("delay")) %>%
   show_query()
