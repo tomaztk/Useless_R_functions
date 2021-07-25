@@ -38,7 +38,8 @@ q <- "SELECT * FROM flights"
 
 toDplyr <- function(query){
   print(query)
-  
+  # parse query
+    
 }
 
 toDplyr(q)
