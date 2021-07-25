@@ -32,3 +32,13 @@ flights %>%
 ######################
 ## From  SQL to dplyr?
 ######################
+
+
+q <- "SELECT * FROM flights"
+
+toDplyr <- function(query){
+  print(query)
+  
+}
+
+toDplyr(q)
