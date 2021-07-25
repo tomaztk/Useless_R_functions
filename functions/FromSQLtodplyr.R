@@ -43,3 +43,20 @@ toDplyr <- function(query){
 }
 
 toDplyr(q)
+
+sample_query <- "SELECT `Sepal.Width`, `Species` FROM iris WHERE `Species` = `setosa` and `Petal.Length` >= 1.3 ORDER BY `Sepal.Width` ASC LIMIT 10"
+
+dp <- "iris_subset <- iris %>%
+          select(`Sepal.Width`, `Species`,`Petal.Length`) %>%
+          filter(`Species` == \"setosa\" & `Petal.Length` >= 1.3 ) %>%
+          arrange(desc(`Sepal.Width`)) %>%
+          top_n(10)"
+
+print(paste0("Dplyr query: ", dp))
+
+
+eval(parse(text=dp))
+
+iris_subset
+
+rm(iris_subset)
