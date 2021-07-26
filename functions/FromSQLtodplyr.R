@@ -61,4 +61,29 @@ iris_subset
 
 rm(iris_subset)
 
+######
+
+q <- as.character ("SELECT * FROM iris WHERE species = 'setosa' AND  Petal.Lenght => 1.3")
+
+insertToDataFrame <- function(q){
+  
+  # create df
+  #qq <- data.frame(q=character(), q2 = character())
+  
+  # sapply the text
+  qq <<- as.data.frame(sapply(strsplit(q, " "), function(x) print(x)))
+  colnames(qq) <<- "qt"
+  
+  SQL_Reserved_words <- c("select", "from","where","is","group by", "AS", "order by", "top")
+  
+}
+
+insertToDataFrame(q)
+
+#check data.frame
+qq
+
+
+
+
 
