@@ -77,8 +77,8 @@ insertToDataFrame <- function(q){
   SQL_Reserved_words <- c("SELECT", "FROM","WHERE","IS","group by", "AS", "ORDER BY", "TOP", "OR", "ELSE", "CASE", "IN", "NULL", "NOT", "CASE",
                           "by", "having by", "LIKE", "OVER", "PERCENT", "when", "then", "convert", "cast", "distinct", "exists", "AND")
   
- match(SQL_Reserved_words, qq$qt)
-  
+ id_pos <- match(SQL_Reserved_words, qq$qt)
+ print(qq[id_pos,])
 }
 
 insertToDataFrame(q)
