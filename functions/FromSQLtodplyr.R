@@ -74,9 +74,10 @@ insertToDataFrame <- function(q){
   qq <<- as.data.frame(sapply(strsplit(q, " "), function(x) print(x)))
   colnames(qq) <<- "qt"
   
-  SQL_Reserved_words <- c("SELECT", "FROM","WHERE","IS","group by", "AS", "ORDER BY", "TOP", "OR", "ELSE", "CASE", "IN", "NULL", "NOT", "CASE",
-                          "by", "having by", "LIKE", "OVER", "PERCENT", "when", "then", "convert", "cast", "distinct", "exists", "AND")
-  
+  SQL_Reserved_words <- c("SELECT", "FROM","WHERE","IS","GROUP BY", "AS", "ORDER BY", "TOP", "OR", "ELSE", "CASE", "IN", "NULL", "NOT", "CASE",
+                          "BY", "HAVING BY", "LIKE", "OVER", "PERCENT", "WHEN", "THEN", "CONVERT", "CAST", "DISTINCT", "EXISTS", "AND", "BETWEEN")
+ qq$yn <- 0
+ qq$level <- 0
  id_pos <- match(SQL_Reserved_words, qq$qt)
  print(qq[id_pos,])
 }
