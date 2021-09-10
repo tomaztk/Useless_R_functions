@@ -1,8 +1,17 @@
+##########################################
+# 
+# Year Progress in R
 #
-#
-# year progress bar in R
-#
-#
+# Series:
+# Little Useless-useful R functions #25
+# Created: September 10, 2021
+# Author: Tomaž Kaštrun
+# Blog: tomaztsql.wordpress.com
+# V.1.0
+
+# Changelog: 
+###########################################
+
 yearProgress <- function(){
           diffr<- as.integer(Sys.Date()-as.Date("2021-01-01"))/365
           
