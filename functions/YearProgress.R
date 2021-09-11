@@ -13,25 +13,27 @@
 ###########################################
 
 yearProgress <- function(){
-          diffr<- as.integer(Sys.Date()-as.Date("2021-01-01"))/365
+          difference <- as.integer(Sys.Date()-as.Date("2021-01-01"))/365
+          year <- format(Sys.Date(), format="%Y")
+          WidthBar <- 50
+          LenProgress <- 40
           
-          options(width = 60)
-          n <- 40
-          for (ii in 1:n) {
-            #extra <- nchar('||100%')
-            width <- options()$width
-            step <- round(ii / n * (width - 5))*diffr
-            text <- sprintf('|%s%s|% 3s%%', 
-                            strrep('=', step),
-                            strrep(' ', width - step - 5), round(ii / n * diffr*100)
+          for (LenStep in 1:LenProgress) {
+            step <- round((LenStep/LenProgress * (WidthBar-5))*difference)
+              text <- sprintf('|%s%s % 3s%%', 
+                            strrep('▓', step),
+                            strrep('░', WidthBar-step-5), round(LenStep/LenProgress*difference*100.00, digits=2)
                             )
             
-            cat("Yearly progress so far ...\n")
+            cat("Yearly progress so far ",year, "...\n")
             cat(text)
-            Sys.sleep(0.05)
-            cat(if (ii == n) '\n' else '\014')
+            Sys.sleep(0.1)
+            cat(if (LenStep == LenProgress) 
+                '\n' else '\014'
+                )
            }
 }
 
+# Run function
 yearProgress()
 
