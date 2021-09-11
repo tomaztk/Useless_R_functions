@@ -13,8 +13,9 @@
 ###########################################
 
 yearProgress <- function(){
-          difference <- as.integer(Sys.Date()-as.Date("2021-01-01"))/365
           year <- format(Sys.Date(), format="%Y")
+          difference <- as.integer(Sys.Date()-as.Date(paste0(year, "-01-01")))/365
+
           WidthBar <- 50
           LenProgress <- 40
           
