@@ -14,9 +14,11 @@
 
 spinningCursor <- function(){
   cursor <- c("\\","|","/","-")
-  for (i in 1:length(cursor)){
+  #for (i in 1:10){
+    for(ii in 1:4){
     Sys.sleep(0.05)
-    cat("\r",cursor[i])
+    cat("\r",cursor[ii])
+   # }
   }
 }
 
@@ -33,11 +35,13 @@ yearProgress <- function(){
               text <- sprintf('|%s%s % 3s%%', 
                             strrep('▓', step),
                             strrep('░', WidthBar-step-5), round(LenStep/LenProgress*difference*100.00, digits=2)
+                            
                             )
             
             cat("Yearly progress so far ",year, "...\n")
-            cat(text, spinningCursor())
-            Sys.sleep(0.05)
+            #cat(text, spinningCursor()) #with spinning cursor
+            cat(text)  #without spinning cursor
+            Sys.sleep(0.01)
             cat(if (LenStep == LenProgress) 
                 '\n' else '\014'
                 )
