@@ -12,6 +12,15 @@
 # Changelog: 
 ###########################################
 
+spinningCursor <- function(){
+  cursor <- c("\\","|","/","-")
+  for (i in 1:length(cursor)){
+    Sys.sleep(0.05)
+    cat("\r",cursor[i])
+  }
+}
+
+
 yearProgress <- function(){
           year <- format(Sys.Date(), format="%Y")
           difference <- as.integer(Sys.Date()-as.Date(paste0(year, "-01-01")))/365
@@ -27,8 +36,8 @@ yearProgress <- function(){
                             )
             
             cat("Yearly progress so far ",year, "...\n")
-            cat(text)
-            Sys.sleep(0.1)
+            cat(text, spinningCursor())
+            Sys.sleep(0.05)
             cat(if (LenStep == LenProgress) 
                 '\n' else '\014'
                 )
@@ -37,4 +46,5 @@ yearProgress <- function(){
 
 # Run function
 yearProgress()
+
 
