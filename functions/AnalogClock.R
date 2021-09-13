@@ -1,3 +1,17 @@
+##########################################
+# 
+# Annoying useless analog clock
+#
+# Series:
+# Little Useless-useful R functions #26
+# Created: September 14, 2021
+# Author: Tomaž Kaštrun
+# Blog: tomaztsql.wordpress.com
+# V.1.0
+
+# Changelog: 
+###########################################
+
 require(grid)
 #install.packages("beepr")
 
@@ -42,7 +56,7 @@ RefreshClock <- function() {
     Sys.sleep(1)
     AnalogClock(hh,mm,ss)
     #beep(sound = 4, expr = NULL)
-    beepr::beep(1)
+    #beepr::beep(1)
     
     }
 }
