@@ -24,12 +24,11 @@ AnalogClock <- function(hour, minute, second) {
 
   
   grid.newpage()
-  pushViewport(dataViewport(x, y, gp=gpar(lwd=4)))
+  pushViewport(dataViewport(x, y, gp=gpar(lwd=3)))
   
-  # Clock with ticks
+  # Clock background
   grid.circle(x=0, y=0, default="native", r=unit(1, "native"))
-  grid.segments(x, y, x*.9, y*.9, default="native")
-  
+
   # Hour hand
   hourAngle <- pi/2 - (hour + minute/60)/12*2*pi
   grid.segments(0, 0, 0.6*cos(hourAngle), .6*sin(hourAngle), default="native", gp=gpar(lex=4, col="red"))
@@ -41,7 +40,7 @@ AnalogClock <- function(hour, minute, second) {
   # Second hand
   secondAngle <- pi/2 - (second)/60*2*pi
   grid.segments(0, 0, 
-          0.8*cos(secondAngle), .8*sin(secondAngle), default="native", gp=gpar(lex=1, col = "blue"), draw=TRUE)    
+          0.8*cos(secondAngle), .7*sin(secondAngle), default="native", gp=gpar(lex=1, col = "blue"), draw=TRUE)    
   grid.circle(0,0, default="native", r=unit(1, "mm"), gp=gpar(fill="white"))
 }
 
