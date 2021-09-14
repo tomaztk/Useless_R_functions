@@ -46,7 +46,7 @@ your everyday R use. That's it :-) And nothing more.</span>
   - Inserting variable values into strings ([blog post](https://tomaztsql.wordpress.com/2021/07/09/little-useless-useful-r-functions-inserting-variable-values-into-strings/))
   - Colourful ggplot line graphs ([blog post](https://tomaztsql.wordpress.com/2021/07/16/little-useless-useful-r-functions-colourful-ggplot-line-graphs/))
   - Drawing calendar([blog post](https://tomaztsql.wordpress.com/2021/07/19/little-useless-useful-r-functions-drawing-calendar/))
-  - Useless Year progress bar with spinning cursor ([]())
+  - Useless Year progress bar with spinning cursor ([blog post](https://tomaztsql.wordpress.com/2021/09/13/little-useless-useful-r-functions-year-progress-bar/))
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
