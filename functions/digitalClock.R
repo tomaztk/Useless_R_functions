@@ -14,15 +14,11 @@
 
 
 DigitalTime <- function() {
-  cat(("\014"))
-   while(TRUE){
-    Sys.sleep(1)
-    hh <- (format(Sys.time(), format="%H"))
-    mm <- (format(Sys.time(), format="%M"))
-    ss <- (format(Sys.time(), format="%S"))
-    time <- sprintf('%s', paste0(hh, ":", mm, ":", ss) )
-    cat("\r", time)
-   }
+  cat("\014")
+  while(TRUE){
+    Sys.sleep(0.1)
+   cat("\r", strftime(Sys.time(), format="%H:%M:%S"))
+  }
 }
 
 DigitalTime()
