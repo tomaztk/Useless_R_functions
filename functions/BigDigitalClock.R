@@ -13,97 +13,154 @@
 ###########################################
 
 
-number_0 <-
+n0 <-
   c("██████"
-   ,"██  ██"
-   ,"██  ██"
-   ,"██  ██"
-   ,"██████")
+    ,"██  ██"
+    ,"██  ██"
+    ,"██  ██"
+    ,"██████")
 
-number_1 <-
+n1 <-
   c("    ██"
-   ,"    ██"
-   ,"    ██"
-   ,"    ██"
-   ,"    ██")
+    ,"    ██"
+    ,"    ██"
+    ,"    ██"
+    ,"    ██")
 
-number_2 <-
+
+n2 <-
   c("██████"
-   ,"    ██"
-   ,"██████"
-   ,"██    "
-   ,"██████")
+    ,"    ██"
+    ,"██████"
+    ,"██    "
+    ,"██████")
 
 
-number_3 <-
+n3 <-
   c("██████"
-   ,"    ██"
-   ,"██████"
-   ,"    ██"
-   ,"██████")
+    ,"    ██"
+    ,"██████"
+    ,"    ██"
+    ,"██████")
 
-number_4 <-
+
+n4 <-
   c("██  ██"
-   ,"██  ██"
-   ,"██████"
-   ,"    ██"
-   ,"    ██")
+    ,"██  ██"
+    ,"██████"
+    ,"    ██"
+    ,"    ██")
 
-number_5 <-
+n5 <-
   c("██████"
-   ,"██    "
-   ,"██████"
-   ,"    ██"
-   ,"██████")
+    ,"██    "
+    ,"██████"
+    ,"    ██"
+    ,"██████")
 
-number_6 <-
+n6 <-
   c("██████"
-   ,"██    "
-   ,"██████"
-   ,"██  ██"
-   ,"██████")
+    ,"██    "
+    ,"██████"
+    ,"██  ██"
+    ,"██████")
 
-number_7 <-
+n7 <-
   c("██████"
-   ,"    ██"
-   ,"    ██"
-   ,"    ██"
-   ,"    ██")
+    ,"    ██"
+    ,"    ██"
+    ,"    ██"
+    ,"    ██")
 
-number_8 <-
+n8 <-
   c("██████"
-   ,"██  ██"
-   ,"██████"
-   ,"██  ██"
-   ,"██████")
+    ,"██  ██"
+    ,"██████"
+    ,"██  ██"
+    ,"██████")
 
-number_9 <-
+n9 <-
   c("██████"
-   ,"██  ██"
-   ,"██████"
-   ,"    ██"
-   ,"██████")
+    ,"██  ██"
+    ,"██████"
+    ,"    ██"
+    ,"██████")
 
 
 colon <-
   c("      "
-   ,"  ██  "
-   ,"      "
-   ,"  ██  "
-   ,"      ")
+    ,"  ██  "
+    ,"      "
+    ,"  ██  "
+    ,"      ")
 
-newline <-
-  c("\n"
-   ,"\n"
-   ,"\n"
-   ,"\n"
-   ,"\n")
 
 space <-
   c(" "
-   ," "
-   ," "
-   ," "
-   ," ")
+    ," "
+    ," "
+    ," "
+    ," ")
+
+
+df0 <- as.data.frame(n0)
+df1 <- as.data.frame(n1)
+df2 <- as.data.frame(n2)
+df3 <- as.data.frame(n3)
+df4 <- as.data.frame(n4)
+df5 <- as.data.frame(n5)
+df6 <- as.data.frame(n6)
+df7 <- as.data.frame(n7)
+df8 <- as.data.frame(n8)
+df9 <- as.data.frame(n9)
+dfc <- as.data.frame(colon)
+dfs <- as.data.frame(space)
+
+numbers <- cbind(df0, df1,df2,df3,df4,df5,df6,df7,df8,df9, dfc, dfs)
+
+rm(df0, df1,df2,df3,df4,df5,df6,df7,df8,df9, dfc, dfs,n0,n1,n2,n3,n4,n5,n6,n7,n8,n9, colon, space)
+
+
+#print(numbers)
+
+getVariable <- function(x = integer()){
+  stopifnot(is.integer(x))
+  
+}
+
+
+BigDitigalClock <- function() {
+  
+  while(TRUE){
+    Sys.sleep(1)
+    cat("\014")
+    print.data.frame(numbers,  row.names = F)
+    colnames(numbers) <- c(" "," "," "," "," "," "," "," "," "," "," "," ")
+    
+    #hour
+    hh <- strftime(Sys.time(), format="%H")
+    h1 <- substr(hh,1,1)
+    h2 <- substr(hh,2,2)
+    
+    #minute
+    mm <- strftime(Sys.time(), format="%M")
+    m1 <- substr(mm,1,1)
+    m2 <- substr(mm,2,2)
+    
+    #second
+    ss <- strftime(Sys.time(), format="%S")
+    s1 <- substr(ss,1,1)
+    s2 <- substr(ss,2,2)
+    
+    
+    
+    #cat("\r", strftime(Sys.time(), format="%H:%M:%S"))
+  }
+}
+
+
+#BigDitigalClock()
+
+
 
 
