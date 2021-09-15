@@ -1,6 +1,6 @@
 ##########################################
 # 
-# Annoying useless digital clock
+# Annoying useless small digital clock
 #
 # Series:
 # Little Useless-useful R functions #26

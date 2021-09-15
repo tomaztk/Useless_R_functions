@@ -95,14 +95,6 @@ colon <-
     ,"      ")
 
 
-space <-
-  c(" "
-    ," "
-    ," "
-    ," "
-    ," ")
-
-
 df0 <- as.data.frame(n0)
 df1 <- as.data.frame(n1)
 df2 <- as.data.frame(n2)
@@ -160,9 +152,16 @@ BigDitigalClock <- function() {
     s1 <- substr(ss,1,1)
     s2 <- substr(ss,2,2)
     
-    current_time <- cbind(getVariable(as.integer(h1)), getVariable(as.integer(h2)), numbers$colon, 
-                          getVariable(as.integer(m1)), getVariable(as.integer(m2)), numbers$colon,
-                          getVariable(s1), getVariable(s2))
+    dfh1 <- as.data.frame(getVariable(as.integer(h1)))
+    dfh2 <- as.data.frame(getVariable(as.integer(h2)))
+    dfm1 <- as.data.frame(getVariable(as.integer(m1)))
+    dfm2 <- as.data.frame(getVariable(as.integer(m2)))
+    dfs1 <- as.data.frame(getVariable(as.integer(s1)))
+    dfs2 <- as.data.frame(getVariable(as.integer(s2)))
+    
+    current_time <- cbind(dfh1, dfh2, numbers$colon, 
+                          dfm1, dfm2 , numbers$colon,
+                          dfs1, dfs2)
     
     colnames(current_time) <- c(" "," "," "," "," "," "," "," ")
     print.data.frame(current_time,  row.names = F)
