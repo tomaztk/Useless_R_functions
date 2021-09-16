@@ -3,7 +3,7 @@
 # Annoying useless big digital clock
 #
 # Series:
-# Little Useless-useful R functions #26
+# Little Useless-useful R functions #27
 # Created: September 15, 2021
 # Author: Tomaž Kaštrun
 # Blog: tomaztsql.wordpress.com

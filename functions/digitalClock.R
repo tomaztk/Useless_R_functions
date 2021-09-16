@@ -13,7 +13,7 @@
 ###########################################
 
 
-DigitalTime <- function() {
+SmallDigitalTime <- function() {
   cat("\014")
   while(TRUE){
     Sys.sleep(0.1)
@@ -21,7 +21,8 @@ DigitalTime <- function() {
   }
 }
 
-DigitalTime()
+# Run function / clock
+SmallDigitalTime()
 
 
 

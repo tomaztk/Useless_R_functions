@@ -16,7 +16,7 @@ require(grid)
 #install.packages("beepr")
 
 
-AnalogClock <- function(hour, minute, second) {
+DrawClock <- function(hour, minute, second) {
   
   t <- seq(0, 2*pi, length=13)[-13]
   x <- cos(t)
@@ -46,21 +46,19 @@ AnalogClock <- function(hour, minute, second) {
 
 
 
-RefreshClock <- function() {
-
+AnalogClock <- function() {
     while(TRUE){
     hh <- as.integer(format(Sys.time(), format="%H"))
     mm <- as.integer(format(Sys.time(), format="%M"))
     ss <- as.integer(format(Sys.time(), format="%S"))
     Sys.sleep(1)
-    AnalogClock(hh,mm,ss)
-    #beep(sound = 4, expr = NULL)
-    #beepr::beep(1)
-    
+    DrawClock(hh,mm,ss)
+    beepr::beep(sound = 1, expr = NULL)
     }
 }
 
-RefreshClock()
+#Run Function / clock
+AnalogClock()
 
 
 
