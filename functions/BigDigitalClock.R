@@ -13,6 +13,7 @@
 ###########################################
 
 
+# Create Numbers
 n0 <-
   c("██████"
     ,"██  ██"
@@ -27,7 +28,6 @@ n1 <-
     ,"    ██"
     ,"    ██")
 
-
 n2 <-
   c("██████"
     ,"    ██"
@@ -35,14 +35,12 @@ n2 <-
     ,"██    "
     ,"██████")
 
-
 n3 <-
   c("██████"
     ,"    ██"
     ,"██████"
     ,"    ██"
     ,"██████")
-
 
 n4 <-
   c("██  ██"
@@ -86,14 +84,12 @@ n9 <-
     ,"    ██"
     ,"██████")
 
-
 colon <-
   c("      "
     ,"  ██  "
     ,"      "
     ,"  ██  "
     ,"      ")
-
 
 df0 <- as.data.frame(n0)
 df1 <- as.data.frame(n1)
@@ -106,14 +102,10 @@ df7 <- as.data.frame(n7)
 df8 <- as.data.frame(n8)
 df9 <- as.data.frame(n9)
 dfc <- as.data.frame(colon)
-dfs <- as.data.frame(space)
 
-numbers <- cbind(df0, df1,df2,df3,df4,df5,df6,df7,df8,df9, dfc, dfs)
+numbers <- cbind(df0, df1,df2,df3,df4,df5,df6,df7,df8,df9, dfc)
+rm(df0, df1,df2,df3,df4,df5,df6,df7,df8,df9, dfc,n0,n1,n2,n3,n4,n5,n6,n7,n8,n9, colon)
 
-rm(df0, df1,df2,df3,df4,df5,df6,df7,df8,df9, dfc, dfs,n0,n1,n2,n3,n4,n5,n6,n7,n8,n9, colon, space)
-
-
-#print(numbers)
 
 getVariable <- function(x) {
   stopifnot(is.numeric(x))
@@ -138,19 +130,16 @@ BigDitigalClock <- function() {
     cat("\014")
     
     #hour
-    hh <- strftime(Sys.time(), format="%H")
-    h1 <- substr(hh,1,1)
-    h2 <- substr(hh,2,2)
+    h1 <- substr(strftime(Sys.time(), format="%H"),1,1)
+    h2 <- substr(strftime(Sys.time(), format="%H"),2,2)
     
     #minute
-    mm <- strftime(Sys.time(), format="%M")
-    m1 <- substr(mm,1,1)
-    m2 <- substr(mm,2,2)
+    m1 <- substr(strftime(Sys.time(), format="%M"),1,1)
+    m2 <- substr(strftime(Sys.time(), format="%M"),2,2)
     
     #second
-    ss <- strftime(Sys.time(), format="%S")
-    s1 <- substr(ss,1,1)
-    s2 <- substr(ss,2,2)
+    s1 <- substr(strftime(Sys.time(), format="%S"),1,1)
+    s2 <- substr(strftime(Sys.time(), format="%S"),2,2)
     
     dfh1 <- as.data.frame(getVariable(as.integer(h1)))
     dfh2 <- as.data.frame(getVariable(as.integer(h2)))
@@ -168,5 +157,5 @@ BigDitigalClock <- function() {
   }
 }
 
-
+# Run the clock
 BigDitigalClock()
