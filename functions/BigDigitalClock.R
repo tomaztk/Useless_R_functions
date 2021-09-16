@@ -106,7 +106,7 @@ dfc <- as.data.frame(colon)
 numbers <- cbind(df0, df1,df2,df3,df4,df5,df6,df7,df8,df9, dfc)
 rm(df0, df1,df2,df3,df4,df5,df6,df7,df8,df9, dfc,n0,n1,n2,n3,n4,n5,n6,n7,n8,n9, colon)
 
-
+# Get number / variable from data frame
 getVariable <- function(x) {
   stopifnot(is.numeric(x))
   if (x == 0) {return (numbers$n0)}
@@ -119,7 +119,6 @@ getVariable <- function(x) {
   if (x == 7) {return (numbers$n7)}
   if (x == 8) {return (numbers$n8)}
   if (x == 9) {return (numbers$n9)}
-  
 }
 
 
@@ -152,6 +151,7 @@ BigDitigalClock <- function() {
                           dfm1, dfm2 , numbers$colon,
                           dfs1, dfs2)
     
+    #Remove column namens and row names
     colnames(current_time) <- c(" "," "," "," "," "," "," "," ")
     print.data.frame(current_time,  row.names = F)
   }
