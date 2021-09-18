@@ -47,6 +47,7 @@ your everyday R use. That's it :-) And nothing more.</span>
   - Colourful ggplot line graphs ([blog post](https://tomaztsql.wordpress.com/2021/07/16/little-useless-useful-r-functions-colourful-ggplot-line-graphs/))
   - Drawing calendar([blog post](https://tomaztsql.wordpress.com/2021/07/19/little-useless-useful-r-functions-drawing-calendar/))
   - Useless Year progress bar with spinning cursor ([blog post](https://tomaztsql.wordpress.com/2021/09/13/little-useless-useful-r-functions-year-progress-bar/))
+  - Useless analog and digital clock ([blog post](https://tomaztsql.wordpress.com/2021/09/16/little-useless-useful-r-functions-useless-analog-and-digital-clocks/))
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
@@ -150,7 +151,9 @@ Feel free to get in touch for new useful-useless functions.
  <a href="https://tomaztsql.files.wordpress.com/2021/09/progressbaranimater.gif"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/09/progressbaranimater.gif"/>
 </a>
 <div>
-
+ <a href="https://tomaztsql.files.wordpress.com/2021/09/bigdigitalclockr.gif"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/09/bigdigitalclockr.gif"/>
+</a>
+<div>
   
   
 
