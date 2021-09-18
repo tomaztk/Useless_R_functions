@@ -148,14 +148,12 @@ Feel free to get in touch for new useful-useless functions.
 <a href="https://tomaztsql.files.wordpress.com/2021/07/screenshot-2021-07-18-at-07.00.51.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/07/screenshot-2021-07-18-at-07.00.51.png"/>
 </a>
  
- <a href="https://tomaztsql.files.wordpress.com/2021/09/progressbaranimater.gif"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/09/progressbaranimater.gif"/>
+<a href="https://tomaztsql.files.wordpress.com/2021/09/progressbaranimater.gif"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/09/progressbaranimater.gif"/>
 </a>
-<div>
- <a href="https://tomaztsql.files.wordpress.com/2021/09/bigdigitalclockr.gif"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/09/bigdigitalclockr.gif"/>
+<a href="https://tomaztsql.files.wordpress.com/2021/09/bigdigitalclockr.gif"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/09/bigdigitalclockr.gif"/>
 </a>
-<div>
   
-  
+ </div>
 
 # Vignettes
 
