@@ -47,7 +47,7 @@ yearProgress <- function(){
             #ASCII for Windows or MacOS
             text <- sprintf('%s%s % 3s%%', 
                             #cursor[charSpinningCursor],
-                            strrep('\U2593', step), # U+2593 █  and U+2591 for light
+                            strrep('\U2593', step), # U+2593 dark  and U+2591 for light
                             strrep('\U2591', WidthBar-step-5), round(LenStep/LenProgress*difference*100.00, digits=2)
                             
             )
