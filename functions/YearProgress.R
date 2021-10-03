@@ -35,12 +35,23 @@ yearProgress <- function(){
             step <- round((LenStep/LenProgress * (WidthBar-5))*difference)
             charSpinningCursor <- (LenStep %% 4)+1
             
-            text <- sprintf('%s |%s%s % 3s%%', 
-                            cursor[charSpinningCursor],
-                            strrep('▓', step),
-                            strrep('░', WidthBar-step-5), round(LenStep/LenProgress*difference*100.00, digits=2)
+            #ASCII For MacOS
+            # text <- sprintf('%s |%s%s % 3s%%', 
+            #                 cursor[charSpinningCursor],
+            #                 strrep('▓', step),
+            #                 strrep('░', WidthBar-step-5), round(LenStep/LenProgress*difference*100.00, digits=2)
+            #                 
+            #                 )
+            
+            
+            #ASCII for Windows or MacOS
+            text <- sprintf('%s%s % 3s%%', 
+                            #cursor[charSpinningCursor],
+                            strrep('\U2593', step), # U+2593 █  and U+2591 for light
+                            strrep('\U2591', WidthBar-step-5), round(LenStep/LenProgress*difference*100.00, digits=2)
                             
-                            )
+            )
+            
             
             cat("Yearly progress so far ",year, "...\n")
             cat(text)  
