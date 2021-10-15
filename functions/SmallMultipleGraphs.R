@@ -56,9 +56,6 @@ popDifferenceSE <- sqrt(20^2+20^2)/sqrt(32)
 fakeData<-data.frame(value=rnorm(1000000, mean=10, sd=popDifferenceSE))
 
 
-# Clean
-rm(popDifferenceSE,i,se,tBound, zBound, cases, controls, myData, myControls, tTest)
-
 
 # 2. Get some libs for plotting
 
@@ -72,7 +69,7 @@ problemColors <- c("TRUE"="red", "FALSE"="darkgrey")
 colorScale <- scale_colour_manual(name="problem", values=problemColors)
 
 
-finalTop <- ggplot(data=estimates, aes(x=meanDiff, y=sampleNum)) +
+smallMultiples <- ggplot(data=estimates, aes(x=meanDiff, y=sampleNum)) +
   
   geom_errorbarh(aes(xmin=lower,xmax=upper, color=problem)) +
   geom_point(aes(color=problem))  + 
@@ -95,14 +92,19 @@ finalTop <- ggplot(data=estimates, aes(x=meanDiff, y=sampleNum)) +
         plot.title = element_text(hjust = 0.65),
         plot.margin = unit(c(10, 0, -2, 0), "pt")) +
   
-  ggtitle("Mean, 95% CI") +
+  ggtitle("Mean with 95% CI") +
   geom_text(aes(x=-12, y=sampleNum, 
                 label=estimates$significance),
             size = 2.5, hjust="inward") 
 
 
 # 3. Final plotting
-finalComplete <- grid.arrange(finalTop,ncol = 1, heights = c(10, 1))
+finalGraph <- grid.arrange(smallMultiples,ncol = 1, heights = c(10, 1))
+
+
+# 4. Clean
+rm(popDifferenceSE,i,se,tBound, zBound, cases, controls, myData, myControls, tTest)
+rm(colorScale, estimates, fakeData, smallMultiples, finalGraph, problemColors)
 
 
 
