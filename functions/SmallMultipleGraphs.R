@@ -12,14 +12,51 @@
 # Changelog: 
 ###########################################
 
-set.seed(2908)
+set.seed(2900)
 
 # 1. Making data of 20 cases
 myData <- data.frame(value=rnorm(2000, mean = 40, sd=20))
+myControls <- data.frame(value=rnorm(2000, mean = 30, sd=20))
 cases <- NULL
+controls <- NULL
 for (i in 1:20) {
   cases[[i]] <- sample(myData$value, size=32)
+  controls[[i]] <- sample(myControls$value, size=32)
 }
+
+estimates <- data.frame(lower=NA, 
+                        meanDiff=sapply(cases, mean)-sapply(controls,mean),
+                        caseSSE= sapply(cases, function(x) sum((x-mean(x))^2)),
+                        controlSSE = sapply(controls, function(x) sum((x-mean(x))^2)),
+                        sd=NA,
+                        upper=NA)
+
+estimates$sd <- sqrt((estimates$caseSSE+estimates$controlSSE)/64)
+se <- estimates$sd/sqrt(32)  
+tBound <- qt(0.975, df=31)
+zBound <-qnorm(0.975)
+estimates$lower <- estimates$meanDiff - se*tBound # or zBound
+estimates$upper <- estimates$meanDiff + se*tBound # or zBound
+estimates$problem = estimates$lower >10 | estimates$upper < 10
+
+
+tTest <- mapply(t.test, x=controls, y=cases)
+
+# flip it and make it a data frame
+tTest <- as.data.frame(t(tTest))
+estimates$p <- unlist(tTest$p.value)
+estimates$p <- round(estimates$p, 4)
+estimates$significance <- ""
+estimates$significance[estimates$p<.05] <- "*"
+estimates$significance[estimates$p<.01] <- "**"
+estimates$significance[estimates$p<.001] <- "***"
+
+estimates$sampleNum <- as.numeric(row.names(estimates))
+popDifferenceSE <- sqrt(20^2+20^2)/sqrt(32)
+fakeData<-data.frame(value=rnorm(1000000, mean=10, sd=popDifferenceSE))
+
+
+rm(popDifferenceSE,i,se,tBound, zBound, cases, controls, myData, myControls, tTest)
 
 
 # 2. Get some libs for plotting
@@ -65,5 +102,5 @@ finalTop <- ggplot(data=estimates, aes(x=meanDiff, y=sampleNum)) +
 
 # 3. Final plotting
 
-finalComplete <- grid.arrange(finalTop,ncol = 1, heights = c(4, 1))
+finalComplete <- grid.arrange(finalTop,ncol = 1, heights = c(10, 1))
 
