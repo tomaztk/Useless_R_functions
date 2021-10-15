@@ -31,18 +31,18 @@ estimates <- data.frame(lower=NA,
                         sd=NA,
                         upper=NA)
 
+
+# Calculating statistics
 estimates$sd <- sqrt((estimates$caseSSE+estimates$controlSSE)/64)
 se <- estimates$sd/sqrt(32)  
 tBound <- qt(0.975, df=31)
 zBound <-qnorm(0.975)
-estimates$lower <- estimates$meanDiff - se*tBound # or zBound
-estimates$upper <- estimates$meanDiff + se*tBound # or zBound
+estimates$lower <- estimates$meanDiff - se*tBound 
+estimates$upper <- estimates$meanDiff + se*tBound
 estimates$problem = estimates$lower >10 | estimates$upper < 10
 
 
 tTest <- mapply(t.test, x=controls, y=cases)
-
-# flip it and make it a data frame
 tTest <- as.data.frame(t(tTest))
 estimates$p <- unlist(tTest$p.value)
 estimates$p <- round(estimates$p, 4)
@@ -56,6 +56,7 @@ popDifferenceSE <- sqrt(20^2+20^2)/sqrt(32)
 fakeData<-data.frame(value=rnorm(1000000, mean=10, sd=popDifferenceSE))
 
 
+# Clean
 rm(popDifferenceSE,i,se,tBound, zBound, cases, controls, myData, myControls, tTest)
 
 
@@ -101,6 +102,7 @@ finalTop <- ggplot(data=estimates, aes(x=meanDiff, y=sampleNum)) +
 
 
 # 3. Final plotting
-
 finalComplete <- grid.arrange(finalTop,ncol = 1, heights = c(10, 1))
+
+
 
