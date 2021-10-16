@@ -12,38 +12,39 @@
 # Changelog: 
 ###########################################
 
-#load ggplot
 
 library(magick)
 
 
 #X11()     # Unix / windows
 
-j <- 1:20
-k <- j
+set.seed(2908)
+
+j <- 1:25
+k <- 11:35
 
     
-png("/Users/tomazkastrun/Desktop/jkll.png")
+png("/Users/tomazkastrun/Desktop/jkll.png", bg = "transparent")
 plot(j, k, type = "l", main = "type = 'l'")
 dev.off()
 
-png("/Users/tomazkastrun/Desktop/jkss.png")
+png("/Users/tomazkastrun/Desktop/jkss.png", bg = "transparent")
 plot(j, k, type = "s", main = "type = 's'")
 dev.off()
 
-png("/Users/tomazkastrun/Desktop/jkpp.png")
+png("/Users/tomazkastrun/Desktop/jkpp.png", bg = "transparent")
 plot(j, k, type = "p", main = "type = 'p'")
 dev.off()
 
-png("/Users/tomazkastrun/Desktop/jklo.png")
+png("/Users/tomazkastrun/Desktop/jklo.png", bg = "transparent")
 plot(j, k, type = "l", main = "type = 'o'")
 dev.off()
 
-png("/Users/tomazkastrun/Desktop/jkso.png")
+png("/Users/tomazkastrun/Desktop/jkso.png", bg = "transparent")
 plot(j, k, type = "s", main = "type = 'b'")
 dev.off()
 
-png("/Users/tomazkastrun/Desktop/jkph.png")
+png("/Users/tomazkastrun/Desktop/jkph.png", bg = "transparent")
 plot(j, k, type = "p", main = "type = 'h'")
 dev.off()
 
@@ -62,5 +63,13 @@ image_resize(c(jk_1, jk_2, jk_3, jk_4, jk_5, jk_6), '400x450!') %>%
   image_animate(optimize = TRUE)
 
 
+
+file.remove(c("/Users/tomazkastrun/Desktop/jkll.png",
+              "/Users/tomazkastrun/Desktop/jkss.png",
+              "/Users/tomazkastrun/Desktop/jkpp.png",
+              "/Users/tomazkastrun/Desktop/jklo.png",
+              "/Users/tomazkastrun/Desktop/jkso.png",
+              "/Users/tomazkastrun/Desktop/jkph.png"
+              ))
 
 
