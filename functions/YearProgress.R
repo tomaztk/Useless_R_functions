@@ -67,7 +67,7 @@ yearProgress()
 
 
 # store to file
-con <- file"~/YP.txt")
+con <- file("~/YP.txt")
 sink(con, append=FALSE)
 cat(xx4)
 
