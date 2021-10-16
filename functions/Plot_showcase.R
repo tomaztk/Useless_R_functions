@@ -12,6 +12,11 @@
 # Changelog: 
 ###########################################
 
+# clean
+rm(list = ls(all.names = TRUE))
+dev.off(dev.list()["RStudioGD"])
+graphics.off()
+#gc() 
 
 library(magick)
 
@@ -72,4 +77,4 @@ file.remove(c("/Users/tomazkastrun/Desktop/jkll.png",
               "/Users/tomazkastrun/Desktop/jkph.png"
               ))
 
-
+rm(j,k,jk_1, jk_2, jk_3, jk_4, jk_5, jk_6)
