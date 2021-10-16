@@ -66,8 +66,10 @@ yearProgress <- function(){
 yearProgress()
 
 
-# store to file
-con <- file("~/YP.txt")
+# store to file and create backup
+timestamp <- format(Sys.Date(), "%Y%m%d")
+filename <- paste("~/Desktop/YP-",timestamp,".txt",sep="")
+con <- file(filename)
 sink(con, append=FALSE)
 cat(xx4)
 
