@@ -1,15 +1,16 @@
 ##########################################
 # 
-#       Showcase of base plot funtion
+#       Showcase of base plot function
 #
 # Series:
 # Little Useless-useful R functions #29
 #
 # Created: October 15, 2021
-# Author: Toma≈æ Ka≈°trun
+# Author: Tomaû Kaötrun
 # Blog: tomaztsql.wordpress.com
 
-# Changelog: 
+# Change log: 
+  
 ###########################################
 
 # clean
@@ -44,7 +45,6 @@ plot(iris[, 1:2], main = "Correlation plot for two variables")
 plot(iris[, 1:2], main = "Correlation plot for two \n  variables with lines of SS")
 lines(lowess(iris[,1:2]))
 plot(iris[, 1:3], main = "Correlation plot for three or more")
-
 
 
 
@@ -105,9 +105,6 @@ rm(PlotData,jk_1, jk_2, jk_3, jk_4, jk_5, jk_6)
 
 
 library(magick)
-library(ggplot2)
-library(dplyr)
-library(tidyr)
 
 rm(list = ls(all.names = TRUE))
 dev.off(dev.list()["RStudioGD"])
@@ -115,42 +112,44 @@ graphics.off()
 
 # create a temporary directory to store plot files
 unlink(dir_out, recursive=TRUE)
-dir_out <- file.path(tempdir(), "plotShowTempFolder")
+dir_out <- file.path(tempdir())
 dir.create(dir_out, recursive = TRUE)
 
 
 # Data
 TimeSeriesData <- ts(matrix(rnorm(300), nrow = 300, ncol = 1), start = c(1990, 1), frequency = 12)
-DatesData <- seq(as.Date("2005/1/1"), by = "month", length = 50)
+DatesData <- seq(as.Date("2005/01/01"), by = "month", length = 50)
 ScatterData <- cbind(rnorm(200),rnorm(200) * rnorm(200) + rnorm(200))
-BarData <- factor(iris$Sepal.Width)
+BarData <- as.numeric(iris$Sepal.Width)
 fun <- function(x) {x^4*pi}
 PlotData <- data.frame(j=(1:25),k=(11:35))
+IrisData <- as.data.frame(iris[, 1:2])
 
 gg <- c(
   "plot(ScatterData, main = 'Scatterplot')"
   ,"plot(BarData, main = 'Histogram')"
   ,"plot(BarData, rnorm(150), main = 'Boxplot')"
   ,"plot(TimeSeriesData, main = 'Time-series')"
-  ,"plot(fun, -10, 5*pi, main = 'Plot a function')"
-  ,"plot(iris[, 1:2], main = 'Correlation plot for two variables')"
-  ,"plot(iris[, 1:2], main = 'Correlation plot for two \n  variables with lines of SS')
-,lines(lowess(iris[,1:2]))"
-  ,"plot(iris[, 1:3], main = 'Correlation plot for three or more')"
+  
 )
 
 
-i <- 3
+# ,"plot(fun, -10, 5*pi, main = 'Plot a function')"
+#,"plot(IrisData, main = 'Correlation plot for two variables')"
+#,"plot(IrisData, main = 'Correlation plot for two \n  variables with lines of SS')
+#   lines(lowess(iris[,1:2]))"
+#,"plot(iris[, 1:3], main = 'Correlation plot for three or more')"
+
 for (i in 1:length(gg)) {
   cc  <- gg[i]
+  name_p <- paste0(dir_out,'\\',i,'.png')
+  png(name_p, bg = "transparent")
   p <- eval(parse(text=cc))
-  fp <- file.path(dir_out, paste0(i, ".png"))
-  ggsave(plot = p, 
-         filename = fp, 
-         device = "png")
+  #fp <- file.path(dir_out, paste0(i, ".png"))
+  #print(fp)
+  #ggsave(plot = p,filename = fp,device = "png")
+  dev.off()
 }
-
-
 
 ## list file names and read in
 imgs <- list.files(dir_out, full.names = TRUE)
@@ -160,13 +159,13 @@ img_list <- lapply(imgs, image_read)
 img_joined <- image_join(img_list)
 
 ## animate at 2 frames per second
-img_animated <- image_animate(img_joined, fps = 2)
+img_animated <- image_animate(img_joined, fps = 20)
 
 ## view animated image
 img_animated
 
 ## save to disk
-image_write(image = img_animated,path = "ShowCase.gif")
+image_write(image = img_animated,path = "C:\\Users\\Tomaz\\Desktop\\ShowCase.gif")
 unlink(dir_out, recursive=TRUE)
 
 
