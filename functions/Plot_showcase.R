@@ -104,15 +104,13 @@ rm(PlotData,jk_1, jk_2, jk_3, jk_4, jk_5, jk_6)
 ##########3
 
 
-library(magick)
-
 rm(list = ls(all.names = TRUE))
 dev.off(dev.list()["RStudioGD"])
 graphics.off()
 
 # create a temporary directory to store plot files
 unlink(dir_out, recursive=TRUE)
-dir_out <- file.path(tempdir())
+dir_out <- file.path(tempdir(), "ShowCaseTempFolder")
 dir.create(dir_out, recursive = TRUE)
 
 
@@ -120,7 +118,7 @@ dir.create(dir_out, recursive = TRUE)
 TimeSeriesData <- ts(matrix(rnorm(300), nrow = 300, ncol = 1), start = c(1990, 1), frequency = 12)
 DatesData <- seq(as.Date("2005/01/01"), by = "month", length = 50)
 ScatterData <- cbind(rnorm(200),rnorm(200) * rnorm(200) + rnorm(200))
-BarData <- as.numeric(iris$Sepal.Width)
+BarData <- factor(iris$Sepal.Width)
 fun <- function(x) {x^4*pi}
 PlotData <- data.frame(j=(1:25),k=(11:35))
 IrisData <- as.data.frame(iris[, 1:2])
@@ -143,26 +141,20 @@ gg <- c(
 for (i in 1:length(gg)) {
   cc  <- gg[i]
   name_p <- paste0(dir_out,'\\',i,'.png')
-  png(name_p, bg = "transparent")
+  png(name_p)
   p <- eval(parse(text=cc))
   #fp <- file.path(dir_out, paste0(i, ".png"))
-  #print(fp)
+  #print(name_p)
   #ggsave(plot = p,filename = fp,device = "png")
   dev.off()
 }
 
-## list file names and read in
+# create showcase
 imgs <- list.files(dir_out, full.names = TRUE)
 img_list <- lapply(imgs, image_read)
-
-## join the images together
 img_joined <- image_join(img_list)
+img_animated <- image_animate(img_joined, fps = 1)
 
-## animate at 2 frames per second
-img_animated <- image_animate(img_joined, fps = 20)
-
-## view animated image
-img_animated
 
 ## save to disk
 image_write(image = img_animated,path = "C:\\Users\\Tomaz\\Desktop\\ShowCase.gif")
