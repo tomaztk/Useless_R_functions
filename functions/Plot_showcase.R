@@ -13,151 +13,82 @@
   
 ###########################################
 
+library(magick)
+
+
+#text = paste("\n   The following is text that'll appear in a plot window.\n",
+#             "       As you can see, it's in the plot window",
+#             "       One might imagine useful informaiton here")
+
+
 # clean
 rm(list = ls(all.names = TRUE))
 dev.off(dev.list()["RStudioGD"])
 graphics.off()
 #gc() 
 
-library(magick)
 
-set.seed(2908)
-
-
-# Data
-TimeSeriesData <- ts(matrix(rnorm(300), nrow = 300, ncol = 1), start = c(1990, 1), frequency = 12)
-DatesData <- seq(as.Date("2005/1/1"), by = "month", length = 50)
-ScatterData <- cbind(rnorm(200),rnorm(200) * rnorm(200) + rnorm(200))
-BarData <- factor(iris$Sepal.Width)
-fun <- function(x) {x^4*pi}
-PlotData <- data.frame(j=(1:25),k=(11:35))
-
-
-
-
-# Graphs
-plot(ScatterData, main = "Scatterplot")
-plot(BarData, main = "Histogram")
-plot(BarData, rnorm(150), main = "Boxplot")
-plot(TimeSeriesData, main = "Time-series")
-plot(fun, -10, 5*pi, main = "Plot a function")
-plot(iris[, 1:2], main = "Correlation plot for two variables")
-plot(iris[, 1:2], main = "Correlation plot for two \n  variables with lines of SS")
-lines(lowess(iris[,1:2]))
-plot(iris[, 1:3], main = "Correlation plot for three or more")
-
-
-
-
-    
-png("/Users/tomazkastrun/Desktop/jkll.png", bg = "transparent")
-plot(PlotData, type = "l", main = "type = 'l'")
-dev.off()
-
-png("/Users/tomazkastrun/Desktop/jkss.png", bg = "transparent")
-plot(PlotData, type = "s", main = "type = 's'")
-dev.off()
-
-png("/Users/tomazkastrun/Desktop/jkpp.png", bg = "transparent")
-plot(PlotData, type = "p", main = "type = 'p'")
-dev.off()
-
-png("/Users/tomazkastrun/Desktop/jklo.png", bg = "transparent")
-plot(PlotData, type = "l", main = "type = 'o'")
-dev.off()
-
-png("/Users/tomazkastrun/Desktop/jkso.png", bg = "transparent")
-plot(PlotData, type = "s", main = "type = 'b'")
-dev.off()
-
-png("/Users/tomazkastrun/Desktop/jkph.png", bg = "transparent")
-plot(PlotData, type = "p", main = "type = 'h'")
-dev.off()
-
-
-jk_1 <- image_scale(image_read("/Users/tomazkastrun/Desktop/jkll.png"))
-jk_2 <- image_scale(image_read("/Users/tomazkastrun/Desktop/jkss.png"))
-jk_3 <- image_scale(image_read("/Users/tomazkastrun/Desktop/jkpp.png"))
-jk_4 <- image_scale(image_read("/Users/tomazkastrun/Desktop/jklo.png"))
-jk_5 <- image_scale(image_read("/Users/tomazkastrun/Desktop/jkso.png"))
-jk_6 <- image_scale(image_read("/Users/tomazkastrun/Desktop/jkph.png"))
-
-
-image_resize(c(jk_1, jk_2, jk_3, jk_4, jk_5, jk_6), '400x450!') %>%
-  image_background('white') %>%
-  image_morph() %>%
-  image_animate(optimize = TRUE)
-
-
-
-file.remove(c("/Users/tomazkastrun/Desktop/jkll.png",
-              "/Users/tomazkastrun/Desktop/jkss.png",
-              "/Users/tomazkastrun/Desktop/jkpp.png",
-              "/Users/tomazkastrun/Desktop/jklo.png",
-              "/Users/tomazkastrun/Desktop/jkso.png",
-              "/Users/tomazkastrun/Desktop/jkph.png"
-              ))
-
-rm(PlotData,jk_1, jk_2, jk_3, jk_4, jk_5, jk_6)
-
-
-##########3
-
-
-rm(list = ls(all.names = TRUE))
-dev.off(dev.list()["RStudioGD"])
-graphics.off()
 
 # create a temporary directory to store plot files
 unlink(dir_out, recursive=TRUE)
 dir_out <- file.path(tempdir(), "ShowCaseTempFolder")
 dir.create(dir_out, recursive = TRUE)
 
-
-# Data
-TimeSeriesData <- ts(matrix(rnorm(300), nrow = 300, ncol = 1), start = c(1990, 1), frequency = 12)
-DatesData <- seq(as.Date("2005/01/01"), by = "month", length = 50)
-ScatterData <- cbind(rnorm(200),rnorm(200) * rnorm(200) + rnorm(200))
-BarData <- factor(iris$Sepal.Width)
-fun <- function(x) {x^4*pi}
-PlotData <- data.frame(j=(1:25),k=(11:35))
-IrisData <- as.data.frame(iris[, 1:2])
-
-gg <- c(
-  "plot(ScatterData, main = 'Scatterplot')"
-  ,"plot(BarData, main = 'Histogram')"
-  ,"plot(BarData, rnorm(150), main = 'Boxplot')"
-  ,"plot(TimeSeriesData, main = 'Time-series')"
-  
-)
+set.seed(2908)
 
 
-# ,"plot(fun, -10, 5*pi, main = 'Plot a function')"
-#,"plot(IrisData, main = 'Correlation plot for two variables')"
-#,"plot(IrisData, main = 'Correlation plot for two \n  variables with lines of SS')
-#   lines(lowess(iris[,1:2]))"
-#,"plot(iris[, 1:3], main = 'Correlation plot for three or more')"
+AllData <- data.frame(graph=c
+                      (
+                        "plot(ScatterData, main = 'Scatterplot')"
+                        ,"plot(BarData, main = 'Histogram')"
+                        ,"plot(BarData, rnorm(150), main = 'Boxplot')"
+                        ,"plot(TimeSeriesData, main = 'Time-series')"
+                        ,"plot(fun, -10, 5*pi, main = 'Plot a function')"
+                        ,"plot(IrisData, main = 'Correlation plot for two variables')"
+                        ,"plot(IrisData, main = 'Correlation plot for two \n  variables with lines of SS') +  
+                           lines(lowess(iris[,1:2]))"
+                        ,"plot(iris[, 1:3], main = 'Correlation plot for three or more')"
+                        
+                      ),
+                      data=c('ScatterData <- cbind(rnorm(200),rnorm(200) * rnorm(200) + rnorm(200))'
+                             ,'BarData <- factor(iris$Sepal.Width)'
+                             ,'BarData <- factor(iris$Sepal.Width)'
+                             ,'TimeSeriesData <- ts(matrix(rnorm(300), nrow = 300, ncol = 1), start = c(1990, 1), frequency = 12)'
+                             ,'fun <- function(x) {x^4*pi}'
+                             ,'IrisData <- as.data.frame(iris[, 1:2])'
+                             ,'IrisData <- as.data.frame(iris[, 1:2])'
+                             ,'iris'
+                      )
+)                
+                      
 
-for (i in 1:length(gg)) {
-  cc  <- gg[i]
+
+
+for (i in 1:nrow(AllData)) {
+  graphinfo  <- as.character(AllData$graph[i])
+  datainfo <- as.character(AllData$data[i])
+  eval(parse(text=datainfo))
   name_p <- paste0(dir_out,'\\',i,'.png')
   png(name_p)
-  p <- eval(parse(text=cc))
-  #fp <- file.path(dir_out, paste0(i, ".png"))
-  #print(name_p)
-  #ggsave(plot = p,filename = fp,device = "png")
+  par(mfrow=c(3,1)) 
+  p <- eval(parse(text=graphinfo))
+  
+  plot(c(0, 1), c(0, 1), ann = FALSE, bty = 'n', type = 'n', xaxt = 'n', yaxt = 'n')
+  text(x = 0.5, y = 0.5, paste(graphinfo), cex = 1.5, col = "Darkgreen", font=1, adj=0.5)
+  
+  plot(c(0, 1), c(0, 1), ann = FALSE, bty = 'n', type = 'n', xaxt = 'n', yaxt = 'n')
+  text(x = 0.5, y = 0.5, paste(datainfo), cex = 1.5, col = "Darkblue", font=1, adj=0)
+  
+  par(mfrow=c(1,1)) 
   dev.off()
 }
 
-# create showcase
-imgs <- list.files(dir_out, full.names = TRUE)
-img_list <- lapply(imgs, image_read)
-img_joined <- image_join(img_list)
-img_animated <- image_animate(img_joined, fps = 1)
 
-
-## save to disk
-image_write(image = img_animated,path = "C:\\Users\\Tomaz\\Desktop\\ShowCase.gif")
+# Render animation and store to disk
+plot_animation <- image_animate(image_join(lapply(list.files(dir_out, full.names = TRUE), image_read)), fps = 0.5)
+image_write(image = plot_animation,path = "C:\\Users\\Tomaz\\Desktop\\ShowCase.gif")
 unlink(dir_out, recursive=TRUE)
+
+
 
 
