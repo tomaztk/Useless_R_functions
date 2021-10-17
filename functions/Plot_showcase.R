@@ -20,37 +20,58 @@ graphics.off()
 
 library(magick)
 
-
-#X11()     # Unix / windows
-
 set.seed(2908)
 
-j <- 1:25
-k <- 11:35
+
+# Data
+TimeSeriesData <- ts(matrix(rnorm(300), nrow = 300, ncol = 1), start = c(1990, 1), frequency = 12)
+DatesData <- seq(as.Date("2005/1/1"), by = "month", length = 50)
+ScatterData <- cbind(rnorm(200),rnorm(200) * rnorm(200) + rnorm(200))
+BarData <- factor(iris$Sepal.Width)
+fun <- function(x) {x^4*pi}
+PlotData <- data.frame(j=(1:25),k=(11:35))
+
+
+
+
+# Graphs
+plot(ScatterData, main = "Scatterplot")
+plot(BarData, main = "Histogram")
+plot(BarData, rnorm(150), main = "Boxplot")
+plot(TimeSeriesData, main = "Time-series")
+plot(fun, -10, 5*pi, main = "Plot a function")
+plot(iris[, 1:2], main = "Correlation plot for two variables")
+plot(iris[, 1:2], main = "Correlation plot for two \n  variables with lines of SS")
+lines(lowess(iris[,1:2]))
+plot(iris[, 1:3], main = "Correlation plot for three or more")
+
+
+
+
 
     
 png("/Users/tomazkastrun/Desktop/jkll.png", bg = "transparent")
-plot(j, k, type = "l", main = "type = 'l'")
+plot(PlotData, type = "l", main = "type = 'l'")
 dev.off()
 
 png("/Users/tomazkastrun/Desktop/jkss.png", bg = "transparent")
-plot(j, k, type = "s", main = "type = 's'")
+plot(PlotData, type = "s", main = "type = 's'")
 dev.off()
 
 png("/Users/tomazkastrun/Desktop/jkpp.png", bg = "transparent")
-plot(j, k, type = "p", main = "type = 'p'")
+plot(PlotData, type = "p", main = "type = 'p'")
 dev.off()
 
 png("/Users/tomazkastrun/Desktop/jklo.png", bg = "transparent")
-plot(j, k, type = "l", main = "type = 'o'")
+plot(PlotData, type = "l", main = "type = 'o'")
 dev.off()
 
 png("/Users/tomazkastrun/Desktop/jkso.png", bg = "transparent")
-plot(j, k, type = "s", main = "type = 'b'")
+plot(PlotData, type = "s", main = "type = 'b'")
 dev.off()
 
 png("/Users/tomazkastrun/Desktop/jkph.png", bg = "transparent")
-plot(j, k, type = "p", main = "type = 'h'")
+plot(PlotData, type = "p", main = "type = 'h'")
 dev.off()
 
 
@@ -77,4 +98,75 @@ file.remove(c("/Users/tomazkastrun/Desktop/jkll.png",
               "/Users/tomazkastrun/Desktop/jkph.png"
               ))
 
-rm(j,k,jk_1, jk_2, jk_3, jk_4, jk_5, jk_6)
+rm(PlotData,jk_1, jk_2, jk_3, jk_4, jk_5, jk_6)
+
+
+##########3
+
+
+library(magick)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+
+rm(list = ls(all.names = TRUE))
+dev.off(dev.list()["RStudioGD"])
+graphics.off()
+
+# create a temporary directory to store plot files
+unlink(dir_out, recursive=TRUE)
+dir_out <- file.path(tempdir(), "plotShowTempFolder")
+dir.create(dir_out, recursive = TRUE)
+
+
+# Data
+TimeSeriesData <- ts(matrix(rnorm(300), nrow = 300, ncol = 1), start = c(1990, 1), frequency = 12)
+DatesData <- seq(as.Date("2005/1/1"), by = "month", length = 50)
+ScatterData <- cbind(rnorm(200),rnorm(200) * rnorm(200) + rnorm(200))
+BarData <- factor(iris$Sepal.Width)
+fun <- function(x) {x^4*pi}
+PlotData <- data.frame(j=(1:25),k=(11:35))
+
+gg <- c(
+  "plot(ScatterData, main = 'Scatterplot')"
+  ,"plot(BarData, main = 'Histogram')"
+  ,"plot(BarData, rnorm(150), main = 'Boxplot')"
+  ,"plot(TimeSeriesData, main = 'Time-series')"
+  ,"plot(fun, -10, 5*pi, main = 'Plot a function')"
+  ,"plot(iris[, 1:2], main = 'Correlation plot for two variables')"
+  ,"plot(iris[, 1:2], main = 'Correlation plot for two \n  variables with lines of SS')
+,lines(lowess(iris[,1:2]))"
+  ,"plot(iris[, 1:3], main = 'Correlation plot for three or more')"
+)
+
+
+i <- 3
+for (i in 1:length(gg)) {
+  cc  <- gg[i]
+  p <- eval(parse(text=cc))
+  fp <- file.path(dir_out, paste0(i, ".png"))
+  ggsave(plot = p, 
+         filename = fp, 
+         device = "png")
+}
+
+
+
+## list file names and read in
+imgs <- list.files(dir_out, full.names = TRUE)
+img_list <- lapply(imgs, image_read)
+
+## join the images together
+img_joined <- image_join(img_list)
+
+## animate at 2 frames per second
+img_animated <- image_animate(img_joined, fps = 2)
+
+## view animated image
+img_animated
+
+## save to disk
+image_write(image = img_animated,path = "ShowCase.gif")
+unlink(dir_out, recursive=TRUE)
+
+
