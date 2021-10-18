@@ -6,7 +6,7 @@
 # Little Useless-useful R functions #29
 #
 # Created: October 15, 2021
-# Author: Tomaž Kaštrun
+# Author: Toma? Ka?trun
 # Blog: tomaztsql.wordpress.com
 
 # Change log: 
@@ -86,6 +86,7 @@ plot_animation <- function(SavePath){
 
 }
 
-
-Store_path <- 'C:\\Users\\Tomaz\\Desktop\\ShowCase.gif'
+# Mqke sure access is granted
+Store_path <- 'c:\\Users\\tomaz\Dekstop\ShowCase.gif' #windows
+Store_path <- '/Users/tomaz/Dekstop/ShowCase.gif' #unix
 plot_animation(Store_path)
