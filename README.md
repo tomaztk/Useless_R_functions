@@ -154,6 +154,11 @@ Feel free to get in touch for new useful-useless functions.
 <a href="https://tomaztsql.files.wordpress.com/2021/09/bigdigitalclockr.gif"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/09/bigdigitalclockr.gif"/>
 </a>
   
+  
+  <a href="https://tomaztsql.files.wordpress.com/2021/10/showcase-2.gif"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/10/showcase-2.gif"/>
+</a>
+  
+  
  </div>
 
 # Vignettes
