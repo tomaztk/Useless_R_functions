@@ -48,6 +48,7 @@ your everyday R use. That's it :-) And nothing more.</span>
   - Drawing calendar([blog post](https://tomaztsql.wordpress.com/2021/07/19/little-useless-useful-r-functions-drawing-calendar/))
   - Useless Year progress bar with spinning cursor ([blog post](https://tomaztsql.wordpress.com/2021/09/13/little-useless-useful-r-functions-year-progress-bar/))
   - Useless analog and digital clock ([blog post](https://tomaztsql.wordpress.com/2021/09/16/little-useless-useful-r-functions-useless-analog-and-digital-clocks/))
+  - Animated showcase of plot function ([blog post](https://tomaztsql.wordpress.com/2021/10/18/little-useless-useful-r-functions-useless-animated-showcase-of-plot-function/))
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
