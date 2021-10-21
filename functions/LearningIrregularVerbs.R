@@ -48,14 +48,14 @@ learnVerbs <- function() {
                                 "wove","wed","wept","wet","won","wound","wrung","wrote")
                 ,past_perfect=c( "alighted","arisen","awoken","been","borne","beaten","become","begotten","begun","bent","bereaved",
                                  "besought","bet","bidden","bided","bound","bitten","bled","blessed","blown","broken","bred","brought",
-                                 "broadcast","built","burnt","burst","bust","bought","(kein Participle)","cast","caught","chosen","cleft",
+                                 "broadcast","built","burnt","burst","bust","bought","NONE","cast","caught","chosen","cleft",
                                  "clothed","come","cost","crept","crew","cut","dealt","dug","done","drawn","dreamt","drunk","driven","dwelt",
                                  "eaten","fallen","fed","felt","fought","found","fled","flung","flown","forbid","forecast","forgotten",
                                  "forsaken","frozen","gelded","got","gilded","given","gnawed","gone","ground","grown","hung","had","heard",
                                  "heaved","hewed","hidden","hit","held","hurt","kept","knelt","knitted","known","laid","led","leant","leapt",
-                                 "learnt","left","lent","let","lain","lit","lost","made","(kein Participle)","meant","met","molten","mown",
+                                 "learnt","left","lent","let","lain","lit","lost","made","NONE","meant","met","molten","mown",
                                  "paid","pent","pled","proven","quit","read","rid","ridden","rung","risen","run","sawn","said","seen","sought",
-                                 "sold","sent","set","sewn","shaken","(kein Participle)","shorn","shed","shone","shit","shod","shot","shown",
+                                 "sold","sent","set","sewn","shaken","NONE","shorn","shed","shone","shit","shod","shot","shown",
                                  "shred","shrunk","shut","sung","sunk","sat","slain","slept","slid","slung","slunk","slit","smelt","smitten",
                                  "sown","spoken","sped","spelt","spent","spilt","spun","spat","split","spoilt","spread","sprung","stood",
                                  "stolen","stuck","stung","stunk","stridden","struck","strung","striven","sworn","sweat","swept","swollen",
@@ -80,7 +80,7 @@ learnVerbs <- function() {
           if (inputW == toupper(randomWord[1,formW])) {
             print("bravo")
             correct <- correct + 1
-            barplot(table(as.character(c(replicate(correct, "correct"), replicate(wrong, "wrong")))), main = "correct vs. wrong")
+            barplot(table(as.character(c(replicate(correct, "correct"), replicate(wrong, "wrong")))), main = "correct vs. wrong", ylab="Number of words")
             randomWord <- ""
         
           } else {
@@ -91,7 +91,7 @@ learnVerbs <- function() {
             } else {
             print("naaah")
             wrong <- wrong +  1
-            barplot(table(as.character(c(replicate(correct, "correct"), replicate(wrong, "wrong")))), main = "correct vs. wrong")
+            barplot(table(as.character(c(replicate(correct, "correct"), replicate(wrong, "wrong")))), main = "correct vs. wrong", ylab="Number of words")
             randomWord <- ""
           }
         }
