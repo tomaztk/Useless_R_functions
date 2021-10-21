@@ -70,7 +70,7 @@ learnVerbs <- function() {
 
 
         repeat {
-          cat("\014") 
+          cat("\014")
           randomWord <- df[sample(nrow(df), 1), ]
           randomWord[1]
           formW <- sample(c("past","past_perfect"), 1)
@@ -80,22 +80,22 @@ learnVerbs <- function() {
           if (inputW == toupper(randomWord[1,formW])) {
             print("bravo")
             correct <- correct + 1
-            barplot(table(as.character(c(replicate(correct, "correct"), replicate(wrong, "wrong")))))
+            barplot(table(as.character(c(replicate(correct, "correct"), replicate(wrong, "wrong")))), main = "correct vs. wrong")
             randomWord <- ""
         
           } else {
+            if (inputW == toupper(exit)){
+              #wrong <- wrong -  1
+              break
+              #barplot(table(as.character(c(replicate(correct, "correct"), replicate(wrong, "wrong")))))
+            } else {
             print("naaah")
             wrong <- wrong +  1
-            barplot(table(as.character(c(replicate(correct, "correct"), replicate(wrong, "wrong")))))
+            barplot(table(as.character(c(replicate(correct, "correct"), replicate(wrong, "wrong")))), main = "correct vs. wrong")
             randomWord <- ""
           }
-          if (inputW == toupper(exit)){
-            wrong <- wrong -  1
-            break
-            barplot(table(as.character(c(replicate(correct, "correct"), replicate(wrong, "wrong")))))
-          }
         }
-
+        }
 }
 
 
