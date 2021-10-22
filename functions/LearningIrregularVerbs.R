@@ -9,6 +9,7 @@
 # Blog: tomaztsql.wordpress.com
 # V.1.0
 #
+# ToDo: Add clause for PP where NONE
 ###########################################
 
 
@@ -65,18 +66,18 @@ learnVerbs <- function() {
         
         # to exit the loop type: ex                
         exit <- "ex"
+        
+        # counters
         correct <- 0
         wrong <- 0
-
 
         repeat {
           cat("\014")
           randomWord <- df[sample(nrow(df), 1), ]
-          randomWord[1]
           formW <- sample(c("past","past_perfect"), 1)
           promptText <- paste0("Find the __", formW, "__ form for the verb >>", toupper(randomWord[1,1]),"<< : ")
-          #promptText
           inputW <- toupper(readline(prompt=promptText))
+          
           if (inputW == toupper(randomWord[1,formW])) {
             print("bravo")
             correct <- correct + 1
@@ -85,19 +86,22 @@ learnVerbs <- function() {
         
           } else {
             if (inputW == toupper(exit)){
-              #wrong <- wrong -  1
               break
-              #barplot(table(as.character(c(replicate(correct, "correct"), replicate(wrong, "wrong")))))
+
             } else {
             print("naaah")
-            wrong <- wrong +  1
+            wrong <- wrong + 1
             barplot(table(as.character(c(replicate(correct, "correct"), replicate(wrong, "wrong")))), main = "correct vs. wrong", ylab="Number of words")
             randomWord <- ""
+            
           }
         }
-        }
+     }
 }
 
-
+#
 # Run the function
+#
+
 learnVerbs()
+
