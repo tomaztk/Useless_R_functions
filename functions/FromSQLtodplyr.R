@@ -29,7 +29,7 @@ toDplyr <- function(query){
   table <- sub("WHERE.*","",sub(".*(FROM*)", "", query))
   
   # Select list
-  select_list <- sub("FROM.*","",sub(".*(SELECT*)", "", query))
+  select_list <- trimws(sub("FROM.*","",sub(".*(SELECT*)", "", query)))
   
   # where
   where_clause <- sub(".*(WHERE*)","", query)
