@@ -3,6 +3,8 @@
 #
 # Converts SQL to dplyr
 #
+# ToDO: smallBig Caps
+#       concatenate function
 ############################
 
 
