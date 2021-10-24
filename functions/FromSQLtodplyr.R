@@ -13,8 +13,26 @@ library(dplyr)
 
 query <- "SELECT Species,Sepal.Length FROM iris WHERE Species = 'setosa' AND Sepal.Length >= 4.6"
 query <- "SELECT * FROM iris"
+query <- "SELECT * FROM iris WHERE Species = 'setosa'"
+
 #result <- "iris %>% filter(Species == 'setosa', Sepal.Length >= 4.6) %>% select(Species,Sepal.Length)"
 #eval(parse(text=result))
+
+
+ArrangeSelectList <- function(q){
+  
+  # create df
+  # sapply the text
+  qq <<- as.data.frame(sapply(strsplit(q, " "), function(x) print(x)))
+  colnames(qq) <<- "qt"
+  
+  SQL_Reserved_words <- c("SELECT", "FROM","WHERE","IS","GROUP BY", "AS", "ORDER BY", "TOP", "OR", "ELSE", "CASE", "IN", "NULL", "NOT", "CASE",
+                          "BY", "HAVING BY", "LIKE", "OVER", "PERCENT", "WHEN", "THEN", "CONVERT", "CAST", "DISTINCT", "EXISTS", "AND", "BETWEEN")
+  qq$yn <- 0
+  qq$level <- 0
+  id_pos <- match(SQL_Reserved_words, qq$qt)
+  print(qq[id_pos,])
+}
 
 
 toDplyr <- function(query){
@@ -48,6 +66,12 @@ toDplyr <- function(query){
     
     res <- paste0(table, ' %>% ', 'select( ', select_list, ' ) %>% filter( ', where_clause ,' )')
   }
+  
+  if (select_list == "*" & !is.null(grep('WHERE', query)))   {
+    res <- paste0(table, '  %>% filter( ', where_clause ,' )')
+  }
+  
+  
   #eval(parse(text=res))
   
   return(res)
@@ -71,22 +95,7 @@ toDplyr(query)
 
 q <- as.character ("SELECT * FROM iris WHERE species = 'setosa' AND  Petal.Lenght => 1.3")
 
-insertToDataFrame <- function(q){
-  
-  # create df
-  #qq <- data.frame(q=character(), q2 = character())
-  
-  # sapply the text
-  qq <<- as.data.frame(sapply(strsplit(q, " "), function(x) print(x)))
-  colnames(qq) <<- "qt"
-  
-  SQL_Reserved_words <- c("SELECT", "FROM","WHERE","IS","GROUP BY", "AS", "ORDER BY", "TOP", "OR", "ELSE", "CASE", "IN", "NULL", "NOT", "CASE",
-                          "BY", "HAVING BY", "LIKE", "OVER", "PERCENT", "WHEN", "THEN", "CONVERT", "CAST", "DISTINCT", "EXISTS", "AND", "BETWEEN")
- qq$yn <- 0
- qq$level <- 0
- id_pos <- match(SQL_Reserved_words, qq$qt)
- print(qq[id_pos,])
-}
+
 
 insertToDataFrame(q)
 
