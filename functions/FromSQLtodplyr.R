@@ -10,6 +10,7 @@ library(dplyr)
 
 
 query <- "SELECT Species,Sepal.Length FROM iris WHERE Species = 'setosa' AND Sepal.Length >= 4.6"
+query <- "SELECT * FROM iris"
 #result <- "iris %>% filter(Species == 'setosa', Sepal.Length >= 4.6) %>% select(Species,Sepal.Length)"
 #eval(parse(text=result))
 
@@ -38,10 +39,16 @@ toDplyr <- function(query){
   where_clause <- gsub("AND", ",", where_clause)  
   
   ## construct dplyr
-  res <- paste0(table, ' %>% ', 'select( ', select_list, ' ) %>% filter( ', where_clause ,' )')
-  eval(parse(text=res))
+  if ((select_list == "*")  & (!is.null(grep('WHERE', query))) )  { res <- paste0(table) }
+  #if (is.null(grep('WHERE', query))) { res <- paste0(table) }
   
-  #return(res)
+  if (select_list != "*" & !is.null(grep('WHERE', query)))   {
+    
+    res <- paste0(table, ' %>% ', 'select( ', select_list, ' ) %>% filter( ', where_clause ,' )')
+  }
+  #eval(parse(text=res))
+  
+  return(res)
 }
 
 
