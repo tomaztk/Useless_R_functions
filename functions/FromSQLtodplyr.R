@@ -1,65 +1,62 @@
 
 ############################
 #
-#
-# Converts T-SQL to dplyr
-#
-#
-#
+# Converts SQL to dplyr
 #
 ############################
 
+
 library(dplyr)
-library(dbplyr)
 
 
-## From dplyr to SQL
-translate_sql(x == 1 && (y < 2 || z > 3))
-translate_sql(cummean(G), vars_order = "year")
-translate_sql(rank(), vars_group = "ID")
+query <- "SELECT Species,Sepal.Length FROM iris WHERE Species = 'setosa' AND Sepal.Length >= 4.6"
+#result <- "iris %>% filter(Species == 'setosa', Sepal.Length >= 4.6) %>% select(Species,Sepal.Length)"
+#eval(parse(text=result))
 
-con <- DBI::dbConnect(RSQLite::SQLite(), ":memory:")
-flights <- copy_to(con, nycflights13::flights)
-airports <- copy_to(con, nycflights13::airports)
-
-
-
-flights %>%
-  select(contains("delay")) %>%
-  show_query()
-
-
-######################
-## From  SQL to dplyr?
-######################
-
-
-q <- "SELECT * FROM flights"
 
 toDplyr <- function(query){
-  print(query)
+  #print(query)
   # parse query
-    
+  #get table name
+  # from FROM onward
+  #sub(".*(FROM*)", "\\1", query)
+  
+  # from FROM onward without word FROM
+  #sub(".*(FROM*)", "", query)
+  
+  # between FROM and WHERE
+  table <- sub("WHERE.*","",sub(".*(FROM*)", "", query))
+  
+  # Select list
+  select_list <- sub("FROM.*","",sub(".*(SELECT*)", "", query))
+  
+  # where
+  where_clause <- sub(".*(WHERE*)","", query)
+  
+  # single to double = sign
+  where_clause <- gsub(" = ", "==", where_clause)
+  where_clause <- gsub("AND", ",", where_clause)  
+  
+  ## construct dplyr
+  res <- paste0(table, ' %>% ', 'select( ', select_list, ' ) %>% filter( ', where_clause ,' )')
+  eval(parse(text=res))
+  
+  #return(res)
 }
 
-toDplyr(q)
 
-sample_query <- "SELECT `Sepal.Width`, `Species` FROM iris WHERE `Species` = `setosa` and `Petal.Length` >= 1.3 ORDER BY `Sepal.Width` ASC LIMIT 10"
-
-dp <- "iris_subset <- iris %>%
-          select(`Sepal.Width`, `Species`,`Petal.Length`) %>%
-          filter(`Species` == \"setosa\" & `Petal.Length` >= 1.3 ) %>%
-          arrange(desc(`Sepal.Width`)) %>%
-          top_n(10)"
-
-print(paste0("Dplyr query: ", dp))
+toDplyr(query)
 
 
-eval(parse(text=dp))
+# group_by()
+# summarise()
+# arrange()
+# filter()
+# mutate()
 
-iris_subset
 
-rm(iris_subset)
+
+
 
 ######
 
