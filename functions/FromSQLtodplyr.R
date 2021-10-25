@@ -51,6 +51,20 @@ toDplyr <- function(query){
   # Select list
   select_list <- trimws(sub("FROM.*","",sub(".*(SELECT*)", "", query)))
   
+      # Get between select and from
+      a <- gregexpr("SELECT", st)
+      b <- gregexpr("FROM", st)
+      pos_a <- a[[1]] + 6
+      pos_b<- b[[1]] - 1
+      sell <- substr(st, pos_a,pos_b)
+      df <- data.frame(v=t(do.call(rbind,strsplit(sell, split = ","))))
+      
+      listReservedWords <- data.frame(rs=c("SUM", "AVG", "COUNT", "*", "AS", "MIN","MAX")) 
+      
+      
+      #grepl(listReservedWords$rs[1],df$v[3])
+  
+  
   # where
   where_clause <- sub(".*(WHERE*)","", query)
   
