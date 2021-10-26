@@ -60,10 +60,18 @@ toDplyr <- function(query){
       df <- data.frame(v=t(do.call(rbind,strsplit(sell, split = ","))))
       
       listReservedWords <- data.frame(rs=c("SUM", "AVG", "COUNT", "*", "AS", "MIN","MAX")) 
+    
       
+      lrw <- data.frame(rs=c("SUM", "AVG", "COUNT", "*", "AS", "MIN","MAX")) 
+      dfr <- merge(df,lrw,all=TRUE)
+      dfr$v <- as.character(trimws(dfr$v))
+      dfr$rs<- as.character(trimws(dfr$rs))
       
       #grepl(listReservedWords$rs[1],df$v[3])
   
+      FindMatch <- function(v1, v2)  {
+        v1[match(v1,v2, nomatch=0)]
+      }
   
   # where
   where_clause <- sub(".*(WHERE*)","", query)
