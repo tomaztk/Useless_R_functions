@@ -63,9 +63,23 @@ toDplyr <- function(query){
     
       
       lrw <- data.frame(rs=c("SUM", "AVG", "COUNT", "*", "AS", "MIN","MAX")) 
-      dfr <- merge(df,lrw,all=TRUE)
-      dfr$v <- as.character(trimws(dfr$v))
-      dfr$rs<- as.character(trimws(dfr$rs))
+
+      for (i in 1:nrow(lrw)) {
+        wo <- lrw$rs[i]
+        print(wo)
+        df$tr <- grepl(wo, df$v) #df$v[j])
+        # for (j in 1:nrow(df)){
+        #   print(df$v[j])
+        #   df$tr <- grepl(wo, df$v[j])
+        # }
+        #j <- j +1
+        #i <- i + 1
+        
+      }
+      
+      df
+      
+      
       
       #grepl(listReservedWords$rs[1],df$v[3])
   
