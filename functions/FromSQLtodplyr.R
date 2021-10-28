@@ -67,15 +67,13 @@ toDplyr <- function(query){
       for (i in 1:nrow(lrw)) {
         wo <- lrw$rs[i]
         print(wo)
-        df$tr <- grepl(wo, df$v) #df$v[j])
-        # for (j in 1:nrow(df)){
-        #   print(df$v[j])
-        #   df$tr <- grepl(wo, df$v[j])
-        # }
-        #j <- j +1
-        #i <- i + 1
-        
+        for (j in 1:nrow(df)){
+          if (df$tr[j] == FALSE) {
+            df$tr[j] <- grepl(wo, df$v[j]) #df$v[j])
+          }
+        }
       }
+      
       
       df
       
