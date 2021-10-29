@@ -75,6 +75,19 @@ toDplyr <- function(query){
         }
       }
       
+      #bringing together the select list and group by
+      if (df$tr == TRUE && df$tr == FALSE) {
+        # add summorize and group by
+        
+      }
+      if (df$tr == FALSE) {
+        # add select
+        
+      }
+      if (df$tr == TRUE) {
+        # add summorize
+        
+      }
       
       df
       
