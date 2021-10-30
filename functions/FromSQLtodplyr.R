@@ -76,18 +76,31 @@ toDplyr <- function(query){
       }
       
       #bringing together the select list and group by
-      if (df$tr == TRUE && df$tr == FALSE) {
+      min(which(df$tr==!TRUE)) ## check if all are FALSE
+      # if true; result = 1
+      # if false; Inf
+      min(which(df$tr==!FALSE)) ## check if all are TRUE
+      # if true; result = 1
+      # if false; inf
+      
+      min(which(df$tr==!FALSE)) & min(which(df$tr==!TRUE))
+      # if true = result: TRUE both exists
+      
+      
+      if (df$tr == TRUE && df$tr == FALSE) { print("T&F")
         # add summorize and group by
         
       }
-      if (df$tr == FALSE) {
+      
+      if ((df$tr == FALSE) ) { print("F")
         # add select
         
       }
-      if (df$tr == TRUE) {
+      if (df$tr == TRUE) { print("T")
         # add summorize
         
       }
+      
       
       df
       
