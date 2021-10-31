@@ -20,49 +20,45 @@ library(deldir)
 library(ggplot2)
 
 dff <- data.frame(NULL,NULL)
-n <- 0
 
-
-#### Board Graph 
+#### Graph
 voronoiGraphBoard <- function(){
-if (nrow(dff)<= 2) {
-  plot.new()
-} else {
-   ggplot(data=dff, aes(x=long,y=lat)) +
-    geom_segment( aes(x = x1, y = y1, xend = x2, yend = y2), size = 2, data = voronoi$dirsgs, linetype = 1, color= "#FFB958") + 
+  r <- ggplot(data=dff, aes(x=xl,y=yl)) +
+    geom_segment( aes(x = x1, y = y1, xend = x2, yend = y2), size = 1, data = voronoi$dirsgs, linetype = 1, color= "#FFB958") + 
     geom_point( fill=rgb(70,130,180,255,maxColorValue=255), pch=21, size = 4,color="#333333") 
   
- 
- }
+ return(r)
 }
 
-click <- function(voronoiGraphBoard = defaultGraph){
-    for (n in 1:10) {
-      plot.new()
+### Clicking on canvas
+click <- function(DefaultGraph=voronoiGraphBoard(), steps=st){
+    DefaultGraph <- plot.new()
+     #for (n in 1:10) {
+      for (n in 1:steps) {
       mouse.at <- locator(n = 1, type = "o") 
-      long <- rnorm(1, mouse.at$x*10,15)
-      lat <- rnorm(1, mouse.at$y*10,10)
-      df <- data.frame(lat,long)
+      xl <- rnorm(1, mouse.at$x*10,15)
+      yl <- rnorm(1, mouse.at$y*10,10)
+      df <- data.frame(xl,yl)
       dff <<- rbind(dff, df)
       print(n)
       if (nrow(dff)>=2){
-        voronoi <- deldir(dff$long, dff$lat)
-        defaultGraph <<- voronoiGraphBoard()
+        voronoi <<- deldir(dff$xl, dff$yl)
+        DefaultGraph <- voronoiGraphBoard()
+        print(DefaultGraph)
+      } else {
+        print(DefaultGraph)
       }
   }
 }
 
-
-
-### Start with x11 
-Draw_x11 <- function(){
-  #x11()
-  #defaultGraph <<- voronoiGraphBoard() 
-  click()
-  defaultGraph
+#### Start with x11 
+Draw_x11 <- function(st){
+  x11()
+  click(steps=st)
+  DefaultGraph <<- voronoiGraphBoard()
 }
 
 # Generate Voronoi
-Draw_x11()
+Draw_x11(st=50)
 
 
