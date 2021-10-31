@@ -11,7 +11,7 @@
 # V.1.0
 
 # Changelog: 
-#        - adding x11() / quartz
+#        - adding distance with ggvoronoi
 ###########################################
 
 
@@ -39,16 +39,14 @@ click <- function(DefaultGraph=voronoiGraphBoard(), steps=st){
      #for (n in 1:10) {
       for (n in 1:steps) {
       mouse.at <- locator(n = 1, type = "o") 
-     # xl <- rnorm(1, mouse.at$x*10,15)
       xl <- mouse.at$x
       print(paste("x:", xl))
-     # yl <- rnorm(1, mouse.at$y*10,10)
       yl <- mouse.at$y
       print(paste("y: ",yl))
       distance <- sqrt((xl-100)^2 + (yl-100)^2)
       df <- data.frame(xl,yl, distance)
       dff <<- rbind(dff, df)
-      print(n)
+      print(paste("step: ",n))
       if (nrow(dff)>=2){
         voronoi <<- deldir(dff$xl, dff$yl)
         DefaultGraph <- voronoiGraphBoard()
@@ -58,7 +56,6 @@ click <- function(DefaultGraph=voronoiGraphBoard(), steps=st){
       }
   }
 }
-
 
 
 #### Start with x11 
