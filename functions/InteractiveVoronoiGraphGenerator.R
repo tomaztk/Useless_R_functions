@@ -25,7 +25,8 @@ dff <- data.frame(NULL,NULL)
 voronoiGraphBoard <- function(){
   r <- ggplot(data=dff, aes(x=xl,y=yl)) +
     geom_segment( aes(x = x1, y = y1, xend = x2, yend = y2), size = 1, data = voronoi$dirsgs, linetype = 1, color= "#FFB958") + 
-    geom_point( fill=rgb(70,130,180,255,maxColorValue=255), pch=21, size = 4,color="#333333") 
+    geom_point( fill=rgb(70,130,180,255,maxColorValue=255), pch=21, size = 2,color="#333333") +
+    theme_void()
   
  return(r)
 }
@@ -58,7 +59,7 @@ Draw_x11 <- function(st){
   DefaultGraph <<- voronoiGraphBoard()
 }
 
-# Generate Voronoi
-Draw_x11(st=50)
+# Generate Voronoi with defined steps
+Draw_x11(st=20)
 
 
