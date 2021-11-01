@@ -156,8 +156,6 @@ toDplyr(query)
 
 q <- as.character ("SELECT * FROM iris WHERE species = 'setosa' AND  Petal.Lenght => 1.3")
 
-
-
 insertToDataFrame(q)
 
 #check data.frame
