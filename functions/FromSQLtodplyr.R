@@ -159,7 +159,7 @@ q <- as.character ("SELECT * FROM iris WHERE species = 'setosa' AND  Petal.Lengh
 insertToDataFrame(q)
 
 #check data.frame
-qq
+q
 
 
 
