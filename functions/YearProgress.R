@@ -91,3 +91,13 @@ con <- file(filename)
 sink(con, append=FALSE)
 cat(xx4)
 
+
+# ToDO:
+
+### Adding total number of days
+
+### Adding total number of weeks
+
+### Adding the month switching (from oct->nov)
+
+
