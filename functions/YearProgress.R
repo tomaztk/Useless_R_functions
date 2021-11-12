@@ -92,11 +92,28 @@ sink(con, append=FALSE)
 cat(xx4)
 
 
-# ToDO:
 
 ### Adding total number of days
+YearlyProgressByDays <- function() {
+      year <- format(Sys.Date(), format="%Y")
+      difference <- as.integer(Sys.Date()-as.Date(paste0(year, "-01-01")))
+      TotalDays <- as.integer(as.Date(paste0(year,"-12-31"))-as.Date(paste0(year, "-01-01")))+1
+      
+
+      text <- sprintf('[ %s >> %s ]',
+                      difference, TotalDays)
+      
+      cat("Yearly progress in #days ",year, "...\n")
+      cat(text)
+      
+}
+
+# Run function
+YearlyProgressByDays()
+
 
 ### Adding total number of weeks
+
 
 ### Adding the month switching (from oct->nov)
 
