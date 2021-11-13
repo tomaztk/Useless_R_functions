@@ -113,8 +113,42 @@ YearlyProgressByDays()
 
 
 ### Adding total number of weeks
+YearlyProgressByWeeks <- function() {
+  year <- format(Sys.Date(), format="%Y")
+  
+  current_w <- format(as.Date(Sys.Date()), "%U")
+  last_week <- strftime(as.Date(paste0(year, "-12-31")), format = "%V")
+  
+  
+  text <- sprintf('[ %s >> %s ]',
+                  current_w, last_week)
+  
+  cat("Yearly progress in #weeks ",year, "...\n")
+  cat(text)
+  
+}
+
+YearlyProgressByWeeks()
 
 
 ### Adding the month switching (from oct->nov)
 
+#current month
+mnth <- c(as.integer(format(as.Date(Sys.Date()), "%m"))-1,as.integer(format(as.Date(Sys.Date()), "%m")),as.integer(format(as.Date(Sys.Date()), "%m"))+1)
+mm <- month.name[mnth]
+
+
+str  <- paste0(mm[1],mm[2],mm[3])
+trail <- 4
+
+current_day <- as.integer(format(Sys.Date(), format="%d"))
+proc <- (current_day/30)
+len <- nchar(mm[2])
+char <- floor(proc*100/len)
+
+start_pos <- char - trail
+end_pos <- char + trail
+
+
+# result ernove M berdec .... ovemb E rdece .... vembe R decem
 
