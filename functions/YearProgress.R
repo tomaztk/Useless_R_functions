@@ -131,24 +131,29 @@ YearlyProgressByWeeks <- function() {
 YearlyProgressByWeeks()
 
 
-### Adding the month switching (from oct->nov)
 
-#current month
-mnth <- c(as.integer(format(as.Date(Sys.Date()), "%m"))-1,as.integer(format(as.Date(Sys.Date()), "%m")),as.integer(format(as.Date(Sys.Date()), "%m"))+1)
-mm <- month.name[mnth]
+# Adding current month
+
+# Monthly Progress showing as "............N.................."
+
+MonthProgressDot <- function(datt=Sys.Date()){
+  datum <-  as.Date(datt)
+  dan <- as.integer(format(as.Date(datum), "%d"))
+  mesec <- as.integer(format(as.Date(datum), "%m"))
+  leto <-  as.integer(format(as.Date(datum), "%Y"))
+  cc <- diff(seq(as.Date(paste0(leto,"-01-01")), as.Date(paste0(leto+1,"-01-01")), by = "month"))
+  nof <- as.integer(cc[12])
+  rr <- replicate(nof, ".")
+  
+  rrr <- paste0(cbind(rr), collapse="")
+  substr(rrr, dan, dan) <- substring(month.name[mesec],1,1)
+  return(rrr)
+}
+
+MonthProgressDot("2021-1-1")
 
 
-str  <- paste0(mm[1],mm[2],mm[3])
-trail <- 4
-
-current_day <- as.integer(format(Sys.Date(), format="%d"))
-proc <- (current_day/30)
-len <- nchar(mm[2])
-char <- floor(proc*100/len)
-
-start_pos <- char - trail
-end_pos <- char + trail
+# Monthly Progress showing as "novEmber"
 
 
-# result ernove M berdec .... ovemb E rdece .... vembe R decem
 
