@@ -137,23 +137,38 @@ YearlyProgressByWeeks()
 # Monthly Progress showing as "............N.................."
 
 MonthProgressDot <- function(datt=Sys.Date()){
-  datum <-  as.Date(datt)
+          datum <-  as.Date(datt)
+          dan <- as.integer(format(as.Date(datum), "%d"))
+          mesec <- as.integer(format(as.Date(datum), "%m"))
+          leto <-  as.integer(format(as.Date(datum), "%Y"))
+          cc <- diff(seq(as.Date(paste0(leto,"-01-01")), as.Date(paste0(leto+1,"-01-01")), by = "month"))
+          nof <- as.integer(cc[12])
+          rr <- replicate(nof, ".")
+          
+          rrr <- paste0(cbind(rr), collapse="")
+          substr(rrr, dan, dan) <- substring(month.name[mesec],1,1)
+          return(rrr)
+  }
+  
+MonthProgressDot("2021-1-1")
+
+
+# Monthly Progress showing as "novEmber"
+MonthProgressChar <- function(datt=Sys.Date()){
+  datum <-  as.Date(datt) #(datt)
   dan <- as.integer(format(as.Date(datum), "%d"))
   mesec <- as.integer(format(as.Date(datum), "%m"))
   leto <-  as.integer(format(as.Date(datum), "%Y"))
   cc <- diff(seq(as.Date(paste0(leto,"-01-01")), as.Date(paste0(leto+1,"-01-01")), by = "month"))
   nof <- as.integer(cc[12])
-  rr <- replicate(nof, ".")
-  
-  rrr <- paste0(cbind(rr), collapse="")
-  substr(rrr, dan, dan) <- substring(month.name[mesec],1,1)
-  return(rrr)
+  mn <- tolower(month.name[mesec])
+  mn_len <- nchar(mn)
+  bigcase <- round(dan/nof*mn_len)
+  if (bigcase==0) {(bigcase <- 1)}
+  substr(mn,bigcase, bigcase) <- toupper(substr(mn,bigcase, bigcase))
+  return(mn)
 }
 
-MonthProgressDot("2021-1-1")
-
-
-# Monthly Progress showing as "novEmber"
-
+MonthProgressChar("2021-8-29")
 
 
