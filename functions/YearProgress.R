@@ -131,9 +131,6 @@ YearlyProgressByWeeks <- function() {
 YearlyProgressByWeeks()
 
 
-
-# Adding current month
-
 # Monthly Progress showing as "............N.................."
 
 MonthProgressDot <- function(datt=Sys.Date()){
@@ -149,7 +146,8 @@ MonthProgressDot <- function(datt=Sys.Date()){
           substr(rrr, dan, dan) <- substring(month.name[mesec],1,1)
           return(rrr)
   }
-  
+
+# run
 MonthProgressDot("2021-1-1")
 
 
@@ -169,6 +167,12 @@ MonthProgressChar <- function(datt=Sys.Date()){
   return(mn)
 }
 
+#run
 MonthProgressChar("2021-8-29")
 
+
+#test on year
+sapply(seq(as.Date("2021-01-01"), as.Date("2021-12-31"),1), MonthProgressDot)
+sapply(seq(as.Date("2021-01-01"), as.Date("2021-12-31"),1), MonthProgressChar)
+#lapply(seq(as.Date("2021-6-4"), as.Date("2021-12-31"),1), MonthProgressDot)
 
