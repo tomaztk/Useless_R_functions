@@ -169,7 +169,7 @@ MonthProgressChar <- function(datt=Sys.Date()){
 
 #run
 MonthProgressChar("2021-8-29")
-
+MonthProgressChar()
 
 #test on year
 sapply(seq(as.Date("2021-01-01"), as.Date("2021-12-31"),1), MonthProgressDot)
