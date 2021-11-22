@@ -69,41 +69,11 @@ END;
 GO
 
 
-
-CREATE PROCEDURE dbo.MAKE_move
-	@move CHAR(1) -- U, D, L, R (Up, Down, Left, Right)
+CREATE OR ALTER PROCEDURE dbo.INIT_matrix
+	@dim INT
 AS
 BEGIN
-
-	IF @move = 'U'
-	SELECT 'U'
-	IF @move = 'D'
-	SELECT 'D'
-	IF @move = 'L'
-	SELECT 'L'
-	IF @move = 'R'
-	SELECT 'R'
-END;
-GO
-
--- Create
-EXEC dbo.CREATE_matrix 4
--- Initialize
-EXEC dbo.INIT_matrix
-
--- Play
-EXEC dbo.MAKE_move 'R'
-
--- Add new number 2 on random empty place
-EXEC dbo.ADD_number 
-
-
-EXEC dbo.UPDATE_position 2,3,2
-
-
-
--- SELECT * FROM T_2048
-
+	
 declare @a int = 1
 declare @b int = 4
 
@@ -131,5 +101,68 @@ DECLARE @Sq NVARCHAR(2000) =
 
 	EXEC sp_executesql @Sq
 
+END;
+GO
 
-SELECT * FROM T_2048
+
+
+CREATE PROCEDURE dbo.MAKE_move
+	@move CHAR(1) -- U, D, L, R (Up, Down, Left, Right)
+AS
+BEGIN
+
+	IF @move = 'U'
+	SELECT 'U'
+	IF @move = 'D'
+	SELECT 'D'
+	IF @move = 'L'
+	SELECT 'L'
+	IF @move = 'R'
+	SELECT 'R'
+END;
+GO
+
+DECLARE @ii INT = 0
+DECLARE @dim INT = 4
+
+WHILE @dim > @ii
+BEGIN
+	SELECT 
+		CASE 
+			WHEN p2.V2 > p1.v2 AND P1.V2 = 0 THEN  p2.V2
+			WHEN  p2.V2 = P1.V2  THEN p2.v2 + p1.v2 END as NewVal
+			,@ii as position
+			,NULL as PrevVal
+	FROM T_2048 as P1
+	joIN T_2048 as P2
+	ON p1.ID = p2.id+1
+	WHERE p1.id = @dim-@ii
+
+	
+	EXEC dbo.UPDATE_position 2,3,2
+	EXEC dbo.UPDATE_position 2,3,2
+
+	SET @ii = @ii + 1
+END
+
+
+-- ===========================================
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-- ===========================================
+-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-- Create
+EXEC dbo.CREATE_matrix 4
+-- Initialize
+EXEC dbo.INIT_matrix 4  --( == EXEC dbo.ADD_number ) -- Add new number 2 on random empty place
+
+
+-- Play
+EXEC dbo.MAKE_move 'R'
+
+
+
+-- SELECT * FROM T_2048
+
+
+
