@@ -166,3 +166,45 @@ EXEC dbo.MAKE_move 'R'
 
 
 
+-- test
+/*
+DROP TABLE IF exists tt
+create table tt (id int, v1 int)
+
+--insert into tt 
+--select 1,0 union all
+--select 2,2 union all
+--select 3,2 union all
+--select 4,0
+
+insert into tt 
+select 1,2 union all
+select 2,0 union all
+select 3,2 union all
+select 4,0
+
+*/
+DEcLAre @ii int = 1
+while 4/2 >= @ii
+BEGIN
+	declare @i int = 1
+
+	while 4 > @i
+	begin	
+		declare @vv_1 int = (select v1 from tt where id = @i)
+		declare @vv_2 int = (select v1 from tt where id = @i+1)
+
+	--IF (@vv_1 = 0 AND @vv_2 <> 0)
+		update tt set v1 = @vv_2 where id = @i
+		update tt set v1 = @vv_1 /* 0 */ where id = @i+1
+
+
+	--IF (@vv_1 <> 0 AND @vv_2 = 0)
+	--	--update tt set v1 = @vv_1 where id = @i
+	--	--update tt set v1 = @vv_2 where id = @i+1
+	--	print 'drugi' 
+
+	set @i = @i + 1
+	end
+  set @ii = @ii + 1
+END
