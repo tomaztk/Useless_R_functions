@@ -194,15 +194,15 @@ BEGIN
 		declare @vv_1 int = (select v1 from tt where id = @i)
 		declare @vv_2 int = (select v1 from tt where id = @i+1)
 
-	--IF (@vv_1 = 0 AND @vv_2 <> 0)
+	IF (@vv_1 = 0 AND @vv_2 <> 0)
 		update tt set v1 = @vv_2 where id = @i
-		update tt set v1 = @vv_1 /* 0 */ where id = @i+1
+		update tt set v1 = 0     where id = @i+1
+	
 
+	IF (@vv_1 <> 0 AND @vv_1 = @vv_2)
+		update tt set v1 = @vv_1 + @vv_2 where id = @i
+		update tt set v1 = 0 where id = @i+1
 
-	--IF (@vv_1 <> 0 AND @vv_2 = 0)
-	--	--update tt set v1 = @vv_1 where id = @i
-	--	--update tt set v1 = @vv_2 where id = @i+1
-	--	print 'drugi' 
 
 	set @i = @i + 1
 	end
