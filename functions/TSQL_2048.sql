@@ -157,6 +157,8 @@ EXEC dbo.CREATE_matrix 4
 EXEC dbo.INIT_matrix 4  --( == EXEC dbo.ADD_number ) -- Add new number 2 on random empty place
 
 
+SELECT * FROM T_2048
+
 -- Play
 EXEC dbo.MAKE_move 'R'
 
@@ -184,6 +186,9 @@ select 3,2 union all
 select 4,0
 
 */
+-~~~~~~~~~~~~~~~~~~~
+-  UP
+-~~~~~~~~~~~~~~~~~~~~
 DEcLAre @ii int = 1
 while 4/2 >= @ii
 BEGIN
@@ -195,16 +200,51 @@ BEGIN
 		declare @vv_2 int = (select v1 from tt where id = @i+1)
 
 	IF (@vv_1 = 0 AND @vv_2 <> 0)
-		update tt set v1 = @vv_2 where id = @i
-		update tt set v1 = 0     where id = @i+1
-	
+	BEGIN
+		update tt set v1 = @vv_2 where id = @i   -- EXEC dbo.UPDATE_position 1,@i,@vv_2
+		update tt set v1 = 0     where id = @i+1 -- EXEC dbo.UPDATE_position 1,@i+1,0
+	END
 
 	IF (@vv_1 <> 0 AND @vv_1 = @vv_2)
+	BEGIN
 		update tt set v1 = @vv_1 + @vv_2 where id = @i
 		update tt set v1 = 0 where id = @i+1
-
+    END
 
 	set @i = @i + 1
 	end
+  set @ii = @ii + 1
+END
+
+
+-~~~~~~~~~~~~~~~~~~~~~~
+-  DOWN
+-~~~~~~~~~~~~~~~~~~~~~~
+
+DEcLAre @ii int = 1
+while 4/2 >= @ii
+BEGIN
+			declare @i int = 4 -- dimenzija
+			while 1 < @i
+			begin	
+				declare @vv_1 int = (select v1 from tt where id = @i)
+				declare @vv_2 int = (select v1 from tt where id = @i-1)
+
+			IF (@vv_1 = 0 AND @vv_2 <> 0)
+			BEGIN
+				update tt set v1 = @vv_2 where id = @i
+				update tt set v1 = 0     where id = @i-1
+			END
+
+			IF (@vv_1 <> 0 AND @vv_1 = @vv_2)
+			BEGIN
+				update tt set v1 = @vv_1 + @vv_2 where id = @i
+				update tt set v1 = 0 where id = @i-1
+			END
+
+			set @i = @i - 1
+END
+ -- SELECT @ii as iiverzija
+  --select * from tt
   set @ii = @ii + 1
 END
