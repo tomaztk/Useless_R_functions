@@ -282,7 +282,7 @@ select v4 from tt
 -- left == down
 
 DEcLAre @ii int = 1
-while 4/2 >= @ii
+while (4-1) >= @ii  -- stevilo prehodov = n-1
 BEGIN
 			declare @i int = 4 -- dimenzija
 			while 1 < @i
