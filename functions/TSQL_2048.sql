@@ -248,3 +248,87 @@ END
   --select * from tt
   set @ii = @ii + 1
 END
+
+
+
+-~~~~~~~~~~~~~~~~~~~~~~
+-  LEFT
+-~~~~~~~~~~~~~~~~~~~~~~
+/*
+
+drop table if exists tt;
+create table tt (id int, v1 int, v2 int, v3 int, v4 int);
+
+insert into tt(id,v1,v2,v3,v4) values (1, 0, 0, 2, 2)
+
+
+*/
+
+drop table if exists #temp
+select
+row_number() over (order by (select 1)) as id
+, v1
+into #temp
+from (
+select v1 as v1 from tt
+union all
+select v2 from tt
+union all 
+select v3 from tt
+union all
+select v4 from tt
+) as x
+
+-- left == down
+
+DEcLAre @ii int = 1
+while 4/2 >= @ii
+BEGIN
+			declare @i int = 4 -- dimenzija
+			while 1 < @i
+			begin	
+				declare @vv_1 int = (select v1 from #temp where id = @i)
+				declare @vv_2 int = (select v1 from #temp where id = @i-1)
+
+			IF (@vv_1 = 0 AND @vv_2 <> 0)
+			BEGIN
+				update #temp set v1 = @vv_2 where id = @i
+				update #temp set v1 = 0     where id = @i-1
+			END
+
+			IF (@vv_1 <> 0 AND @vv_1 = @vv_2)
+			BEGIN
+				update #temp set v1 = @vv_1 + @vv_2 where id = @i
+				update #temp set v1 = 0 where id = @i-1
+			END
+
+			set @i = @i - 1
+END
+ -- SELECT @ii as iiverzija
+  --select * from tt
+  set @ii = @ii + 1
+END
+
+
+-- final update
+
+select * from tt
+select * from #temp
+
+declare @y int = 1
+
+while @y <= 4 -- variable dim
+begin
+
+	declare @val int = (select v1 from #temp where id = @y)
+
+	declare @s nvarchar(500)
+	set @s = 'UPDATE tt
+			set v' + CAST(@y AS VARCHAR(10)) + '= ' + CAST(@val AS VARCHAR(10))
+
+	EXEC sp_executesql @s
+
+	set @y = @y + 1
+end
+
+select * from tt
