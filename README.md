@@ -50,6 +50,7 @@ your everyday R use. That's it :-) And nothing more.</span>
   - Useless analog and digital clock ([blog post](https://tomaztsql.wordpress.com/2021/09/16/little-useless-useful-r-functions-useless-analog-and-digital-clocks/))
   - Animated showcase of plot function ([blog post](https://tomaztsql.wordpress.com/2021/10/18/little-useless-useful-r-functions-useless-animated-showcase-of-plot-function/))
   - Interface for learning irregular verbs ([blog post](https://tomaztsql.wordpress.com/2021/10/22/little-useless-useful-r-functions-useless-interface-for-learning-irregular-verbs/))
+  - Interactive Voronoi diagram generator ([blog post]https://tomaztsql.wordpress.com/2021/11/01/little-useless-useful-r-functions-interactive-voronoi-diagram-generator-using-r-and-x11/)
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
