@@ -22,37 +22,58 @@ library(ggplot2)
 set.seed(2908)
 
 
-Fireworks <- function(n = 10) {
+Fireworks <- function(nof_rockets=10) {
+  #rm(list=ls())
+  if(!is.null(dev.list())) dev.off()
   if (!interactive()) return()
-  x <-sample(1:50,10)
-  y <-sample(1:500,10)
-  color <- rainbow(n)
-  
+
+  x <-sample(1:50,nof_rockets)
+  y <-sample(1:500,nof_rockets)
   bgcolor <- par("bg")
-  if (bgcolor == "transparent") bgcolor <- "black"
+  if (bgcolor == "transparent" | bgcolor == "white") bgcolor <- "black"
   
-    draw.fireworks <- function() {
-      for (i in 1:15) {   # število rink
-          plot(x, y, xaxt='n', ann=FALSE, yaxt='n', frame.plot=FALSE, xlim=c(0,50),ylim=c(0,500))
-          symbols(x=c(33,44,22), y=c(484,415,68), circles=c(0.16, 0.4, 0.25),add=T, inches=F, fg=c("red", "green"))
-          symbols(x = 33, y = 484, circles=c(0.22),add=T, inches=F, fg="blue")        
+    draw.fireworks <- function(x,y,ring) {
+      par(new=TRUE)
+      plot(x, y, xaxt='n', ann=FALSE, yaxt='n', frame.plot=FALSE, xlim=c(0,50),ylim=c(0,500))
+      for (i in 1:ring) {   # number of rings w? different color
+          color <- rainbow(ring)
+          symbols(x,y, circles=0.16+i*1.2,add=T, inches=F, fg=color[i])
+          #symbols(x = 33, y = 484, circles=c(0.22),add=T, inches=F, fg="blue")        
       }
     }
     
     clear.fireworks <- function(){
+      #I know I need this function
+      #what will this function do -> I have absolute no idea!
       a <- 2
-      #no idea what to do here :)
-    }
+   }
 
-    ani.options(interval = 1)
+  NewYear.fireworks <- function(){  
+      par(bg=bgcolor)
     
-    for (i in length(x)){
-      draw.fireworks()
-      clear.fireworks()
-    }
-    ani.pause()
+     
+      for (i in 1:nof_rockets){
+        ani.options(interval = 1) 
+        par(new=TRUE)
+        x <- x[i]
+        y <- y[i]
+        ring <- 10
+        draw.fireworks(x,y,ring)
+        clear.fireworks()
+        ani.pause()
+      }
+
+  }
+  
+  NewYear.fireworks()
+  
 }
 
 
+##################
+# Run the function
+##################
 
-Fireworks(5)
+Fireworks(11)
+
+
