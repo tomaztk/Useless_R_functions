@@ -38,8 +38,6 @@ Fireworks <- function(nof_rockets=10) {
     }
     
     clear.fireworks <- function(x,y,ring){
-      #I know I need this function
-      #what will this function do -> I have absolute no idea!
       #
       plot(x, y, xaxt='n', ann=FALSE, yaxt='n', frame.plot=FALSE, xlim=c(0,50),ylim=c(0,500))
       for (i in 1:ring) {   
@@ -66,6 +64,7 @@ Fireworks <- function(nof_rockets=10) {
         y <- yy[i]
         ring <- ringy[i]
         draw.fireworks(x,y,ring)
+        # if you don't want rings disapearing, comment this IF statement
         if (i > 1)  {
           x1 <- xx[i-1]
           y1 <- yy[i-1]
@@ -73,6 +72,7 @@ Fireworks <- function(nof_rockets=10) {
           clear.fireworks(x1, y1, ring1)
           }
       }
+      # if you don't want rings disapearing, comment this IF statement
       clear.fireworks(tail(xx,1), tail(yy,1), tail(ringy,1))
   }
   NewYear.fireworks()
@@ -84,7 +84,7 @@ Fireworks <- function(nof_rockets=10) {
 # Run the function
 ##################
 
-Fireworks(4)
+Fireworks(10)
 
   
 
