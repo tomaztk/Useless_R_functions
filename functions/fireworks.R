@@ -15,7 +15,6 @@
 ###########################################
 
 library(animation)
-library(ggplot2)
 
 
 set.seed(2908)
@@ -38,7 +37,6 @@ Fireworks <- function(nof_rockets=10) {
     }
     
     clear.fireworks <- function(x,y,ring){
-      #
       plot(x, y, xaxt='n', ann=FALSE, yaxt='n', frame.plot=FALSE, xlim=c(0,50),ylim=c(0,500))
       for (i in 1:ring) {   
         ani.options(interval = 0.15) 
