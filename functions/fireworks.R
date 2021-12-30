@@ -11,7 +11,7 @@
 # V.1.0
 
 # Changelog: 
-#        - 
+#        - add clean rings?
 ###########################################
 
 library(animation)
@@ -27,6 +27,7 @@ Fireworks <- function(nof_rockets=10) {
 
     draw.fireworks <- function(x,y,ring) {
       plot(x, y, xaxt='n', ann=FALSE, yaxt='n', frame.plot=FALSE, xlim=c(0,50),ylim=c(0,500))
+      title(main = "Happy New Year 2022", col.main= "white")
       for (i in 1:ring) {   
           ani.options(interval = 0.25) 
           color <- sample(rainbow(ring),8, replace=TRUE)
@@ -36,10 +37,17 @@ Fireworks <- function(nof_rockets=10) {
       par(new=TRUE)
     }
     
-    clear.fireworks <- function(){
+    clear.fireworks <- function(x,y,ring){
       #I know I need this function
       #what will this function do -> I have absolute no idea!
-      a <- "Let's think about cleaning?!"
+      #
+      plot(x, y, xaxt='n', ann=FALSE, yaxt='n', frame.plot=FALSE, xlim=c(0,50),ylim=c(0,500))
+      for (i in 1:ring) {   
+        ani.options(interval = 0.15) 
+        symbols(x,y, circles=0.16+i*1.2,add=T, inches=F, fg="black")
+        ani.pause()
+      }
+      par(new=TRUE)
    }
 
   NewYear.fireworks <- function(){  
@@ -47,19 +55,28 @@ Fireworks <- function(nof_rockets=10) {
       if (bgcolor == "transparent" | bgcolor == "white") bgcolor <- "black"
       par(bg=bgcolor)
     
+     # nof_rockets <- 10
       xx <-sample(1:50,nof_rockets)
       yy <-sample(1:500,nof_rockets)
-    
+      ringy <- sample(7:13,nof_rockets, replace = TRUE)
+      
       for (i in 1:nof_rockets){
     
         x <- xx[i]
         y <- yy[i]
-        ring <- ceiling(runif(1, 7, 13))
+        ring <- ringy[i]
         draw.fireworks(x,y,ring)
-        clear.fireworks()
+        if (i > 1)  {
+          x1 <- xx[i-1]
+          y1 <- yy[i-1]
+          ring1 <- ringy[i-1]
+          clear.fireworks(x1, y1, ring1)
+          }
       }
+      clear.fireworks(tail(xx,1), tail(yy,1), tail(ringy,1))
   }
   NewYear.fireworks()
+
 }
 
 
@@ -67,6 +84,7 @@ Fireworks <- function(nof_rockets=10) {
 # Run the function
 ##################
 
-Fireworks(15)
+Fireworks(4)
 
+  
 
