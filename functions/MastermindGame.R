@@ -60,7 +60,7 @@ get_board <- function(nof_col, nof_pegs){
     for (j in 1:nof_col) {  #columns
       col <- 50*(1:nof_col-1)
       # 6 per row | every second row empyt | start top - down
-      rect(100+col[j], 500-(i*30), 150+col[j], 475-(i*30), col = 'Blue')
+      rect(100+col[j], 500-(i*30), 150+col[j], 475-(i*30), col = 'white')
     }
     
     #key pegs
@@ -89,4 +89,23 @@ get_board <- function(nof_col, nof_pegs){
 
 plot.new()
 get_board(nof_col=6,nof_pegs=4)
+
+game <- function(){
+  x11()
+  plot.new()
+  get_board(nof_col=6,nof_pegs=4)
+  #colours selection
+  colours = c('Red','Green','Blue','Yellow','Brown','Orange','Magenta')
+  for (z in 1:6) {
+    rect(100+z*50, 100, 150+z*50, 175, col = colours[z])
+  }
+  mouse.at <- locator(n = 1, type = "o") 
+  x.at <<- mouse.at$x
+  y.at <<- mouse.at$y
+  graphics.off()
+}
+
+game()
+
+
 
