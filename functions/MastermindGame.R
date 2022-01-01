@@ -86,6 +86,12 @@ get_board <- function(nof_col, nof_pegs){
   }
 }
 
+add_rect <- function(colour,try) {
+  par(new = TRUE)
+  try <- ceiling(round(try/6))
+  rect(100, 500-(try*30),150, 475-(try*30), col = colour)
+}
+
 
 plot.new()
 get_board(nof_col=6,nof_pegs=4)
@@ -95,17 +101,46 @@ game <- function(){
   plot.new()
   get_board(nof_col=6,nof_pegs=4)
   #colours selection
-  colours = c('Red','Green','Blue','Yellow','Brown','Orange','Magenta')
+  colours = c('Red','Green','Blue','Yellow','Brown','Orange')
   for (z in 1:6) {
-    rect(100+z*50, 100, 150+z*50, 175, col = colours[z])
+    rect(100+z*50, 100, 150+z*50, 150, col = colours[z])
   }
-  mouse.at <- locator(n = 1, type = "o") 
-  x.at <<- mouse.at$x
-  y.at <<- mouse.at$y
+  #select 6
+  nof_selection <- 6
+  for (i in 1:nof_selection) {
+    mouse.at <- locator(n = 1, type = "o") 
+    x.at <<- mouse.at$x
+    y.at <<- mouse.at$y
+    if (x.at >= 100 & x.at < 200 & y.at >= 100 & y.at <=150) {
+      print('Red')
+      add_rect('Red',i) 
+      }
+    if (x.at >= 200 & x.at < 300 & y.at >= 100 & y.at <=150) {
+      print('Green')
+      add_rect('Green',i) 
+      }
+    if (x.at >= 300 & x.at < 400 & y.at >= 100 & y.at <=150) {
+      print('Blue')
+      add_rect('Blue',i) 
+      }
+    if (x.at >= 400 & x.at < 500 & y.at >= 100 & y.at <=150) {
+      print('Yellow')
+      add_rect('Yellow',i) 
+      }
+    if (x.at >= 500 & x.at < 600 & y.at >= 100 & y.at <=150) {
+      print('Brown')
+      add_rect('Brown',i) 
+      }
+    if (x.at >= 600 & x.at < 700 & y.at >= 100 & y.at <=150) {
+      print('Orange')
+      add_rect('Orange',i) 
+      }
+  }
   graphics.off()
 }
 
 game()
 
+# select 1 row of colours
 
 
