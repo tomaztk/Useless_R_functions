@@ -29,15 +29,15 @@ numberOfColors <- 6
 
 get_secret <- function(nof_col, nof_pegs, colours_repeat=TRUE) {
   if( is.null(colours) ) {
-    colours = c('Red','Green','Blue','Yellow','Brown','Orange','Magenta')
+    colours <- c('Red','Green','Blue','Yellow','Brown','Orange','Magenta')
+    #colours_num <- c(1,2,3,4,5,6,7)
   }
   col = sample(colours, nof_col) 
   sample(col,nof_pegs, replace=colours_repeat)
 }
 
 # store secret
-s <- get_secret(nof_col=3, nof_pegs=5, colours_repeat = FALSE)
-
+store_secret <- get_secret(nof_col=numberOfColors, nof_pegs=numberOfPegs, colours_repeat =TRUE)
 
 
 
@@ -90,7 +90,7 @@ get_board <- function(nof_col, nof_pegs){
 add_rect <- function(colour,try) {
   par(new = TRUE)
   max_tries <- numberOfColors*10 #10 rows
-  if (try %% numberOfColors  == 0) {print("Check Key Pegs!")}
+  if (try %% numberOfColors  == 0) {print(inputted_colours) } #print("Check Key Pegs!")}
 
   if (try > numberOfColors){
     row <- ceiling((try/numberOfColors))
@@ -105,14 +105,62 @@ add_rect <- function(colour,try) {
   rect(100+(rect_order*50)-50, 500-(row*30),150+((rect_order*50))-50, 475-(row*30), col = colour)
 }
 
+check_key_Pegs <- function(input_colours, store_secret){
 
-# test
-#plot.new()
-#get_board(nof_col=6,nof_pegs=4)
+  ss <- store_secret
+  ic <- inputted_colours
+  
+  # Check if colour is on same place
+  black <- length(which(ss==ic))
+  # Check if colour exists in set
+  white <- length(which((ic %in% ss)==TRUE)) - black
+  
+  for (h in 0:black) {
+    if (h == 0) {
+      par(new = TRUE)
+      plot(450,500-(i*30), col = "black", lwd = 2, xaxt = 'n', yaxt = 'n', xlab = "",ylab = "",xlim=range(100:500), ylim=range(100:500))
+    }
+    if (h == 1) {
+      par(new = TRUE)
+      plot(450,490-(i*30), col = "black", lwd = 2, xaxt = 'n', yaxt = 'n', xlab = "",ylab = "",xlim=range(100:500), ylim=range(100:500))
+    }
+    if (h == 2) {
+      par(new = TRUE)
+      plot(470,500-(i*30), col = "black", lwd = 2, xaxt = 'n', yaxt = 'n', xlab = "",ylab = "",xlim=range(100:500), ylim=range(100:500))
+    }
+    if (h == 3) {
+      par(new = TRUE)
+      plot(470,490-(i*30), col = "black", lwd = 2, xaxt = 'n', yaxt = 'n', xlab = "",ylab = "",xlim=range(100:500), ylim=range(100:500))
+    }
+  }
+  
+  for (h in 0:white) {
+    if (h == 0) {
+      par(new = TRUE)
+      plot(450,500-(i*30), col = "gray", lwd = 2, xaxt = 'n', yaxt = 'n', xlab = "",ylab = "",xlim=range(100:500), ylim=range(100:500))
+    }
+    if (h == 1) {
+      par(new = TRUE)
+      plot(450,490-(i*30), col = "gray", lwd = 2, xaxt = 'n', yaxt = 'n', xlab = "",ylab = "",xlim=range(100:500), ylim=range(100:500))
+    }
+    if (h == 2) {
+      par(new = TRUE)
+      plot(470,500-(i*30), col = "gray", lwd = 2, xaxt = 'n', yaxt = 'n', xlab = "",ylab = "",xlim=range(100:500), ylim=range(100:500))
+    }
+    if (h == 3) {
+      par(new = TRUE)
+      plot(470,490-(i*30), col = "gray", lwd = 2, xaxt = 'n', yaxt = 'n', xlab = "",ylab = "",xlim=range(100:500), ylim=range(100:500))
+    }
+  }
+  
+  
+}
 
 
 # test with x11()
 game <- function(){
+  won <- FALSE
+  end_game <- 1
   x11()
   plot.new()
   get_board(nof_col=6,nof_pegs=4)
@@ -123,41 +171,61 @@ game <- function(){
     print(100+z*50)
   }
   #select 6
-  nof_selection <- 6
-  for (i in 1:nof_selection) {
-    mouse.at <- locator(n = 1, type = "o") 
-    x.at <<- mouse.at$x
-    y.at <<- mouse.at$y
-    print(x.at)
-    print(y.at)
-    if (x.at >= 150 & x.at < 200 & y.at >= 100 & y.at <=150) {
-      print('Red')
-      add_rect('Red',i) 
-      }
-    if (x.at >= 200 & x.at < 250 & y.at >= 100 & y.at <=150) {
-      print('Green')
-      add_rect('Green',i) 
-      }
-    if (x.at >= 250 & x.at < 300 & y.at >= 100 & y.at <=150) {
-      print('Blue')
-      add_rect('Blue',i) 
-      }
-    if (x.at >= 300 & x.at < 350 & y.at >= 100 & y.at <=150) {
-      print('Yellow')
-      add_rect('Yellow',i) 
-      }
-    if (x.at >= 350 & x.at < 400 & y.at >= 100 & y.at <=150) {
-      print('Brown')
-      add_rect('Brown',i) 
-      }
-    if (x.at >= 400 & x.at < 450 & y.at >= 100 & y.at <=150) {
-      print('Orange')
-      add_rect('Orange',i) 
-      }
+  nof_selection <- 6 # nof_col
+  max_tries <- nof_selection*2 # 2 only for test 10
+  while (end_game <= max_tries & won == FALSE) {
+        for (i in 1:max_tries) {
+          mouse.at <- locator(n = 1, type = "o") 
+          x.at <<- mouse.at$x
+          y.at <<- mouse.at$y
+          #print(x.at)
+          #print(y.at)
+          inputted_colours <<- NULL
+          if (x.at >= 150 & x.at < 200 & y.at >= 100 & y.at <=150) {
+            #print('Red')
+            inputted_colours <<- c(inputted_colours, 'Red')
+            add_rect('Red',i) 
+            }
+          if (x.at >= 200 & x.at < 250 & y.at >= 100 & y.at <=150) {
+            #print('Green')
+            inputted_colours <<- c(inputted_colours, 'Green')
+            add_rect('Green',i) 
+            }
+          if (x.at >= 250 & x.at < 300 & y.at >= 100 & y.at <=150) {
+            #print('Blue')
+            inputted_colours <<- c(inputted_colours, 'Blue')
+            add_rect('Blue',i) 
+            }
+          if (x.at >= 300 & x.at < 350 & y.at >= 100 & y.at <=150) {
+            #print('Yellow')
+            inputted_colours <<- c(inputted_colours, 'Yellow')
+            add_rect('Yellow',i) 
+            }
+          if (x.at >= 350 & x.at < 400 & y.at >= 100 & y.at <=150) {
+            #print('Brown')
+            inputted_colours <<- c(inputted_colours, 'Brown')
+            add_rect('Brown',i) 
+            }
+          if (x.at >= 400 & x.at < 450 & y.at >= 100 & y.at <=150) {
+            #print('Orange')
+            inputted_colours <<- c(inputted_colours, 'Orange')
+            add_rect('Orange',i) 
+          }
+        if (end_game %% 6 == 0){
+          
+          #print(inputted_colours)
+          check_key_Pegs(input_colours = inputted_colours, store_secret = store_secret)
+          }
+        }
+    graphics.off()
   }
-  graphics.off()
+  end_game <- end_game + 1
+  print(end_game)
+  
 }
 
+
+#Start The game
 game()
 
 
