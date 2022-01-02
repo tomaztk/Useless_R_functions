@@ -104,6 +104,7 @@ game <- function(){
   colours = c('Red','Green','Blue','Yellow','Brown','Orange')
   for (z in 1:6) {
     rect(100+z*50, 100, 150+z*50, 150, col = colours[z])
+    print(100+z*50)
   }
   #select 6
   nof_selection <- 6
@@ -111,27 +112,29 @@ game <- function(){
     mouse.at <- locator(n = 1, type = "o") 
     x.at <<- mouse.at$x
     y.at <<- mouse.at$y
-    if (x.at >= 100 & x.at < 200 & y.at >= 100 & y.at <=150) {
+    print(x.at)
+    print(y.at)
+    if (x.at >= 150 & x.at < 200 & y.at >= 100 & y.at <=150) {
       print('Red')
       add_rect('Red',i) 
       }
-    if (x.at >= 200 & x.at < 300 & y.at >= 100 & y.at <=150) {
+    if (x.at >= 200 & x.at < 250 & y.at >= 100 & y.at <=150) {
       print('Green')
       add_rect('Green',i) 
       }
-    if (x.at >= 300 & x.at < 400 & y.at >= 100 & y.at <=150) {
+    if (x.at >= 250 & x.at < 300 & y.at >= 100 & y.at <=150) {
       print('Blue')
       add_rect('Blue',i) 
       }
-    if (x.at >= 400 & x.at < 500 & y.at >= 100 & y.at <=150) {
+    if (x.at >= 300 & x.at < 350 & y.at >= 100 & y.at <=150) {
       print('Yellow')
       add_rect('Yellow',i) 
       }
-    if (x.at >= 500 & x.at < 600 & y.at >= 100 & y.at <=150) {
+    if (x.at >= 350 & x.at < 400 & y.at >= 100 & y.at <=150) {
       print('Brown')
       add_rect('Brown',i) 
       }
-    if (x.at >= 600 & x.at < 700 & y.at >= 100 & y.at <=150) {
+    if (x.at >= 400 & x.at < 450 & y.at >= 100 & y.at <=150) {
       print('Orange')
       add_rect('Orange',i) 
       }
