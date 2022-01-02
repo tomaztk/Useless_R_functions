@@ -36,7 +36,7 @@ get_secret <- function(nof_col, nof_pegs, colours_repeat=TRUE) {
 }
 
 # store secret
-s <- get_secret(nof_col=3, nof_pegs=5)
+s <- get_secret(nof_col=3, nof_pegs=5, colours_repeat = FALSE)
 
 
 
@@ -86,16 +86,32 @@ get_board <- function(nof_col, nof_pegs){
   }
 }
 
+
 add_rect <- function(colour,try) {
   par(new = TRUE)
-  try <- ceiling(round(try/6))
-  rect(100, 500-(try*30),150, 475-(try*30), col = colour)
+  max_tries <- numberOfColors*10 #10 rows
+  if (try %% numberOfColors  == 0) {print("Check Key Pegs!")}
+
+  if (try > numberOfColors){
+    row <- ceiling((try/numberOfColors))
+    rect_order <- abs(try-((row-1)*numberOfColors))
+  } else {
+    row <- 1
+    rect_order <- try
+  }
+  #print(try)
+  print(row)
+  print(rect_order)
+  rect(100+(rect_order*50)-50, 500-(row*30),150+((rect_order*50))-50, 475-(row*30), col = colour)
 }
 
 
-plot.new()
-get_board(nof_col=6,nof_pegs=4)
+# test
+#plot.new()
+#get_board(nof_col=6,nof_pegs=4)
 
+
+# test with x11()
 game <- function(){
   x11()
   plot.new()
@@ -144,6 +160,6 @@ game <- function(){
 
 game()
 
-# select 1 row of colours
+
 
 
