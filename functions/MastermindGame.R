@@ -110,9 +110,7 @@ check_key_Pegs <- function(input_colours, store_secret){
   ss <- store_secret
   ic <- inputted_colours
   
-  # Check if colour is on same place
   black <- length(which(ss==ic))
-  # Check if colour exists in set
   white <- length(which((ic %in% ss)==TRUE)) - black
   
   for (h in 0:black) {
@@ -227,7 +225,4 @@ game <- function(){
 
 #Start The game
 game()
-
-
-
 
