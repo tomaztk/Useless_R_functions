@@ -27,23 +27,16 @@ numberOfPegs <- 4
 numberOfColors <- 6
 
 
-get_secret <- function(nof_col, nof_pegs, colours_repeat=TRUE) {
-  if( is.null(colours) ) {
-    colours <- c('Red','Green','Blue','Yellow','Brown','Orange','Magenta')
-    #colours_num <- c(1,2,3,4,5,6,7)
-  }
-  col = sample(colours, nof_col) 
-  sample(col,nof_pegs, replace=colours_repeat)
+get_secret <- function(nof_col, colours_repeat=FALSE) {
+    colours <- c('Red','Green','Blue','Yellow','Brown','Orange')
+    sample(colours,nof_col, replace=colours_repeat)
 }
 
 # store secret
-store_secret <- get_secret(nof_col=numberOfColors, nof_pegs=numberOfPegs, colours_repeat =TRUE)
+store_secret <- get_secret(nof_col=numberOfColors, colours_repeat =TRUE)
 
 
-
-get_board <- function(nof_col, nof_pegs){
-  
-  # Plot empty board for mastermind
+get_board <- function(nof_col, nof_pegs, nof_try=10){
   plot.new()
   op <- par(bg = "white")
   grid(nx = 6, ny = 12, col = "gray", lty = "dotted",lwd = par("lwd"), equilogs = TRUE)
@@ -52,7 +45,7 @@ get_board <- function(nof_col, nof_pegs){
   par(new = TRUE)
   plot(c(100,500), c(100,500), xlab = "", ylab = "",  xaxt = 'n', yaxt = 'n',main = "Mastermind board game")
   
-  nof_tries <- 10
+  nof_tries <- nof_try
   
   for (i in 1:nof_tries) {  #rows
     #i <- 30*(0:nof_tries)
@@ -159,10 +152,12 @@ check_key_Pegs <- function(input_colours, store_secret){
 game <- function(){
   won <- FALSE
   end_game <- 1
-  x11()
+  
+  # x11()
   plot.new()
-  get_board(nof_col=6,nof_pegs=4)
-  #colours selection
+  get_board(nof_col=6,nof_pegs=4,nof_try=10)
+ 
+   #colours selection
   colours = c('Red','Green','Blue','Yellow','Brown','Orange')
   for (z in 1:6) {
     rect(100+z*50, 100, 150+z*50, 150, col = colours[z])
@@ -170,14 +165,12 @@ game <- function(){
   }
   #select 6
   nof_selection <- 6 # nof_col
-  max_tries <- nof_selection*2 # 2 only for test 10
+  max_tries <- nof_selection*2 # nof_try only for test 10
   while (end_game <= max_tries & won == FALSE) {
         for (i in 1:max_tries) {
           mouse.at <- locator(n = 1, type = "o") 
           x.at <<- mouse.at$x
           y.at <<- mouse.at$y
-          #print(x.at)
-          #print(y.at)
           inputted_colours <<- NULL
           if (x.at >= 150 & x.at < 200 & y.at >= 100 & y.at <=150) {
             #print('Red')
@@ -213,6 +206,10 @@ game <- function(){
           
           #print(inputted_colours)
           check_key_Pegs(input_colours = inputted_colours, store_secret = store_secret)
+          if (store_secret == inputted_colours) {
+            print("Game Won")
+            break
+          }
           }
         }
     graphics.off()
