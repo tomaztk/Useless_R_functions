@@ -206,17 +206,18 @@ game <- function(){
           
           #print(inputted_colours)
           check_key_Pegs(input_colours = inputted_colours, store_secret = store_secret)
-          if (store_secret == inputted_colours) {
+          if (all(store_secret == inputted_colours)) {
             print("Game Won")
             break
           }
           }
         }
-    graphics.off()
+    #graphics.off()
   }
   end_game <- end_game + 1
-  print(end_game)
+  #print(end_game)
   
+}
 }
 
 
