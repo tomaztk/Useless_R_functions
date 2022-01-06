@@ -131,7 +131,8 @@ get_secret <- function(nof_col, colours_repeat=FALSE) {
 
 
 game <- function(numberOfColors=4, numberOfTries=10){
-   #x11()
+   rm(list = ls())
+   x11()
    end_game <- 1
    count <<- 0
    get_board(nof_col = numberOfColors, nof_try = numberOfTries)
