@@ -229,7 +229,7 @@ game()
 # Rewrite:
 
 # test with x11()
-numberOfPegs <- 4
+# numberOfPegs <- 4
 numberOfColors <- 4
 numberOfTries <- 10
 
@@ -278,11 +278,32 @@ add_rect <- function(colour,try,nof_try=10) {
 add_key_pegs <- function(input_colours, store_secret,nof_try){
   
   ss <- store_secret
-  ic <- input_colours
+  ic <- input_colours #3421L #input_colours
+  ss1 <- as.vector(strsplit(as.character(ss), "")[[1]])
+  ic1 <- as.vector(strsplit(as.character(ic), "")[[1]])
   
-  black <- length(which(ss==ic))
-  white <- abs(length(which(ic %in% ss)==TRUE) - black) 
-  #nof_try <- 1
+  
+  white <- ""
+  black <- ""
+  for (i in 1:length(ss1)){
+    for (j in 1:length(ic1)){
+      if (i==j && ss1[i] == ic1[j]) {black <- as.integer(paste( c(black, ic1[j]),collapse=""))}
+      if (ss1[i] == ic1[j]) { white <- as.integer(paste( c(white, ic1[j]),collapse="")) }
+    }
+  }
+  
+
+  black1 <- as.vector(strsplit(as.character(black), "")[[1]])
+  white1 <- as.vector(strsplit(as.character(white), "")[[1]])
+  
+  
+  black <- nchar(black)
+  white <- length(unique(setdiff(white1, black1)))
+  
+  
+  #black <- length(which(ss==ic))
+  #white <- abs(length(which(ic %in% ss)==TRUE) - black) 
+
   nof_tokes <- black + white
   tok <- replicate(black, "black")
   en <- replicate(white, "white")
@@ -341,10 +362,10 @@ game <- function(numberOfColors=4, numberOfTries=10){
    max_tries <- nof_selection*numberOfTries 
  
    while (end_game <= max_tries && store_secret != input_colours) {
-     print(end_game)
+     #print(end_game)
      mouse.at <- locator(n = 1, type = "o") 
-     x.at <<- mouse.at$x
-     y.at <<- mouse.at$y
+     x.at <- mouse.at$x
+     y.at <- mouse.at$y
      
      
      if (x.at >= 150 & x.at < 200 & y.at >= 100 & y.at <=150) {
@@ -365,7 +386,10 @@ game <- function(numberOfColors=4, numberOfTries=10){
      } 
     
           #clean vector
-         if (end_game %% numberOfColors == 0)  { input_colours <<- 0L }
+      if (end_game %% numberOfColors == 0)  {
+           add_key_pegs(input_colours, store_secret, numberOfTries)
+           input_colours <<- 0L 
+           } 
         
          #end game if needed 
          if (store_secret == input_colours) {
