@@ -1,33 +1,23 @@
 
 ##########################################
 # 
-# Mastermind game
+# Mastermind board game for R Language
+# 
+# Game for single-player R developers/Data scientists for
+# killing time, playing game while waiting for the ML
+# model to finish training or just to play.
 #
-# Mastermind or Master Mind is a code-breaking game for two players.  
-# The game is played using:
-# - a decoding board, with a shield at one end covering a row of four large holes, and twelve (or ten, or eight, or six) additional 
-#   rows containing four large holes next to a set of four small holes;
-# - code pegs of six different colors (or more; see Variations below), with round heads, which will be
-#   placed in the large holes on the board; and
-# - key pegs, some colored black, some white, which are flat-headed and smaller than the code pegs; 
-#   they will be placed in the small holes on the board.
-#   URL: https://en.wikipedia.org/wiki/Mastermind_(board_game)
-
 # Series:
-# Little Useless-useful R functions #31
-# Created: December 31, 2021
-# Author: Tomaz Kastrun
-# Blog: tomaztsql.wordpress.com
-# V.1.0
-
-# Changelog: 
+# L ittle Useless-useful R functions #31
+#  Created: January 06, 2022
+#  Author: Tomaz Kastrun
+#  Blog: tomaztsql.wordpress.com
+#  V.1.0
+# 
+# Changelog:
+# 
 ###########################################
 
-
-# Rewrite:
-
-# test with x11()
-# numberOfPegs <- 4
 numberOfColors <- 4
 numberOfTries <- 10
 
@@ -43,7 +33,6 @@ get_board <- function(nof_col, nof_try=10){
   for (i in 1:nof_tries) { #rows
     for (j in 1:nof_col) { #columns
       col <- 50*(1:nof_col-1)
-      # 6 per row | every second row empyt | start top - down
       rect(100+col[j], 500-(i*30), 150+col[j], 475-(i*30), col = 'white')
     }
   }
@@ -75,11 +64,8 @@ add_rect <- function(colour,try,nof_try=10) {
 
 add_key_pegs <- function(input_colours, store_secret,nof_try){
   
-
-  #row <- ceiling((try/numberOfColors))
-  
   ss <- store_secret
-  ic <- input_colours #3421L #input_colours
+  ic <- input_colours 
   ss1 <- as.vector(strsplit(as.character(ss), "")[[1]])
   ic1 <- as.vector(strsplit(as.character(ic), "")[[1]])
   
@@ -93,16 +79,10 @@ add_key_pegs <- function(input_colours, store_secret,nof_try){
     }
   }
   
-
   black1 <- as.vector(strsplit(as.character(black), "")[[1]])
   white1 <- as.vector(strsplit(as.character(white), "")[[1]])
-  
-  
   black <- nchar(black)
   white <- length(unique(setdiff(white1, black1)))
-  
-  
-
   nof_tokes <- black + white
   tok <- replicate(black, "black")
   en <- replicate(white, "gray")
@@ -151,18 +131,16 @@ get_secret <- function(nof_col, colours_repeat=FALSE) {
 
 
 game <- function(numberOfColors=4, numberOfTries=10){
-   x11()
+   #x11()
    end_game <- 1
    count <<- 0
    get_board(nof_col = numberOfColors, nof_try = numberOfTries)
    store_secret <<- get_secret(nof_col=numberOfColors, colours_repeat =TRUE)
    input_colours <<- 0L
-   #input_colours <- c("Blue", "Yellow","Green","Yellow") #, "Brown", "Green")
    nof_selection <- numberOfColors
    max_tries <- nof_selection*numberOfTries 
  
    while (end_game <= max_tries && store_secret != input_colours) {
-     #print(end_game)
      mouse.at <- locator(n = 1, type = "o") 
      x.at <- mouse.at$x
      y.at <- mouse.at$y
@@ -202,17 +180,15 @@ game <- function(numberOfColors=4, numberOfTries=10){
            add_key_pegs(input_colours, store_secret, count)
            input_colours <<- 0L 
            count <<- count + 1
-           print(count)
-    
       } 
      # increment next level
      end_game = end_game + 1      
    }
-    
 }
   
-  
-#Start The game
+######################
+### Start The game ###
+######################
 
 game()
   
