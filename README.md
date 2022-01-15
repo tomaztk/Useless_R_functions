@@ -160,10 +160,13 @@ Feel free to get in touch for new useful-useless functions.
 </a>
     <a href="https://tomaztsql.files.wordpress.com/2021/10/screenshot-2021-10-21-at-23.12.17.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/10/screenshot-2021-10-21-at-23.12.17.png"/>
 </a>
-  
  <a href="https://tomaztsql.files.wordpress.com/2021/10/voronoi.gif"><img width="45%" src="https://tomaztsql.files.wordpress.com/2021/10/voronoi.gif"/>
 </a> 
+ <a href="https://tomaztsql.files.wordpress.com/2022/01/image-2.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2022/01/image-2.png"/>
+</a> 
  </div>
+
+
 
 
 # Vignettes
