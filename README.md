@@ -51,6 +51,7 @@ your everyday R use. That's it :-) And nothing more.</span>
   - Animated showcase of plot function ([blog post](https://tomaztsql.wordpress.com/2021/10/18/little-useless-useful-r-functions-useless-animated-showcase-of-plot-function/))
   - Interface for learning irregular verbs ([blog post](https://tomaztsql.wordpress.com/2021/10/22/little-useless-useful-r-functions-useless-interface-for-learning-irregular-verbs/))
   - Interactive Voronoi diagram generator ([blog post](https://tomaztsql.wordpress.com/2021/11/01/little-useless-useful-r-functions-interactive-voronoi-diagram-generator-using-r-and-x11/))
+  - Mastermind board game for R ([blog post](https://tomaztsql.wordpress.com/2022/01/07/little-useless-useful-r-functions-mastermind-board-game-for-r/))
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
