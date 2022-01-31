@@ -76,3 +76,30 @@ vp <- df3 %>%
   theme_void() 
 
 print(vp, vp=viewport(angle=-90))
+
+
+
+### Check version with imager
+
+# install.packages(c("cowplot","imager","tidyverse"), dependencies = TRUE)
+library(tidyverse)
+library(imager)
+library(cowplot) 
+im <- load.image("/Users/tomazkastrun/Documents/tomaztk_github/Useless_R_functions/image/appleLogo.jpg") 
+plot(im)
+asc <- gtools::chr(38:126) #We use a subset of ASCII, R doesn't render the rest
+head(asc,10)
+txt <- imfill(50,50,val=1) %>% implot(text(20,20,"Blah")) 
+txt
+plot(txt,interp=FALSE)
+g.chr <- function(chr) implot(imfill(50,50,val=1),text(25,25,chr,cex=5)) %>% grayscale %>% mean
+g <- map_dbl(asc,g.chr)
+n <- length(g)
+plot(1:n,sort(g),type="n",xlab="Order",ylab="Lightness")
+text(1:n,sort(g),asc[order(g)])
+char <- asc[order(g)]
+d <- grayscale(im) %>% imresize(.1)  %>% as.data.frame
+d <- mutate(d,qv=cut_number(value,n) %>% as.integer)
+d <- mutate(d,char=char[qv])
+ggplot(d,aes(x,y))+geom_text(aes(label=char),size=1)+scale_y_reverse()
+
