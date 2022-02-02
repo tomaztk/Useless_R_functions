@@ -1,7 +1,7 @@
 
 ##########################################
 # 
-# Converting JPG and plots raster using 
+# Plotting photos in ggplot plots using 
 # horizontal violins
 #
 # Series:
@@ -19,9 +19,16 @@
 ## Plotting photos
 
 # Libraries
-pkg <- c("dplyr", "tidyr", "ggplot2", "magick", "stringr",
-         "forcats", "viridis", "grid", "purrr","hrbrthemes")
-lapply(pkg, require, character.only = TRUE)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(magick)
+library(stringr)
+library(forcats)
+library(hrbrthemes)
+library(viridis)
+library(grid)
+library(purrr)
 
 
 setwd("/Users/tomazkastrun/Documents/tomaztk_github/Useless_R_functions")
@@ -48,15 +55,16 @@ for (i in 1:nrow(mat_df)) {
 }
 
 # Creating factors
-dff$x <- str_pad(as.character(dff$x), 3, pad = "0")
+dff$x <- as.character(dff$x)
+dff$x <- str_pad(dff$x, 3, pad = "0")
 
-# Reversing order
 df <- dff %>%
   mutate(x = fct_rev(fct_reorder(x,y))) %>%
   purrr::map_df(rev)
 
-df2 <- dff %>% mutate(x = fct_rev(fct_reorder(x,y)))
-df3 <- data.frame(x = as.character(df2$x), y = df$y)
+df2 <- dff %>%  mutate(x = fct_rev(fct_reorder(x,y)))
+df3 <- data.frame(x = df2$x, y = df$y)
+df3$x <- as.character(df3$x)
 
 
 vp <- df3 %>%
@@ -64,6 +72,7 @@ vp <- df3 %>%
   geom_violin(width=1.5, size=0.2) +
   scale_fill_viridis(discrete=TRUE) +
   scale_color_viridis(discrete=TRUE) +
+  #theme(legend.position = "none") +
   theme_void() 
 
 print(vp, vp=viewport(angle=-90))
