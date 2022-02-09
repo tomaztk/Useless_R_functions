@@ -17,7 +17,10 @@ test_stop <- function(min, max) {
 test_stop(22,10)
 test_stop(10,22)
 
+#stopIfnot()
+input_list <- 23 # c(20,25,30, "35", 40)
 
+stopifnot(is.integer(input_list))
 
 #warning(), message() and supressWarnings
 
@@ -71,7 +74,7 @@ TC_fun = function(x) {
                  NaN}) 
 }
  
-for(input in input_list_try) {
+for(input in input_list) {
    print(paste("TryCatch function of", input, "=", TC_fun(input)))
 }
 
