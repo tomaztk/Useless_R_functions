@@ -77,8 +77,4 @@ for(input in input_list_try) {
 
 
 # We want to embedd this into a for/IF/while loop to create a control flow
-# https://www.geeksforgeeks.org/condition-handling-in-r-programming/
-# https://rstudio.github.io/r-manuals/r-lang/Exception-handling.html
-# https://recology.info/2019/03/control-flow-exceptions/
-  
-  
+
