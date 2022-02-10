@@ -18,9 +18,15 @@ test_stop(22,10)
 test_stop(10,22)
 
 #stopIfnot()
-input_list <- 23 # c(20,25,30, "35", 40)
+input_numbers <- c(23,22,25)
+stopifnot(is.numeric(input_numbers)) #all TRUE
 
-stopifnot(is.integer(input_list))
+input_statements <- c(10==10, 22 > 10)
+stopifnot(input_statements) #all TRUE
+
+input_pi <- 3.15 #this is not a PI number!
+stopifnot(all.equal(pi, input_pi)) #Error returned
+
 
 #warning(), message() and supressWarnings
 
@@ -78,6 +84,55 @@ for(input in input_list) {
    print(paste("TryCatch function of", input, "=", TC_fun(input)))
 }
 
+#########################
+# We want to embedd a
+# for/IF/while loop to 
+# create a control flow
+#########################
 
-# We want to embedd this into a for/IF/while loop to create a control flow
+power_calculation <- function(x,y){
+  tryCatch(
+    expr = {
+      message(x**y)
+      message("Successfully calculated x to power of y.")
+    },
+    error = function(e){
+      message('Caught an error!')
+      print(e)
+    },
+    warning = function(w){
+      message('Caught an warning!')
+      print(w)
+    },
+    finally = {
+      message('... Program execution finished ...')
+    }
+  )    
+}
+
+power_calculation(10,3)
+
+
+get_numbers <- function(a,b){
+
+#  stopifnot(is.numeric(a))
+#  stopifnot(is.numeric(b))
+  
+  if (!is.numeric(a)) {
+    warning("a must be a numeric")
+  }
+  if (!is.numeric(b)) {
+    warning("b must be a numeric")
+  }
+
+  stopifnot(is.numeric(a) & is.numeric(b)) 
+    power_calculation(a,b)
+  
+}
+
+get_numbers("a",2)
+get_numbers(5,2)
+
+
+
 
