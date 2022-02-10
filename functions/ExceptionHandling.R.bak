@@ -114,9 +114,9 @@ power_calculation(10,3)
 
 
 get_numbers <- function(a,b){
-  
-  #  stopifnot(is.numeric(a))
-  #  stopifnot(is.numeric(b))
+
+#  stopifnot(is.numeric(a))
+#  stopifnot(is.numeric(b))
   
   if (!is.numeric(a)) {
     warning("a must be a numeric")
@@ -124,9 +124,9 @@ get_numbers <- function(a,b){
   if (!is.numeric(b)) {
     warning("b must be a numeric")
   }
-  
- #stopifnot(is.numeric(a) & is.numeric(b)) 
-  power_calculation(a,b)
+
+  stopifnot(is.numeric(a) & is.numeric(b)) 
+    power_calculation(a,b)
   
 }
 
@@ -134,38 +134,5 @@ get_numbers("a",2)
 get_numbers(5,2)
 
 
-# get numbers with stopifnot
-get_numbers2 <- function(a,b){
-  
-    stopifnot(is.numeric(a) & is.numeric(b)) 
-    power_calculation(a,b)
-}
 
 
-get_numbers2("2",2)
-
-get_numbers2(3,2)
-
-
-# get numbers with stopifnot
-get_numbers3 <- function(a,b){
-  
-  tryCatch(
-    expr = {
-      message(stopifnot(is.numeric(a) & is.numeric(b)) )
-      message("Data is correct type")
-    },
-    error = function(e){
-      message('Wrong formats!')
-    },
-    warning = function(w){
-      message('Wrong formats!')
-    }
-  )    
-  
-  power_calculation(a,b)
-}
-
-get_numbers3("2",2)
-
-get_numbers3(3,2)
