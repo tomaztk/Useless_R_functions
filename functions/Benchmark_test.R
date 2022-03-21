@@ -1,55 +1,72 @@
-#useless benchmarking
+
+##########################################
+# 
+# Benchmarking vectors and data.frames
+# on simple MapReduce problem
+#
+# Series:
+# Little Useless-useful R functions #35
+# Created: March 21, 2022
+# Author: Tomaz Kastrun
+# Blog: tomaztsql.wordpress.com
+# V.1.0
+
+# Changelog: 
+#        
+###########################################
 
 
-# install.packages("rbenchmark")
 library(rbenchmark)
+library(purrr)
+library(dplyr)
 
-rows <- 10^4
-hex <- c(0:9, LETTERS[1:6])
+len <- 10000000  # 10^6
+lett <- c(LETTERS[1:20])
 
-set.seed(2022)
-dt <- data.frame("red" = sample(0:255, rows, replace = TRUE), 
-                 "green" = sample(0:255, rows, replace = TRUE),
-                 "blue" = sample(0:255, rows, replace = TRUE))
+set.seed(2908)
+a_vec <- do.call(paste0, c(as.list(sample(lett,len,replace=TRUE)), sep="")) # a vector
+
+a_df <- data.frame(chr = paste0(sample(lett,len,replace=TRUE), sep="")) # a data frame
+
 
 rbenchmark::benchmark(
-  "for loop" = {
-    df <- dt
-    for (r in 1:nrow(df)) {
-      df$hexFor[r] <- paste0("#", 
-                             hex[floor(df$red[r] / 16) + 1],
-                             hex[df$red[r] %% 16 + 1],
-                             hex[floor(df$green[r] / 16) + 1],
-                             hex[df$green[r] %% 16 + 1],
-                             hex[floor(df$blue[r] / 16) + 1],
-                             hex[df$blue[r] %% 16 + 1]
-      )
+"table with vector" = {
+    res_table <- ""
+    a_table <- table(strsplit(a_vec, ""))
+    for (i in 1:length(names(a_table))) {
+      key<- (names(a_table[i]))
+      val<-(a_table[i])
+      res_table <- paste0(res_table,key,val)
     }
-  },
-  "apply" = {
-    df <- dt
-    rgbToHex <- function(x) {
-      paste0("#",
-             hex[floor(x["red"] / 16) + 1],
-             hex[x["red"] %% 16 + 1],
-             hex[floor(x["green"] / 16) + 1],
-             hex[x["green"] %% 16 + 1],
-             hex[floor(x["blue"] / 16) + 1],
-             hex[x["blue"] %% 16 + 1]
-      )
+},
+"dplyr with data.frame" = {
+
+res_dplyr <- a_df %>%
+    count(chr, sort=TRUE) %>%
+    mutate(res = paste0(chr, n, collapse = "")) %>%
+    select(-chr, -n) %>%
+    group_by(res)
+
+res_dplyr[1,]
+  
+  
+},
+"purrr with data.frame" = {
+  adf_table <- a_df %>% 
+    map(~count(data.frame(x=.x), x))
+  
+    res_purrr <- ""
+    for (i in 1:nrow(adf_table$chr)) {
+      key<- adf_table$chr[[1]][i]
+      val<- adf_table$chr[[2]][i]
+      res_purrr <- paste0(res_purrr,key,val)
     }
-    df$hexApply <- apply(df, 1, rgbToHex)
-  },
-  "vector" = {
-    df <- dt
-    df$hexVector <- paste0("#",
-                           hex[floor(df$red / 16) + 1],
-                           hex[df$red %% 16 + 1],
-                           hex[floor(df$green / 16) + 1],
-                           hex[df$green %% 16 + 1],
-                           hex[floor(df$blue / 16) + 1],
-                           hex[df$blue %% 16 + 1]
-    )
-  },
-  replications = 10, order = "relative"
+  
+},
+  replications = 20, order = "relative"
 )
+
+
+
+
+
