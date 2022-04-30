@@ -53,6 +53,7 @@ your everyday R use. That's it :-) And nothing more.</span>
   - Interactive Voronoi diagram generator ([blog post](https://tomaztsql.wordpress.com/2021/11/01/little-useless-useful-r-functions-interactive-voronoi-diagram-generator-using-r-and-x11/))
   - Mastermind board game for R ([blog post](https://tomaztsql.wordpress.com/2022/01/07/little-useless-useful-r-functions-mastermind-board-game-for-r/))
 - Making boxplot from a picture ([blog post](https://tomaztsql.wordpress.com/2022/02/02/little-useless-useful-r-functions-making-boxplot-from-a-picture/))
+- Animating datasets ([blog post](https://tomaztsql.wordpress.com/2022/04/29/little-useless-useful-r-functions-animating-datasets/))
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
@@ -167,6 +168,7 @@ Feel free to get in touch for new useful-useless functions.
 </a> 
  <a href="https://tomaztsql.files.wordpress.com/2022/02/image-1.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2022/02/image-1.png"/>
 </a> 
+  <a href="https://tomaztsql.files.wordpress.com/2022/04/iris_animate.gif"><img width="45%" src="https://tomaztsql.files.wordpress.com/2022/04/iris_animate.gif"/> </a> 
  </div>
 
 
