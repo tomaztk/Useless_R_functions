@@ -55,8 +55,15 @@ sumArrOfMax <- function(x){
 sumArrOfMax(arr)
 
 
+set.seed(2908)
 #making bigger array
-arr2 <-  as.numeric(sample(-1000:1000, 8000, replace=T))
+arr2 <-  as.numeric(sample(-100:100, 1000, replace=T))
 
+# script stopped after 1 min
 sumArrOfMax(arr2)
+# 48690847 #running: 3 sec
+
+
+
+# Divide and conquer solutions?
 
