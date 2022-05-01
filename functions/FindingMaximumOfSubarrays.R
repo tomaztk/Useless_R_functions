@@ -64,6 +64,5 @@ sumArrOfMax(arr2)
 # 48690847 #running: 3 sec
 
 
-
-# Divide and conquer solutions?
+# Can we create a faster solution without changing the data types?
 
