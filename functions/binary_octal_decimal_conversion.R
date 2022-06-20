@@ -1,6 +1,6 @@
 ##########################################
 # 
-# Plotting decimal to binary conversion
+# Plotting decimal to binary numbers conversion
 # 
 # Series:
 # Little Useless-useful R functions #39
@@ -67,6 +67,7 @@ for (i in 2:100){
 # change formats
 df$dec_x <- as.numeric(df$dec_x)
 df$bin_y <- as.numeric(df$bin_y)
+
 
 
 library(ggplot2)
