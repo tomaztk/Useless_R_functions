@@ -46,29 +46,26 @@ library(qrcode)
 library(tidyverse)
 library(ggplot2)
 
-text <- "https://medium.com/@tomazkastrun/culture-fit-or-culture-add-e89ca0485ed1"
+text <- 'https://is.gd/YU3c8m'
 color <- "green"
-x <- qrcode_gen(text, plotQRcode=F, dataOutput=T)
+
+x <- qr_code(text, ecl="L") #'arg' should be one of “L”, “M”, “Q”, “H”
 x <- as.data.frame(x)
+
+
+#convert logic to numeric
+cols <- sapply(x, is.logical)
+x[,cols] <- lapply(x[,cols], as.numeric)
 
 y = x
 y$id <- rownames(y)
 
-y <- gather(y, "key", "value", colnames(y)[-ncol(y)])
+# transpose for ggplot and make factors
+y <- gather(y, "key", "val", colnames(y)[-ncol(y)])
+y$key = factor(y$key, levels=rev(colnames(x)))
+y$id = factor(y$id, levels=rev(rownames(x)))
 
-# y$key = factor(y$key, levels=rev(colnames(x)))
-# y$id = factor(y$id, levels=rev(rownames(x)))
 
-ggplot(y, aes(x=id, y=key)) + geom_tile(aes(fill=value), alpha=alpha)
 
-## Test 2
-x <- qr_code(text, ecl="M")
-x <- as.data.frame(x)
-
-y = x
-y$id <- rownames(y)
-
-y <- gather(y, "key", "value", colnames(y)[-ncol(y)])
-
-ggplot(y, aes(x=id, y=key)) + geom_tile(aes(fill=value), alpha=alpha) # + scale_fill_gradient(low=White, high = color) + theme_void() 
+ggplot(y, aes(x=id, y=key)) + geom_tile(aes(fill=val)) +  theme_void() + theme(legend.position = "none")
                                            
