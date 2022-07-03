@@ -155,3 +155,173 @@ flights %>%
   count(zacetek)
 
 
+
+
+# ------ tip7: str_replace_all to find and replace multiple options as once
+
+flights %>%
+  mutate (origin  = str_replace_all(origin, c(
+    "^EWR$" = "New Arch Airoporto",
+    "^JFK$" = "Janez F. K. letališče",
+    "^LGA$" = "Letalisce GAS"
+  ))) %>%
+  count(origin)
+
+
+# ------ tip8: transmute to create or change the column and keep only those columns
+## difference between mute and transmute -> transmute keep only the columns created
+flights %>%
+  transmute(date = make_date(year, month, day), tailnum)
+
+# ------ tip9: use pipe %>% everywhere including inside mutate
+
+airlines %>%
+    mutate(name = name %>%
+             str_to_upper() %>%
+             str_replace_all (" (INC|CO)\\.?$", "") %>%
+             str_replace_all (" AIR ?(LINES|WAYS)?( CORPORATION)?$", "") %>%
+             str_to_title() %>%
+             str_replace_all("\\bUs\b", "US")
+             )
+
+# OR
+# hard to read, of course
+airlines %>% mutate(name = str_replace_all(str_to_title(str_replace_all(str_replace_all(str_to_upper(name),
+                                            " (INC|CO)\\.?$", "")," AIR ?(LINES|WAYS)?( CORPORATION)?$", "")),"\\bUs\b", "US"))
+
+
+# ------ tip10: Filter groups without making new column
+
+flights %>%
+  count(carrier, sort = TRUE)
+
+
+flights_top_carriers <- flights %>%
+  group_by (carrier) %>%
+  filter(n() > 10000) %>%
+  ungroup()
+
+flights_top_carriers %>% 
+  count(carrier, sort = TRUE)
+
+
+# ------ tip11: Split the string into two columns based on regular expression
+  
+airlines %>%
+  extract(
+    name,
+    into = c("short_name", "remainder"),
+    regex = "^([^\\s]+) (.*)$"
+  )
+
+airlines %>%
+  extract(
+    name,
+    into = c("short_name", "remainder"),
+    regex = "^([^\\s]+) (.*)$",
+    remove = FALSE
+    )
+
+# ------ tip12:  semi_join to pick only rows from the first table which are matched in the second table
+
+airways_begining_with_a <- airlines %>%
+  filter(name %>% str_detect("^A"))
+
+flights %>%
+  semi_join(airways_begining_with_a, by="carrier")
+
+flights %>%
+  semi_join(airways_begining_with_a, by="carrier") %>%
+  count(carrier)
+
+
+# ------ tip13:  anti_join  only select rows from the first table that are not (!) matched with second table
+
+flights %>%
+  anti_join (airways_begining_with_a, by = "carrier") 
+
+flights %>%
+  anti_join (airways_begining_with_a, by = "carrier") %>%
+  count(carrier, sort = TRUE) %>%
+  ungroup()
+
+# ------ tip14: fct_reorder to sort bar chart
+
+flights_with_airline_name <- flights %>%
+  left_join(airlines, by = "carrier")
+
+#unsorted
+flights_with_airline_name %>%
+  count(name) %>%
+  ggplot(aes(name, n)) +
+  geom_col()
+
+# sorted
+flights_with_airline_name %>%
+  count(name) %>%
+  mutate(name = fct_reorder(name, n)) %>%
+  ggplot(aes(name, n)) +
+  geom_col()
+
+#----- tip15: coord_flip()
+
+flights_with_airline_name %>%
+  count(name) %>%
+  mutate(name = fct_reorder(name, n)) %>%
+  ggplot(aes(name, n)) +
+  geom_col() + 
+  coord_flip()
+
+
+# --- tip16: using fct_lump to lump some factor levels into the "other"
+
+flights_with_airline_name %>%
+  mutate(name = fct_lump(name, n=5)) %>%
+  count(name) %>%
+  mutate(name = fct_reorder(name, n)) %>%
+  ggplot(aes(name, n)) +
+  geom_col() + 
+  coord_flip()
+
+
+# ------ tip17: use crossing to generate all possible combinations
+
+crossing(
+  starost = c(30,40,50,60,70),
+  status = c("novi", "obstojeci"),
+  placa = c("0-100EUR", "101-200E", "201-300", "301-400"),
+  temperatura = c(30,35,34)
+  
+)
+
+# ------ tip18: create function that take column names with double curly braces
+
+
+col_summary <- function(data, col_names, na.rm = TRUE){
+  data %>%
+    summarise(across({{col_names}},
+    list(
+      min = min,
+      max = max,
+      median = median,
+      mean = mean
+    ),
+  na.rm =na.rm,
+  .names = "{col}_{fn}"
+  ))
+}
+
+flights_with_airline_name %>%
+  col_summary(c(air_time, arr_delay))
+
+flights_with_airline_name %>%
+  group_by(carrier) %>%
+  col_summary(c(air_time, arr_delay))
+
+
+
+# --- tip19: ggplot2, GGThemeAssist, esquise
+
+library(ggplot2)
+library(GGThemeAssist)
+library(esquisss)
