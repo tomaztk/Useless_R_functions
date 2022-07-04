@@ -325,3 +325,94 @@ flights_with_airline_name %>%
 library(ggplot2)
 library(GGThemeAssist)
 library(esquisss)
+
+
+library(plotly)
+
+
+#--- tip20: markdown, kableExtra
+
+
+
+
+
+# -- tip21: bad vs. good loop
+
+bad.loop <- function(n,x){
+    result <- NULL
+    for  (i in 1:n){
+      result[i] <- x
+    }
+    result
+}
+
+bad.loop(19,33)
+
+# Problem1: large number of iterations
+# problem2: item result vector is reallocated and copied every run
+# Problem3: GC must be triggered periodically
+# Problem4: Many tiny computations over single iteration
+
+
+better.loop <- function(n,x){
+  result <- double(n)
+  for  (i in 1:n){
+    result[i] <- x
+  }
+  result
+}
+
+better.loop(19,33)
+
+# improvement1: smaller allocation due to defining the vector (double(n))
+
+
+vector.loop <- function(n,x){
+  result <- double(n)
+  result[] <- x
+  result
+}
+
+vector.loop(19,33)
+
+# improvement1: using vector assignement
+
+built.in <- function(n,x){
+  rep(x,n)
+}
+
+built.in(19,33)
+
+library(microbenchmark)
+
+n =1000000
+x = 10
+res <- microbenchmark(bad = bad.loop(n,x), okay = better.loop(n,x), vector = vector.loop(n,x), built_in_shit = built.in(n,x))
+
+knitr::kable(summary(res, unit = "relative"))
+
+autoplot(res)
+
+
+# another bad loop
+# problem 1. making and keeping copies (with rbind..)
+bad.loop.norm <- function(n,x){
+  m <- NULL
+  for (i in 1:n){
+    m <- rbind(m, rnorm(X))
+  }
+  m  
+}
+
+ok.norm <- function(n,x){
+  m <- matrix(0, nrow=n, ncol=x)
+  for (i in 1:n){
+   m[i,] <- rnorm(100)
+  }
+  m  
+}
+
+faster.loop <- function(n,x){
+  do.call('rbind', lapply(1:n, function(i) rnorm(x) ))
+  }
+
