@@ -416,3 +416,13 @@ faster.loop <- function(n,x){
   do.call('rbind', lapply(1:n, function(i) rnorm(x) ))
   }
 
+faster.loop(n, c)
+
+best.norm <- function(n,x){
+  m <- rnorm(x*n)
+  dim(m) <- c(x,n)
+  t(m)
+}
+
+
+
