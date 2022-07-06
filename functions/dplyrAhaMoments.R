@@ -426,3 +426,15 @@ best.norm <- function(n,x){
 
 
 
+### Programming
+summarise_mean <- function(data, vars) {
+	data %>% 
+		summarise(
+					n = n(), 
+					across({{ vars }}, mean)
+					
+				)
+}
+
+
+summarise_mean(iris,"Sepal.Length")
