@@ -17,20 +17,25 @@ library(tidyverse)
 library(nycflights13)
 # will be installed automatically if missing: ggplot2, purrr, tibble, dplyr, tidyr, stringr, readr , forcats
 
+flights <- flights
 
 
-#### ------------------------------------------------
-#  1. Use pipe "%>%" everywhere, including in mutate
-#### ------------------------------------------------
+#### -------------------------------------------------------
+#  1. Use pipe "%>%" everywhere, including nesting functions
+#### -------------------------------------------------------
 
+# inner piping inside mutate
 airlines %>%
-  mutate(name = name %>%
+  mutate(name_short = name %>%
            str_to_upper() %>%
            str_replace_all (" (INC|CO)\\.?$", "") %>%
            str_replace_all (" AIR ?(LINES|WAYS)?( CORPORATION)?$", "") %>%
            str_to_title() %>%
            str_replace_all("\\bUs\b", "US")
-)  
+) %>%
+  mutate(FullName_length = nchar(name)) %>%
+  select (name_short, FullName_length) %>%
+  arrange(desc(FullName_length))
 
 
 
@@ -47,6 +52,25 @@ airlines %>% mutate(name = str_replace_all(
 
 # 2. Replacing/rounding/...  across multiple columns at once
 
+# round
+flights %>%
+  mutate(across(c(dep_delay, arr_delay), abs))  #round)) 
+
+flights %>%
+  summarise(across(where(is.integer), n_distinct))
+
+
+flights %>%
+  summarise(across(where(is.integer), count ))
+
+
+
+
+# formatting
+flights %>%
+  mutate(across(c(dep_delay, arr_delay), as.integer))
+
+
 flights %>%
   mutate (origin  = str_replace_all(origin, c(
     "^EWR$" = "New Arch Airoporto",
@@ -57,11 +81,27 @@ flights %>%
 
 
 flights %>%
+  group_by(origin) %>%
+  summarise(across(c(dep_time, sched_dep_time, arr_time)), n_distinct ) 
+
+
+
+#flights %>%
+#  group_by(carrier) %>%
+#  summarise(across( c(dep_time,sched_arr_time,arr_time, sched_dep_time)),  ~ mean(.x,  na.rm=TRUE))
+
+
+flights %>%
+  group_by(carrier) %>%
+  summarise(across(ends_with("time"), list(mean = mean, sd = sd), .names = "{.col}.{.fn}"))
+
+
+flights %>%
   mutate(across(c(dep_time , sched_dep_time, arr_time, air_time)) ~ !is.na(.x))
 
-# round
-iris %>%
-  mutate(across(c(Sepal.Length, Sepal.Width), round))
+
+
+
 
 
 # 3. Replacing values
@@ -93,6 +133,11 @@ crossing(
 
 # 7. Reshaping data with pivot_wider and pivot_longer and spread/gather
 
+
+
 # 8. Importing data into specified column types
 
+
 # 9. Adding ID to your dataframe
+flights %>%
+  mutate(running_id = row_number())
