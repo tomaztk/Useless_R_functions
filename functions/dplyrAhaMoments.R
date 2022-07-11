@@ -335,7 +335,6 @@ library(plotly)
 
 
 
-
 # -- tip21: bad vs. good loop
 
 bad.loop <- function(n,x){
@@ -425,16 +424,17 @@ best.norm <- function(n,x){
 }
 
 
+# -- tip22:  Programming
 
-### Programming
 summarise_mean <- function(data, vars) {
 	data %>% 
 		summarise(
 					n = n(), 
 					across({{ vars }}, mean)
-					
 				)
 }
 
-
 summarise_mean(iris,"Sepal.Length")
+
+
+# -- tip23:  Using GIT
