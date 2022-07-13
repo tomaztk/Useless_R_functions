@@ -50,25 +50,70 @@ airlines %>% mutate(name = str_replace_all(
 
 
 
-# 2. Replacing/rounding/...  across multiple columns at once
+#### -------------------------------------------------------
+#  2. Operations across multiple columns at once
+#### -------------------------------------------------------
 
-# round
+# using single functions as ABS, Round, N_distinct
 flights %>%
-  mutate(across(c(dep_delay, arr_delay), abs))  #round)) 
+  mutate(across(c(dep_delay, arr_delay), abs))   
 
+flights %>%
+  mutate(across(c(dep_delay, arr_delay), round)) 
+
+# adding where function to select columns
 flights %>%
   summarise(across(where(is.integer), n_distinct))
-
-
-flights %>%
-  summarise(across(where(is.integer), count ))
-
-
-
 
 # formatting
 flights %>%
   mutate(across(c(dep_delay, arr_delay), as.integer))
+
+
+
+# Using purr-style lambda functions!
+flights %>%
+  summarise(across(c(dep_time, arr_time), ~ sum(.x, na.rm = TRUE))) 
+
+flights %>%
+  summarise(across(c(dep_time, arr_time), ~ mean(.x, na.rm = TRUE)))
+
+flights %>%
+  summarise(across(where(is.integer), ~ sum(.x, na.rm = TRUE))) 
+
+
+# using group_by
+flights %>%
+  group_by(origin) %>%
+  summarise(across(c(dep_time, sched_dep_time, arr_time), n_distinct ))
+
+
+flights %>%
+  group_by(carrier) %>%
+  summarise(across(c(dep_time,sched_arr_time,arr_time, sched_dep_time),  ~ sum(.x,  na.rm=TRUE)))
+
+
+# using list of functions, defining column names and removing NA
+flights %>%
+  group_by(carrier) %>%
+  summarise(across(ends_with("time"), list(AVG = mean, SD = sd, GrandTotal= ~ sum(is.na(.x))),  na.rm=TRUE, .names = "{.col}.{.fn}"))
+
+
+
+
+#### -------------------------------------------------------
+#  3. Case_when to create/change a column based on condition
+#### -------------------------------------------------------
+
+
+flights %>%
+  mutate(zacetek=case_when(
+    origin == "EWR" ~ "Newark Airporto",
+    origin == "JFK" ~ "Kenedijevo letalisce",
+    origin == "LGA" &  air_time <= 220 ~ "La Guardia pod 6 ur",
+    TRUE   ~ "La Guardia nad 6 ur"
+  )) %>%
+  count(zacetek)
 
 
 flights %>%
@@ -79,43 +124,6 @@ flights %>%
   ))) %>%
   count(origin)
 
-
-flights %>%
-  group_by(origin) %>%
-  summarise(across(c(dep_time, sched_dep_time, arr_time)), n_distinct ) 
-
-
-
-#flights %>%
-#  group_by(carrier) %>%
-#  summarise(across( c(dep_time,sched_arr_time,arr_time, sched_dep_time)),  ~ mean(.x,  na.rm=TRUE))
-
-
-flights %>%
-  group_by(carrier) %>%
-  summarise(across(ends_with("time"), list(mean = mean, sd = sd), .names = "{.col}.{.fn}"))
-
-
-flights %>%
-  mutate(across(c(dep_time , sched_dep_time, arr_time, air_time)) ~ !is.na(.x))
-
-
-
-
-
-
-# 3. Replacing values
-
-# 4. Case_when to create (change) a column based on condition
-
-flights %>%
-  mutate(zacetek=case_when(
-    origin == "EWR" ~ "Newark Airporto",
-    origin == "JFK" ~ "Kenedijevo letalisce",
-    origin == "LGA" &  air_time <= 220 ~ "La Guardia pod 6 ur",
-    TRUE   ~ "La Guardia nad 6 ur"
-  )) %>%
-  count(zacetek)
 
 
 # 5. Lumping some variables into factors and others into "other"
