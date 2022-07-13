@@ -149,37 +149,124 @@ flights %>%
 
 
 
+#### -------------------------------------------------------
+# 5. Lumping levels for variable into factors and into "other"
+#### -------------------------------------------------------
 
-# 5. Lumping some variables into factors and others into "other"
+#sample
+x <- factor(rep(LETTERS[1:15], times = c(20,15,23,2,4,3,1,1,1,5,2,8,3,1,1))) 
+x %>% table()
 
-# 6. Using crossing to generate all possible combinations
+x %>% fct_lump_n(5) %>% table()
+x %>% fct_lump_min(5) %>% table()
+
+
+
+flights %>%
+  mutate(name = fct_lump_n(carrier, 5)) %>%
+  count(name) %>%
+  mutate(name = fct_reorder(name, n)) %>%
+  ggplot(aes(x=name, y=n)) +
+  geom_col() 
+
+
+
+#### -------------------------------------------------------
+#  6. Using crossing to generate all possible combinations
+#### -------------------------------------------------------
+
 
 crossing(
-  starost = c(30,40,50,60,70),
-  status = c("novi", "obstojeci"),
-  placa = c("0-100EUR", "101-200E", "201-300", "301-400"),
-  temperatura = c(30,35,34)
+  age = c(30,40,50,60,70),
+  status = c("New", "Used"),
+  values = c("0-100EUR", "101-200E", "201-300", "301-400"),
+  temperature = c(30,35,34)
 )
 
+# generating all possible combinations
+flights %>% expand(origin, dest, dep_time,carrier)
 
 
-# 7. Reshaping data with pivot_wider and pivot_longer and spread/gather
-
-
-
-# 8. Importing data into specified column types
-
-
-# 9. Adding ID to your dataframe
+# getting all possible combinations that are present in dataset using crossing
 flights %>%
+  select(origin, dest, dep_time,carrier) %>%
+  crossing()
+# > 97,946 more rows
+
+# getting all possible combinations using expand and nesting
+flights %>% expand(nesting(origin, dest, dep_time,carrier))
+# > 97,946 more rows
+
+
+
+
+#### -------------------------------------------------------
+# 7. Reshaping data with pivot_wider and pivot_longer and spread/gather
+#### -------------------------------------------------------
+
+#pivot_wider
+
+flights %>%
+  group_by(carrier) %>%
+  select(origin, dep_time, arr_time) %>%
+  pivot_wider(
+          names_from = origin, 
+          values_from = c(dep_time,arr_time), 
+          values_fn = ~mean(.x, na.rm = TRUE),
+          names_glue = "{origin}_{.value}"
+          )
+
+#check calculation for carrier UA and origin EWR
+flights %>%
+  filter(carrier == 'UA' & origin == 'EWR') %>%
+  group_by(carrier) %>%
+    summarise(
+    avg_dep_time = mean(dep_time, na.rm = TRUE)
+  )
+
+
+#pivot_longer
+
+#create and persist dataframe called: flights_wider
+flights_wider <- flights %>%
+  group_by(carrier) %>%
+  select(origin, dep_time, arr_time) %>%
+  pivot_wider(
+    names_from = origin, 
+    values_from = c(dep_time,arr_time), 
+    values_fn = ~mean(.x, na.rm = TRUE),
+    names_glue = "{origin}_{.value}"
+  )
+
+
+flights_wider %>%
+  pivot_longer(
+    !carrier,
+    names_to = "origin",
+    values_to = "time",
+    values_drop_na = TRUE
+  )
+
+#or with cols parameter and defining the pattern for column selection
+flights_wider %>%
+  pivot_longer(
+    cols = ends_with("time"),
+    names_to = "origin",
+    values_to = "time",
+    values_drop_na = TRUE
+  )
+
+
+
+#### -------------------------------------------------------
+#  8. Adding ID to your dataframe
+#### -------------------------------------------------------
+
+# Associate ID with every row in dataset
+flights %>% 
   mutate(running_id = row_number())
 
+# or using tibble row_to_column function
+flights2 <- tibble::rowid_to_column(flights, ID)
 
 
-flights %>%
-  mutate (origin  = str_replace_all(origin, c(
-    "^EWR$" = "New Arch Airoporto",
-    "^JFK$" = "Janez F. K. letališèe",
-    "^LGA$" = "Letalisce GAS"
-  ))) %>%
-  count(origin)
