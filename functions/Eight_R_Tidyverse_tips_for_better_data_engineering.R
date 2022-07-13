@@ -102,27 +102,51 @@ flights %>%
 
 
 #### -------------------------------------------------------
-#  3. Case_when to create/change a column based on condition
+#  3. Case statement to create/change a column based on condition
 #### -------------------------------------------------------
 
+#simple case to give you an idea
+x <- c(1,2,3,0,7,4,22,0,0,-1)
+
+case_stat <- function(x){
+  case_when(
+    x == 0 ~ "NA",
+    x >= 1 & x <= 4 ~ "From 1 to 4",
+    x >= 5 & x <= 7 ~ "From 5 to 7",
+    TRUE   ~ "Above 8 and beyond or negative :)"
+  )
+}
+#run sample function
+case_stat(x)
+
 
 flights %>%
-  mutate(zacetek=case_when(
-    origin == "EWR" ~ "Newark Airporto",
-    origin == "JFK" ~ "Kenedijevo letalisce",
-    origin == "LGA" &  air_time <= 220 ~ "La Guardia pod 6 ur",
-    TRUE   ~ "La Guardia nad 6 ur"
+  group_by(carrier) %>%
+  mutate(new_classification = case_when(
+    (origin == "EWR") & (dep_delay <= 0) ~ "EWR with negative delay",
+    (origin == "EWR") & (dep_delay > 0) ~ "EWR with positive delay",
+    (origin == "JFK") ~ "Stats for JFK Airport",
+    (origin == "LGA") &  (air_time <= 220) ~ "La Guardia under 6 hours flights",
+    TRUE   ~ "La Guardia above 6 hours flights"
   )) %>%
-  count(zacetek)
+  count(new_classification) %>%
+  ungroup()
+
+
+
+#### -------------------------------------------------------
+#  4. Using transmute and comparison with mutate+select
+#### -------------------------------------------------------
+library(lubridate)
+
+flights %>%
+  mutate(date = make_date(year, month, day), carrier, tailnum) %>%
+  select(date, carrier, tailnum)
 
 
 flights %>%
-  mutate (origin  = str_replace_all(origin, c(
-    "^EWR$" = "New Arch Airoporto",
-    "^JFK$" = "Janez F. K. letališèe",
-    "^LGA$" = "Letalisce GAS"
-  ))) %>%
-  count(origin)
+  transmute(date = make_date(year, month, day), carrier, tailnum)
+
 
 
 
@@ -149,3 +173,13 @@ crossing(
 # 9. Adding ID to your dataframe
 flights %>%
   mutate(running_id = row_number())
+
+
+
+flights %>%
+  mutate (origin  = str_replace_all(origin, c(
+    "^EWR$" = "New Arch Airoporto",
+    "^JFK$" = "Janez F. K. letališèe",
+    "^LGA$" = "Letalisce GAS"
+  ))) %>%
+  count(origin)
