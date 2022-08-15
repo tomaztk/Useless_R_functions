@@ -88,6 +88,7 @@ plot_path(greedy_TSP(cities))
 ##############
 ## Animation
 ##############
+mm <- greedy_TSP(cities)
 library(gganimate)
 ggplot(data=mm, aes(x = x, y = y, label=name) , colour="red", size = 2) +
   geom_point(show.legend = FALSE) +
