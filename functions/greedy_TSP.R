@@ -96,3 +96,28 @@ ggplot(data=mm, aes(x = x, y = y, label=name) , colour="red", size = 2) +
   transition_time(as.numeric(name)) +
   guides(alpha = F) +
   shadow_mark(past = T, future=F, alpha=0.3, colour="red")
+
+
+# or
+greedy_TSP(cities) %>%
+  select (x, y, name) %>%
+  mutate(time_name=as.numeric(name)) %>%
+  uncount(df_size, .id = "frame") %>%
+  filter(time_name <= frame) %>%
+  arrange(frame, time_name) %>%
+  group_by(frame) %>%
+  mutate(x_lag = lag(x), 
+         y_lag = lag(y),
+         tail = last(time_name) - time_name,
+         point_alpha = if_else(tail == 0, 1, 0.3),
+         segment_alpha = pmax(0, (df_size-tail)/df_size)) %>%
+  ungroup() %>%
+  ggplot(aes(x=y, y=x, xend = y_lag, yend = x_lag, group = time_name)) +
+  geom_segment(aes(alpha = segment_alpha)) +
+  geom_point(aes(alpha = point_alpha, colour="red"), show.legend = FALSE) +
+  labs(title = 'Greedy Salesman travelling between the cities', x= 'X-axis', y =  'Y-axis') +
+  scale_alpha(range = c(0,1)) +
+  guides(alpha = F) +
+  transition_manual(frame) 
+
+
