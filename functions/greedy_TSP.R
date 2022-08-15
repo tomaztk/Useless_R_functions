@@ -76,7 +76,11 @@ plot_path <- function(df){
     #plot(p)     # each step
     #Sys.sleep(0.01)
   }
-  p <- ggplot(data=dt_temp, aes(x = x, y = y, label=name) , colour="red", size = 2) +    geom_point() + geom_text(aes(label=name), hjust=1, vjust=-0.1) +theme(aspect.ratio=1) + coord_cartesian(xlim = c(0, 125), ylim = c(0, 125))
+  p <- ggplot(data=dt_temp, aes(x = x, y = y, label=name) , colour="red", size = 2) +    
+          geom_point() + 
+          geom_text(aes(label=name), hjust=1, vjust=-0.1) +
+          theme(aspect.ratio=1) + 
+          coord_cartesian(xlim = c(0, 125), ylim = c(0, 125))
   plot(p)
 }
 
