@@ -39,26 +39,25 @@ canSumBF(87, c(13,10)) ## false
 #' so that diminish the number of recursions
 
 
-canSumMEMO <- function(target, numbers, memo = c()){
+canSumMEMO <- function(target, numbers, memo = list()){
   if (target == 0) { return (TRUE) }
   if (target < 0){ return (FALSE) }
-  if (target %in% memo) { return (memo[target]) }
+  if (target %in% names(memo)) { return (memo[[as.character(target)]]) }
   
+  #print(memo)
   for (i in 1:length(numbers)){
     remainder <- target - numbers[i] 
     if (canSumMEMO(remainder, numbers, memo) == TRUE) {
-      memo[target] <- TRUE;
+      memo[[as.character(target) ]] <- TRUE;
       return (TRUE)
     }
   }
-  memo[target] <- FALSE;
+  memo[[as.character(target)]] <- FALSE;
   return(FALSE)
 }
 
-
 # test memo
 canSumMEMO(250, c(7,14)) ## false 
-
 canSumMEMO(150, c(7,14)) ## false 
 
 
