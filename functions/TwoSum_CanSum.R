@@ -35,12 +35,10 @@ canSumBF <- function(target, numbers){
 
 
 #combo test
+canSumBF(7, c(2,3,5)) ## true
 canSumBF(8, c(5,3,4,7)) ## true
 canSumBF(87, c(13,10)) ## false
 canSumBF(250, c(7,14)) ## false ... takes cca 45 sec :)
-
-
-
 
 
 ## Using memos for intermediate states 
@@ -67,7 +65,23 @@ canSumMEMO <- function(target, numbers, memo = list()){
 }
 
 # test memo
-canSumMEMO(250, c(7,14)) ## false ... but superfast :)
-canSumMEMO(150, c(7,14)) ## false ..check if the results are same
+canSumMEMO(250, c(7,14)) ## false ...superfast :)
+canSumMEMO(150, c(7,14)) ## false 
 canSumMEMO(8, c(5,3,4,7)) ## true
+
+
+
+
+
+########## compare both solutions
+
+startBF <- Sys.time()
+canSumBF(250, c(7,14)) 
+endBF <- Sys.time()
+timeBF <- endBF - startBF
+
+startMEMO <- Sys.time()
+canSumMEMO(250, c(7,14)) 
+endMEMO <- Sys.time()
+timeMEMO <- endMEMO - startMEMO
 
