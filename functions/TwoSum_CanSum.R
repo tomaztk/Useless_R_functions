@@ -1,14 +1,25 @@
-# #################
-#
-# Little useless-useful R functions 
-#   Solution with O(n) Time and O(n) Space with 
-#   R on for CanSum() problem
+##########################################
 #
 #
-# #################
+# Solution with O(n) Time and O(n) Space with 
+# R on for CanSum() problem
+#
+# Series:
+# Little Useless-useful R functions #43
+# Created: October 15, 2022
+# Author: Tomaz Kastrun
+# Blog: tomaztsql.wordpress.com
+# V.1.0
+#
+# Changelog: 
+#
+##########################################
+
 
 
 ## Using Brute Force
+#' Each step of the subtree will be calculated again
+
 canSumBF <- function(target, numbers){
   if (target == 0) { return (TRUE) }
   if (target < 0){ return (FALSE) }
@@ -22,42 +33,41 @@ canSumBF <- function(target, numbers){
   return(FALSE)
 }
 
-t <- 7
-n <- c(5,3,4,7)
-
-#test Brute Force
-canSumBF(t, n) 
-
 
 #combo test
-canSumBF(7, c(5,3,4,7)) ## true
-canSumBF(250, c(7,14)) ## false ... takes cca 45 sec :)
+canSumBF(8, c(5,3,4,7)) ## true
 canSumBF(87, c(13,10)) ## false
+canSumBF(250, c(7,14)) ## false ... takes cca 45 sec :)
+
+
+
+
 
 ## Using memos for intermediate states 
-#' we will use intermediate states to store calculation
-#' so that diminish the number of recursions
-
-
+#' Calling recursive function and store
+#' intermediate states of subtree calculations
+#' to diminish the number of recursions
 canSumMEMO <- function(target, numbers, memo = list()){
   if (target == 0) { return (TRUE) }
-  if (target < 0){ return (FALSE) }
-  if (target %in% names(memo)) { return (memo[[as.character(target)]]) }
+  if (target < 0)  { return (FALSE) }
+  if (target %in% names(memo)) {
+    return (memo[[as.character(target)]])
+  }
   
-  #print(memo)
   for (i in 1:length(numbers)){
-    remainder <- target - numbers[i] 
-    if (canSumMEMO(remainder, numbers, memo) == TRUE) {
-      memo[[as.character(target) ]] <- TRUE;
+    remainder <- target - numbers[i]
+    if (canSumMEMO(remainder, numbers[i], memo) == TRUE) {
+      memo[[as.character(target)]] <- TRUE
       return (TRUE)
     }
   }
   memo[[as.character(target)]] <- FALSE;
   return(FALSE)
+  
 }
 
 # test memo
-canSumMEMO(250, c(7,14)) ## false 
-canSumMEMO(150, c(7,14)) ## false 
-
+canSumMEMO(250, c(7,14)) ## false ... but superfast :)
+canSumMEMO(150, c(7,14)) ## false ..check if the results are same
+canSumMEMO(8, c(5,3,4,7)) ## true
 
