@@ -54,7 +54,9 @@ canSumMEMO <- function(target, numbers, memo = list()){
   
   for (i in 1:length(numbers)){
     remainder <- target - numbers[i]
-    if (canSumMEMO(remainder, numbers[i], memo) == TRUE) {
+    # Fixed version to emulate behaviour of canSumBF
+    if (canSumMEMO(remainder, numbers, memo) == TRUE) {
+     #if (canSumMEMO(remainder, numbers[i], memo) == TRUE) {
       memo[[as.character(target)]] <- TRUE
       return (TRUE)
     }
