@@ -1,10 +1,18 @@
-########################
+##########################################
 #
 #
-# Levenshtein distance
+# Calcuate Levenshtein distance
 #
+# Series:
+# Little Useless-useful R functions #43
+# Created: October 15, 2022
+# Author: Tomaz Kastrun
+# Blog: tomaztsql.wordpress.com
+# V.1.0
 #
-#######################
+# Changelog: 
+#
+##########################################
 
 a <- "tomaz"
 b <- "tone"
