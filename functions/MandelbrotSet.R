@@ -19,13 +19,15 @@
 
 cols <- colorRampPalette(c("blue","yellow","red","black"))(11)
 
+# Parameters
 xmin <- -2
-xmax <- 2
-nx <- 150
+xmax <- 1
+nx <- 250
 ymin <- -1.5
 ymax <- 1.5
-ny <- 150
-n <- 200
+ny <- 250
+n <- 400
+
 
 # variables
 x <- seq(xmin, xmax, length.out=nx)
@@ -33,6 +35,7 @@ y <- seq(ymin, ymax, length.out=ny)
 c <- outer(x,y*1i,FUN="+")
 z <- matrix(0.0, nrow=length(x), ncol=length(y))
 k <- matrix(0.0, nrow=length(x), ncol=length(y))
+
 
 
 for (rep in 1:n) { 
