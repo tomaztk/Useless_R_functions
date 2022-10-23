@@ -39,7 +39,7 @@ k <- matrix(0.0, nrow=length(x), ncol=length(y))
 
 
 for (rep in 1:n) { 
-  print(rep)
+  #print(rep)
   for (i in 1:nx) { 
     for (j in 1:ny) { 
       if(Mod(z[i,j]) < 2 && k[i,j] < n) {
@@ -51,6 +51,11 @@ for (rep in 1:n) {
 }
 
 image(x,y,k, col=cols)
+
+
+df <- data.frame(x=x,  y=y)
+
+ggplot(df, aes(x=x, y=y,color=cols)) + geom_point()
 
 
 
