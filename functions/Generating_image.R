@@ -17,3 +17,7 @@ random_image <- function(num, pow, val,len) {
 
 random_image(4,4,3,25)
 
+
+ran <- matrix(runif(n=500, min=2, max=300), nrow=25)
+image(t(ran)[ncol(ran):1,],axes = FALSE)
+
