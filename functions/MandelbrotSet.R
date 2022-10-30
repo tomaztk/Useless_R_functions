@@ -15,15 +15,14 @@
 #
 ##########################################
 
-require("grDevices") 
-cols <- colorRampPalette(c("black","white","grey","black"))(11)
+cols <- colorRampPalette(c("white","black","white","grey","black"))(11)
 n <- 400
 
 
 # variables
 x <- seq(-2, 1, length.out=250)
 y <- seq(-1.5, 1.5, length.out=250)
-c <- outer(x,y*1i,FUN="+")
+c <- outer(x,y*1i,"+")
 z <- matrix(0.0, nrow=length(x), ncol=length(y))
 k <- matrix(0.0, nrow=length(x), ncol=length(y))
 
@@ -39,9 +38,8 @@ for (rep in 1:n) {
   }
 }
 
-image(x,y,k, col=cols, axes = FALSE, main = "The Mandelbrot set", xlab = "" , ylab = "" )
-contour(k, add = TRUE, drawlabels = FALSE)
-
+image(x,y,k, col=cols, axes = FALSE, xlab = "" , ylab = "" )
+# contour(k, add = TRUE, drawlabels = FALSE)
 
 
 
