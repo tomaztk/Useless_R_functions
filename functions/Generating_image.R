@@ -15,9 +15,13 @@ random_image <- function(num, pow, val,len) {
 }
 
 
-random_image(4,4,3,25)
+random_image(1,1,100,100)
 
 
 ran <- matrix(runif(n=500, min=2, max=300), nrow=25)
-image(t(ran)[ncol(ran):1,],axes = FALSE)
+image(t(ran)[ncol(ran):2,],axes = FALSE)
 
+
+funk <- function(a,b) log(a^b*a)*pi
+a <- b <- 10L
+image(outer(1:a,1:b,funk))

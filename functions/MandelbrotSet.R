@@ -39,7 +39,8 @@ for (rep in 1:n) {
 }
 
 image(x,y,k, col=cols, axes = FALSE, xlab = "" , ylab = "" )
-# contour(k, add = TRUE, drawlabels = FALSE)
+
+
 
 
 
