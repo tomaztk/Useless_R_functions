@@ -31,21 +31,26 @@ reverseInteger <- function(x){
     r_ints <- (rev(strsplit(as.character(x), "")[[1]]))
   }
   r_ints2 <- paste(r_ints, collapse = "")
-  r_ints2 <- as.integer(r_ints2)
+  r_ints2 <- as.numeric(r_ints2)
   
-  if (x < 0) { 
-    r_ints2 <- r_ints2*-1
-  }
+
+  if ( -2**31 < r_ints2 & r_ints2 > 2**31 -1) {
+      return(0) 
+  } else {
   return(r_ints2)
+ }
 }
 
-
-
+#################
 #function check
+################
 
 reverseInteger(-4122310)
 # [1] -132214
 reverseInteger(122310)
 # [1] 13221
-reverseInteger(1222222222222222222)
+reverseInteger(12223456789) # returns zero at the beginning
+# [1] 0
+
+reverseInteger(2147483646) # returns zero after reversing the integer
 # [1] 0
