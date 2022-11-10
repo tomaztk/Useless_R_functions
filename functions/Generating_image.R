@@ -25,3 +25,6 @@ image(t(ran)[ncol(ran):2,],axes = FALSE)
 funk <- function(a,b) log(a^b*a)*pi
 a <- b <- 10L
 image(outer(1:a,1:b,funk))
+
+
+image(outer(1:10, 1:12, "log"))
