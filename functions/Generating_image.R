@@ -1,43 +1,49 @@
-# random image 
+##########################################
+#
+# Random image 
+#
+#
+# Series:
+# Little Useless-useful R functions #44
+# Created: November 25, 2022
+# Author: Tomaz Kastrun
+# Blog: tomaztsql.wordpress.com
+# V.1.0
+#
+# Changelog: 
+#
+##########################################
 
-library(grDevices)
+
+### Function 1 - using trigon. angle func.
 
 # angle = sin, cos, tan
-random_image <- function(num, pow, val,len) {
-  
-  x <- y <- seq((-num)*pi, (num)*pi, length.out = len)
-  r <- sqrt(outer(x^2, y^2, "^"))
-
-  image(z = z <- cos(r^pow)*exp(-r/(val)), col = gray.colors(36))
-  image(z, axes = FALSE)
-  contour(z, add = TRUE, drawlabels = TRUE)
-  
+random_image <- function(num, pow, val,len, angle) {
+  available_angle <- c('sin', 'cos', 'tan')
+  stopifnot(angle %in% available_angle) {
+    x <- y <- seq((-num)*pi, (num)*pi, length.out = len)
+    r <- sqrt(outer(x^2, y^2, "^"))
+    image(z = z <- {{angle}}(r^pow)*exp(-r/(val)), col = gray.colors(36))
+    image(z, axes = FALSE)
+    contour(z, add = TRUE, drawlabels = TRUE)
+  }
 }
 
-
-random_image(1,1,100,100)
-
-
-ran <- matrix(runif(n=500, min=2, max=300), nrow=25)
-image(t(ran)[ncol(ran):2,],axes = FALSE)
+# runfun
+random_image(0.5,0.1,20,150, cos)
+random_image(0.5,10,20,150, sin)
 
 
-funk <- function(a,b) log(a^b*a)*pi
-a <- b <- 10L
-image(outer(1:a,1:b,funk))
+### 2. Simplified versions
 
-
+image(matrix(runif(50*50), ncol=50))
 image(outer(1:10, 1:12, "log"))
-
 image(outer(1:10, 1:12, "*"), useRaster = TRUE)
 
 
-x <- y <- seq(-4*pi, 4*pi, len=27)
-r <- sqrt(outer(x^2, y^2, "+"))
-z <- cos(r^2)*exp(-r/6)
-image <- (z - min(z))/diff(range(z))
+### 3. Plotting useless statistics
 
-image(x,y,z)
+iris <- iris
+image(outer(iris$Sepal.Length, iris$Petal.Length))
+image(outer(iris$Sepal.Length, iris$Sepal.Width))
 
-z <- matrix(runif(500*500), ncol=500)
-image(z)
