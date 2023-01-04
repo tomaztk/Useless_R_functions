@@ -1,12 +1,11 @@
 ##########################################
-
 #
 # The Mandelbrot set
 #
 #
 # Series:
 # Little Useless-useful R functions #43
-# Created: October 15, 2022
+# Created: Jauary 04, 2023
 # Author: Tomaz Kastrun
 # Blog: tomaztsql.wordpress.com
 # V.1.0
@@ -17,7 +16,6 @@
 
 cols <- colorRampPalette(c("white","black","white","grey","black"))(11)
 n <- 400
-
 
 # variables
 x <- seq(-2, 1, length.out=250)
@@ -39,9 +37,3 @@ for (rep in 1:n) {
 }
 
 image(x,y,k, col=cols, axes = FALSE, xlab = "" , ylab = "" )
-
-
-
-
-
-
