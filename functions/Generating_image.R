@@ -21,6 +21,7 @@
 random_image <- function(num, pow, val,len, angle) {
   available_angle <- c('sin', 'cos', 'tan')
   stopifnot(angle %in% available_angle) {
+    
     x <- y <- seq((-num)*pi, (num)*pi, length.out = len)
     r <- sqrt(outer(x^2, y^2, "^"))
     image(z = z <- {{angle}}(r^pow)*exp(-r/(val)), col = gray.colors(36))
