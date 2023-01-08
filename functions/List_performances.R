@@ -40,9 +40,9 @@ df <- data.frame(t(do.call(rbind, myl)))
 
 cre_l <- function(len,start,end){ return(round(runif(len,start,end),8)) }
 myl2 <- list()
-#element is approx 46Mb in Size
+# 250.000 elements is approx 46Mb in Size
+# 2.500 elements for demo
 for (i in 1:2500){ myl2[[i]] <- (cre_l(10,0,50))  } 
-
 #####################
 # different solutions
 ####################
@@ -131,9 +131,14 @@ res <- summary(microbenchmark::microbenchmark(
       sol8 <- NULL
       sol8 <- data.frame(t(as.data.frame(myl2)))
     },
-        times = 2L))
+        times = 10L))
 
 
 
-ggplot(res, aes(x=expr, y=(mean/1000/60))) + geom_bar(stat="identity") + coord_flip()
+ggplot(res, aes(x=expr, y=(mean/1000/60))) + geom_bar(stat="identity", fill = "lightblue") +
+     coord_flip() +
+     labs(title = "Perfomance comparison", subtitle = "Converting list with 2.500 element to data.frame ") +
+     xlab("Methods") + ylab("Conversion time (s)") +
+     theme_light() +
+     geom_text(aes(label=(round(mean/1000/60*1.000,3))))
 
