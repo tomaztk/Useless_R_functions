@@ -137,7 +137,7 @@ res <- summary(microbenchmark::microbenchmark(
 
 ggplot(res, aes(x=expr, y=(mean/1000/60))) + geom_bar(stat="identity", fill = "lightblue") +
      coord_flip() +
-     labs(title = "Perfomance comparison", subtitle = "Converting list with 2.500 element to data.frame ") +
+     labs(title = "Perfomance comparison", subtitle = "Converting list with 2.500 element to data.frame \n(less mean bettter)") +
      xlab("Methods") + ylab("Conversion time (s)") +
      theme_light() +
      geom_text(aes(label=(round(mean/1000/60*1.000,3))))
