@@ -1,6 +1,6 @@
 ##########################################
 #
-# List Performances
+# List to data.frame performance
 #
 #
 # Series:
@@ -40,18 +40,21 @@ df <- data.frame(t(do.call(rbind, myl)))
 
 cre_l <- function(len,start,end){ return(round(runif(len,start,end),8)) }
 myl2 <- list()
-for (i in 1:250000){ myl2[[i]] <- (cre_l(10,0,50))  } #element is approx 46Mb in Size
+#element is approx 46Mb in Size
+for (i in 1:2500){ myl2[[i]] <- (cre_l(10,0,50))  } 
 
+#####################
+# different solutions
+####################
 
-# different three different solutions
 sol1 <- NULL
 sol1 <- data.frame(do.call(rbind, myl2))
 
-sol2 <- NULL
+sol2 <- NULL  #works for smaller lists
 for (i in 1:length(myl2)){ sol2 <- rbind(sol2, data.frame(t(unlist(myl2[i])))) }
 
-sol3 <- NULL
 library (plyr)
+sol3 <- NULL
 sol3 <- ldply(myl2, sol3)
 
 
@@ -59,66 +62,78 @@ sol4 <- NULL
 sol4 <- data.frame(t(sapply(myl2,c)))
 
 
-# sol5 <- NULL
-# sol5 <- data.frame(Reduce(rbind, myl2))
+sol5 <- NULL #works for smaller lists
+sol5 <- data.frame(Reduce(rbind, myl2)) 
 
 
-sol6 <- NULL
 library(data.table)
-sol6 <- rbindlist(myl2, use.names=TRUE, fill=TRUE, idcol=TRUE)
-
-?rbindlist
-
-sol7 <- NULL
-library(tidyverse)
-l_tib <- myl2 %>% 
-  unlist(recursive = FALSE) %>% 
-  enframe() %>% 
-  unnest()
-l_tib
+sol6 <- NULL
+#sol6 <- data.frame(rbindlist(lapply(myl2, data.frame)))
+sol6 <- data.frame(t(rbindlist(list(myl2))))
 
 
-sol8 <- NULL
-sol8 <- dplyr::bind_rows(myl2)
-sol8 <- purrr::map_df(myl2, dplyr::bind_rows)
-sol8 <- purrr::map_df(myl2, ~.x)
+# library(tidyverse)
+# sol7 <- NULL
+# sol7 <- myl2 %>% 
+#           tibble::enframe() %>% 
+#           unnest() 
 
 
-sol9 <- NULL
-library(purrr)
-sol9 <- map_df(myl2, ~.x)
+# library(reshape2)
+# library(dplyr)
+# 
+# column_names <- letters[1:10]
+# myl2 %>% map_dfr(function(x) {x <- as.data.frame(x); colnames(x) <- column_names; x}) %>% 
+#   as_tibble()
 
-sol10 <- NULL
-library(reshape)
-l <- melt(myl2)
-sol10 <- dcast(l, value ~ L1)
-
-
-sol11 <- NULL
-lov = unlist(myl2, recursive = FALSE )
 library(plyr)
-sol11 <- ldply(lov)
+sol7 <- NULL
+sol7 <- ldply(myl2, c())
 
 ##################
 # Test different solutions
 ###################
-sol1  <- NULL
-sol2  <- NULL
-sol3  <- NULL
-sol4  <- NULL
-microbenchmark::microbenchmark(
-    #solut1
-    sol1 <- data.frame(do.call(rbind, myl2)), 
-    #solut2
-    #for (i in 1:length(myl2)){ sol2 <- rbind(sol2, data.frame(t(unlist(myl2[i])))) },
-    #solut3
-    sol3 <- ldply(myl2, sol3),
-    #solut4
-    sol4 <- data.frame(t(sapply(myl2,c))),
-    
-                               times = 5L)
 
-#######
-# Results
+library(data.table)
+library(plyr)
+library(ggplot2) 
 
+res <- summary(microbenchmark::microbenchmark(
+    do_call_solution = {
+          sol1 <- NULL
+          sol1 <- data.frame(do.call(rbind, myl2))
+    }, 
+    for_loop_solution = { 
+        sol2 <- NULL
+        for (i in 1:length(myl2)){ sol2 <- rbind(sol2, data.frame(t(unlist(myl2[i])))) }
+    },
+     ldply_to_df = { 
+          sol3 <- NULL 
+          sol3 <- ldply(myl2, sol3)
+     },
+    ldply_to_c = {
+      sol4 <- NULL
+      sol4 <- ldply(myl2, c())
+    },
+    sapply = {
+        sol5 <- NULL
+        sol5 <- data.frame(t(sapply(myl2,c)))
+        },
+    recude = {
+      sol6 <- NULL
+      sol6 <- data.frame(Reduce(rbind, myl2))
+    },
+    data_table_rbindlist = {
+      sol7 <- NULL
+      sol7 <- data.frame(t(rbindlist(list(myl2))))
+    },
+    as_data_frame = {
+      sol8 <- NULL
+      sol8 <- data.frame(t(as.data.frame(myl2)))
+    },
+        times = 2L))
+
+
+
+ggplot(res, aes(x=expr, y=(mean/1000/60))) + geom_bar(stat="identity") + coord_flip()
 
