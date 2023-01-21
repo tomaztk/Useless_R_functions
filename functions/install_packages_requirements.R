@@ -34,7 +34,7 @@ install_packages <- function(packages = NULL, path_to_requirements_file = NULL) 
 }
 
 
-path_to_req.txt <- "./requirements.txt"
+path_to_req.txt <- "/Users/tomazkastrun/Documents/tomaztk_github/requirements.txt"
 install_packages(path_to_requirements = path_to_req.txt)
 
 # requirements.txt file
