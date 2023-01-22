@@ -2,3 +2,4 @@ ggplot
 caret
 leaflet
 plotly
+ggplot
