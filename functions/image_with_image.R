@@ -16,10 +16,7 @@ random_image <- function(num, pow, val,len, angle) {
   image(z = z <- {{angle}}(r^pow)*exp(-r/(val)), col = gray.colors(36))
   image(z, axes = FALSE)
   contour(z, add = TRUE, drawlabels = TRUE)
-  
 }
-
-
 
 # Build 10 images -> save them at .png format
 png(file="example%02d.png", width=480, height=480)
@@ -39,5 +36,3 @@ system("magick convert -delay 80 *.png animated_count_down.gif")
 # Remove png files
 file.remove(list.files(pattern=".png"))
   
-
-getwd()
