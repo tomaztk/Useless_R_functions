@@ -35,4 +35,3 @@ system("magick convert -delay 80 *.png animated_count_down.gif")
 
 # Remove png files
 file.remove(list.files(pattern=".png"))
-  
