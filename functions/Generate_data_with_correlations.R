@@ -37,3 +37,37 @@ rho3_4 <- -.3
 cmat <- c(rho1_2, rho1_3, rho1_4, rho2_3, rho2_4, rho3_4)
 bvn <- rnorm_multi(100, 4, 0, 1, cmat, 
                    varnames = letters[1:4])
+
+
+
+# empirical true
+
+bvn <- rnorm_multi(100, 5, 0, 1, .3, 
+                   varnames = letters[1:5], 
+                   empirical = T)
+
+
+dat <- rnorm_multi(varnames = "A") %>%
+  mutate(B = rnorm_pre(A, mu = 10, sd = 2, r = 0.5))
+
+
+dat$C <- rnorm_pre(dat$A, mu = 10, sd = 2, r = 0.5, empirical = TRUE)
+
+dat$D <- rnorm_pre(dat, r = c(.1, .2, .3), empirical = TRUE)
+
+summary(dat)
+cor(dat)
+
+
+
+
+####
+# generate X, Y Variables of sample size 200 with r coeff of 0.91
+samples = 200
+r_coef = 0.91
+
+data <- rnorm_multi(n = samples, vars = 2, r=r_coef, varnames = c("X", "Y"), empirical = TRUE)
+
+head(data)
+
+cor(data)
