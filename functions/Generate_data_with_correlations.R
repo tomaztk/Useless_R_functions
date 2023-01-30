@@ -66,7 +66,7 @@ cor(dat)
 samples = 200
 r_coef = 0.91
 
-data <- rnorm_multi(n = samples, vars = 2, r=r_coef, varnames = c("X", "Y"), empirical = TRUE)
+data <- rnorm_multi(n = samples, vars = 3, r=(0.91), varnames = c("X", "Y", "Z"), empirical = TRUE)
 
 head(data)
 
