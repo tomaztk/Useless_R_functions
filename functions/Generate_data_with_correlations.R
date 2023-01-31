@@ -69,5 +69,27 @@ r_coef = 0.91
 data <- rnorm_multi(n = samples, vars = 3, r=(0.91), varnames = c("X", "Y", "Z"), empirical = TRUE)
 
 head(data)
-
 cor(data)
+
+
+
+cor_mat <- cormat(r, vars)
+sigma <- (sd %*% t(sd)) * cor_mat
+
+p <- length(mu)
+if (!all(dim(sigma) == c(p, p))) stop(err)
+eS <- eigen(sigma, symmetric = TRUE)
+ev <- eS$values
+if (!all(ev >= -1e-06 * abs(ev[1L]))) stop(paste(err))
+X <- matrix(stats::rnorm(p * n), n)
+if (empirical) {
+  X <- scale(X, TRUE, FALSE)
+  X <- X %*% svd(X, nu = 0)$v
+  X <- scale(X, FALSE, TRUE)
+}
+
+
+
+library(MASS)
+
+MASS::mvrnorm
