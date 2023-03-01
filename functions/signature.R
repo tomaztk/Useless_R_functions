@@ -1,5 +1,18 @@
+##########################################
+# 
+# Creating a "signature" like graph with
+# xspline
+#
+# Series:
+# Little Useless-useful R functions #50
+# Created: February 01, 2023
+# Author: Tomaz Kastrun
+# Blog: tomaztsql.wordpress.com
+# V.1.0
 
-#####
+# Changelog: 
+#        
+###########################################
 
 inscrp <- function(nof){
           x <- rnorm(nof)
