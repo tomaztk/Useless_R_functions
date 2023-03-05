@@ -27,3 +27,6 @@ inscrp(10)
 inscrp(20)
 
 par(mfrow = c(1,1))
+
+
+inscrp(40)
