@@ -61,6 +61,8 @@ cor(dat)
 
 
 
+
+
 ####
 # generate X, Y Variables of sample size 200 with r coeff of 0.91
 samples = 200
