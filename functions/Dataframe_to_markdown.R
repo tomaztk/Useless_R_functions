@@ -1,7 +1,18 @@
-#### create markdown table based on dataframe
-## result: I want a markdown script with data of a dataframe
-## e.g:
-## 
+##########################################
+# 
+# create markdown table based on dataframe
+#
+# Series:
+# Little Useless-useful R functions #51
+# Created: March 23, 2023
+# Author: Tomaz Kastrun
+# Blog: tomaztsql.wordpress.com
+# V.1.0
+
+# Changelog: 
+#        
+###########################################
+
 
 # > iris[1:3,1:5]
 # Result:
@@ -10,7 +21,8 @@
 #> 2          4.9         3.0          1.4         0.2  setosa
 #> 3          4.7         3.2          1.3         0.2  setosa
 
-# and I want the result to be a markdown script, that can be used in Markdown document:
+# Create function that will return a markdown script of table with
+# data, ready for  Markdown document:
 
 #> |Sepal.Length|Sepal.Width|Petal.Length|Petal.Width|Species|
 #> |---|---|---|---|---|
@@ -19,10 +31,7 @@
 #> |4.7|3.2|1.3|0.2|setosa|
 
 
-
-your_df <- iris[1:3,1:5]
-
-DF_2_MD <- function(your_df){
+df_2_MD <- function(your_df){
   
   cn <- as.character(names(your_df))
   headr <- paste0(c("", cn),  sep = "|", collapse='')
@@ -31,17 +40,23 @@ DF_2_MD <- function(your_df){
     for (i in 1:nrow(your_df)){
       for(j in 1:ncol(your_df)){
         if (j%%ncol(your_df) == 0) {
-          
-          st <- paste0(st, your_df[i,j], "|", "\n", "" , "|", collapse = '')
+          st <- paste0(st, as.character(your_df[i,j]), "|", "\n", "" , "|", collapse = '')
         } else {
-        st <- paste0(st, your_df[i,j], "|", collapse = '')
+        st <- paste0(st, as.character(your_df[i,j]), "|", collapse = '')
         }
       }
     }
-  fin <- paste0(c(headr, sepr, st), collapse="\n")
+  fin <- paste0(c(headr, sepr, substr(st,1,nchar(st)-1)), collapse="\n")
   cat(fin)
 }  
 
+
+
+#subset
+short_iris <- iris[1:3,1:5]
+
 # run function
-DF_2_MD(your_df)
+df_2_MD(short_iris)
+df_2_MD(iris)
+
 
