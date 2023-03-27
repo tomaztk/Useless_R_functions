@@ -9,8 +9,7 @@ ggplot(mtcars, aes(x=hp, y=wt), label=Name) + geom_point(aes(color=am)) + geom_s
 
 pred.prob <- predict(fit,type='response')
 brierScore <- mean((pred.prob-mtcars$am)^2)
-# 0.04659236q
-
+# 0.04659236
 
 #mock data
 ld <- rep(0:5, 2)
