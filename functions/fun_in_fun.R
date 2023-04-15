@@ -30,7 +30,9 @@ svd_f <- function(x,y,a=2){
     "svd_d" = D,
     "a" = a,
     "svd_X2" = X2,
-    "svd_D2" = D2
+    "svd_D2" = D2,
+    "graph" = plot(rs$svd_X2)
+
   )
   return(bb)
 }
@@ -38,7 +40,6 @@ svd_f <- function(x,y,a=2){
 
 rs <- svd_f(1,2, a=4)
 svd_f(1,2, a=4)
-
 
 
 
