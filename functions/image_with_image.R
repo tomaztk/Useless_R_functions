@@ -22,7 +22,7 @@ random_image <- function(num, pow, val,len, angle) {
 png(file="example%02d.png", width=480, height=480)
 par(bg="grey")
 for (i in c(10:1, "G0!")){
-  #plot.new()
+  plot.new()
   #text(.5, .5, i, cex = 6)
   random_image(0.5*i,10*i,20,150, sin)
   
