@@ -48,7 +48,26 @@ SMSconverter <- function(tt){
   
 }
 
-#4433555555666
+tt <- "4433555555666"
+
+for (i in 1:max(nchar(tt))){
+  if (lt != " "){
+  ln <- 1
+  lt1 <- substr(tt,i,i)
+  lt2 <- substr(tt,i+1, i+1)
+  if (lt1 == lt2) {
+      ln <- ln + 1
+  } else {
+      rn <- substr(rownames(which(mm == lt, arr.ind = T)),2,2)
+      rep <- which(mm == lt, arr.ind = T)[2]
+      st <- c(st, replicate(rep, rn))
+  }
+ print(lt1)
+ print(lt2)
+}
+
+
+
 
 SMSconverter("hello")
 SMSconverter("4433555555666")
