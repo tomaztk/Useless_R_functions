@@ -38,34 +38,33 @@ SMSconverter <- function(tt){
         st <- c(st, "0")
       }
     }
-    print(st)
+    #print(st)
   }
   
   # check if input string are numbers
-  if (!grepl("\\D", tt) == TRUE){
-    print("Well...")
+  #if (!grepl("\\D", tt) == TRUE){
+  if (grepl("[^A-Za-z]", tt) == TRUE){
+    for (i in 1:length(tt)){
+      ena <- tt[i]
+      dva <- tt[i+1]
+      if (ena != dva & !is.na(dva) & ena != " "){
+        num <- substr(rownames(which(mm == ena, arr.ind = T)),2,2)
+        times_num  <- which(mm == ena, arr.ind = T)[2]
+        st <- c(st, replicate(times_num, num))
+      }
+      if (ena == dva & !is.na(dva) & ena != " "){
+        num <- substr(rownames(which(mm == dva, arr.ind = T)),2,2)
+        times_num  <- which(mm == dva, arr.ind = T)[2]
+        st <- c(st, replicate(times_num, num))
+      }
+      if (ena == " "){
+        st <- c(st, "9")
+      }
+     # print(st)
+    }
   }
-  
+  print(paste0(st, collapse=""))
 }
-
-tt <- "4433555555666"
-
-for (i in 1:max(nchar(tt))){
-  if (lt != " "){
-  ln <- 1
-  lt1 <- substr(tt,i,i)
-  lt2 <- substr(tt,i+1, i+1)
-  if (lt1 == lt2) {
-      ln <- ln + 1
-  } else {
-      rn <- substr(rownames(which(mm == lt, arr.ind = T)),2,2)
-      rep <- which(mm == lt, arr.ind = T)[2]
-      st <- c(st, replicate(rep, rn))
-  }
- print(lt1)
- print(lt2)
-}
-
 
 
 
@@ -74,17 +73,28 @@ SMSconverter("4433555555666")
 
 
 # test
-text = "hell oo"
+text = "hell oo "
 brd <- unlist(strsplit(text, ""))
 st <- NULL
+
 for (i in 1:length(brd)){
-  cnt <- 1
   ena <- brd[i]
   dva <- brd[i+1]
-  if (ena != dva){
+  if (ena != dva & !is.na(dva) & ena != " "){
     num <- substr(rownames(which(mm == ena, arr.ind = T)),2,2)
     times_num  <- which(mm == ena, arr.ind = T)[2]
     st <- c(st, replicate(times_num, num))
   }
-  print(st)
+  if (ena == dva & !is.na(dva) & ena != " "){
+    num <- substr(rownames(which(mm == dva, arr.ind = T)),2,2)
+    times_num  <- which(mm == dva, arr.ind = T)[2]
+    st <- c(st, replicate(times_num, num))
+  }
+  if (ena == " "){
+    st <- c(st, "9")
+  }
+  #print(st)
 }
+
+
+paste0(st, collapse="")
