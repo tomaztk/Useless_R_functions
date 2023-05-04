@@ -72,3 +72,19 @@ for (i in 1:max(nchar(tt))){
 SMSconverter("hello")
 SMSconverter("4433555555666")
 
+
+# test
+text = "hell oo"
+brd <- unlist(strsplit(text, ""))
+st <- NULL
+for (i in 1:length(brd)){
+  cnt <- 1
+  ena <- brd[i]
+  dva <- brd[i+1]
+  if (ena != dva){
+    num <- substr(rownames(which(mm == ena, arr.ind = T)),2,2)
+    times_num  <- which(mm == ena, arr.ind = T)[2]
+    st <- c(st, replicate(times_num, num))
+  }
+  print(st)
+}
