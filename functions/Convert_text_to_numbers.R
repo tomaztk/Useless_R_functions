@@ -47,15 +47,16 @@ SMSconverter <- function(tt){
         st <- c(st, "0")
       }
     }
-    #print(st)
   }
   
   # check if input string are numbers
   #if (!grepl("\\D", tt) == TRUE){
   if (grepl("[^A-Za-z]", tt) == TRUE){
-    for (i in 1:length(tt)){
-      ena <- tt[i]
-      dva <- tt[i+1]
+    tti <- unlist(strsplit(paste0(tt, " "), ""))
+    st <- NULL
+    for (i in 1:length(tti)){
+      ena <- tti[i]
+      dva <- tti[i+1]
       if (ena != dva & !is.na(dva) & ena != " "){
         num <- substr(rownames(which(mm == ena, arr.ind = T)),2,2)
         times_num  <- which(mm == ena, arr.ind = T)[2]
@@ -72,7 +73,7 @@ SMSconverter <- function(tt){
      # print(st)
     }
   }
-  print(paste0(st, collapse=""))
+  print(substring(paste(st, collapse=""), 1, length(st)-1))
 }
 
 
@@ -80,10 +81,9 @@ SMSconverter <- function(tt){
 SMSconverter("hello")
 SMSconverter("4433555555666")
 
-
 # test
-text = "hell oo "
-brd <- unlist(strsplit(text, ""))
+text = "helloo"
+brd <- unlist(strsplit(paste0(text, " "), ""))
 st <- NULL
 
 for (i in 1:length(brd)){
@@ -106,4 +106,5 @@ for (i in 1:length(brd)){
 }
 
 
-paste0(st, collapse="")
+print(substring(paste(st, collapse=""), 1, length(st)-1))
+
