@@ -33,42 +33,6 @@ mm <- matrix(let, nrow = 8, ncol=4, byrow = TRUE,
               )
 
 
-SMSconverter <- function(tt){
-  st <- NULL
-  tti <- unlist(strsplit(paste0(tt, " "), ""))
-  
-  # check if input string are letters
-  if (!grepl("[^A-Za-z]", tti[1]) == TRUE){
-    for (i in 1:nchar(tt)){
-      lt <- substr(tt,i,i)
-      if (lt != " "){
-        rn <- substr(rownames(which(mm == lt, arr.ind = T)),2,2)
-        rep <- which(mm == lt, arr.ind = T)[2]
-        st <- c(st, replicate(rep, rn))
-      } else { st <- c(st, "0") }
-    }
-    print(paste0(st, collapse = ""))
-  }
-  
-  # check if input string are numbers
-  if(!grepl("\\D", tti[1]) == TRUE){
-    tti <- unlist(strsplit(paste0(tt, ""), ""))
-    st <- NULL
-    tti <- unlist(strsplit(as.character(tt), ""))
-    tmp <- rle(tti)
-    for (i in 1:length(tmp$lengths)){
-      rpt <- tmp$lengths[i]
-      row_cnt <- tmp$values[i]
-      lt <- mm[as.integer(row_cnt)-1,rpt]
-      #spacebar
-      
-      st <- c(st, lt)  
-    }
-    
-    print(paste(st, collapse=""))
-  }
-
-}
 
 # function test
 
