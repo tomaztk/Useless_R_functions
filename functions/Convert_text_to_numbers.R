@@ -35,76 +35,42 @@ mm <- matrix(let, nrow = 8, ncol=4, byrow = TRUE,
 
 SMSconverter <- function(tt){
   st <- NULL
+  tti <- unlist(strsplit(paste0(tt, " "), ""))
+  
   # check if input string are letters
-  if (!grepl("[^A-Za-z]", tt) == TRUE){
+  if (!grepl("[^A-Za-z]", tti[1]) == TRUE){
     for (i in 1:nchar(tt)){
       lt <- substr(tt,i,i)
       if (lt != " "){
         rn <- substr(rownames(which(mm == lt, arr.ind = T)),2,2)
         rep <- which(mm == lt, arr.ind = T)[2]
         st <- c(st, replicate(rep, rn))
-      } else {
-        st <- c(st, "0")
-      }
+      } else { st <- c(st, "0") }
     }
+    print(paste0(st, collapse = ""))
   }
   
   # check if input string are numbers
-  #if (!grepl("\\D", tt) == TRUE){
-  if (grepl("[^A-Za-z]", tt) == TRUE){
-    tti <- unlist(strsplit(paste0(tt, " "), ""))
+  if(!grepl("\\D", tti[1]) == TRUE){
+    tti <- unlist(strsplit(paste0(tt, ""), ""))
     st <- NULL
-    for (i in 1:length(tti)){
-      ena <- tti[i]
-      dva <- tti[i+1]
-      if (ena != dva & !is.na(dva) & ena != " "){
-        num <- substr(rownames(which(mm == ena, arr.ind = T)),2,2)
-        times_num  <- which(mm == ena, arr.ind = T)[2]
-        st <- c(st, replicate(times_num, num))
-      }
-      if (ena == dva & !is.na(dva) & ena != " "){
-        num <- substr(rownames(which(mm == dva, arr.ind = T)),2,2)
-        times_num  <- which(mm == dva, arr.ind = T)[2]
-        st <- c(st, replicate(times_num, num))
-      }
-      if (ena == " "){
-        st <- c(st, "9")
-      }
-     # print(st)
+    tti <- unlist(strsplit(as.character(tt), ""))
+    tmp <- rle(tti)
+    for (i in 1:length(tmp$lengths)){
+      rpt <- tmp$lengths[i]
+      row_cnt <- tmp$values[i]
+      lt <- mm[as.integer(row_cnt)-1,rpt]
+      #spacebar
+      
+      st <- c(st, lt)  
     }
+    
+    print(paste(st, collapse=""))
   }
-  print(substring(paste(st, collapse=""), 1, length(st)-1))
+
 }
 
+# function test
 
-
-SMSconverter("hello")
-SMSconverter("4433555555666")
-
-# test
-text = "helloo"
-brd <- unlist(strsplit(paste0(text, " "), ""))
-st <- NULL
-
-for (i in 1:length(brd)){
-  ena <- brd[i]
-  dva <- brd[i+1]
-  if (ena != dva & !is.na(dva) & ena != " "){
-    num <- substr(rownames(which(mm == ena, arr.ind = T)),2,2)
-    times_num  <- which(mm == ena, arr.ind = T)[2]
-    st <- c(st, replicate(times_num, num))
-  }
-  if (ena == dva & !is.na(dva) & ena != " "){
-    num <- substr(rownames(which(mm == dva, arr.ind = T)),2,2)
-    times_num  <- which(mm == dva, arr.ind = T)[2]
-    st <- c(st, replicate(times_num, num))
-  }
-  if (ena == " "){
-    st <- c(st, "9")
-  }
-  #print(st)
-}
-
-
-print(substring(paste(st, collapse=""), 1, length(st)-1))
-
+SMSconverter("text")
+SMSconverter("833998")
