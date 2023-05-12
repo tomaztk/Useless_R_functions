@@ -54,6 +54,9 @@ your everyday R use. That's it :-) And nothing more.</span>
   - Mastermind board game for R ([blog post](https://tomaztsql.wordpress.com/2022/01/07/little-useless-useful-r-functions-mastermind-board-game-for-r/))
 - Making boxplot from a picture ([blog post](https://tomaztsql.wordpress.com/2022/02/02/little-useless-useful-r-functions-making-boxplot-from-a-picture/))
 - Animating datasets ([blog post](https://tomaztsql.wordpress.com/2022/04/29/little-useless-useful-r-functions-animating-datasets/))
+- Using xspline to create wacky signatures ([blog post](https://tomaztsql.wordpress.com/2023/03/05/little-useless-useful-r-functions-using-xspline-to-create-wacky-signatures/))
+- Transforming dataframe to markdown table ([blog post](https://tomaztsql.wordpress.com/2023/03/26/little-useless-useful-r-functions-transforming-dataframe-to-markdown-table/))
+- Old phone converted from text to numbers ([blog post](https://tomaztsql.wordpress.com/2023/05/07/little-useless-useful-r-functions-old-phone-converted-from-text-to-numbers/))
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
@@ -171,10 +174,8 @@ Feel free to get in touch for new useful-useless functions.
  <a href="https://tomaztsql.files.wordpress.com/2022/02/image-1.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2022/02/image-1.png"/>
 </a> 
   <a href="https://tomaztsql.files.wordpress.com/2022/04/iris_animate.gif"><img width="45%" src="https://tomaztsql.files.wordpress.com/2022/04/iris_animate.gif"/> </a> 
+    <a href="https://tomaztsql.files.wordpress.com/2023/03/image.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2023/03/image.png"/> </a> 
  </div>
-
-
-
 
 # Vignettes
 
