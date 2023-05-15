@@ -23,8 +23,10 @@ library(fmsb)
 #data url: https://data.giss.nasa.gov/gistemp/
 # Global-mean monthly, seasonal, and annual means, 1880-present, updated through most recent month: TXT, CSV
 
+getwd()
+
 #data txt and preparation
-df <-read.csv("/GLB.Ts+dSST.csv",header = TRUE, sep = ",", skip = 1, dec="." )[1:13]
+df <-read.csv("Documents/GLB.Ts+dSST.csv",header = TRUE, sep = ",", skip = 1, dec="." )[1:13]
 df <- df[1:143,]
 df <- sapply(df, as.numeric)
 df <- as.data.frame(df)
@@ -65,3 +67,6 @@ for (i in 1:length(df_years)){
               vlcex=0.8 )
   legend(x=-0.35, y=0.15, legend = tail(y,1), bty = "n", pch=30 , col=colors_in , text.col ="black", cex=1.3, pt.cex=3)
 }
+
+for (i in 1:length(df_years[80:143])){
+  y <- df_years[80:80+i+1]
