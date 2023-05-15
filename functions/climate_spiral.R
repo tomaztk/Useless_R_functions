@@ -1,10 +1,20 @@
-#####################################
+##########################################
+#
 #
 # Drawing GISS surface temperature
 # Climate Spiral
 #
+# Series:
+# Little Useless-useful R functions #53
+# Created: May 10, 2023
+# Author: Tomaz Kastrun
+# Blog: tomaztsql.wordpress.com
+# V.1.0
 #
-####################################
+# Changelog: 
+#
+##########################################
+
 
 library(ggradar)
 library(ggplot2)
@@ -14,7 +24,7 @@ library(fmsb)
 # Global-mean monthly, seasonal, and annual means, 1880-present, updated through most recent month: TXT, CSV
 
 #data txt and preparation
-df <-read.csv("/users/tomazkastrun/Downloads/GLB.Ts+dSST.csv",header = TRUE, sep = ",", skip = 1, dec="." )[1:13]
+df <-read.csv("/GLB.Ts+dSST.csv",header = TRUE, sep = ",", skip = 1, dec="." )[1:13]
 df <- df[1:143,]
 df <- sapply(df, as.numeric)
 df <- as.data.frame(df)
