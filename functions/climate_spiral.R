@@ -15,10 +15,10 @@
 #
 ##########################################
 
-
 library(ggradar)
-library(ggplot2)
 library(fmsb)
+library(scales)
+library(RColorBrewer)
 
 #data url: https://data.giss.nasa.gov/gistemp/
 # Global-mean monthly, seasonal, and annual means, 1880-present, updated through most recent month: TXT, CSV
@@ -47,26 +47,21 @@ rownames(max_min) <- c("Max", "Min")
 df <- rbind(max_min, df)
 
 # Set graphic colors
-library(RColorBrewer)
-coul <- brewer.pal(12, "BuPu")
-colors_border <- coul
-library(scales)
-colors_in <- alpha(coul,0.3)
+nb.cols <- length(df_years)
+mycolors <- colorRampPalette(brewer.pal(8, "Set2"))(nb.cols)
+colors_border <- mycolors  
+colors_in <- alpha(mycolors, 0.3) 
 
 
 for (i in 1:length(df_years)){
   y <- df_years[1:i]
-  print(y)
   df_tmp <- df[rownames(df)%in%y,1:12]
   df_tmp <- rbind(max_min, df_tmp)
-  radarchart( df_tmp, maxmin=F, axistype=0 
-              ,
-              #pcol=colors_border , pfcol=colors_in , 
-              #plwd=4 , plty=1,
-              cglcol="grey", cglty=1, axislabcol="black", cglwd=0.8, 
-              vlcex=0.8 )
+  radarchart( df_tmp, maxmin=TRUE, axistype=1,seg=3,vlabels = df_months,
+              plwd=0.5 , plty=1,centerzero=FALSE,caxislabels = c(-1, 0, 1, 1.4),
+              cglcol="grey", cglty=2, axislabcol="black",  
+              vlcex=1.2,
+              title= paste0("GISS Surface temperature for years until ", tail(y,1)) )  
   legend(x=-0.35, y=0.15, legend = tail(y,1), bty = "n", pch=30 , col=colors_in , text.col ="black", cex=1.3, pt.cex=3)
 }
 
-for (i in 1:length(df_years[80:143])){
-  y <- df_years[80:80+i+1]
