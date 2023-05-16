@@ -23,13 +23,9 @@ library(RColorBrewer)
 #data url: https://data.giss.nasa.gov/gistemp/
 # Global-mean monthly, seasonal, and annual means, 1880-present, updated through most recent month: TXT, CSV
 
-getwd()
-
 #data txt and preparation
 df <-read.csv("Documents/GLB.Ts+dSST.csv",header = TRUE, sep = ",", skip = 1, dec="." )[1:13]
-df <- df[1:143,]
-df <- sapply(df, as.numeric)
-df <- as.data.frame(df)
+df <- as.data.frame(sapply(df[1:143,], as.numeric))
 df_months <- names(df)[2:13]
 df_years <- df$Year
 rownames(df) <- df_years
