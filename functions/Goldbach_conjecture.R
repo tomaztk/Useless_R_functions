@@ -17,16 +17,23 @@
 ##########################################
 
 
-max <- 10000
-primes <- NULL
-marked <-  seq(1:((max / 2) + 100))
-i <- 1
-j <- 1
+nth_max <- 100
+k <- as.integer(floor(2.4 * nth_max * log(nth_max) / 2))
+integers_list <- TRUE * k
 
-for (i in 1:(((length(marked) -1) /2) + 1)){
-  for (j in 1:(i* (i+1))) {
-    a <- c((max / 2) + 1, 2 * i + 1)
-    print(a)
+for (i in 1:k){
+  j <- 1
+  while(i+j+2*i*j < k){
+    j <- j + 1
+    integers_list[i+j+2*i*j] <- FALSE
   }
-  marked[j] <- NA
+}
+pcount <- 0
+for (i in (1:k+1)){
+  if (is.na(integers_list[i]) == TRUE){
+    pcount <- pcount + 1
+    if (pcount %% 10 == 0)  {
+      print(k)
+    }
+  }
 }
