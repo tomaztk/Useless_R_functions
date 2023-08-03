@@ -18,8 +18,12 @@
 
 
 nth_max <- 100
-k <- as.integer(floor(2.4 * nth_max * log(nth_max) / 2))
-integers_list <- TRUE * k
+kl <- list(
+   k <- 1:as.integer(floor(2.4 * nth_max * log(nth_max) / 2))
+  ,integers_list <- replicate(length(k),FALSE)
+)
+#k <- as.integer(floor(2.4 * nth_max * log(nth_max) / 2))
+#integers_list <- TRUE * k
 
 for (i in 1:k){
   j <- 1
