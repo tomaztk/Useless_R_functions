@@ -28,9 +28,7 @@ sieve_of_sundaram <- function(limit) {
       j <- j + 1
     }
   }
-  
   primes <- c(2, (2 * (1:n)+1)[sieve])
-  
   return(primes)
 }
 
