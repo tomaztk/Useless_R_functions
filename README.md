@@ -57,6 +57,7 @@ your everyday R use. That's it :-) And nothing more.</span>
 - Using xspline to create wacky signatures ([blog post](https://tomaztsql.wordpress.com/2023/03/05/little-useless-useful-r-functions-using-xspline-to-create-wacky-signatures/))
 - Transforming dataframe to markdown table ([blog post](https://tomaztsql.wordpress.com/2023/03/26/little-useless-useful-r-functions-transforming-dataframe-to-markdown-table/))
 - Old phone converted from text to numbers ([blog post](https://tomaztsql.wordpress.com/2023/05/07/little-useless-useful-r-functions-old-phone-converted-from-text-to-numbers/))
+- Goldbach's conjecture and sieve of sundaram ([blog post](https://tomaztsql.wordpress.com/2023/08/12/little-useless-useful-r-functions-goldbachs-conjecture-and-sieve-of-sundaram/))
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
@@ -175,6 +176,8 @@ Feel free to get in touch for new useful-useless functions.
 </a> 
   <a href="https://tomaztsql.files.wordpress.com/2022/04/iris_animate.gif"><img width="45%" src="https://tomaztsql.files.wordpress.com/2022/04/iris_animate.gif"/> </a> 
     <a href="https://tomaztsql.files.wordpress.com/2023/03/image.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2023/03/image.png"/> </a> 
+    <a href="https://tomaztsql.files.wordpress.com/2023/08/image.png"><img width="45%" src="https://tomaztsql.files.wordpress.com/2023/08/image.png"/> </a> 
+
  </div>
 
 # Vignettes
