@@ -86,16 +86,17 @@ reg<-lm(nof ~ n, data = sol)
 abline(reg, col="red")
 
 
-#most frequent primes:
+# most frequent primes:
 fre <- NULL
 for (i in seq(4,1000, by=2)){
   sols <- goldbach_conjecture(i)
   fre <- cbind(fre, sols)
 }
 
-
+# prepare solutions
 solutions_freq<- data.frame(table(t(fre)))
 
+# visualisation
 solutions_freq <- solutions_freq[which(as.integer(solutions_freq$Freq) > 1),]
 plot(x=solutions_freq$Var1, y=solutions_freq$Freq,
      xlab = "Prime number", ylab = "Frequency of prime in sum", main = "Frequencies of prime numbers for
