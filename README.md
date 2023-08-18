@@ -100,6 +100,7 @@ Thanks to these wonderful community people making and helping this useless R fun
     <td align="center"><a href="https://github.com/retooooo"><img src="https://avatars3.githubusercontent.com/u/22014291?s=400&v=4" width="100px;" alt="retooooo"/><br /><sub><b>retooooo</b></sub></a><br /></td>
 <td align="center"><a href="https://github.com/mrdwab"><img src="https://avatars1.githubusercontent.com/u/802388?s=400&u=d1138f870ef3f4f53a01df1f712dc9843549dd18&v=4" width="100px;" alt="mrdwab"/><br /><sub><b>mrdwab</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/TFellet"><img src="https://avatars.githubusercontent.com/u/1519839?v=4" width="100px;" alt="TFellet"/><br /><sub><b>TFellet</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/rachelostic"><img src="https://avatars.githubusercontent.com/u/65781290?v=4" width="100px;" alt="rachelostic"/><br /><sub><b>rachelostic</b></sub></a><br /></td>
 
 </tr>
 
