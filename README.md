@@ -58,6 +58,7 @@ your everyday R use. That's it :-) And nothing more.</span>
 - Transforming dataframe to markdown table ([blog post](https://tomaztsql.wordpress.com/2023/03/26/little-useless-useful-r-functions-transforming-dataframe-to-markdown-table/))
 - Old phone converted from text to numbers ([blog post](https://tomaztsql.wordpress.com/2023/05/07/little-useless-useful-r-functions-old-phone-converted-from-text-to-numbers/))
 - Goldbach's conjecture and sieve of sundaram ([blog post](https://tomaztsql.wordpress.com/2023/08/12/little-useless-useful-r-functions-goldbachs-conjecture-and-sieve-of-sundaram/))
+- Pretty dataframe definition ([Git merge by rachelostic](https://github.com/tomaztk/Useless_R_functions/blob/main/functions/pretty_dataframe_definitions.R))
 
 ## Cloning the repository
 You can follow the steps below to clone the repository.
