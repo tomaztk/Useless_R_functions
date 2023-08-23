@@ -54,13 +54,12 @@ useless_math_function <- function(x) {
 useless_math_function(10)
 
 
-
 useless_complex_function <- function(n) {
   if (n <= 0) {
     return(NULL)
   }
   
-  matrix_list <- lapply(1:n, function(i) {
+matrix_list <- lapply(1:n, function(i) {
     matrix(outer(1:i, 1:i, FUN = function(x, y) {
       if (x == y) {
         return(log(1))
