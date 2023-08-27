@@ -17,103 +17,75 @@
 ##########################################
 
 
+# Helper function
+make_matrix <- function(nc,nr){
 
-# s_matrix <- function(nc,nr){
-#     
-#   nof <- nc*nr
-#   m2 <- matrix(sample(1:100, nof, replace=TRUE), ncol=nc, nrow=nr)
-#   return(m2)
-# }
-
-
-## keeping track of positions and steps
-
-elements <- vector()
-nr <- 5
-nc <- 7
-total_len <- nr*nc
-m2 <- matrix(sample(1:100, total_len, replace=TRUE), ncol=nc, nrow=nr)
-
-i = 1
-row = 1
-col = 1
-while( length(elements) != total_len){
-  #first element
-  elements <- paste0(elements, m2[row, col], ";")
-  # missing boundaries
-  for (i in 1:nr){elements <- c(elements, m2[row, col+i])}
-  for (i in 1:nr){elements <- c(elements, m2[row+i, col])}
-  for (i in 1:nc){elements <- c(elements, m2[row, col-i])}
-  for (i in 1:nr){elements <- c(elements, m2[row-i, col])}
+  nof <- nc*nr
+  mat1 <- matrix(sample(1:100, nof, replace=TRUE), ncol=nc, nrow=nr)
+  return(mat1)
 }
 
 
-elements
-m2
-
-
-matrix_spiral_unique <- function(mat) {
-  mr <- nrow(mat)
-  nc <- ncol(mat)
+## return elements from matrix in spiral order
+matrix_spiral <- function(mat) {
+  mr <- dim(mat)[1]
+  nc <- dim(mat)[2]
   total_len <- mr*nc
-  res <- vector()
-  visit <- matrix(FALSE, nrow = mr, ncol = nc)
 
+  #path #TRUE -> visited; FALSE -> unvisited
+  visit <- matrix(FALSE, nrow=mr, ncol=nc)
+  
+  #helper variables
   gor <- 1
   dol <- mr
   levo <- 1
   desno <- nc
+  res <- vector()
   
   while (length(res) < total_len) {
-  
-    # Gor (levo)
-    for (i in levo:desno) {
+
+    for (i in levo:nc) {
       if (!visit[gor, i]) {
           res <- c(res, mat[gor,i])
           visit[gor, i] <- TRUE
-      }
-    }
+      } }
     gor <- gor + 1
-    
-    # Desno (dol)
-    for (i in gor:dol) {
+
+    for (i in gor:mr) {
       if (!visit[i, desno]) {
           res <- c(res, mat[i,desno])
           visit[i, desno] <- TRUE
-      }
-    }
+      } }
     desno <- desno - 1
     
-    # Gor (dol)
     if (gor <= dol) {
       for (i in desno:levo) {
         if (!visit[dol, i]) {
           res <- c(res, mat[dol,i])
           visit[dol, i] <- TRUE
-        }
-      }
+        } }
       dol <- dol - 1
     }
     
-    # Levo (gor)
     if (levo <= desno) {
       for (i in dol:gor) {
         if (!visit[i, levo]) {
             res <- c(res, mat[i,levo])
             visit[i, levo] <- TRUE
-        }
-      }
-      levo <- levo + 1
-    }
-  }
+        } }
+    levo <- levo + 1
+    } }
   return(res)
 }
 
 
-res <- matrix_spiral_unique(m2)
+# run functions
+mat2 <- make_matrix(4,6)
+res <- matrix_spiral(mat2)
+#res <- matrix_spiral(make_matrix(7,5))
 
-if(length(res)==length(m2)){print("Nice!")}
-
-#Check res!
-print(m2)
+#Check results!
+if(length(res)==length(mat2)){print("Nice, all elements are incl!")}
+print(mat2)
 print(res)
+
