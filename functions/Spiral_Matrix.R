@@ -88,4 +88,3 @@ res <- matrix_spiral(mat2)
 if(length(res)==length(mat2)){print("Nice, all elements are incl!")}
 print(mat2)
 print(res)
-
