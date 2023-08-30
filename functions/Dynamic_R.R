@@ -12,10 +12,8 @@ names(base_packages) = base_packages
 bsp <- lapply(base_packages, function (pkg) ls(paste0('package:', pkg)))
 bs <- ls("package:base")
 
-
+#get random dataset
 sample(bsp$datasets,1)
-
-
 
 dynamic <- "
 base_packages <- getOption('defaultPackages');
