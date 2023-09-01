@@ -23,3 +23,16 @@ ds<-sample(bsp$datasets,1);
 
 eval(parse(text = dynamic))
 head(ds,10)
+
+
+# plotting
+dyn_plt = "
+xs <- seq(-2*pi,2*pi,pi/100)
+w <- sin(3*xs)
+plot(xs,w,type='l',ylim=c(-1,1))
+abline(h=0,lty=3)
+"
+
+eval(parse(text = dyn_plt))
+
+
