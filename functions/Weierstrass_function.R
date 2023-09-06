@@ -18,7 +18,6 @@
 ##########################################
 
 
-
 weierstrass_curve <- function(x,a,b) {
   values <- 0
   for (n in 0:100) {  
