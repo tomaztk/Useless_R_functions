@@ -16,3 +16,10 @@ ggplot(multiplication_table, aes(x, y)) +
   coord_fixed() +
   theme_bw() + theme_void()
 #  theme_void()
+
+
+
+
+tibble(x=1:10, y = 1:10) %>%
+  complete(x,y) %>%
+  mutate(prod = x*y)
