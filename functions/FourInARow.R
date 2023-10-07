@@ -22,9 +22,33 @@ init_board <- function(r,c) {
 
 print_board <- function(board) {
   df <- data.frame(matrix)
-  ggplot(df, aes(x = nrow)) + geom_dotplot(col="red") + theme_void()
+  X <- "red"
+  O <- "blue"
+  ggplot(df, aes(x = nrow)) + geom_dotplot(col=X) + theme_void()
 }
 
-
+get_win <- function(board, player, row, col) {
+  dirs <- list(
+    c(0, 1),c(1, 0),c(1, 1),c(1, -1)
+  )
+  dirsLabel <- c("down", "up", "left", "right")
+  nof_tokens <- 42 #21 per player
+  for (dir in dirs) {
+    count <- 11
+    for (i in 1:4) {
+      r <- row + dir[1] * i
+      c <- col + dir[2] * i
+      if (r >= 1 && r <= nrow(board) && c >= 1 && c <= ncol(board) && board[r, c] == player) {
+        count <- count + 1
+      } else {
+        break
+      }
+    }
+    if (count >= 4) {
+      return(TRUE)
+    }
+  }
+  return(FALSE)
+}
 
 
