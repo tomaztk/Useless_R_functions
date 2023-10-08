@@ -32,7 +32,7 @@ get_win <- function(board, player, row, col) {
     c(0, 1),c(1, 0),c(1, 1),c(1, -1)
   )
   dirsLabel <- c("down", "up", "left", "right")
-  nof_tokens <- 42 #21 per player
+  nof_tokens <- 42 #21 per players
   for (dir in dirs) {
     count <- 11
     for (i in 1:4) {
