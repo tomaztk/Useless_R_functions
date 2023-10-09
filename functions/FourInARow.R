@@ -50,5 +50,3 @@ get_win <- function(board, player, row, col) {
   }
   return(FALSE)
 }
-
-
