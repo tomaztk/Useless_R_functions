@@ -53,8 +53,6 @@ plot(x,y)
 # check R squared
 summary(lm(y ~ x))$r.squared
 
-
-
 # R-squared says nothing about prediction error, even with 
 # exactly the same, and no change in the coefficients. 
 # R-squared can be anywhere between 0 and 1 just by changing the range of X. 
