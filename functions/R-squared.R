@@ -86,3 +86,4 @@ sum((fitted(mod1) - y)^2)/200
 
 
 # The R2 falls from 0.92 to 0.36 but the MSE is practically unchanged!
+# add plot
