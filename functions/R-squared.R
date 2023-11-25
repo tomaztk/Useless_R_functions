@@ -87,3 +87,30 @@ sum((fitted(mod1) - y)^2)/200
 
 # The R2 falls from 0.92 to 0.36 but the MSE is practically unchanged!
 # add plot
+
+# 4. R-squared cannot be compared between a model with untransformed Y and one with transformed Y, or 
+# between different transformations of Y. R-squared can easily go down when the model assumptions are better fulfilled. 
+
+x <- seq(1,3,length.out = 200)
+set.seed(2908)
+y <- exp(-2 - 0.09*x + rnorm(100,0,sd = 2.5))
+summary(lm(y ~ x))$r.squared
+
+# and plot:
+
+plot(lm(y ~ x), which=3)
+
+
+# R is low
+
+plot(lm(log(y)~x),which = 3) 
+
+summary(lm(log(y)~x))$r.squared
+
+# 5. It is very common to say that R-squared is "the fraction of variance explained" by the regression. 
+# [Yet] if we regressed X on Y, we'd get exactly the same R-squared. 
+# This in itself should be enough to show that a high R-squared says nothing about explaining one variable by another.
+
+x <- seq(1,10,length.out = 200)
+y <- 2 + 1.2*x + rnorm(100,0,sd = 2)
+summary(lm(y ~ x))$r.squared
