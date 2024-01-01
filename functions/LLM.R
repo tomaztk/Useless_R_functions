@@ -7,7 +7,7 @@ tensorflow::install_tensorflow(envname = "./.venv", version = "release",
                                extra_packages = "tensorflow-text")
 
 
-
+#
 
 library(purrr)
 library(envir)
@@ -87,3 +87,53 @@ show_tokens <- function(what) {
 }
 
 show_tokens(prompt)
+
+
+RMSNorm(keras$layers$Layer) %py_class% {
+  initialize <-
+    function(eps = 1e-6, ..., block_id = NULL, feeds_into = NULL) {
+      super$initialize(...)
+      self$eps <- eps
+      self$block_id <- block_id
+      self$feeds_into <- feeds_into
+    }
+  
+  build <- function(input_shape) {
+    # input_shape == (batch_size, seqlen, params$dim)
+    # self$w will broadcast over batch_size and seqlen dims.
+    # w_shape == (1, 1, params$dim)
+    w_shape <- rep(1L, length(input_shape))
+    w_shape[length(input_shape)] <- as.integer(input_shape) |> tail(1L)
+    
+    # define a local function that will load
+    # the pretrained-weights if we supplied `block_id` and `feeds_into`
+    import_from({self}, block_id, feeds_into)
+    initializer <-if (is.null(block_id))
+      "ones"
+    else if (block_id >=0) {
+      \(...) weights_path("7B/layers.{block_id}.{feeds_into}_norm.weight.npy") |>
+        np$load() |> np$expand_dims(0:1)
+    } else if(block_id == -1)
+      # load weights for the final output normalization layer, which is not
+      # part of a TransformerBlock
+      \(...) weights_path("7B/norm.weight.npy") |>
+      np$load() |> np$expand_dims(0:1)
+    
+    self$w <- self$add_weight(shape = w_shape,
+                              initializer = initializer,
+                              trainable = TRUE)
+  }
+  
+  rrms <- function(x) {
+    # reciprocal root mean square along the last axis
+    x %>% # (batch_size, seqlen, n_features)
+      tf$math$square() %>%
+      tf$reduce_mean(axis = -1L, keepdims = TRUE) %>% # (batch_size, seqlen, 1)
+      tf$math$add(self$eps) %>% # for numerical stability
+      tf$math$rsqrt()
+  }
+  
+  call <- function(x) {
+    x * self$rrms(x) * self$w
+  }
+}
