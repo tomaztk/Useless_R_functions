@@ -137,3 +137,34 @@ RMSNorm(keras$layers$Layer) %py_class% {
     x * self$rrms(x) * self$w
   }
 }
+
+
+precomputed_rotation_matrix <- compute_rotation_matrix(
+  seqlen = 2048L, # LLaMA max seqlen
+  feature_dim = with(params, dim %/% n_heads)  # head_size
+)
+
+apply_rotary_embedding_faster <- function(x) {
+  
+  rotate_every_two <- function(x) {
+    x1 <- x[all_dims(), `::2`]
+    x2 <- x[all_dims(), `2::2`]
+    x_ <- tf$stack(list(-x2, x1), axis = -1L)
+    tf$reshape(x_, tf$shape(x))
+  }
+  
+  repeat_each_twice <- function(x) {
+    tf$`repeat`(x, 2L, axis = -1L)
+  }
+  
+  seqlen <- tf$shape(x)[2]
+  rot <- precomputed_rotation_matrix[, NA:seqlen, , ]
+  
+  cos <- Re(rot) |> repeat_each_twice()
+  sin <- Im(rot) |> repeat_each_twice()
+  
+  (x * cos) + (rotate_every_two(x) * sin)
+}
+rand <- tf$random$uniform(shape(3, 8, params$n_heads, 128))
+all(apply_rotary_embedding(rand) ==
+      apply_rotary_embedding_faster(rand))
