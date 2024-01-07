@@ -168,3 +168,66 @@ apply_rotary_embedding_faster <- function(x) {
 rand <- tf$random$uniform(shape(3, 8, params$n_heads, 128))
 all(apply_rotary_embedding(rand) ==
       apply_rotary_embedding_faster(rand))
+
+
+
+#adding layers
+
+layer_transformer_block <- create_layer_wrapper(TransformerBlock)
+layer_rms_norm <- create_layer_wrapper(RMSNorm)
+
+# input to the model will be output from the tokenizer
+input <- layer_input(shape(NA)) #, dtype = "int32")
+
+x <- input |>
+  tok_embeddings()  # instantiated earlier in the blog-post
+
+for(block_id in seq_len0(params$n_layers)) {
+  x <- x |>
+    layer_transformer_block(attn_head_size = params$dim %/% params$n_heads,
+                            attn_n_heads = params$n_heads,
+                            norm_eps = params$norm_eps,
+                            block_id = block_id)
+}
+
+# final output projection into logits of output tokens
+x <- x |>
+  layer_rms_norm(block_id = -1, eps = params$norm_eps) |>
+  layer_dense(
+    tokenizer$vocab_size(), use_bias = FALSE,
+    kernel_initializer = \(...) np$load(weights_path("7B/output.weight.npy"))$`T`
+  )
+
+# slice out the logits for the last token
+with_options(c(tensorflow.extract.warn_negatives_pythonic = FALSE), {
+  output <- x[, -1, ]
+})
+
+llama <- keras_model(input, output) %>%
+  compile(jit_compile = TRUE)
+
+
+next_token_probs <- prompt %>%
+  tokenizer$tokenize() %>%
+  llama()
+
+next_token_probs
+
+
+
+for (i in 1:20) {
+  
+  next_token_probs <- prompt_tokens |> llama()
+  next_token <- sampler(next_token_probs)
+  
+  prompt_tokens %<>% { tf$concat(c(., next_token), axis = -1L) }
+  
+  # end of sentence
+  if (as.logical(next_token == tokenizer$string_to_id(".")))
+    break
+}
+
+prompt_tokens |>
+  tokenizer$detokenize() |>
+  as.character() |>
+  strwrap(60) |> writeLines()
