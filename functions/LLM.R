@@ -171,6 +171,51 @@ all(apply_rotary_embedding(rand) ==
 
 
 
+TransformerBlock(keras$layers$Layer) %py_class% {
+  
+  initialize <- function(attn_head_size, attn_n_heads,
+                         norm_eps = k_epsilon(), ...,
+                         block_id = NULL) {
+    super$initialize(...)
+    
+    self$attention <- Attention(attn_head_size, attn_n_heads,
+                                block_id = block_id)
+    
+    self$feed_forward <- FeedForward(
+      hidden_dim = 4 * attn_head_size * attn_n_heads,
+      block_id = block_id)
+    
+    self$attention_norm <- RMSNorm(eps = norm_eps, block_id = block_id,
+                                   feeds_into = "attention")
+    self$feed_forward_norm <- RMSNorm(eps = norm_eps, block_id = block_id,
+                                      feeds_into = "ffn")
+  }
+  
+  call <- function(x, ..., cache = NULL) {
+    
+    # norm and attention
+    x2 <- x |>
+      self$attention_norm() |>
+      self$attention(..., cache = cache)
+    
+    # maybe unpack cache returned by Attention
+    if(!is.null(cache))
+      c(x2, cache) %<-% x2
+    
+    x <- x + x2 # add residual
+    
+    # norm and swiglu projection
+    x2 <- x %>%
+      self$feed_forward_norm() %>%
+      self$feed_forward()
+    
+    x <- x + x2 # residual again
+    
+    if(is.null(cache)) x else list(x, cache)
+  }
+}
+
+
 #adding layers
 
 layer_transformer_block <- create_layer_wrapper(TransformerBlock)
