@@ -259,6 +259,16 @@ next_token_probs <- prompt %>%
 next_token_probs
 
 
+weights_path <- function(rel_path) {
+  normalizePath(
+    file.path(
+      "~/github/facebookresearch/llama/weights/LLaMA/",
+      glue::glue(rel_path, .envir = parent.frame())
+    ),
+    mustWork = TRUE
+  )
+}
+
 
 for (i in 1:20) {
   
