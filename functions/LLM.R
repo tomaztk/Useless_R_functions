@@ -275,3 +275,21 @@ prompt_tokens |>
   tokenizer$detokenize() |>
   as.character() |>
   strwrap(60) |> writeLines()
+
+
+llama <- TransformerDecoder(vocab_size = tokenizer$vocab_size(),
+                            n_blocks = params$n_layers,
+                            n_heads = params$n_heads,
+                            head_size = params$dim %/% params$n_heads,
+                            norm_eps = params$norm_eps)
+
+prompt <- "The best way to attract bees"
+
+test_generate <- function() {
+  prompt |>
+    tokenizer$tokenize() |>
+    llama$generate(as_tensor(17L)) |>
+    tokenizer$detokenize() |>
+    as.character() |>
+    strwrap(60) |> writeLines()
+}
