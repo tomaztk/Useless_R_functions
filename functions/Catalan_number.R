@@ -41,6 +41,10 @@ for (i in 0:10) {
 
 colnames(df) <- c("i", "catalan", "factorial")
 
+df$i <- as.integer(df$i)
+df$catalan <- as.integer(df$catalan)
+df$factorial <- as.integer(df$factorial)
+
 
 ggplot(df, aes(x=i)) + 
   geom_line(aes(y = catalan), color = "darkgreen") + 
