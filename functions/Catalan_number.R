@@ -52,6 +52,16 @@ ggplot(df, aes(x=i)) +
   geom_line(aes(y = catalan), color = "darkgreen") + 
   geom_line(aes(y = factorial), color="steelblue") 
 
+
+ggplot(df, aes(x=i, y=catalanLog)) + geom_bar(stat="identity")
+                                                 
+                                                 
+  geom_line(aes(y = catalanLog), color = "darkgreen") + 
+  geom_line(aes(y = factorialLog), color="steelblue") 
+
+
+
+
 # or
 df %>%
   select(i, catalan, factorial) %>%
