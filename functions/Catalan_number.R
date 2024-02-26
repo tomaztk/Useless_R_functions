@@ -44,6 +44,8 @@ colnames(df) <- c("i", "catalan", "factorial")
 df$i <- as.integer(df$i)
 df$catalan <- as.integer(df$catalan)
 df$factorial <- as.integer(df$factorial)
+df$factorialLog <- log(df$factorial)
+df$catalanLog <- log(df$catalan)
 
 
 ggplot(df, aes(x=i)) + 
