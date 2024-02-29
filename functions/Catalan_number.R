@@ -32,7 +32,7 @@ for (i in 0:10) {
 
 # Draw graph
 df <- as.data.frame(NULL)
-for (i in 0:20) {
+for (i in 0:12) {
   df_i <- print(i)
   cat_i <- catalan(i)
   fac_i <- factorial(i)
@@ -51,7 +51,6 @@ df$catalanLog <- log(df$catalan)
 ggplot(df, aes(x=i)) + 
   geom_line(aes(y = catalan), color = "darkgreen") + 
   geom_line(aes(y = factorial), color="steelblue") 
-
 
 
 # or
