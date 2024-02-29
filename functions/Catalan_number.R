@@ -32,7 +32,7 @@ for (i in 0:10) {
 
 # Draw graph
 df <- as.data.frame(NULL)
-for (i in 0:10) {
+for (i in 0:20) {
   df_i <- print(i)
   cat_i <- catalan(i)
   fac_i <- factorial(i)
@@ -53,14 +53,6 @@ ggplot(df, aes(x=i)) +
   geom_line(aes(y = factorial), color="steelblue") 
 
 
-ggplot(df, aes(x=i, y=catalanLog)) + geom_bar(stat="identity")
-                                                 
-                                                 
-  geom_line(aes(y = catalanLog), color = "darkgreen") + 
-  geom_line(aes(y = factorialLog), color="steelblue") 
-
-
-
 
 # or
 df %>%
@@ -69,4 +61,17 @@ df %>%
   ggplot(aes(x = i, y = value)) + 
     geom_line(aes(color = variable, linetype = variable)) + 
     scale_color_manual(values = c("darkgreen", "steelblue"))
+
+
+
+# or with log
+df %>%
+  select(i, catalanLog, factorialLog) %>%
+  gather(key = "variable", value = "value", -i) %>%
+  ggplot(aes(x = i, y = value)) + 
+  geom_line(aes(color = variable, linetype = variable)) + 
+  scale_color_manual(values = c("darkgreen", "steelblue"))
+
+
+
 
