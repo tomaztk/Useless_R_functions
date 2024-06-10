@@ -96,7 +96,8 @@ generate_dragon_curve <- function(iterations) {
 plot_dragon_curve <- function(iterations) {
   points <- generate_dragon_curve(iterations)
   plot(Re(points), Im(points), type = "p", pch = ".", col = "blue", asp = 1,
-       xlab = "Re", ylab = "Im", main = paste("Heighway Dragon Curve with", iterations, "iterations"))
+       xlab = "", ylab = "", main = paste("Heighway Dragon Curve with", iterations, "iterations"), 
+       axes=FALSE, frame.plot=FALSE)
 }
 
 plot_dragon_curve(15)
