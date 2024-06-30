@@ -1,28 +1,34 @@
-# twin - dragon Fractal
-# aka david Knuth dragon
-## Heighway Dragon Curve with 15 iterations
 
+##########################################
+# 
+# Twin dragon Fractal
+# a.k.a. Heighway Dragon Curve with n iterations
+# a.k.a. David Knuth dragon
+#
+# Series:
+# Little Useless-useful R functions #51
+# Created: June 29, 2024
+# Author: Tomaz Kastrun
+# Blog: tomaztsql.wordpress.com
+# V.1.0
 
-library(ggplot2)
+# Changelog: 
+#        - 
+###########################################
 
-
-
-# the iterated functions
-f1 <- function(z) {
-  (1 + 1i) * z / 2
-}
-
-f2 <- function(z) {
-  1 - (1 - 1i) * z / 2
-}
 
 # Function to generate points using IFS
 generate_dragon_curve <- function(iterations) {
   # Initial point
   points <- complex(real = 0, imaginary = 0)
   colors <- c() # Vector to store colors
+
+  # two iterated functions; each for own direction
+  f1 <- function(z) {      (1 + 1i) * z / 2 }
+  f2 <- function(z) {  1 - (1 - 1i) * z / 2 }
   
-  # Iterate to generate points
+    
+  # iterate to generate points
   for (i in 1:iterations) {
     new_points <- vector("complex", length = length(points) * 2)
     new_colors <- vector("character", length = length(points) * 2)
@@ -38,13 +44,15 @@ generate_dragon_curve <- function(iterations) {
   
   return(list(points = points, colors = colors))
 }
+
+
 # Plot the Dragon Curve
 plot_dragon_curve <- function(iterations) {
   result <- generate_dragon_curve(iterations)
   points <- result$points
   colors <- result$colors
   plot(Re(points), Im(points), type = "p", pch = ".", col = colors, asp = 1,
-       xlab = "Re", ylab = "Im", main = paste("Heighway Dragon Curve with", iterations, "iterations"))
+       xlab = "", ylab = "", main = paste("Heighway Dragon Curve with", iterations, "iterations"))
 }
 
 
