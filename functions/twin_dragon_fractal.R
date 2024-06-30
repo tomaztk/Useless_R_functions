@@ -28,9 +28,9 @@ generate_dragon_curve <- function(iterations) {
     new_colors <- vector("character", length = length(points) * 2)
     for (j in 1:length(points)) {
       new_points[2 * j - 1] <- f1(points[j])
-      new_colors[2 * j - 1] <- ifelse(i %% 2 == 1, "darkblue", "red") # Alternating colors
+      new_colors[2 * j - 1] <- ifelse(i %% 2 == 1, "blue", "red") # Alternating colors
       new_points[2 * j] <- f2(points[j])
-      new_colors[2 * j] <- ifelse(i %% 2 == 1, "red", "darkblue") # Alternating colors
+      new_colors[2 * j] <- ifelse(i %% 2 == 1, "red", "blue") # Alternating colors
     }
     points <- new_points
     colors <- c(colors, new_colors)
