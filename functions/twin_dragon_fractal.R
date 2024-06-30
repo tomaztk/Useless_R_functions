@@ -51,7 +51,7 @@ plot_dragon_curve <- function(iterations) {
   result <- generate_dragon_curve(iterations)
   points <- result$points
   colors <- result$colors
-  plot(Re(points), Im(points), type = "p", pch = ".", col = colors, asp = 1,
+  plot(Re(points), Im(points), type = "p", pch = ".", col = colors, asp = 1, labels=FALSE, yaxt="n", xaxt="n",
        xlab = "", ylab = "", main = paste("Heighway Dragon Curve with", iterations, "iterations"))
 }
 
