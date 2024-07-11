@@ -7,7 +7,7 @@ rooms <- 3
 
 department_pairs <- combn(departments, 2, simplify = FALSE)
 
-set.seed(124)  # 124 je ok; 123 ni ok
+set.seed(124)  # 124 converges ok; 123 not converge
 department_pairs <- sample(department_pairs)
 
 timetable <- matrix(list(), nrow = time_slots, ncol = rooms)
