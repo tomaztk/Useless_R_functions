@@ -7,7 +7,10 @@ rooms <- 3
 
 department_pairs <- combn(departments, 2, simplify = FALSE)
 
-set.seed(124)  # 124 converges ok; 123 not converge
+# seed: 124 converges 
+# seed: 123 not converge
+
+set.seed(124)  
 department_pairs <- sample(department_pairs)
 
 timetable <- matrix(list(), nrow = time_slots, ncol = rooms)
@@ -22,6 +25,7 @@ can_schedule <- function(pair, slot, room, timetable) {
   }
   return(TRUE)
 }
+
 
 fill_timetable <- function(timetable, department_pairs) {
   used_pairs <- rep(FALSE, length(department_pairs))
@@ -43,8 +47,8 @@ fill_timetable <- function(timetable, department_pairs) {
 
 
 timetable <- fill_timetable(timetable, department_pairs)
-
 is_complete <- all(sapply(timetable, length) > 0)
+
 
 if (is_complete) {
   schedule <- matrix(NA, nrow = time_slots, ncol = rooms)
@@ -66,5 +70,5 @@ if (is_complete) {
   print(as.data.frame(timetable))
   
 }
-
+ 
 
