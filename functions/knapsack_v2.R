@@ -44,3 +44,31 @@ for (i in 1:n) {
     print(paste("Item", i, "with value", values[i], "and weight", weights[i]))
   }
 }
+
+
+
+## v2
+
+values <- c(60, 100, 120)
+weights <- c(20, 20, 10)
+capacity <- 50
+
+knapsack <- function(values, weights, capacity) {
+  n <- length(values)
+  dp <- matrix(0, nrow = n + 1, ncol = capacity + 1)
+  
+  for (i in 1:n) {
+    for (w in 0:capacity) {
+      if (weights[i] <= w) {
+        dp[i + 1, w + 1] <- max(dp[i, w + 1], dp[i, w + 1 - weights[i]] + values[i])
+      } else {
+        dp[i + 1, w + 1] <- dp[i, w + 1]
+      }
+    }
+  }
+  
+  return(dp[n + 1, capacity + 1])
+}
+
+
+print(knapsack(values, weights, capacity))
