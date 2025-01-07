@@ -269,5 +269,84 @@ days_in_month <- function(date) {
 calendar_pareidolia(2025, 1)
 
 
+## With actual curves :)
 
+calendar_pareidolia <- function(year, month) {
+  start_date <- as.Date(paste(year, month, "01", sep = "-"))
+  end_date <- as.Date(paste(year, month, days_in_month(start_date), sep = "-"))
+  days <- seq.Date(from = start_date, to = end_date, by = "day")
+  
+  calendar <- data.frame(
+    date = days,
+    day = wday(days, label = TRUE, abbr = TRUE), # Day of the week (e.g., "Su", "Mo")
+    week = as.numeric(format(days, "%U")) - as.numeric(format(start_date, "%U")) + 1, # Week of the month
+    day_num = day(days) # Numeric day of the month
+  )
+  
+  face_patterns <- calendar %>%
+    group_by(week) %>%
+    filter(all(c("Sun", "Mon", "Wed", "Fri") %in% day)) %>%
+    filter(day %in% c("Sun", "Mon", "Wed", "Fri")) %>%
+    mutate(feature = ifelse(day %in% c("Sun", "Fri"), "eye", "smile")) %>%
+    ungroup()
+  
+  detected_patterns <- face_patterns
+  
+  if (nrow(detected_patterns) == 0) {
+    message("No patterns detected for the given month and year.")
+    return(NULL)
+  }
+  
+  # Visualization: Calendar with highlighted patterns
+  ggplot(calendar, aes(x = day, y = -week)) +
+    # Basic calendar grid
+    geom_tile(aes(fill = date), color = "white", show.legend = FALSE) +
+    scale_fill_gradient(low = "lightblue", high = "darkblue") +
+    geom_text(aes(label = day_num), size = 4, color = "black") +
+    # Add "eyes" as red circles
+    geom_point(
+      data = filter(detected_patterns, feature == "eye"),
+      aes(x = day, y = -week),
+      color = "red",
+      size = 6
+    ) +
+    # Add "smile" as green arcs
+    geom_curve(
+      data = filter(detected_patterns, feature == "smile"),
+      aes(x = as.numeric(day) - 0.3, xend = as.numeric(day) + 0.3,
+          y = -week - 0.1, yend = -week - 0.1),
+      curvature = -0.3,
+      color = "green",
+      size = 1
+    ) +
+    # Highlight feature types (eyes and smile)
+    geom_text(
+      data = detected_patterns,
+      aes(label = feature, color = feature),
+      vjust = 1.5,
+      size = 4
+    ) +
+    scale_color_manual(values = c("eye" = "red", "smile" = "green")) +
+    theme_minimal() +
+    theme(
+      axis.text.x = element_text(size = 12),
+      axis.text.y = element_blank(),
+      panel.grid = element_blank(),
+      legend.position = "none"
+    ) +
+    labs(
+      title = paste("Calendar Pareidolia for", month, year),
+      subtitle = "Eyes are red circles; smile is a green curve",
+      x = "Day of the Week",
+      y = ""
+    )
+}
+
+
+days_in_month <- function(date) {
+  as.numeric(format(date + months(1) - days(1), "%d"))
+}
+
+# Example 
+calendar_pareidolia(2025, 1)
 
