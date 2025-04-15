@@ -22,7 +22,6 @@ setwd("/Users/tomazkastrun/Documents/tomaztk_github/Useless_R_functions/function
 
 library(ggplot2)
 library(gganimate)
-library(dplyr)
 
 
 unit_converter_confuser <- function(values, unit_from = "kilograms", seed = 42, report_path = "confuser_report.md") {
@@ -70,6 +69,8 @@ unit_converter_confuser <- function(values, unit_from = "kilograms", seed = 42, 
   
   test <- t.test(values, converted)
   
+  # add chaos :)
+  chaos_noise <- function(x) x * runif(1, 1 - chaos, 1 + chaos)
 
   p <- ggplot(df, aes(x = unit, y = value, fill = unit)) +
     geom_boxplot(alpha = 0.6) +
@@ -102,7 +103,7 @@ unit_converter_confuser <- function(values, unit_from = "kilograms", seed = 42, 
   )
   
   writeLines(report, report_path)
-  message("📦 Report saved to: ", report_path)
+  message("Report saved to: ", report_path)
   
   return(invisible(list(
     original = data.frame(value = values, unit = unit_from),
@@ -113,7 +114,7 @@ unit_converter_confuser <- function(values, unit_from = "kilograms", seed = 42, 
 }
 
 
-set.seed(42)
+set.seed(2908)
 fake_weights <- rnorm(20, mean = 70, sd = 15)
 unit_converter_confuser(fake_weights, unit_from = "decibels")
 
