@@ -82,5 +82,4 @@ fermi_calculator <- function(problem = "piano_tuners_chicago", simulations = 100
 
 fermi_calculator("piano_tuners_chicago")
 fermi_calculator("coffee_consumption_ljubljana")
-
 fermi_calculator("drunks_in_dublin")
