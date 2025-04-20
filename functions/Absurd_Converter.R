@@ -23,12 +23,13 @@ library(ggplot2)
 library(gganimate)
 
 
-unit_converter_confuser <- function(values, unit_from = "kilograms", seed = 42, report_path = "confuser_report.md") {
+unit_converter_confuser <- function(values, unit_from = "kilograms", chaos = 0.3,
+                                    seed = 42, report_path = "confuser_report.md") {
   set.seed(seed)
   
   # Absurdity of useful and useless mappings
   
-  unit_map <- list(
+  base_unit_map <- list(
     "meters"     = list(to = "lightyears", factor = 1.057e-16),
     "grams"      = list(to = "elephants", factor = 1 / 5000000),
     "liters"     = list(to = "bathtubs", factor = 1 / 150),
@@ -53,23 +54,30 @@ unit_converter_confuser <- function(values, unit_from = "kilograms", seed = 42, 
     "euros"      = list(to = "Swedish meatballs", factor = 1 / 1.5)
   )
   
-  if (!(unit_from %in% names(unit_map))) stop("Unsupported unit_from")
+  if (!(unit_from %in% names(base_unit_map))) stop("Unsupported unit_from")
   
-  map <- unit_map[[unit_from]]
-  unit_to <- map$to
-  factor <- map$factor
+  chaos_noise <- function(x) x * runif(1, 1 - chaos, 1 + chaos)
+  
+  base <- base_unit_map[[unit_from]]
+  factor <- chaos_noise(base$factor)
+  
+  unit_to <- if (chaos > 0.5) sample(unlist(lapply(base_unit_map, `[[`, "to")), 1) else base$to
+  unit_from_scramble <- if (chaos > 0.5) paste(sample(strsplit(unit_from, "")[[1]]), collapse = "") else unit_from
+  
+  if (chaos > 0.7) {
+    values <- values + rnorm(length(values), mean = 0, sd = sd(values) * chaos)
+  }
   
   converted <- values * factor
+  
   df <- data.frame(
     value = c(values, converted),
-    unit = rep(c(unit_from, unit_to), each = length(values)),
+    unit = rep(c(unit_from_scramble, unit_to), each = length(values)),
     time = rep(1:length(values), times = 2)
   )
   
-  test <- t.test(values, converted)
+  test <- if (chaos == 1) list(statistic = rnorm(1, 0, 10), p.value = runif(1)) else t.test(values, converted)
   
-  # add chaos :)
-  chaos_noise <- function(x) x * runif(1, 1 - chaos, 1 + chaos)
 
   p <- ggplot(df, aes(x = unit, y = value, fill = unit)) +
     geom_boxplot(alpha = 0.6) +
@@ -115,7 +123,7 @@ unit_converter_confuser <- function(values, unit_from = "kilograms", seed = 42, 
 
 set.seed(2908)
 fake_weights <- rnorm(20, mean = 70, sd = 15)
-unit_converter_confuser(fake_weights, unit_from = "decibels")
+unit_converter_confuser(fake_weights, unit_from = "kilograms", chaos = 0.92)
 
 #check animation
 anim

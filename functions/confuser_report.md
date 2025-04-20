@@ -1,13 +1,13 @@
 # 📄 Parody Scientific Report
 ## Project: **unit_converter_confuser()**
 
-### Conversion: `decibels` ➡️ `baby screams`
+### Conversion: `kilograms` ➡️ `bananas`
 
 **Sample size**: 20
-**Conversion factor**: 0.06667
+**Conversion factor**: 0.01259
 
 ### 🔬 T-Test Results:
-- t-statistic: 27.19
+- t-statistic: 27.575
 - p-value: <2e-16
 - Conclusion: 🤯 Statistically significant nonsense!
 
