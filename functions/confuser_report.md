@@ -1,15 +1,16 @@
-# 🌀 Confused Unit Conversion Report
+# 📄 Parody Scientific Report
+## Project: **unit_converter_confuser()**
 
-## Conversion: `ksioagmrl` ➡️ `llamas`
-- Chaos Level: 0.92
-- Factor Used: 0.01259
+### Conversion: `decibels` ➡️ `baby screams`
 
-## Stats:
-- t = 21.66
-- p = 7.4033e-15
-- Conclusion: 🚨 Statistically SigniFreakant!
+**Sample size**: 20
+**Conversion factor**: 0.06667
 
-## 📽️ Animated Chart
-![Confusion Animation](confuser_animation.gif)
+### 🔬 T-Test Results:
+- t-statistic: 27.19
+- p-value: <2e-16
+- Conclusion: 🤯 Statistically significant nonsense!
 
-_Brought to you by unit_converter_confuser() and 2 cups of chaos._
+### 📉 Plot included in animation.
+
+_This report is proudly brought to you by the Society of Confused Analysts._

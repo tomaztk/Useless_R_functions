@@ -19,7 +19,6 @@ setwd("/Users/tomazkastrun/Documents/tomaztk_github/Useless_R_functions/function
 ###########################################
 
 
-
 library(ggplot2)
 library(gganimate)
 
@@ -118,4 +117,7 @@ set.seed(2908)
 fake_weights <- rnorm(20, mean = 70, sd = 15)
 unit_converter_confuser(fake_weights, unit_from = "decibels")
 
+#check animation
 anim
+
+#check the report on your machine
