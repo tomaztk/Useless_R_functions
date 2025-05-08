@@ -27,8 +27,8 @@ unit_converter_confuser <- function(values, unit_from = "kilograms", chaos = 0.3
                                     seed = 42, report_path = "confuser_report.md") {
   set.seed(seed)
   
-  # Absurdity of useful and useless mappings
   
+  # Absurdity of useful and useless mappings
   base_unit_map <- list(
     "meters"     = list(to = "lightyears", factor = 1.057e-16),
     "grams"      = list(to = "elephants", factor = 1 / 5000000),
