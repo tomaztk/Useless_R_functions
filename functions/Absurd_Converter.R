@@ -104,7 +104,7 @@ unit_converter_confuser <- function(values, unit_from = "kilograms", chaos = 0.3
     "### 🔬 T-Test Results:\n",
     "- t-statistic: ", round(test$statistic, 3), "\n",
     "- p-value: ", format.pval(test$p.value, digits = 3), "\n",
-    "- Conclusion: ", ifelse(test$p.value < 0.05, "🤯 Statistically significant nonsense!", "🤷 Not even the nonsense is significant."), "\n\n",
+    "- Conclusion: ", ifelse(test$p.value < 0.05, "Statistically significant nonsense!", "Not even the nonsense is significant."), "\n\n",
     "### 📉 Plot included in animation.\n\n",
     "_This report is proudly brought to you by the Society of Confused Analysts._"
   )
