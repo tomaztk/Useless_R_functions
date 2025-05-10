@@ -8,11 +8,15 @@ setwd("/Users/tomazkastrun/Documents/tomaztk_github/Useless_R_functions/function
 # step by step
 #
 # Series:
-# Little Useless-useful R functions #68
+# Little Useless-useful R functions #70
 # Created: May 10, 2025
 # Author: Tomaz Kastrun
 # Blog: tomaztsql.wordpress.com
 
+# ToDo:
+# work in progress
+# add ECC
+# add replication and redundancy
 
 ###########################################
 
@@ -219,4 +223,6 @@ QRCode <- setRefClass("QRCode",
                       )
 )
 
+
+# run
 qr <- QRCode$new("Foo Bar")
