@@ -56,7 +56,7 @@ bias_explorer <- function(seed = 2908, n_links = 25) {
   
   g <- graph_from_data_frame(edges, vertices = data.frame(name = biases), directed = TRUE)
 
-  ggraph(g, layout = "fr") +
+  ggraph(g, layout = "drl") +
     geom_edge_link(
       aes(label = reason),
       arrow = arrow(length = unit(4, 'mm')),
