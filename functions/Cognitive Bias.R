@@ -59,15 +59,15 @@ bias_explorer <- function(seed = 2908, n_links = 25) {
   ggraph(g, layout = "drl") +
     geom_edge_link(
       aes(label = reason),
-      arrow = arrow(length = unit(4, 'mm')),
-      end_cap = circle(3, 'mm'),
-      start_cap = circle(3, 'mm'),
-      label_colour = "gray40",
-      edge_width = 0.8,
+      arrow = arrow(length = unit(3, 'mm')),
+      end_cap = circle(2, 'mm'),
+      start_cap = circle(2, 'mm'),
+      label_colour = "darkgray",
+      edge_width = 1.2,
       colour = "skyblue"
     ) +
     geom_node_point(color = "darkred", size = 6) +
-    geom_node_text(aes(label = name), repel = TRUE, fontface = "bold", size = 4) +
+    geom_node_text(aes(label = name), repel = TRUE, fontface = "bold", size = 3.5) +
     labs(
       title = "Bias_explorer(): The Absurd Web of Biases",
       subtitle = "Visualizing ridiculous mental shortcuts.",
