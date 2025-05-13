@@ -19,11 +19,9 @@ setwd("/Users/tomazkastrun/Documents/tomaztk_github/Useless_R_functions/function
 
 ###########################################
 
-
 library(igraph)
 library(ggraph)
 library(ggplot2)
-
 
 bias_explorer <- function(seed = 2908, n_links = 25) {
   set.seed(seed)
@@ -53,7 +51,6 @@ bias_explorer <- function(seed = 2908, n_links = 25) {
   )
   
   edges <- edges[edges$from != edges$to, ]
-  
   g <- graph_from_data_frame(edges, vertices = data.frame(name = biases), directed = TRUE)
 
   ggraph(g, layout = "drl") +
