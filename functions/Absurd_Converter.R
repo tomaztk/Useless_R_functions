@@ -1,7 +1,6 @@
 getwd()
 setwd("/Users/tomazkastrun/Documents/tomaztk_github/Useless_R_functions/functions")
 
-
 ##########################################
 # 
 # Absurd converter with statistical 
@@ -14,8 +13,6 @@ setwd("/Users/tomazkastrun/Documents/tomaztk_github/Useless_R_functions/function
 # Blog: tomaztsql.wordpress.com
 # V.1.0
 
-# Changelog: 
-#        
 ###########################################
 
 

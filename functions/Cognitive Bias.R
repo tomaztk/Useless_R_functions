@@ -26,7 +26,7 @@ library(ggplot2)
 bias_explorer <- function(seed = 2908, n_links = 25) {
   set.seed(seed)
   
-  # Some psych effects
+  # Some psych effects from RL
   biases <- c(
     "Confirmation Bias", "Anchoring Bias", "Availability Heuristic", 
     "Dunning-Kruger Effect", "Survivorship Bias", "Recency Bias",
