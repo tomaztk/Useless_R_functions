@@ -42,7 +42,6 @@ bias_explorer <- function(seed = 2908, n_links = 25) {
     "Found in fortune cookie", "Might be science", "Feels statistically valid"
   )
 
-  
   edges <- data.frame(
     from = sample(biases, n_links, replace = TRUE),
     to = sample(biases, n_links, replace = TRUE),
@@ -74,5 +73,8 @@ bias_explorer <- function(seed = 2908, n_links = 25) {
   
 }
 
+##################
 # Run the function
+##################
+
 bias_explorer()
