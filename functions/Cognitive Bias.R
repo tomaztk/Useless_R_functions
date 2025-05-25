@@ -1,6 +1,3 @@
-getwd()
-setwd("/Users/tomazkastrun/Documents/tomaztk_github/Useless_R_functions/functions")
-
 ##########################################
 # 
 # Generating cognitive bias for all the
