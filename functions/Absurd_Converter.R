@@ -1,6 +1,3 @@
-getwd()
-setwd("/Users/tomazkastrun/Documents/tomaztk_github/Useless_R_functions/functions")
-
 ##########################################
 # 
 # Absurd converter with statistical 
@@ -8,7 +5,7 @@ setwd("/Users/tomazkastrun/Documents/tomaztk_github/Useless_R_functions/function
 #
 # Series:
 # Little Useless-useful R functions #68
-# Created: April 13, 2025
+# Created: May  31, 2025
 # Author: Tomaz Kastrun
 # Blog: tomaztsql.wordpress.com
 # V.1.0
@@ -100,7 +97,7 @@ unit_converter_confuser <- function(values, unit_from = "kilograms", chaos = 0.3
     "- t-statistic: ", round(test$statistic, 3), "\n",
     "- p-value: ", format.pval(test$p.value, digits = 3), "\n",
     "- Conclusion: ", ifelse(test$p.value < 0.05, "Statistically significant nonsense!", "Not even the nonsense is significant."), "\n\n",
-    "### 📉 Plot included in animation.\n\n",
+    "###  Plot included in animation.\n\n",
     "_This report is proudly brought to you by the Society of Confused Analysts._"
   )
   
