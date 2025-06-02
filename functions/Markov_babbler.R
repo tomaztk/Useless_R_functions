@@ -1,7 +1,3 @@
-getwd()
-setwd("/Users/tomazkastrun/Documents/tomaztk_github/Useless_R_functions/functions")
-
-
 ##########################################
 # 
 # Markov babbler
