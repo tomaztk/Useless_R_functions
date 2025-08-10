@@ -88,12 +88,12 @@ unit_converter_confuser <- function(values, unit_from = "kilograms", chaos = 0.3
   
   # Markdown wacky parody Report Generation
   report <- paste0(
-    "# 📄 Parody Scientific Report\n",
-    "## Project: **unit_converter_confuser()**\n\n",
-    "### Conversion: `", unit_from, "` ➡️ `", unit_to, "`\n\n",
+    "# Parody Scientific Report\n",
+    "## Project: Wacky **unit_converter_confuser()**\n\n",
+    "### Conversion: `", unit_from, "` ️-> `", unit_to, "`\n\n",
     "**Sample size**: ", length(values), "\n",
     "**Conversion factor**: ", signif(factor, 4), "\n\n",
-    "### 🔬 T-Test Results:\n",
+    "### T-Test Results:\n",
     "- t-statistic: ", round(test$statistic, 3), "\n",
     "- p-value: ", format.pval(test$p.value, digits = 3), "\n",
     "- Conclusion: ", ifelse(test$p.value < 0.05, "Statistically significant nonsense!", "Not even the nonsense is significant."), "\n\n",
