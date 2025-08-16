@@ -4,8 +4,8 @@
 # test and scientific report :-)
 #
 # Series:
-# Little Useless-useful R functions #68
-# Created: May  31, 2025
+# Little Useless-useful R functions #70
+# Created: August  15, 2025
 # Author: Tomaz Kastrun
 # Blog: tomaztsql.wordpress.com
 # V.1.0
