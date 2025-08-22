@@ -33,12 +33,12 @@ eu <- world |>
 
 eu <- world |>
   dplyr::filter(continent == "Europe" | name_long %in% c("Turkey","Cyprus")) |>
-  dplyr::filter(sovereignt != "Russia") |>
+  dplyr::filter(sovereignt != "Russia" &  sovereignt != "Turkey" ) |>
   st_make_valid()
 
 eu_ae <- st_transform(eu, 3035)  # ETRS89 / LAEA Europe / check ----->
 
-# some fake data :D
+# some metal data :)
 metal <- tibble::tribble(
   ~iso_a2, ~bands,
   "FI", 1650,
@@ -51,7 +51,7 @@ metal <- tibble::tribble(
   "LT",  520
 )
 
-
+# Normal state
 metal <- tibble::tribble(
   ~iso_a2, ~bands,
   "FI", 1,
