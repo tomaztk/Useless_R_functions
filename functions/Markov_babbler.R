@@ -18,7 +18,7 @@ library(dplyr)
 library(stringr)
 library(tidyr)
 library(igraph)
-library(ggraph)
+library(ggraph) 
 
 
 markov_babbler <- function(text, order = 2, n = 50, by_word = TRUE) {
