@@ -13,7 +13,6 @@
 #        
 ###########################################
 
-
 library(dplyr)
 library(stringr)
 library(tidyr)
@@ -79,83 +78,6 @@ result <- markov_babbler(text, n=30)
 cat(result$text)  
 print(result$plot) 
 
-
-
-
-
-text <- '"Potem ko so v soboto za večino držav in ozemelj po svetu začele veljati desetodstotne dodatne carine na uvoz blaga v ZDA, so ob polnoči po krajevnem času v Washingtonu za izbrano skupino zunanjetrgovinskih partneric, ki po prepričanju ameriškega predsednika Donalda Trumpa in njegove administracije v zunanji trgovini najbolj izkoriščajo ZDA, začele veljati še dodatne carinske stopnje. Te se gibljejo med 11 in 50 odstotki. Za Evropsko unijo je stopnja dodatnih carin po novem 20-odstotna.
-Neverjetna 104-odstotna carinska stopnja za kitajske izdelke
-
-Najvišje carine so ZDA uvedle za Kitajsko – po 20-odstotnih, uvedenih marca, bi se te danes morale zvišati še za 34 odstotkov, a ker se je Kitajska odzvala s 34-odstotnimi carinami na ameriško blago, jih je Trump dvignil še za 50 odstotkov. Skupno tako od danes znašajo kar 104 odstotke.
-
-Ukrep je močno pretresel in osupnil svet. Čeprav je Trump carine označil za vzajemne, se vrstijo opozorila, da nimajo ničesar z vzajemnostjo. Carinske stopnje so daleč od povprečnih carinskih stopenj na ameriški uvoz in predstavljajo preprosto delež primanjkljaja v blagovni menjavi ZDA s posamezno partnerico v skupnem uvozu iz te partnerice.
-
-Kljub šoku in razburjenju je večina ameriških zunanjetrgovinskih partneric, to velja tudi za Evropsko unijo, izrazila željo po pogajanjih in izogibanju nadaljnjemu stopnjevanju trgovinske vojne.
-
-Izjema je Kitajska, carine v vrednosti 25 odstotkov na nekatere ameriške avtomobile je napovedala tudi Kanada.
-Kitajska obljublja odločno ukrepanje
-
-V Pekingu so napovedali, da bo Kitajska sprejela "odločne ukrepe" za zaščito lastnih interesov. Kitajsko finančno ministrstvo je nato sporočilo, da povračilne carine na uvoz ameriškega blaga s četrtkom zvišujejo s 34 na 84 odstotkov.
-
-Predstavnik kitajskega zunanjega ministrstva Lin Džjan je poudaril, da ima kitajsko ljudstvo neodtujljivo pravico do razvoja. "Še naprej bomo sprejemali odločne ukrepe za zaščito svojih zakonitih pravic in interesov," je dejal.
-
-Kitajsko ministrstvo za trgovino je medtem sporočilo, da ima država "trdno voljo" za boj v trgovinski vojni z Washingtonom. "Kitajska bo s trdno voljo in številnimi sredstvi odločno sprejela protiukrepe in se borila do konca, če bodo ZDA vztrajale pri nadaljnjem stopnjevanju gospodarskih in trgovinskih omejevalnih ukrepov," je povzela sporočilo ministrstva.
-
-V drugem največjem gospodarstvu na svetu sicer menijo, da lahko trgovinske in gospodarske spore z ZDA rešijo z enakopravnim dialogom. "Kitajska in ZDA lahko razlike na gospodarskem in trgovinskem področju rešijo z enakopravnim dialogom in vzajemno koristnim sodelovanjem," je zapisano v beli knjigi, ki so jo pripravili v Pekingu.
-
-Peking je pred tem v torek napovedal, da bo šel v trgovinski vojni z ZDA "do konca". Kot so poudarili, "pritiski, grožnje in izsiljevanje niso pravi način za spopadanje s Kitajsko".
-
-Iz Washingtona sicer prihajajo mešani signali. Trump kot pogoj za pogajanja postavlja, da se blagovna menjava s partnericami tako ali drugače izravna ali preide v presežek.
-
-Kot je poročal Andrej Stopar, dopisnik RTV Slovenija iz Washingtona, je v torek Trump dejal: "Veliko držav prihaja, ker se želijo dogovoriti. Če bi jim pred dvema letoma, tremi ali petimi leti rekel, da bodo skušale skleniti takšne dogovore, bi se nam smejale. Zdaj pa prosijo za sprejem. Čudovito se bo izteklo. Pobirali bomo po dve milijardi dolarjev na dan. To je veliko denarja."
-
-Ameriški finančni minister Scott Bessent pa druge države opozarja, naj ne uvajajo protiukrepov, ker bo sledilo stopnjevanje. "50, 60, morda 70 držav nas je nagovorilo. April in maj, morda tudi junij bodo zelo naporni. Japonska je zelo pomembna vojaška, obenem pa tudi gospodarska zaveznica. Z ZDA ima veliko skupne zgodovine. Ker so pristopili zelo hitro, mislim, da bi morala imeti Japonska prednost," je dejal.
-
-Prav ta pogajalski interes je v torek vplival na gibanje borznih indeksov v ZDA. Potem ko so se po novinarski konferenci Trumpa in izraelskega premierja Benjamina Netanjahuja nekoliko umirili, so v torek znova padali. Seth Sutel, novinar tiskovne agencije AP, je dejal: "Največji zalogaj je seveda Kitajska, ki ostaja težava. Čeprav v trgovinske pogovore z ZDA vstopata Japonska in Južna Koreja, Kitajska ne. Opolnoči je začel veljati debel sveženj carin. Ta konflikt še ni razrešen. Dokler ne bo, lahko vsi zgolj ugibamo, kaj se bo dogajalo z borzo."
-
-Medijska hiša Bloomberg ocenjuje, da so v nekaj dneh na svetovni ravni zaradi ameriških carin podjetja, ki kotirajo na borzah, izgubila skupaj 10 trilijonov dolarjev, je dodal Stopar.
-Carine na carine na carine
-
-ZDA so doslej že uvedle tudi več t. i. sektorskih carin. Med drugim so tako sredi marca začele veljati 25-odstotne carine na uvoz jekla in aluminija, prejšnji teden pa dodatne 25-odstotne carine za avtomobile. Za to blago nove Trumpove carine ne veljajo. Prav tako za zdaj ne veljajo za farmacevtske izdelke, baker, čipe, les, zlato, energijo in nekatere rudnine, ki niso na voljo v ZDA.
-Rusija opozarja na nespoštovanje trgovinskih pravil
-
-Obsežne carine ameriškega predsednika kažejo na njegovo nespoštovanje temeljev mednarodne trgovine, ocenjujejo v Moskvi, kjer obenem izražajo zaskrbljenost zaradi svetovne trgovinske vojne.
-
-Trumpove carine kršijo temeljna pravila Svetovne trgovinske organizacije (WTO) in dokazujejo prepričanje Washingtona, "da ni več zavezan normam mednarodnega trgovinskega prava", je v pogovoru z novinarji dejala tiskovna predstavnica ruskega zunanjega ministrstva Marija Zaharova.
-
-Rusija, ki je od začetka vojne v Ukrajini poglobila gospodarske in politične odnose s Kitajsko, je od vrnitve Trumpa v Belo hišo previdna glede kritik na račun politik ameriškega predsednika. Vendar so nekateri pristojni v Moskvi v zadnjih dneh izrazili zaskrbljenost zaradi padanja cen nafte, ki so ključnega pomena za ruske javne finance.
-
-"Vsak šok svetovnem gospodarstvu, ki grozi z upočasnitvijo gospodarske rasti in splošnim zmanjšanjem potrošnje, negativno vpliva na številne globalne procese," je dejala Zaharova.
-
-Tudi guvernerka ruske centralne banke Elvira Nabiullina je na zaslišanju pred člani ruskega parlamenta trgovinsko vojno označila za veliko tveganje in dejala, da v svetovni trgovini trenutno prihaja do tektonskih sprememb. Po njenih besedah je težko oceniti, kam bodo te spremembe vodile svetovno gospodarstvo in kako bo to vplivalo na Rusijo.
-Veljajo še višje dodatne carine za uvoz blaga v ZDA
-Azijske borze po uveljavitvi dodatnih ameriških carin v rdečem
-
-Uveljavitev še višjih carin na uvoz blaga v ZDA je osrednje indekse na azijskih borzah znova obarvala večinoma rdeče. Na vodilni azijski borzi v Tokiu je indeks Nikkei, ki ga izračunavajo na osnovi vrednosti 225 najpomembnejših delnic, nazadoval za 3,56 odstotka, na 31.836,49 točke.
-
-Znižal se je tudi indeks borze v Sydneyju All Ordinaries, in sicer za 1,85 odstotka. V Seulu je osrednji borzni indeks Kospi izgubil 1,77 odstotka, tečaji delnic v Tajvanu pa so v povprečju padli za pet odstotkov. V Singapurju je indeks STI 2,35 odstotka nižje kot v torek.
-
-Trgovanje na kitajskih borzah je medtem neenotno. V Hongkongu je šel indeks Hang Seng doslej navzdol za 0,68 odstotka, v Šanghaju pa je indeks Shanghai Composite 0,72 odstotka nad izhodiščem.
-Padli so tudi evropski indeksi
-
-Tudi indeksi na evropskih borzah so se po torkovem odboju, ki je sledil večdnevnim občutnim padcem, znova spustili pod gladino. Indeks najpomembnejših podjetij v območju evra Eurostoxx 50 je trenutno na 2,40 odstotka nižji ravni kot ob koncu trgovanja v torek.
-
-Londonski indeks FTSE 100 je 2,15 odstotka pod izhodiščem, pariški CAC 40 pa 2,69 odstotka pod njim. Frankfurtski DAX je ob začetku trgovanja padel 2,34 odstotka pod gladino. Milanski indeks FTSE MIB izgublja 2,09 odstotka, dunajski ATX 1,72 odstotka. Züriški SMI medtem pada po 1,67-odstotni stopnji.
-
-Tečaj evra se zvišuje. Na borzi v Frankfurtu je treba trenutno za en evro odšteti 1,1067 dolarja, kar je odstotek več kot v torek.
-Cene nafte na štiriletnem dnu
-
-Cene surove nafte so padle na najnižjo raven v več kot štirih letih. Trge skrbi, da se bo povpraševanje po črnem zlatu zmanjšalo zaradi stopnjevanja svetovne trgovinske vojne, v ospredju katere sta najmočnejši svetovni gospodarstvi ZDA in Kitajska, in da bodo na trgu presežki nafte, je na spletni strani poročal Reuters.
-
-Za 159-litrski sod zahodnoteksaške nafte z dobavnim rokom maja je bilo treba popoldne po singapurskem času odšteti 57,12 dolarja, kar je 2,46 dolarja manj kot v torek. Severnomorska nafta brent za dobavo v juniju pa se je pocenila za 2,38 dolarja, na 60,44 dolarja.
-
-Cene za obe vrsti nafte sta bili s tem na najnižji stopnji po februarju 2021.
-
-Poleg tega se je skupina razširjenih proizvajalk nafte OPEC+ pretekli teden odločila, da bo maja povečala črpanje nafte za 411.000 sodov dnevno, kar bo po mnenju analitikov verjetno potisnilo trg v presežek."'
-
-result <- markov_babbler(text, n=20)
-cat(result$text)    
-print(result$plot)
 
 
 #sample of Grimm story (in Slovenian Language)
