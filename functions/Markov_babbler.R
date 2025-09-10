@@ -61,11 +61,9 @@ markov_babbler <- function(text, order = 2, n = 50, by_word = TRUE) {
 }
 
 
-
 #sample of Grimm story (in Slovenian Language)
 
-text <- "Brata Grimm: RDEČA KAPICA
-Nekoč je živela majhna deklica. Bila je tako zelo ljubka, da jo je vsak že na prvi pogled vzljubil. Izmed
+text <- "Nekoč je živela majhna deklica. Bila je tako zelo ljubka, da jo je vsak že na prvi pogled vzljubil. Izmed
 vseh ljudi na tem svetu pa jo je imela najraje njena babica. Ni je bilo stvari, ki je ne bi naredila zanjo.
 Nekega dne ji je podarila žametno rdečo kapico. Ta je bila deklici tako zelo všeč, da jo je nosila,
 kamorkoli je šla. Zato so jo vsi klicali Rdeča kapica.
@@ -138,7 +136,6 @@ print(result$plot)
 
 #sample of Grimm story (in English Language)
 
-
 text = "Once upon a time thee was a sweet little girl. Everyone who saw her liked her, but most of all her 
 grandmother, who did not know what to give the child next. Once she gave her a little cap made of red velvet.
 Because it suited her so well, and she wanted to wear it all the time, she came to be known as Little Red 
@@ -202,7 +199,6 @@ nose. He sniffed and looked down, stretching his neck so long that he could no l
 began to slide. He slid off the roof, fell into the trough, and drowned. And Little Red Riding Hood returned
 home happily and safely. 
 "
-
 
 result <- markov_babbler(text, n=20)
 print(result$plot)
