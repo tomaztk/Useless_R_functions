@@ -1,3 +1,20 @@
+##########################################
+# 
+# Doppler shift?
+# 
+#
+# Series:
+# Little Useless-useful R functions #75
+# Created: OCtober  01, 2025
+# Author: Tomaz Kastrun
+# Blog: tomaztsql.wordpress.com
+# V.1.0
+
+# Changelog: 
+#        
+###########################################
+
+
 library(ggplot2)
 library(reshape2)
 
@@ -12,7 +29,7 @@ doppler_colormap <- function(frequencies = seq(100, 1000, by = 50),
                              source_speeds = seq(-100, 100, by = 10), 
                              observer_speed = 0) {
   
-  # Calculate Doppler-shifted frequencies
+ 
   shifted_freqs <- doppler_shift(frequencies, source_speeds, observer_speed)
   
   # Convert to a data frame for ggplot
@@ -22,7 +39,7 @@ doppler_colormap <- function(frequencies = seq(100, 1000, by = 50),
   df$Frequency <- frequencies[df$Frequency_Index]
   df$Source_Speed <- source_speeds[df$Speed_Index]
   
-  # Visualization: Heatmap
+
   p <- ggplot(df, aes(x = Source_Speed, y = Frequency, fill = Shifted_Frequency)) +
     geom_tile() +
     scale_fill_viridis_c(option = "plasma", name = "Observed Frequency (Hz)") +
@@ -43,7 +60,7 @@ doppler_colormap <- function(frequencies = seq(100, 1000, by = 50),
   print(p)
 }
 
-# Example Usage:
+
 doppler_colormap()
 
 
