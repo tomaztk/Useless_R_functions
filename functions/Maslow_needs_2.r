@@ -2,13 +2,14 @@
 # 
 # Useless Pyramid of R needs
 # Adopted by Maslow's hierarchy of needs
+# Version 2
 #
 # Series:
 # Little Useless-useful R functions #81
 # Created: November  1, 2025
 # Author: Tomaz Kastrun
 # Blog: tomaztsql.wordpress.com
-# V.1.0
+# V.2.0
 
 ###########################################
 
@@ -17,16 +18,7 @@ library(grid)
 
 useless_needs_pyramid <- function(
     levels  = c("L1","L2","L3","L4","L5"),
-    palette = c("#8e24aa","#3f51b5","#2196f3","#4caf50","#fbc02d"),
-    title   = "Useless Pyramid of R Needs",
-    subtitle= "From useless to useful R functions",
-  
-    label_size = 5,
-    label_lineheight = 1.05,
-    label_text_color = "black",
-    box_fill = "white",
-    box_alpha = 0.22,
-    left_pad = 0.05
+    palette = c("#8e24aa","#3f51b5","#2196f3","#4caf50","#fbc02d")
 ) {
 
   tiers <- 5
@@ -59,7 +51,7 @@ useless_needs_pyramid <- function(
   lab_df$w_mid <- w_at(lab_df$y_mid)
   lab_df$label <- rev(levels)                
   lab_df$fill  <- palette
-  lab_df$label_x <- -lab_df$w_mid + left_pad
+  lab_df$label_x <- -lab_df$w_mid + 0.2
   
 
   # wrap long labels
@@ -86,17 +78,19 @@ useless_needs_pyramid <- function(
       aes(x = label_x, y = y_mid, label = label_wrapped),
       hjust = 0, vjust = 0.5,
       label.size = 0,
-      fill = add_alpha(box_fill, box_alpha),
+      fill = add_alpha("white", 0.22),
       label.padding = unit(6, "pt"),
-      size = label_size,
-      lineheight = label_lineheight,
-      color = label_text_color
+      size = 5,
+      lineheight = 1.05,
+      color = "black"
     ) +
     coord_equal(
       xlim = c(-BW/2 - 0.2, BW/2 + 0.5), ylim = c(0, H),
       expand = FALSE
     ) +
-    labs(title = title, subtitle = subtitle, x = NULL, y = NULL) +
+    labs( title    = "Useless Pyramid of R Needs",
+          subtitle = "From useless to useful R functions",
+      x = NULL, y = NULL) +
     theme_void(base_size = 13) +
     theme(
       plot.title    = element_text(face = "bold", size = 18, hjust = 0.5),
@@ -109,8 +103,6 @@ useless_needs_pyramid <- function(
   print(p)
 }
 
-
-
 useless_needs_pyramid(
   levels = c(
     "Engage \ncommunity",
@@ -119,6 +111,5 @@ useless_needs_pyramid(
     "Applying interesting math problems",
     "Gathering ideas for writing useless-useful R functions"
   ),
-  #palette = c("mediumpurple","yellowgreen","yellow","gold","red")
   palette = c("red","gold","yellow","yellowgreen","mediumpurple")
 )

@@ -47,7 +47,6 @@ useeless_needs_pyramid <- function(
   df$label_x <- df$xmin + 0.02
   
 
-  
   # helper for RGBA color
   add_alpha <- function(col, alpha) {
     rgb <- grDevices::col2rgb(col, TRUE)/255
@@ -87,7 +86,6 @@ useeless_needs_pyramid <- function(
 
 }
  
-
 # Run fctnioin
 useeless_needs_pyramid(
   levels = c(
