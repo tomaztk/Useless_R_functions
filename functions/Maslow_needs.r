@@ -60,7 +60,6 @@ useeless_needs_pyramid <- function(
     )  + geom_label(
       aes(x = label_x, y = y, label = label_wrapped),
       hjust = 0, vjust = 0.5,
-      label.size = 0,
       fill = add_alpha("white", 0.2),
       label.padding = unit(6, "pt"),
       size = 5,

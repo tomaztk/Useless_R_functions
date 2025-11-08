@@ -73,11 +73,11 @@ useless_needs_pyramid <- function(
       aes(x = x, y = y, group = tier, fill = I(fill)),
       color = "white", linewidth = 1
     ) +
+
     geom_label(
       data = lab_df,
       aes(x = label_x, y = y_mid, label = label_wrapped),
       hjust = 0, vjust = 0.5,
-      label.size = 0,
       fill = add_alpha("white", 0.22),
       label.padding = unit(6, "pt"),
       size = 5,
