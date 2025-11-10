@@ -14,7 +14,6 @@
 
 library(Rmpfr)
 
-## A->1 ... Z->26 + removes spaces/punct, case-insensitive.
 encode_a1z26 <- function(s) {
   s_clean <- gsub("[^A-Za-z]", "", toupper(s))
   if (nchar(s_clean) == 0) stop("No letters found in input.")
@@ -24,7 +23,6 @@ encode_a1z26 <- function(s) {
 }
 
 
-# Compute π to n-digits
 pi_fraction_digits <- function(n_digits) {
   # bits of precison ~ n_digits * log2(10)
   precBits <- ceiling(n_digits * log2(10)) + 32L
@@ -64,7 +62,6 @@ find_in_pi <- function(pattern, n_digits) {
   }
 }
 
-# 4) Convenience function: phrase -> A1Z26 -> search in π
 find_phrase_in_pi <- function(phrase, n_digits) {
   pat <- encode_a1z26(phrase)
   res <- find_in_pi(pat, n_digits)
@@ -74,7 +71,9 @@ find_phrase_in_pi <- function(phrase, n_digits) {
 }
 
 
+##
 ## Run functions
+##
 word <- "eggs"
 encoded_word <- encode_a1z26(word)
 cat("Encoded ",word," ->", encoded_word, "\n")  
