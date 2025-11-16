@@ -2,7 +2,6 @@
 # Life-Latz (Collatz) functions in R
 # Useless-Usefull R functions
 # 
-# 
 
 
 collatz_step <- function(n) if (n %% 2 == 0) n/2 else 3*n + 1
