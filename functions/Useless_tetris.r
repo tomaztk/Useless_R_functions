@@ -8,7 +8,7 @@ tetris_tcltk <- function() {
     stop("INstall package 'tcltk'.")
   }
   
-  ## Basic settings -----------------------------------------------------------
+  
   board_width  <- 10
   board_height <- 20
   cell_size    <- 20
