@@ -1,5 +1,5 @@
 
-### USeless
+### Useless useful R functions
 ### Tetris
 ###
 
