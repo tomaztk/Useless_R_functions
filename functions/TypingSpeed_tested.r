@@ -248,12 +248,11 @@ TypingTest <- function(mode = "code",
   cat("\n")
   
   phrase <- get_random_phrase(mode, difficulty)
-  cat("Type the following text EXACTLY as shown:\n\n")
+  cat("Type the following:\n\n")
   cat("  \"", phrase, "\"\n\n", sep = "")
   cat("Press ENTER when ready to start...")
   invisible(readline())
   
-  # Clear and show phrase again
   cat("\n----------------------------------------------------------\n")
   cat("  \"", phrase, "\"\n", sep = "")
   cat("----------------------------------------------------------\n\n")
