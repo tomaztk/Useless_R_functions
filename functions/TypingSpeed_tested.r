@@ -108,9 +108,9 @@ phrases_db <- list(
   )
 )
 
-
+#####################
 # HELPER FUNCTIONS
-
+#####################
 
 calculate_wpm <- function(text, time_seconds) {
 
