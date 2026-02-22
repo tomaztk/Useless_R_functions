@@ -39,7 +39,26 @@ phrases_db <- list(
       "The explorer was frozen in his survey before he made a quartz and jade box"
     )
   ),
-  
+  pangram_slo = list(
+    easy = c(
+      "Škrbast mož fizično dviguje hlapca", 
+      "Iščem vzdolžen grb ptujskih fac", 
+      "Črn šef Gambijk hupa vzdolž cest"
+    ),
+    medium =c(
+      "Ščepec soli fajn zažge tobak v sodih ruma",
+      "Cagav bledoličnež nima škafa za prst juhe",
+      "Vzdržljivi fant mečka gobec hišnemu psu"
+    ),
+    hard = c(
+      "Škodoželjno ga je zafrknil - ni mu pustil več hlebca",
+      "Majceni krastači vrh polža se gabi študij fizike",
+      "Prgišče klofute včasih bolj zaleže od močne brce",
+      "Pretkani gofljač razmišlja o zgodbicah sužnjev",
+      "Fantu, ki je zbrcal špičasto mevžo, hudo grozijo" 
+    )
+    
+  ),
   rstats = list(
     easy = c(
       "The mean is sensitive to outliers",
@@ -277,8 +296,6 @@ TypingTest <- function(mode = "code",
     show_error_details(phrase, typed)
   }
   
-
-
   cat("\nPlay again? (y/n): ")
   play_again <- tolower(readline())
   
@@ -286,8 +303,6 @@ TypingTest <- function(mode = "code",
     return(TypingTest(mode = mode, difficulty = difficulty,  show_errors = show_errors))
   }
   
-  cat("\nThanks for playing! \n\n")
-   
 }
 
 
