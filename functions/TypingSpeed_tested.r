@@ -1,12 +1,19 @@
-####################
-# Useless typung 
-# speed benchmark 
-# for R
-####################
+##########################################
+# 
+# Useless R typing speed  benchmark 
+#
+# Series:
+# Little Useless-useful R functions #90
+# Created: February 20, 2026
+# Author: Tomaž Kaštrun
+# Blog: tomaztsql.wordpress.com
+# V.1.0
+
+###########################################
 
 
-# list is chatgpt generated!!!!
 
+# list of phrases is generated with the help of LLM. Because ..lazy!!!!
 phrases_db <- list(
   
   pangram = list(
@@ -108,6 +115,8 @@ phrases_db <- list(
   )
 )
 
+
+
 #####################
 # HELPER FUNCTIONS
 #####################
@@ -150,14 +159,14 @@ get_random_phrase <- function(mode = "pangram", difficulty = "medium") {
   
   valid_modes <- c("pangram", "rstats", "code", "chaos")
   if (!mode %in% valid_modes) {
-    warning(paste("Invalid mode. Using 'pangram'. Valid modes:", 
+    warning(paste("Invalid mode; use one of these modes:", 
                   paste(valid_modes, collapse = ", ")))
     mode <- "pangram"
   }
 
   valid_difficulties <- c("easy", "medium", "hard")
   if (!difficulty %in% valid_difficulties) {
-    warning(paste("Invalid difficulty. Using 'medium'. Valid difficulties:",
+    warning(paste("Invalid difficulty; use one of these difficulties:",
                   paste(valid_difficulties, collapse = ", ")))
     difficulty <- "medium"
   }
@@ -180,19 +189,13 @@ display_results <- function(wpm, accuracy, time_seconds) {
   cat("\n")
   
   cat(sprintf("  Time:        %.2f seconds\n", time_seconds))
-  wpm_indicator <- if (wpm >= 60) "\U00002705" else if (wpm >= 40) "\U0001F7E1" else "\U0001F7E0"
-  cat(sprintf("  WPM:         %.1f %s\n", wpm))
-  cat(sprintf("  Accuracy:    %.1f%% %s\n", accuracy))
+  cat(sprintf("  WPM:         %.1f \n", wpm))
+  cat(sprintf("  Accuracy:    %.1f%% \n", accuracy))
 
   
   cat("\n")
   cat(rep("\U00002550", 48), "\n", sep = "")
 
-  invisible(list(
-    wpm = wpm,
-    accuracy = accuracy,
-    time_seconds = time_seconds
-  ))
 }
 
 
@@ -211,11 +214,11 @@ show_error_details <- function(original, typed) {
   
   errors <- which(orig_chars != typed_chars)
   if (length(errors) == 0) {
-    cat("\n  Perfect! No errors detected.\n")
+    cat("\n  Perfetoooo! \n")
     return(invisible(NULL))
   }
   
-  cat("\n  Error Details:\n")
+  cat("\n  Errors:\n")
   cat("  --------------\n")
   show_errors <- head(errors, 5)
   for (pos in show_errors) {
@@ -280,27 +283,21 @@ TypingTest <- function(mode = "code",
   play_again <- tolower(readline())
   
   if (play_again == "y" || play_again == "yes") {
-    return(TypingTest(mode = mode, difficulty = difficulty, 
-                      show_errors = show_errors))
+    return(TypingTest(mode = mode, difficulty = difficulty,  show_errors = show_errors))
   }
   
   cat("\nThanks for playing! \n\n")
    
-  invisible(list(
-    wpm = wpm,
-    accuracy = accuracy,
-    time_seconds = time_seconds,
-    phrase = phrase,
-    typed = typed,
-    mode = mode,
-    difficulty = difficulty
-  ))
 }
 
 
 
-## test
+#######
+## Run the function!
+######
 
 TypingTest()
+
+#or set different input parameters
 #TypingTest(mode = "code", difficulty = "easy")
 
