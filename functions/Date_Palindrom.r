@@ -282,7 +282,7 @@ IsPalindromeDate_range <- function(date = Sys.Date(),
                   emoji,
                   date_formats[[fmt]]$name,
                   digits,
-                  if (is_pal) "↔" else " ",
+                  if (is_pal) "<>" else " ",
                   status))
     }
     cat("\n")
@@ -292,4 +292,6 @@ IsPalindromeDate_range <- function(date = Sys.Date(),
 
 # Date range search
 IsPalindromeDate_range("2020-01-01", "2030-12-31")
-IsPalindromeDate_range("2020-01-01", "2025-12-31", formats = "MMDDYYYY")
+IsPalindromeDate_range("2000-01-01", "2030-01-01", formats = "MMDDYYYY")
+
+IsPalindromeDate_range("1300-01-01", "2000-01-01", formats = "DDMMYYYY")
