@@ -7,71 +7,72 @@
 # Created: March 03, 2026
 # Author: Tomaž Kaštrun
 # Blog: tomaztsql.wordpress.com
-# V.1.0
+# V.1.1
 
 ###########################################
 
-is_palindrome <- function(x) {
-  chars <- strsplit(x, "")[[1]]
-  identical(chars, rev(chars))
-}
 
-reverse_string <- function(x) {
-  paste(rev(strsplit(x, "")[[1]]), collapse = "")
-}
-
-date_to_digits <- function(date, format = "%Y%m%d") {
-  format(date, format)
-}
-
-
-date_formats <- list(
-  YYYYMMDD = list(
-    name = "YYYYMMDD",
-    format = "%Y%m%d",
-    example = "20251202",
-    regions = "International/ISO standard"
-  ),
-  MMDDYYYY = list(
-    name = "MMDDYYYY",
-    format = "%m%d%Y",
-    example = "12022025",
-    regions = "United States"
-  ),
-  DDMMYYYY = list(
-    name = "DDMMYYYY",
-    format = "%d%m%Y",
-    example = "02122025",
-    regions = "Europe"
-  ),
-  YYMMDD = list(
-    name = "YYMMDD",
-    format = "%y%m%d",
-    example = "251202",
-    regions = ""
-  ),
-  DDMMYY = list(
-    name = "DDMMYY",
-    format = "%d%m%y",
-    example = "021225",
-    regions = ""
-  ),
-  MMDDYY = list(
-    name = "MMDDYY",
-    format = "%m%d%y",
-    example = "120225",
-    regions = "United states - short"
-  )
-)
-
-
- 
 ## general function
 IsPalindromeDate <- function(date = Sys.Date(),
                              formats = "all",
                              verbose = TRUE) {
 
 
+  ## Helper stuff
+  is_palindrome <- function(x) {
+    chars <- strsplit(x, "")[[1]]
+    identical(chars, rev(chars))
+  }
+  
+  reverse_string <- function(x) {
+    paste(rev(strsplit(x, "")[[1]]), collapse = "")
+  }
+  
+  date_to_digits <- function(date, format = "%Y%m%d") {
+    format(date, format)
+  }
+  
+  
+  date_formats <- list(
+    YYYYMMDD = list(
+      name = "YYYYMMDD",
+      format = "%Y%m%d",
+      example = "20251202",
+      regions = "International/ISO standard"
+    ),
+    MMDDYYYY = list(
+      name = "MMDDYYYY",
+      format = "%m%d%Y",
+      example = "12022025",
+      regions = "United States"
+    ),
+    DDMMYYYY = list(
+      name = "DDMMYYYY",
+      format = "%d%m%Y",
+      example = "02122025",
+      regions = "Europe"
+    ),
+    YYMMDD = list(
+      name = "YYMMDD",
+      format = "%y%m%d",
+      example = "251202",
+      regions = ""
+    ),
+    DDMMYY = list(
+      name = "DDMMYY",
+      format = "%d%m%y",
+      example = "021225",
+      regions = ""
+    ),
+    MMDDYY = list(
+      name = "MMDDYY",
+      format = "%m%d%y",
+      example = "120225",
+      regions = "United states - short"
+    )
+  )
+  
+  
   date <- as.Date(date)
 
   # Select formats
@@ -86,7 +87,6 @@ IsPalindromeDate <- function(date = Sys.Date(),
     }
   }
 
-  # Check each format
   results <- sapply(check_formats, function(fmt) {
     digits <- date_to_digits(date, date_formats[[fmt]]$format)
     is_palindrome(digits)
@@ -94,16 +94,13 @@ IsPalindromeDate <- function(date = Sys.Date(),
 
 
   if (verbose) {
- 
-
     any_palindrome <- FALSE
 
     for (fmt in check_formats) {
       digits <- date_to_digits(date, date_formats[[fmt]]$format)
       is_pal <- results[fmt]
 
-      status <- if (is_pal) "Palindrome!" else "Not a palindrome!"
-
+      status <- if (is_pal) "Is palindrome" else "Not a palindrome!"
       if (is_pal) any_palindrome <- TRUE
 
       cat(sprintf("  %s %-15s : %s  %s\n",
@@ -117,19 +114,77 @@ IsPalindromeDate <- function(date = Sys.Date(),
 }
 
 
-
+## Usage examples
 IsPalindromeDate()
 IsPalindromeDate(as.Date("2020-02-02"))
 IsPalindromeDate(as.Date("2021-12-02"), formats = "YYYYMMDD")
 
 
-
+#########################
 #### Function for range
+########################
 
-IsPalindromeDate_range <- function(date = Sys.Date(), 
+IsPalindromeDateRange <- function(date = Sys.Date(), 
                              end_date = NULL,
                              formats = "all",
                              verbose = TRUE) {
+  
+  
+  
+  ## Helper stuff
+  is_palindrome <- function(x) {
+    chars <- strsplit(x, "")[[1]]
+    identical(chars, rev(chars))
+  }
+  
+  reverse_string <- function(x) {
+    paste(rev(strsplit(x, "")[[1]]), collapse = "")
+  }
+  
+  date_to_digits <- function(date, format = "%Y%m%d") {
+    format(date, format)
+  }
+  
+  
+  date_formats <- list(
+    YYYYMMDD = list(
+      name = "YYYYMMDD",
+      format = "%Y%m%d",
+      example = "20251202",
+      regions = "International/ISO standard"
+    ),
+    MMDDYYYY = list(
+      name = "MMDDYYYY",
+      format = "%m%d%Y",
+      example = "12022025",
+      regions = "United States"
+    ),
+    DDMMYYYY = list(
+      name = "DDMMYYYY",
+      format = "%d%m%Y",
+      example = "02122025",
+      regions = "Europe"
+    ),
+    YYMMDD = list(
+      name = "YYMMDD",
+      format = "%y%m%d",
+      example = "251202",
+      regions = ""
+    ),
+    DDMMYY = list(
+      name = "DDMMYY",
+      format = "%d%m%y",
+      example = "021225",
+      regions = ""
+    ),
+    MMDDYY = list(
+      name = "MMDDYY",
+      format = "%m%d%y",
+      example = "120225",
+      regions = "United states - short"
+    )
+  )
+  
   
   date <- as.Date(date)
    
@@ -234,7 +289,6 @@ IsPalindromeDate_range <- function(date = Sys.Date(),
         
         cat(strrep("─", 60), "\n\n")
         
-        # Results for formats
         if (length(check_formats) > 1) {
           cat("Summary by format:\n")
           format_counts <- table(results$format)
@@ -245,25 +299,17 @@ IsPalindromeDate_range <- function(date = Sys.Date(),
           cat("\n")
         }
         
-        # Fun facts
-        if (nrow(results) > 1) {
-          dow_counts <- table(results$day_of_week)
-          most_common_day <- names(which.max(dow_counts))
-          cat(sprintf(" Most common name day is: %s (%d occurrences)\n\n",
-                      most_common_day, max(dow_counts)))
-        }
       }
     }
   }
   
-  # Sanity Check for each format
+  # Sanity Check 
   results <- sapply(check_formats, function(fmt) {
     digits <- date_to_digits(date, date_formats[[fmt]]$format)
     is_palindrome(digits)
   })
   
   if (verbose) {
-    cat("\n")
     any_palindrome <- FALSE
     
     for (fmt in check_formats) {
@@ -271,12 +317,10 @@ IsPalindromeDate_range <- function(date = Sys.Date(),
       is_pal <- results[fmt]
       
       status <- if (is_pal) "PALINDROME!" else "Not a palindrome"
-      emoji <- if (is_pal) ""
       
       if (is_pal) any_palindrome <- TRUE
       
-      cat(sprintf("  %s %-15s : %s  %s  %s\n",
-                  emoji,
+      cat(sprintf("  %s %-15s : %s  %s\n",
                   date_formats[[fmt]]$name,
                   digits,
                   if (is_pal) "<>" else " ",
@@ -287,8 +331,10 @@ IsPalindromeDate_range <- function(date = Sys.Date(),
 }
 
 
-# Date range search
-IsPalindromeDate_range("2020-01-01", "2030-12-31")
-IsPalindromeDate_range("2000-01-01", "2030-01-01", formats = "MMDDYYYY")
+###
+# Function usage - Range
+###
+IsPalindromeDateRange("2020-01-01", "2030-12-31")
+IsPalindromeDateRange("2000-01-01", "2030-01-01", formats = "MMDDYYYY")
 
-IsPalindromeDate_range("1100-01-01", "1200-01-01", formats = "DDMMYYYY")
+IsPalindromeDateRange("1100-01-01", "1200-01-01", formats = "DDMMYYYY")
