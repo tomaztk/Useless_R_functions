@@ -71,7 +71,6 @@ IsPalindromeDate <- function(date = Sys.Date(),
                              formats = "all",
                              verbose = TRUE) {
 
-  # Handle string input
 
   date <- as.Date(date)
 
@@ -103,16 +102,14 @@ IsPalindromeDate <- function(date = Sys.Date(),
       digits <- date_to_digits(date, date_formats[[fmt]]$format)
       is_pal <- results[fmt]
 
-      status <- if (is_pal) "PALINDROME!" else "Not a palindrome"
-      emoji <- if (is_pal) "" else "  "
+      status <- if (is_pal) "Palindrome!" else "Not a palindrome!"
 
       if (is_pal) any_palindrome <- TRUE
 
-      cat(sprintf("  %s %-15s : %s  %s  %s\n",
-                  emoji,
+      cat(sprintf("  %s %-15s : %s  %s\n",
                   date_formats[[fmt]]$name,
                   digits,
-                  if (is_pal) "↔" else " ",
+                  if (is_pal) "" else " ",
                   status))
     }
 
