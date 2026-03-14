@@ -271,7 +271,7 @@ IsPalindromeDateRange <- function(date = Sys.Date(),
         cat(strrep("─", 60), "\n")
         cat(sprintf("  %-12s  %-10s  %-12s  %s\n","Date", "Day", "Format", "Digits"))
         cat(strrep("─", 60), "\n")
-        display_results <- if (nrow(results) > 50) head(results, 50) else results
+        display_results <-  results
         
         for (i in seq_len(nrow(display_results))) {
           row <- display_results[i, ]
@@ -282,14 +282,11 @@ IsPalindromeDateRange <- function(date = Sys.Date(),
                       row$digits,
                       reverse_string(row$digits)))
         }
-        
-        if (nrow(results) > 50) {
-          cat(sprintf("\n  ... and %d more (showing first 50)\n", nrow(results) - 50))
-        }
-        
+  
         cat(strrep("─", 60), "\n\n")
         
         if (length(check_formats) > 1) {
+          #funky stuff
           cat("Summary by format:\n")
           format_counts <- table(results$format)
           for (fmt in names(format_counts)) {
