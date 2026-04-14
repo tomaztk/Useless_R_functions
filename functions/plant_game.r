@@ -438,9 +438,9 @@ WaterPlant <- function(file = .plant_file) {
   # Level up message
   if (leveled_up) {
     cat("\n")
-    cat("    ════════════════════════════════════  \n")
+    cat("  ╔", hline("═", 44), "╗\n", sep = "")
     cat("     LEVEL UP! Your plant is now: ", new_stage$emoji, " ", new_stage$name, "\n", sep = "")
-    cat("    ════════════════════════════════════  \n")
+    cat("  ╔", hline("═", 44), "╗\n", sep = "")
   }
   
   cat("\n  ", get_encouragement(), "\n\n", sep = "")
@@ -768,18 +768,13 @@ local({
 
 ### Usage
 
-PlantNew()       # Start a new plant (choose a name!)
-WaterPlant()     # Water your plant (once per day)
-CheckPlant()     # Full status report
-Plant()          # Quick view (just the art)
-PlantJourney()   # See growth progress
-PlantGallery()   # Preview all growth stages
-PlantDelete()    # Delete and start over
+PlantNew()
+WaterPlant()   
+CheckPlant()     
+Plant()      
+PlantJourney()  
+PlantGallery()  
+PlantDelete()    
 
-# Tips:
-#   • Water daily for bonus points
-#   • Just running CheckPlant() gives small growth points
-#   • Don't forget to water or your plant will wilt!
-#   • Health below 30% = wilted, Health 0% = dead
-
+ 
 
