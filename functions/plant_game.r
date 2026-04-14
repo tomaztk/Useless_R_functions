@@ -14,9 +14,8 @@
 
 
 #getwd()
-#setwd("/Users/tomazkastrun/Desktop")
+#setwd("/Users/abcd/Desktop")
 .plant_file <- path.expand("~/.r_desk_plant.rds")
-
 
 
 # --  ASCII art for plant stages -- GPT Created
