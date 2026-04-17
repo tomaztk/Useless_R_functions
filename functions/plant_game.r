@@ -738,9 +738,7 @@ PlantDelete <- function(file = .plant_file, confirm = TRUE) {
   cat(" Use PlantNew() to start fresh.\n\n")
 }
 
-
-# AUTO-RUN on source (optional welcome message)
-
+#optional
 .onAttach <- function() {
   plant <- get_plant()
   if (!is.null(plant) && plant$health > 0) {
