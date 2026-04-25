@@ -561,7 +561,6 @@ CheckPlant <- function(file = .plant_file) {
     cat("  Don't forget to WaterPlant()!\n\n")
   }
   
-  invisible(plant)
 }
 
 
@@ -628,7 +627,7 @@ PlantJourney <- function(file = .plant_file) {
   cat(sprintf("  Days growing: %d\n", days_since(plant$planted_date)))
   cat("\n")
   
-  invisible(plant)
+  # invisible(plant)
 }
 
 
