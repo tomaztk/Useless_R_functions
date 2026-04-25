@@ -181,17 +181,13 @@ growth_stages <- data.frame(
 
 hline <- function(char = "═", n = 40) strrep(char, n)
 
-# get current status of a plant
+# get current status of a plant / game play
 get_plant <- function(file = .plant_file) {
-  if (file.exists(file)) {
-    readRDS(file)
-  } else {
-    NULL
-  }
+  if (file.exists(file)) { readRDS(file) } 
 }
 
 
-# Save plant in RDS and all game play
+# Save plant in RDS and all game play!
 save_plant <- function(plant, file = .plant_file) {
   saveRDS(plant, file)
 }
@@ -216,14 +212,12 @@ get_plant_art <- function(plant) {
   plant_art[[stage$art_name]]
 }
 
-
-# days calculation
 days_since <- function(date) {
   as.integer(Sys.Date() - as.Date(date))
 }
 
 
-# Messages for encouragement
+# Messages for encouragement - Done with help of chatGPT
 get_encouragement <- function() {
   messages <- c(
     "Your plant appreciates you!",
@@ -262,8 +256,6 @@ get_health_message <- function(health) {
 # ---- main functions
 
 PlantNew <- function(name = NULL, file = .plant_file) {
-  
-  # Check if plant already exists
   existing <- get_plant(file)
   
   if (!is.null(existing) && existing$health > 0) {
@@ -274,7 +266,6 @@ PlantNew <- function(name = NULL, file = .plant_file) {
     response <- tolower(readline())
     if (response != "yes") {
       cat("  Keeping your existing plant.  \n\n")
-      return(NULL)
     }
   }
   
@@ -323,49 +314,42 @@ PlantNew <- function(name = NULL, file = .plant_file) {
   )
   
   save_plant(plant, file)
-  
-  # Display
+
   cat("\n")
   cat("  ╔", hline("═", 44), "╗\n", sep = "")
   cat("  ║         NEW PLANT CREATED!               ║\n")
   cat("  ╚", hline("═", 44), "╝\n", sep = "")
   cat("\n")
   
-  # Show seed art
   art <- plant_art$seed
   for (line in art) {
     cat("        ", line, "\n", sep = "")
   }
   
   cat("\n")
-  cat("  Name:    ", name, "\n", sep = "")
-  cat("  Species: ", plant$species, "\n", sep = "")
-  cat("  Planted: ", format(Sys.Date(), "%B %d, %Y"), "\n", sep = "")
+  cat("Name:    ", name, "\n", sep = "")
+  cat("Species: ", plant$species, "\n", sep = "")
+  cat("Planted: ", format(Sys.Date(), "%B %d, %Y"), "\n", sep = "")
   cat("\n")
-  cat("  💡 Tips:\n")
-  cat("     • Use WaterPlant() to water your plant\n")
-  cat("     • Use CheckPlant() to see its status\n")
-  cat("     • Visit often - your R sessions help it grow!\n")
+  cat("Tips:\n")
+  cat(" --> Use WaterPlant() to water your plant\n")
+  cat(" --> Use CheckPlant() to see its status\n")
+  cat(" --> Visit often - your R sessions help it grow!\n")
   cat("\n")
-  
-  invisible(plant)
+
 }
 
 
 
 # -- Water planting 
 WaterPlant <- function(file = .plant_file) {
-  
   plant <- get_plant(file)
-  
   if (is.null(plant)) {
     cat("\n No plant found! Start one with PlantNew()\n\n")
-    return(NULL)
   }
   
   if (plant$health <= 0) {
     cat("\n  Your plant has died. Start a new one with PlantNew()\n\n")
-    return(NULL)
   }
   
   # Check if already watered today
@@ -382,12 +366,8 @@ WaterPlant <- function(file = .plant_file) {
   
   # Calculate bonus for consecutive days
   days_since_water <- days_since(plant$last_watered)
-  
-  # Water the plant
   water_points <- 15
   health_gain <- 20
-  
-  # Bonus for not over-neglecting
   if (days_since_water == 1) {
     water_points <- water_points + 5  # Consecutive day bonus
     plant$achievements <- union(plant$achievements, "daily_waterer")
@@ -420,64 +400,47 @@ WaterPlant <- function(file = .plant_file) {
   cat("  ║            WATERING TIME!                 ║\n")
   cat("  ╚", hline("═", 44), "╝\n", sep = "")
   cat("\n")
-  
-  # Animation-like effect
+
   cat("    Watering '", plant$name, "'...\n\n", sep = "")
-  
-  # Show art
   art <- get_plant_art(plant)
   for (line in art) {
     cat("        ", line, "\n", sep = "")
   }
-  
-  cat("\n")
+
   cat(sprintf("  +%d growth points! (Total: %d)\n", water_points, plant$points))
-  cat(sprintf("  Health: %d%% %s\n", plant$health, 
-              strrep("█", plant$health %/% 10)))
-  
-  # Level up message
+  cat(sprintf("  Health: %d%% %s\n", plant$health, strrep("█", plant$health %/% 10)))
+
   if (leveled_up) {
     cat("\n")
     cat("  ╔", hline("═", 44), "╗\n", sep = "")
     cat("     LEVEL UP! Your plant is now: ", new_stage$emoji, " ", new_stage$name, "\n", sep = "")
     cat("  ╔", hline("═", 44), "╗\n", sep = "")
   }
-  
   cat("\n  ", get_encouragement(), "\n\n", sep = "")
-  
-  invisible(plant)
 }
 
 
 # --  Check on your desk plant
 CheckPlant <- function(file = .plant_file) {
-  
   plant <- get_plant(file)
-  
   if (is.null(plant)) {
     cat("\n    No plant found! Start one with PlantNew()\n\n")
-    return(invisible(NULL))
   }
   
-  # Calculate health decay based on days since last water
   days_without_water <- days_since(plant$last_watered)
-  
   if (days_without_water > 1 && plant$health > 0) {
     # Lose health for each day without water (after first day)
     health_loss <- (days_without_water - 1) * 10
     plant$health <- max(0, plant$health - health_loss)
   }
   
-  # Award visit points (small amount, encourages checking in)
-  # But only once per R session (track with session time)
   session_start <- Sys.getenv("R_SESSION_TMPDIR")  # Unique per session
   
   visit_points <- 2
   plant$points <- plant$points + visit_points
   plant$sessions <- plant$sessions + 1
   plant$last_visited <- Sys.time()
-  
-  # Check for session achievements
+
   if (plant$sessions == 100 && !"100_sessions" %in% plant$achievements) {
     plant$achievements <- c(plant$achievements, "100_sessions")
   }
@@ -530,9 +493,8 @@ CheckPlant <- function(file = .plant_file) {
     water_status <- sprintf("   %d days without water!", days_since_water)
   }
   cat(sprintf("  Last water:  %s\n", water_status))
-  
   cat("  ", hline("─", 44), "\n", sep = "")
-  
+
   # Stats
   cat(sprintf("  Waterings:   %d total\n", plant$times_watered))
   cat(sprintf("  Visits:      %d R sessions\n", plant$sessions))
@@ -554,15 +516,11 @@ CheckPlant <- function(file = .plant_file) {
     }
   }
   
-  cat("\n")
-  
-  # Reminder to water
   if (days_since_water >= 1 && plant$health > 0) {
     cat("  Don't forget to WaterPlant()!\n\n")
   }
   
 }
-
 
 # -- View your plant's growth history
 PlantJourney <- function(file = .plant_file) {
@@ -571,28 +529,22 @@ PlantJourney <- function(file = .plant_file) {
   
   if (is.null(plant)) {
     cat("\n    No plant found! Start one with PlantNew()\n\n")
-    return(invisible(NULL))
   }
   
   current_stage <- get_stage(plant$points)
-  
   cat("\n")
   cat("  ╔", hline("═", 48), "╗\n", sep = "")
   cat("  ║             GROWTH JOURNEY                    ║\n")
   cat("  ║             '", sprintf("%-20s", plant$name), "'        ║\n", sep = "")
   cat("  ╚", hline("═", 48), "╝\n", sep = "")
   cat("\n")
-  
-  # Show progress through stages
   for (i in 1:nrow(growth_stages)) {
     row <- growth_stages[i, ]
     
     if (row$stage <= current_stage$stage) {
-      # Reached this stage
       status <- "✓"
       marker <- row$emoji
     } else {
-      # Not yet reached
       status <- " "
       marker <- "⬜"
     }
@@ -626,8 +578,6 @@ PlantJourney <- function(file = .plant_file) {
   cat(sprintf("  Total points: %d\n", plant$points))
   cat(sprintf("  Days growing: %d\n", days_since(plant$planted_date)))
   cat("\n")
-  
-  # invisible(plant)
 }
 
 
@@ -640,23 +590,19 @@ PlantGallery <- function() {
   cat("  ╚", hline("═", 52), "╝\n", sep = "")
   cat("\n")
   
-  stages_to_show <- c("seed", "sprout", "seedling", "young", 
-                      "growing", "mature", "flowering", "tree")
+  stages_to_show <- c("seed", "sprout", "seedling", "young", "growing", "mature", "flowering", "tree")
   stage_names <- c("Seed (0 pts)", "Sprout (10 pts)", "Seedling (25 pts)", 
                    "Young (50 pts)", "Growing (100 pts)", "Mature (175 pts)",
                    "Flowering (275 pts)", "Full Bloom (400 pts)")
   
-  # Show two per row
   for (i in seq(1, length(stages_to_show), by = 2)) {
     art1 <- plant_art[[stages_to_show[i]]]
     art2 <- if (i + 1 <= length(stages_to_show)) plant_art[[stages_to_show[i + 1]]] else rep("", 10)
     
-    # Print header
     cat(sprintf("  %-24s  %-24s\n", stage_names[i], 
                 if (i + 1 <= length(stages_to_show)) stage_names[i + 1] else ""))
     cat("  ", hline("─", 24), "  ", hline("─", 24), "\n", sep = "")
     
-    # Print art side by side
     for (j in seq_along(art1)) {
       line1 <- if (j <= length(art1)) art1[j] else ""
       line2 <- if (j <= length(art2)) art2[j] else ""
@@ -686,7 +632,6 @@ Plant <- function(file = .plant_file) {
   
   if (is.null(plant)) {
     cat("\n No plant! Use PlantNew() to start.\n\n")
-    return(NULL)
   }
   
   # Update health decay silently
@@ -728,7 +673,6 @@ PlantDelete <- function(file = .plant_file, confirm = TRUE) {
     response <- tolower(readline())
     if (response != "yes") {
       cat("  Keeping your plant safe.  \n\n")
-      return(invisible(FALSE))
     }
   }
   
