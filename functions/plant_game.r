@@ -581,51 +581,6 @@ PlantJourney <- function(file = .plant_file) {
 }
 
 
-# -- Display plant gallery showing all growth stages
-PlantGallery <- function() {
-  
-  cat("\n")
-  cat("  ╔", hline("═", 52), "╗\n", sep = "")
-  cat("  ║           ️   PLANT GROWTH GALLERY️               ║\n")
-  cat("  ╚", hline("═", 52), "╝\n", sep = "")
-  cat("\n")
-  
-  stages_to_show <- c("seed", "sprout", "seedling", "young", "growing", "mature", "flowering", "tree")
-  stage_names <- c("Seed (0 pts)", "Sprout (10 pts)", "Seedling (25 pts)", 
-                   "Young (50 pts)", "Growing (100 pts)", "Mature (175 pts)",
-                   "Flowering (275 pts)", "Full Bloom (400 pts)")
-  
-  for (i in seq(1, length(stages_to_show), by = 2)) {
-    art1 <- plant_art[[stages_to_show[i]]]
-    art2 <- if (i + 1 <= length(stages_to_show)) plant_art[[stages_to_show[i + 1]]] else rep("", 10)
-    
-    cat(sprintf("  %-24s  %-24s\n", stage_names[i], 
-                if (i + 1 <= length(stages_to_show)) stage_names[i + 1] else ""))
-    cat("  ", hline("─", 24), "  ", hline("─", 24), "\n", sep = "")
-    
-    for (j in seq_along(art1)) {
-      line1 <- if (j <= length(art1)) art1[j] else ""
-      line2 <- if (j <= length(art2)) art2[j] else ""
-      cat(sprintf("  %-24s  %-24s\n", line1, line2))
-    }
-    cat("\n")
-  }
-  
-  # Show special states
-  cat("     Special States:\n")
-  cat("  ", hline("─", 24), "  ", hline("─", 24), "\n", sep = "")
-  cat(sprintf("  %-24s  %-24s\n", "Wilted (health < 30%)", "Dead (health = 0%)"))
-  cat("  ", hline("─", 24), "  ", hline("─", 24), "\n", sep = "")
-  
-  art_wilted <- plant_art$wilted
-  art_dead <- plant_art$dead
-  
-  for (j in seq_along(art_wilted)) {
-    cat(sprintf("  %-24s  %-24s\n", art_wilted[j], art_dead[j]))
-  }
-}
-
-
 # Quick status - just show the plant
 Plant <- function(file = .plant_file) {
   plant <- get_plant(file)
@@ -712,10 +667,10 @@ local({
 PlantNew()
 WaterPlant()   
 CheckPlant()     
-Plant()      
-PlantJourney()  
-PlantGallery()  
-PlantDelete()    
+
+#Plant()      
+#PlantJourney()  
+#PlantDelete()    
 
  
 
