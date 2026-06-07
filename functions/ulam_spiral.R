@@ -164,7 +164,6 @@ ulam_prime_spiral <- function(
     }
   }
   
-  # ── Titles ──────────────────────────────────────────────────────────────
   mtext(
     sprintf("Ulam Prime Spiral  \u00b7  %d\u00d7%d  \u00b7  %d primes  \u00b7  %.1f%%", n, n, n_primes, density),
     side = 3, line = 0.6, col = th$txt, cex = 0.85, font = 2
