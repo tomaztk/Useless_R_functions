@@ -1,12 +1,21 @@
-##
-##
-##
-# Bézout's identity
+##########################################
+# 
+# Useless useful R functions
+# Bézout's identity and BFS solver
+#
+# Series:
+# Little Useless-useful R functions #95
+# Created: July 12, 2026
+# Author: Tomaž Kaštrun
+# Blog: tomaztsql.wordpress.com
+# V.1.1
+
+###########################################
 
 
 solve_jugs <- function(caps = c(16, 11, 7), start = c(16, 0, 0), goal = c(8, 8, 0)) {
   # BFS over all (a, b, c) states
-  # Each state is a named integer vector of water = amount is each jug
+  # Each state is a named integer vector of water = amount is each jug or ?????
   
   queue   <- list(list(state = start, path = list(start)))
   visited <- list()
@@ -40,12 +49,12 @@ solve_jugs <- function(caps = c(16, 11, 7), start = c(16, 0, 0), goal = c(8, 8, 
       }
     }
   }
-  NULL  # no solution
+  NULL  # no solution; add message or smht :)
 }
 
 solution <- solve_jugs()
 
-
+ 
 for (step in solution) {
   cat(sprintf("  %-4d  %-4d  %-4d\n", step[1], step[2], step[3]))
 }
