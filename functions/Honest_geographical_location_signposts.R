@@ -7,8 +7,6 @@ library(httr)
 library(jsonlite)
 
 geocode_city <- function(city_name) {
-  cat(sprintf("  Geocoding: %s ...", city_name))
-  
   url <- modify_url(
     "https://nominatim.openstreetmap.org/search",
     query = list(
@@ -20,16 +18,7 @@ geocode_city <- function(city_name) {
   
   resp <- tryCatch(
     GET(url, user_agent("PointingSignFinder/1.0 (R script)")),
-    error = function(e) {
-      cat(" FAILED (network error)\n")
-      return(NULL)
-    }
   )
-  
-  if (is.null(resp) || http_error(resp)) {
-    cat(" FAILED (HTTP error)\n")
-    return(NULL)
-  }
   
   result <- fromJSON(content(resp, as = "text", encoding = "UTF-8"))
   
@@ -165,147 +154,9 @@ sign_location_finder <- function(cities,
   }
   
 ### ne 
-  colors <- c("#1d7aed", "#e8541a", "#16a34a",
-              "#9333ea", "#dc2626", "#ca8a04", "#0891b2")
-  col_cycle <- colors[((seq_len(nrow(sign_data)) - 1) %% length(colors)) + 1]
-  
-  world_map <- map_data("world")
-  
-  # Helper: build circle points
-  circle_pts <- function(city_idx, radius_km) {
-    pts <- destPoint(
-      p = c(sign_data$lon[city_idx], sign_data$lat[city_idx]),
-      b = seq(0, 360, length.out = 720),
-      d = radius_km * 1000
-    )
-    data.frame(lon = pts[, 1], lat = pts[, 2],
-               city = sign_data$city[city_idx],
-               color = col_cycle[city_idx])
-  }
-  
-  # --- World overview ---
-  p_world <- ggplot() +
-    geom_polygon(data = world_map,
-                 aes(x = long, y = lat, group = group),
-                 fill = "#e8e4dc", color = "#b5b1a9", linewidth = 0.2) +
-    coord_fixed(1.3,
-                xlim = c(lon_min, lon_max),
-                ylim = c(lat_min, lat_max)) +
-    theme_minimal(base_size = 13) +
-    theme(
-      panel.background = element_rect(fill = "#c8dff0", color = NA),
-      panel.grid.major = element_line(color = "white", linewidth = 0.3),
-      plot.title    = element_text(face = "bold", size = 15),
-      plot.subtitle = element_text(size = 11, color = "#555")
-    ) +
-    labs(
-      title    = "Pointing Sign Location Finder",
-      subtitle = sprintf("Distance circle intersections (±%d km tolerance)", tolerance),
-      x = "Longitude", y = "Latitude"
-    )
-  
-  for (i in seq_len(nrow(sign_data))) {
-    col <- col_cycle[i]
-    p_world <- p_world +
-      geom_path(data = circle_pts(i, sign_data$dist_km[i] - tolerance),
-                aes(x = lon, y = lat),
-                color = col, linetype = "dashed", linewidth = 0.35, alpha = 0.55) +
-      geom_path(data = circle_pts(i, sign_data$dist_km[i] + tolerance),
-                aes(x = lon, y = lat),
-                color = col, linetype = "dashed", linewidth = 0.35, alpha = 0.55) +
-      geom_path(data = circle_pts(i, sign_data$dist_km[i]),
-                aes(x = lon, y = lat),
-                color = col, linewidth = 0.9, alpha = 0.85)
-  }
-  
-  p_world <- p_world + {
-      for (i in seq_len(nrow(sign_data))) {
-        p_world <- p_world +
-          geom_point(
-            data   = sign_data[i, ],
-            aes(x = lon, y = lat),
-            fill   = col_cycle[i],
-            color  = "white",
-            shape  = 21, size = 4, stroke = 1.2
-          )
-      }
-    } + 
-    geom_label(data = sign_data,
-               aes(x = lon, y = lat,
-                   label = paste0(city, "\n(", dist_km, " km)")),
-               nudge_y = (lat_max - lat_min) * 0.04,
-               size = 3.2, fontface = "bold",
-               fill = "white", color = "#222", label.size = 0.3) +
-    geom_point(aes(x = best$lon, y = best$lat),
-               fill = "#fbbf24", color = "black",
-               shape = 23, size = 5, stroke = 1.5) +
-    annotate("label",
-             x = best$lon,
-             y = best$lat - (lat_max - lat_min) * 0.06,
-             label = sprintf("Sign location\n(%.2f°, %.2f°)", best$lat, best$lon),
-             size = 3.5, fontface = "bold",
-             fill = "#fef9c3", color = "#92400e", label.size = 0.4)
-  
-  # --- Zoomed map ---
-  zoom_pad <- max(tolerance / 80, 2.5)
-  
-  p_zoom <- ggplot() +
-    geom_polygon(data = world_map,
-                 aes(x = long, y = lat, group = group),
-                 fill = "#e8e4dc", color = "#b5b1a9", linewidth = 0.3) +
-    coord_fixed(1.3,
-                xlim = c(best$lon - zoom_pad * 3, best$lon + zoom_pad * 3),
-                ylim = c(best$lat - zoom_pad * 2, best$lat + zoom_pad * 2)) +
-    theme_minimal(base_size = 12) +
-    theme(
-      panel.background = element_rect(fill = "#c8dff0", color = NA),
-      panel.grid.major = element_line(color = "white", linewidth = 0.3),
-      plot.title    = element_text(face = "bold", size = 14),
-      plot.subtitle = element_text(size = 10, color = "#555")
-    ) +
-    labs(
-      title    = "Zoomed: Estimated Sign Location",
-      subtitle = sprintf("Lat %.4f  /  Lon %.4f  |  Deviation ≤ %.1f km",
-                         best$lat, best$lon, best$score),
-      x = "Longitude", y = "Latitude"
-    )
-  
-  for (i in seq_len(nrow(sign_data))) {
-    col <- col_cycle[i]
-    for (adj in c(-tolerance, 0, tolerance)) {
-      ltype <- if (adj == 0) "solid" else "dotted"
-      lwd   <- if (adj == 0) 1.1 else 0.5
-      p_zoom <- p_zoom +
-        geom_path(data = circle_pts(i, sign_data$dist_km[i] + adj),
-                  aes(x = lon, y = lat),
-                  color = col, linetype = ltype,
-                  linewidth = lwd, alpha = 0.85)
-    }
-  }
-  
-  p_zoom <- p_zoom +
-    geom_point(aes(x = best$lon, y = best$lat),
-               fill = "#fbbf24", color = "black",
-               shape = 23, size = 6, stroke = 1.5) +
-    annotate("label",
-             x = best$lon, y = best$lat + zoom_pad * 0.6,
-             label = sprintf("%.4f°N / %.4f°E\n±%.0f km",
-                             best$lat, best$lon, best$score),
-             size = 3.5, fill = "#fef9c3", color = "#92400e",
-             fontface = "bold", label.size = 0.4)
-  
-  print(p_world)
-  print(p_zoom)
-  
-  # Return results invisibly
-  invisible(list(
-    sign_data = sign_data,
-    location  = list(lat = best$lat, lon = best$lon, error_km = best$score),
-    nearby    = nearby
-  ))
+
 }
 
-# ======= SAMPLES
 
 # sample 1
 result <- sign_location_finder(
@@ -336,9 +187,4 @@ result <- sign_location_finder(
   distances = c(83, 61, 104, 24),
   tolerance = 20
 )
-
-
- # Access results programmatically:
-# result$location      → list(lat, lon, error_km)
-# result$sign_data     → data frame with geocoded coords
-# result$nearby        → data frame of nearby cities
+ 
