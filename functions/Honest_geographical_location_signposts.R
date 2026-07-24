@@ -31,7 +31,6 @@ geocode_city <- function(city_name) {
   lon <- as.numeric(result$lon[1])
   cat(sprintf(" found: %.4f°, %.4f°\n", lat, lon))
   
-  # Nominatim rate limit — be polite, 1 req/sec
   Sys.sleep(1.1)
   
   list(lat = lat, lon = lon, display_name = result$display_name[1])
