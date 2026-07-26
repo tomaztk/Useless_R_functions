@@ -1,4 +1,5 @@
-# Useful useless function
+# Useful useless function R function
+
 # Find numbers n (0 < n <= max_n) for which there exists at
 # least one integer multiplier k >= 2 such that k*n is a digit
 # permutation ("anagram") of n itself.
@@ -56,15 +57,4 @@ find_permutation_multiples <- function(max_n = 1e6) {
 
 results <- find_permutation_multiples(1e6)
 
-plot(
-  results$number, results$n_multipliers,
-  pch = 19, cex = 0.7, col = adjustcolor("#2C7FB8", alpha.f = 0.6),
-  xlab = "Number (0 - 1,000,000)",
-  ylab = "Count of valid multipliers (k = 2..9)",
-  main = "Numbers whose digits get shuffled by multiplication",
-  las = 1
-)
-best <- results[which.max(results$n_multipliers), ]
-points(best$number, best$n_multipliers, pch = 21, cex = 1.6, col = "red", lwd = 2)
-text(best$number, best$n_multipliers, labels = best$number, pos = 3, col = "red", cex = 0.8)
-
+head(sort(results$n_multipliers, decreasing=TRUE),10)
