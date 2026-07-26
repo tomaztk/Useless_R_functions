@@ -55,6 +55,10 @@ find_permutation_multiples <- function(max_n = 1e6) {
   data.frame(number = numbers, n_multipliers = n_valid_ks)
 }
 
-results <- find_permutation_multiples(1e6)
+res <- find_permutation_multiples(1e6)
 
-head(sort(results$n_multipliers, decreasing=TRUE),10)
+head(res[order(res$n_multipliers, decreasing=TRUE),], 10)
+
+
+
+### faster solution
