@@ -7,8 +7,7 @@ library(httr)
 library(jsonlite)
 
 geocode_city <- function(city_name) {
-  cat(sprintf("  Geocoding: %s ...", city_name))
-  
+ 
   url <- modify_url(
     "https://nominatim.openstreetmap.org/search",
     query = list(
@@ -20,21 +19,21 @@ geocode_city <- function(city_name) {
   
   resp <- tryCatch(
     GET(url, user_agent("PointingSignFinder/1.0 (R script)")),
-    error = function(e) {
-      cat(" FAILED (network error)\n")
-      return(NULL)
-    }
+     error = function(e) {
+       cat(" Error on endpoint")
+       return(NULL)
+     }
   )
   
   if (is.null(resp) || http_error(resp)) {
-    cat(" FAILED (HTTP error)\n")
+    cat(" Error on http\n")
     return(NULL)
   }
   
   result <- fromJSON(content(resp, as = "text", encoding = "UTF-8"))
   
   if (length(result) == 0) {
-    cat(" NOT FOUND\n")
+    cat("Error on result")
     return(NULL)
   }
   
@@ -42,7 +41,6 @@ geocode_city <- function(city_name) {
   lon <- as.numeric(result$lon[1])
   cat(sprintf(" found: %.4f°, %.4f°\n", lat, lon))
   
-  # Nominatim rate limit — be polite, 1 req/sec
   Sys.sleep(1.1)
   
   list(lat = lat, lon = lon, display_name = result$display_name[1])
@@ -65,8 +63,7 @@ sign_location_finder <- function(cities,
   
   failed <- which(sapply(coords, is.null))
   if (length(failed) > 0) {
-    stop(sprintf("Could not geocode: %s",
-                 paste(cities[failed], collapse = ", ")))
+    stop(sprintf("Location not founc: %s", paste(cities[failed], collapse = ", ")))
   }
   
   sign_data <- data.frame(
@@ -76,23 +73,22 @@ sign_location_finder <- function(cities,
     dist_km = distances
   )
   
-  cat("\nResolved sign data:\n")
-  print(sign_data[, c("city", "lat", "lon", "dist_km")])
+cat("\nAPI resolved data:\n")
+print(sign_data[, c("city", "lat", "lon", "dist_km")])
   
-  # bound and search
-  max_dist_deg <- max(sign_data$dist_km) / 111
-  lat_min <- min(sign_data$lat) - max_dist_deg - 5
-  lat_max <- max(sign_data$lat) + max_dist_deg + 5
-  lon_min <- min(sign_data$lon) - max_dist_deg * 2 - 5
-  lon_max <- max(sign_data$lon) + max_dist_deg * 2 + 5
+max_dist_deg <- max(sign_data$dist_km) / 111
+lat_min <- min(sign_data$lat) - max_dist_deg - 5
+lat_max <- max(sign_data$lat) + max_dist_deg + 5
+lon_min <- min(sign_data$lon) - max_dist_deg * 2 - 5
+lon_max <- max(sign_data$lon) + max_dist_deg * 2 + 5
   
-  # Clamp to valid lat/lon range
-  lat_min <- max(lat_min, -85)
-  lat_max <- min(lat_max,  85)
-  lon_min <- max(lon_min, -180)
-  lon_max <- min(lon_max,  180)
+ 
+lat_min <- max(lat_min, -85)
+lat_max <- min(lat_max,  85)
+lon_min <- max(lon_min, -180)
+lon_max <- min(lon_max,  180)
   
-  cat(sprintf("\nStep 2: Search bounding box: lat [%.1f, %.1f], lon [%.1f, %.1f]\n",
+cat(sprintf("\nStep 2: Search bounding box: lat [%.1f, %.1f], lon [%.1f, %.1f]\n",
               lat_min, lat_max, lon_min, lon_max))
   
   
@@ -108,20 +104,19 @@ sign_location_finder <- function(cities,
   }
   
   
-  cat(sprintf("\nStep 3: Coarse grid search (%.2f° resolution)...\n", coarse_res))
+  cat(sprintf("\nStep 3: Search the grid (%.2f° resolution)...\n", coarse_res))
   grid <- expand.grid(
     lat = seq(lat_min, lat_max, by = coarse_res),
     lon = seq(lon_min, lon_max, by = coarse_res)
   )
-  cat(sprintf("  Evaluating %d grid points...\n", nrow(grid)))
+  cat(sprintf("Checking %d grid points...\n", nrow(grid)))
   grid$score <- mapply(score_point, grid$lat, grid$lon)
   
   candidates <- grid[grid$score <= tolerance, ]
-  cat(sprintf("  Found %d candidate cells within ±%d km tolerance.\n",
+  cat(sprintf(" Found %d candidate cells within ±%d km tolerance.\n",
               nrow(candidates), tolerance))
   
   coarse_best <- grid[which.min(grid$score), ]
-  
   
   fine_grid <- expand.grid(
     lat = seq(coarse_best$lat - 1, coarse_best$lat + 1, by = fine_res),
@@ -161,12 +156,15 @@ sign_location_finder <- function(cities,
     cat(sprintf("\n  Nearest: %s, %s (%.1f km away)\n",
                 nearby$name[1], nearby$country.etc[1], nearby$dist_to_sign[1]))
   } else {
-    cat("  No major cities nearby — possibly a remote location.\n")
+    cat("No major locations found in vicinity!")
   }
   
 
 }
 
+####################
+## Data Sample
+#################### 
 
 # sample 1 - ficticious
 result <- sign_location_finder(
