@@ -1,3 +1,18 @@
+##########################################
+# 
+# Useless useful R functions
+# Honest geographical location signposts
+#
+# Series:
+# Little Useless-useful R functions #96
+# Created: August 1, 2026
+# Author: Tomaž Kaštrun
+# Blog: tomaztsql.wordpress.com
+# V.1.1
+
+###########################################
+
+
 library(geosphere)
 library(ggplot2)
 library(maps)
@@ -72,8 +87,8 @@ sign_location_finder <- function(cities,
     lon     = sapply(coords, `[[`, "lon"),
     dist_km = distances
   )
-  
-cat("\nAPI resolved data:\n")
+
+
 print(sign_data[, c("city", "lat", "lon", "dist_km")])
   
 max_dist_deg <- max(sign_data$dist_km) / 111
@@ -125,13 +140,11 @@ cat(sprintf("\nStep 2: Search bounding box: lat [%.1f, %.1f], lon [%.1f, %.1f]\n
   fine_grid$score <- mapply(score_point, fine_grid$lat, fine_grid$lon)
   best <- fine_grid[which.min(fine_grid$score), ]
   
-  cat(sprintf("\n>>> Estimated sign location:\n"))
+  cat(sprintf("\n>>> Estimated  locations:\n"))
   cat(sprintf("    Latitude  : %.4f°\n", best$lat))
   cat(sprintf("    Longitude : %.4f°\n", best$lon))
   cat(sprintf("    Max error : ±%.1f km\n", best$score))
-  cat(sprintf("    Google Maps: https://www.google.com/maps?q=%.4f,%.4f\n",
-              best$lat, best$lon))
-  
+  cat(sprintf("    Google Maps: https://www.google.com/maps?q=%.4f,%.4f\n", best$lat, best$lon))
   
   cat(sprintf("\nStep 5: Nearby cities (within %d km, pop > %s)...\n",
               nearby_radius, format(nearby_min_pop, big.mark = ",")))
@@ -173,16 +186,10 @@ result <- sign_location_finder(
   tolerance = 50
 )
 
-# sample 2 -ficticious
-result <- sign_location_finder(
-   cities    = c("London", "New York", "Cairo", "Mumbai"),
-   distances = c(1200, 5400, 3800, 6200),
-   tolerance = 50
- )
 
-
-# sample 3 - real with correct distances calculater from
+# sample 2 - real with correct distances calculater from
 #  https://www.distancefromto.net/  "air distance"
+
 # result must be Ljubljana, Slovenia
 result <- sign_location_finder(
   cities    = c("Koper", "Celje", "Maribor", "Kranj"),
