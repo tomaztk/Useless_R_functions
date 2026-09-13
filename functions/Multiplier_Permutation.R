@@ -27,7 +27,6 @@ digit_counts <- function(x) {
 
 n_digits <- function(x) if (x == 0) 1L else as.integer(floor(log10(x)) + 1)
 
-
 find_permutation_multiples <- function(max_n = 1e6) {
   
   numbers     <- integer(0)
@@ -55,10 +54,6 @@ find_permutation_multiples <- function(max_n = 1e6) {
   data.frame(number = numbers, n_multipliers = n_valid_ks)
 }
 
+## Results
 res <- find_permutation_multiples(1e6)
-
 head(res[order(res$n_multipliers, decreasing=TRUE),], 10)
-
-
-
-### faster solution
