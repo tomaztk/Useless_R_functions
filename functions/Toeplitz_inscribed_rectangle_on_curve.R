@@ -133,12 +133,7 @@ find_squares <- function(f, n = 150) {
 }
 
 
-# ============================================================
-# 5. Draw curve + inscribed squares
-# ============================================================
-
 draw_solution <- function(f, squares) {
-  
   curve <- as.data.frame(
     f(seq(0, 1, length.out = 1000))
   )
@@ -155,10 +150,10 @@ draw_solution <- function(f, squares) {
     coord_equal() +
     theme_void() +
     labs(
-      title = "Inscribed squares"
+      title = "Topelitz inscribed squares"
     )
   
-  # Draw every solution square
+  # Nariši vse rešitve
   if (!is.null(squares)) {
     
     for (i in seq_along(squares)) {
@@ -192,12 +187,9 @@ draw_solution <- function(f, squares) {
 }
 
 
-# ============================================================
-# 6. RUN
-# ============================================================
+# test run
 
 f <- curve_blob(seed = 42)
-
 squares <- find_squares(f, n = 60)
 
 # -- all solutions
