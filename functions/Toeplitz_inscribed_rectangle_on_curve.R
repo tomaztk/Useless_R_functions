@@ -190,7 +190,7 @@ draw_solution <- function(f, squares) {
 # test run
 
 f <- curve_blob(seed = 42)
-squares <- find_squares(f, n = 60)
+squares <- find_squares(f, n = 200)
 
 # -- all solutions
 draw_solution(f, squares)
