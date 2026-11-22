@@ -25,6 +25,19 @@ curve_blob <- function(seed = 2911, k = 5, wobble = 0.35) {
   }
 }
 
+# v2
+curve_blob <- function(seed = 2911, k = 5, wobble = 0.35) {
+  set.seed(seed)
+  a <- rnorm(k) * wobble / (1:k)
+  b <- rnorm(k) * wobble / (1:k)
+  function(t) {
+    th <- 2 * pi * t
+    r  <- 1 + colSums(a * cos(outer(1:k, th)) + b * sin(outer(1:k, th)))
+    cbind(x = r * cos(th), y = r * sin(th))
+  }
+}
+
+
 
 make_square <- function(A, C) {
   M <- (A + C) / 2
