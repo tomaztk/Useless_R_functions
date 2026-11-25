@@ -37,6 +37,13 @@ curve_blob <- function(seed = 2911, k = 5, wobble = 0.35) {
   }
 }
 
+curve_from_points <- function(x, y) {
+  n  <- length(x)
+  tt <- seq(0, 1, length.out = n + 1)
+  sx <- splinefun(tt, c(x, x[1]), method = "periodic")
+  sy <- splinefun(tt, c(y, y[1]), method = "periodic")
+  function(t) cbind(x = sx(t %% 1), y = sy(t %% 1))
+}
 
 
 make_square <- function(A, C) {
